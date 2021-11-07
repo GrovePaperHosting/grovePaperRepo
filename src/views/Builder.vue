@@ -154,7 +154,7 @@ export default {
           urlImg: '../assets/images/COIL.png',
         },
         {
-          name: 'Fill page',
+          name: 'Fill pag',
           urlImg: '../assets/images/COVER_BLACK.png',
           //urlImg: '../assets/images/ADD.png',
 
