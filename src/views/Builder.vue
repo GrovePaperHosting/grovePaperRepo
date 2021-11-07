@@ -19,13 +19,13 @@
           <div class="card is-flex build-container-carrousel-options-container">
             <div class="w100" v-if="options[selectedCategory].type === 'optionsListNested'">
               <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered">
-                <div class="column is-3" v-for="(option, index) in options[selectedCategory].subcategories"
+                <div class="column is-one-fifth" v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent" @click="selectedSubcategory = index">
-                    <div class="card">
-                      <img :src="option.urlImg">
+                    <div>
+                      <img width="w100" :src="option.urlImg">
                     </div>
-                    <h1 class="is-uppercase is-size-5 lamango-font has-text-weight-light mt-2">{{ option.name }}</h1>
+                    <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">{{ option.name }}</h1>
                   </button>
                 </div>
               </div>
@@ -33,14 +33,14 @@
                 <h2 class="is-size-4 is-size-5-touch kontuor-font has-text-weight-light is-uppercase mt-4">
                   {{ options[selectedCategory].subcategories[selectedSubcategory].name }}</h2>
                 <div class="columns is-multiline is-vcentered">
-                  <div class="column is-3"
+                  <div class="column is-one-fifth"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
                        :key="index">
-                    <button class="build-container-carrousel-options-container-card" @click="selectItem(option, index)">
-                      <div class="card">
+                    <button class="build-container-carrousel-options-container-card button__transparent" @click="selectItem(option, index)">
+                      <div>
                         <img :src="option.urlImg">
                       </div>
-                      <h1 class="is-uppercase is-size-5 lamango-font has-text-weight-light mt-2">{{ option.name }}</h1>
+                      <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">{{ option.name }}</h1>
                       <img v-if="selectedItem === index"
                            class="build-container-carrousel-options-container-card__selected"
                            src="../assets/images/SELECTION.png">
@@ -55,10 +55,10 @@
                      v-for="(option, index) in options[selectedCategory].categoriesOptions"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent w100" @click="selectItem(option, index)">
-                    <div class="card w100">
+                    <div class="w100">
                       <img :src="option.urlImg">
                     </div>
-                    <h1 class="is-uppercase is-size-5 lamango-font has-text-weight-light mt-2">{{ option.name }}</h1>
+                    <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">{{ option.name }}</h1>
                     <img v-if="selectedItem === index"
                          class="build-container-carrousel-options-container-card__selected"
                          src="../assets/images/SELECTION.png">
@@ -147,61 +147,35 @@ export default {
         {
           id: '1',
           name: 'Cover',
-          urlImg: '../assets/images/COVER_BLACK.png',
+          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COVER_BLACK.png?alt=media&token=53768c29-cce4-4428-b85c-8eb6ce650db9',
         },
         {
           name: 'Coil',
-          urlImg: '../assets/images/COIL.png',
+          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COIL.png?alt=media&token=3a8cd002-009b-46ef-8897-4820f380a5af',
         },
         {
           name: 'Fill pag',
-          urlImg: '../assets/images/COVER_BLACK.png',
-          //urlImg: '../assets/images/ADD.png',
-
+          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/FILL%20PAGE.png?alt=media&token=44834095-fd9b-47a9-bca3-e51b103df646',
         },
         {
           name: 'Dates',
-          urlImg: '../assets/images/COVER_BLACK.png',
-
-          /*
-                    urlImg: '../assets/images/DATES.png',
-          */
+          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/DATES.png?alt=media&token=eca47e0b-acf3-4a0f-acff-e75f112f73dd',
         },
         {
           name: 'Holidays',
-          urlImg: '../assets/images/COIL.png',
-
-          /*
-                    urlImg: '../assets/images/HOLIDAYS.png',
-          */
-          pathName: 'shop'
+          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/HOLIDAYS.png?alt=media&token=4db04f69-ab3c-48e6-99a5-a8d7282d6376',
         },
         {
           name: 'Layout options',
-          urlImg: '../assets/images/COIL.png',
-
-          /*
-                    urlImg: '../assets/images/LAYOUT.png',
-          */
-          pathName: 'shop'
+          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/LAYOUT.png?alt=media&token=145dd9d4-4212-403e-a60f-b6f7a7879bfb',
         },
         {
           name: 'Add on pages',
-          urlImg: '../assets/images/COIL.png',
-
-          /*
-                    urlImg: '../assets/images/ADD.png',
-          */
-          pathName: 'shop'
+          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/ADD%20ON%20PAGES.png?alt=media&token=1d67083e-a111-4da5-bca1-3db1363f59e6',
         },
         {
           name: 'Extras',
-          urlImg: '../assets/images/COIL.png',
-
-          /*
-                    urlImg: '../assets/images/ADD.png',
-          */
-          pathName: 'shop'
+          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/EXTRAS.png?alt=media&token=78261eee-049d-4a89-8adb-b06f835fe70c',
         }
       ],
       selectedItem: null,
@@ -217,46 +191,73 @@ export default {
             {
               name: 'featured artist',
               id: 1.1,
-              urlImg: '../assets/images/COIL.png',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Mabz-9.png?alt=media&token=df46b3d3-a497-4654-8549-16ff2546bbd4',
               subcategoriesOptions: [
                 {
                   name: 'GP X CHALKED BY MABZ',
                   id: 1.1,
-                  urlImg: '../assets/images/COIL.png',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Mabz-9.png?alt=media&token=df46b3d3-a497-4654-8549-16ff2546bbd4',
                 }
               ]
             },
             {
               name: 'gp desigs',
               id: 1.2,
-              urlImg: '../assets/images/COIL.png',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Faces-1.png?alt=media&token=7cfc35cf-a254-4a39-97e3-ee5ae976adc8',
               subcategoriesOptions: [
                 {
                   name: 'SISTERHOOD',
                   id: 1.2,
-                  urlImg: '../assets/images/COIL.png',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Faces-1.png?alt=media&token=7cfc35cf-a254-4a39-97e3-ee5ae976adc8',
                 },
                 {
                   name: 'LOVE KNOT',
                   id: 1.2,
-                  urlImg: '../assets/images/COIL.png',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Small-Stripe-4.png?alt=media&token=fce30f84-b73d-47fa-9996-313dc0be6b28'
                 },
                 {
                   name: 'PAINT NIGHT',
                   id: 1.2,
-                  urlImg: '../assets/images/COIL.png',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Gems-8.png?alt=media&token=23e7aff4-e947-4c9c-8a06-bd6f9b25e167',
                 },
                 {
                   name: 'BOLD TYPE',
                   id: 1.2,
-                  urlImg: '../assets/images/COIL.png',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Big-Stripe-2.png?alt=media&token=5acde2ea-35ad-4864-9ef9-aa0dd94f9459',
                 }
               ]
             },
             {
-              name: 'lines',
+              name: 'linen',
               id: 1.3,
-              urlImg: '../assets/images/COIL.png',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Navy-8.png?alt=media&token=51f0b397-1c11-4240-9c0b-b5f03dd4618a',
+              subcategoriesOptions: [
+                {
+                  name: 'JADE',
+                  id: 1.2,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Green-Linen-5.png?alt=media&token=2a36638c-b0c6-4b9c-a208-74b6700cac91',
+                },
+                {
+                  name: 'NAVY',
+                  id: 1.2,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Navy-8.png?alt=media&token=51f0b397-1c11-4240-9c0b-b5f03dd4618a'
+                },
+                {
+                  name: 'BALLET SLIPPER',
+                  id: 1.2,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Pink-1.png?alt=media&token=57a77c4d-22be-494b-a167-ca545b028df5',
+                },
+                {
+                  name: 'RUBY',
+                  id: 1.2,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Red-Linen5.png?alt=media&token=bb827a6c-2e89-4dce-a2cb-96fc19490f19',
+                },
+                {
+                  name: 'OATMEAL',
+                  id: 1.2,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Taupe-6.png?alt=media&token=189db223-a731-4d8d-98db-6d9cc93b3204',
+                }
+              ]
 
             }
           ]
@@ -269,17 +270,17 @@ export default {
             {
               name: 'Gold',
               id: 1.1,
-              urlImg: '../assets/images/COIL.png',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/coil%2FGrove-Paper-Gems-3.png?alt=media&token=c863395c-bb17-43a7-be98-f97dfae24bde',
             },
             {
               name: 'Rose gold',
               id: 1.2,
-              urlImg: '../assets/images/COIL.png',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/coil%2FGrove-Paper-Pink-2.png?alt=media&token=bc4f4a1b-c42c-4911-bbdc-5d838df2915c',
             },
             {
               name: 'Silver',
               id: 1.3,
-              urlImg: '../assets/images/COIL.png',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/coil%2FGrove-Paper-Navy-4.png?alt=media&token=d415e683-4678-4886-ae08-509d0e6d4e38',
             }
           ]
         },
