@@ -21,11 +21,13 @@
               <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered">
                 <div class="column is-one-fifth" v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
-                  <button class="build-container-carrousel-options-container-card button__transparent" @click="selectedSubcategory = index">
+                  <button class="build-container-carrousel-options-container-card button__transparent"
+                          @click="selectedSubcategory = index">
                     <div>
                       <img width="w100" :src="option.urlImg">
                     </div>
-                    <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">{{ option.name }}</h1>
+                    <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
+                      {{ option.name }}</h1>
                   </button>
                 </div>
               </div>
@@ -36,11 +38,13 @@
                   <div class="column is-one-fifth"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
                        :key="index">
-                    <button class="build-container-carrousel-options-container-card button__transparent" @click="selectItem(option, index)">
+                    <button class="build-container-carrousel-options-container-card button__transparent"
+                            @click="selectItem(option, index)">
                       <div>
                         <img :src="option.urlImg">
                       </div>
-                      <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">{{ option.name }}</h1>
+                      <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
+                        {{ option.name }}</h1>
                       <img v-if="selectedItem === index"
                            class="build-container-carrousel-options-container-card__selected"
                            src="../assets/images/SELECTION.png">
@@ -54,11 +58,13 @@
                 <div class="column is-one-fifth"
                      v-for="(option, index) in options[selectedCategory].categoriesOptions"
                      :key="index">
-                  <button class="build-container-carrousel-options-container-card button__transparent w100" @click="selectItem(option, index)">
+                  <button class="build-container-carrousel-options-container-card button__transparent w100"
+                          @click="selectItem(option, index)">
                     <div class="w100">
                       <img :src="option.urlImg">
                     </div>
-                    <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">{{ option.name }}</h1>
+                    <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
+                      {{ option.name }}</h1>
                     <img v-if="selectedItem === index"
                          class="build-container-carrousel-options-container-card__selected"
                          src="../assets/images/SELECTION.png">
@@ -92,46 +98,147 @@
                   </div>
                   <div class="w100">
                     <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">message </h1>
-                    <textarea class="textarea" type="textarea" row="3" v-model="formValue['Message']" @keyup="formChange(formValue)"></textarea>
+                    <textarea class="textarea" type="textarea" row="3" v-model="formValue['Message']"
+                              @keyup="formChange(formValue)"></textarea>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="w100 m-6" v-else-if="options[selectedCategory].type === 'formDates'">
-              <div class="mt-6 mx-6">
-                <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">Start month </h1>
-                <input class="input" v-model="dateValue['starMonth']" @keyup="formChange(dateValue)">
-              </div>
-              <div class="mb-6 mt-5 mx-6">
-                <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">end month </h1>
-                <input class="input" v-model="dateValue['endMonth']" @keyup="formChange(dateValue)">
+            <div class="w100 is-flex is-justify-content-center my-6"
+                 v-else-if="options[selectedCategory].type === 'formDates'">
+              <div class="formDates">
+                <div class="mt-6">
+                  <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">Start month </h1>
+                  <div class="columns w100 m-0">
+                    <div class="column">
+                      <b-field>
+                        <b-select placeholder="Select a year" v-model="dateValue.startDate['year']"
+                                  @click.native="dateChange(dateValue)" expanded>
+                          <option v-for="(yearOption, index) in datesValueOptions.years" :key="index"
+                                  :value="yearOption">
+                            {{ yearOption }}
+                          </option>
+                        </b-select>
+                      </b-field>
+                    </div>
+                    <div class="column">
+                      <b-field>
+                        <b-select placeholder="Select a month" v-model="dateValue.startDate['month']"
+                                  @click.native="dateChange(dateValue)" expanded>
+                          <option v-for="(monthOption, index) in datesValueOptions.month" :key="index"
+                                  :value="monthOption.value">
+                            {{ monthOption.key }}
+                          </option>
+                        </b-select>
+                      </b-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-6 mt-5">
+                  <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">end date </h1>
+                  <div class="columns w100 m-0">
+                    <div class="column">
+                      <b-field>
+                        <b-select :disabled="(!dateValue.startDate.year || !dateValue.startDate.month)"
+                                  placeholder="Select a year" v-model="dateValue.endDate['year']"
+                                  @click.native="dateChange(dateValue)" expanded>
+                          <option v-for="(yearOption, index) in endYearDate" :key="index"
+                                  :value="yearOption">
+                            {{ yearOption }}
+                          </option>
+                        </b-select>
+                      </b-field>
+                    </div>
+                    <div class="column">
+                      <b-field>
+                        <b-select :disabled="(!dateValue.startDate.year || !dateValue.startDate.month || !dateValue.endDate.year)"
+                                  placeholder="Select a month" v-model="dateValue.endDate['month']"
+                                  @click.native="dateChange(dateValue)" expanded>
+                          <option v-for="(monthOption, index) in endMonthDate" :key="index"
+                                  :value="monthOption.value">
+                            {{ monthOption.key }}
+                          </option>
+                        </b-select>
+                      </b-field>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="w100 my-6 holiday-container" v-else-if="options[selectedCategory].type === 'holidays'">
               <div class="columns my-6 is-vcentered">
                 <div class="column is-flex is-flex-direction-column">
-                    <button class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2" :class="{'button__selected' : holidaysSelection === 'canadian holidays'}" @click="setHolidays('canadian holidays')"> canadian holidays</button>
-                    <button class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2" :class="{'button__selected' : holidaysSelection === 'us holidays'}" @click="setHolidays('us holidays')"> us holidays</button>
-                    <button class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2" :class="{'button__selected' : holidaysSelection === 'christian holidays'}" @click="setHolidays( 'christian holidays')">christian holidays</button>
-                    <button class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2" :class="{'button__selected' : holidaysSelection === 'hindu holidays'}" @click="setHolidays('hindu holidays')"> hindu holidays</button>
+                  <button
+                      class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
+                      :class="{'button__selected' : holidaysSelection === 'canadian holidays'}"
+                      @click="setHolidays('canadian holidays')"> canadian holidays
+                  </button>
+                  <button
+                      class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
+                      :class="{'button__selected' : holidaysSelection === 'us holidays'}"
+                      @click="setHolidays('us holidays')"> us holidays
+                  </button>
+                  <button
+                      class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
+                      :class="{'button__selected' : holidaysSelection === 'christian holidays'}"
+                      @click="setHolidays( 'christian holidays')">christian holidays
+                  </button>
+                  <button
+                      class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
+                      :class="{'button__selected' : holidaysSelection === 'hindu holidays'}"
+                      @click="setHolidays('hindu holidays')"> hindu holidays
+                  </button>
                 </div>
                 <div class="column is-flex is-flex-direction-column">
-                  <button class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2" :class="{'button__selected' : holidaysSelection === 'jewish holidays'}" @click="setHolidays('jewish holidays')"> jewish holidays</button>
-                  <button class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2" :class="{'button__selected' : holidaysSelection === 'muslim holidays'}" @click="setHolidays('muslim holidays')"> muslim holidays</button>
-                  <button class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2" :class="{'button__selected' : holidaysSelection === 'fun holidays'}" @click="setHolidays('fun holidays')"> fun holidays</button>
+                  <button
+                      class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
+                      :class="{'button__selected' : holidaysSelection === 'jewish holidays'}"
+                      @click="setHolidays('jewish holidays')"> jewish holidays
+                  </button>
+                  <button
+                      class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
+                      :class="{'button__selected' : holidaysSelection === 'muslim holidays'}"
+                      @click="setHolidays('muslim holidays')"> muslim holidays
+                  </button>
+                  <button
+                      class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
+                      :class="{'button__selected' : holidaysSelection === 'fun holidays'}"
+                      @click="setHolidays('fun holidays')"> fun holidays
+                  </button>
                 </div>
               </div>
             </div>
-            <div class="w100 holiday-container is-flex is-align-items-center" v-else-if="options[selectedCategory].type === 'extras'">
+            <div class="w100 holiday-container is-flex is-align-items-center"
+                 v-else-if="options[selectedCategory].type === 'extras'">
               <div class="is-flex is-flex-direction-column w100" style="padding: 5% 25%">
-                <button class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-3 py-2" :class="{'button__selected' : holidaysSelection === 'Motivational quotes'}" @click="setHolidays('Motivational quotes')"> Motivational quotes</button>
-                <button class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-6 py-2" :class="{'button__selected' : holidaysSelection === 'self-care challenges'}" @click="setHolidays('self-care challenges')"> self-care challenges</button>
-                <button class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-6 py-2" :class="{'button__selected' : holidaysSelection === 'personal check ins'}" @click="setHolidays('personal check ins')"> personal check ins</button>
+                <button
+                    class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-3 py-2"
+                    :class="{'button__selected' : holidaysSelection === 'Motivational quotes'}"
+                    @click="setHolidays('Motivational quotes')"> Motivational quotes
+                </button>
+                <button
+                    class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-6 py-2"
+                    :class="{'button__selected' : holidaysSelection === 'self-care challenges'}"
+                    @click="setHolidays('self-care challenges')"> self-care challenges
+                </button>
+                <button
+                    class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-6 py-2"
+                    :class="{'button__selected' : holidaysSelection === 'personal check ins'}"
+                    @click="setHolidays('personal check ins')"> personal check ins
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="page-counter has-text-centered">
+      <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">PAGE COUNT</h1>
+      <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
+        {{ totalPages }} /242</h1>
+      <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">Price</h1>
+      <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
+        {{ price }}</h1>
     </div>
   </div>
 </template>
@@ -180,8 +287,11 @@ export default {
       ],
       selectedItem: null,
       holidaysSelection: '',
-      formValue:{},
-      dateValue:{},
+      formValue: {},
+      dateValue: {
+        startDate: {},
+        endDate: {}
+      },
       options: [
         {
           name: 'cover',
@@ -406,24 +516,124 @@ export default {
           type: 'extras',
         },
       ],
-      finalValue: []
+      finalValue: [],
+      days: 0,
+      weeks: 0,
+      totalPages: 0,
+      price: 65,
+      layoutOption: 'daily',
+      datesValueOptions: {
+        month: [
+          {
+            key: 'January',
+            value: '01'
+          },
+          {
+            key: 'February',
+            value: '02'
+          },
+          {
+            key: 'March',
+            value: '03'
+          },
+          {
+            key: 'April',
+            value: '04'
+          },
+          {
+            key: 'May',
+            value: '05'
+          },
+          {
+            key: 'June',
+            value: '06'
+          },
+          {
+            key: 'July',
+            value: '07'
+          },
+          {
+            key: 'August',
+            value: '08'
+          },
+          {
+            key: 'September',
+            value: '09'
+          },
+          {
+            key: 'October',
+            value: '10'
+          },
+          {
+            key: 'November',
+            value: '11'
+          },
+          {
+            key: 'December',
+            value: '12'
+          }
+        ],
+        years: ['2022', '2023', '2024', '2025', '2026']
+      }
     };
   },
   methods: {
+    calcTotalPages() {
+      if (this.layoutOption === 'daily') this.totalPages = this.days;
+      else if (this.layoutOption === 'weekly') this.totalPages = ((this.days) / 7) * 2;
+      if (this.totalPages > 120) this.price = ((this.totalPages - 120) * 0.1) + 65;
+    },
+    setDaysAndMonths() {
+      const startDate = new Date(`${this.dateValue.startDate.year}-${this.dateValue.startDate.month}-01`).getTime();
+      const endDate = new Date(`${this.dateValue.endDate.year}-${this.dateValue.endDate.month}-01`).getTime();
+      this.days = (endDate - startDate) / (1000 * 60 * 60 * 24);
+      this.calcTotalPages();
+    },
     selectItem(selection, index) {
       this.selectedItem = index;
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection}
     },
     formChange(value) {
       this.$set(this.finalValue, this.selectedCategory, {id: this.selectedCategory + 1, selection: value});
-      console.log('formChange', this.finalValue);
       //this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: value}
     },
-    setHolidays(value){
+    async dateChange(value) {
+      await this.formChange(value);
+      if (this.dateValue.startDate.month && this.dateValue.startDate.year && this.dateValue.endDate.month && this.dateValue.endDate.year) this.setDaysAndMonths();
+    },
+    setHolidays(value) {
       console.log('setHolidays', value);
       this.holidaysSelection = value;
-      this.formChange (value);
+      this.formChange(value);
     }
+  },
+  computed: {
+    endMonthDate() {
+      if (this.dateValue.startDate.year === this.dateValue.endDate.year){
+        const monthSelected = this.dateValue.startDate.month
+        return this.datesValueOptions.month.filter((month => {
+              if (month.value >= monthSelected)
+                return month;
+            })
+        )
+      }
+      return this.datesValueOptions.month;
+    },
+    endYearDate() {
+      if (this.dateValue.startDate.year) {
+        const yearSelected = this.dateValue.startDate.year
+        return this.datesValueOptions.years.filter((year => {
+          if (year >= yearSelected)
+             return year;
+          })
+        )
+      }
+      return this.datesValueOptions.years;
+    }
+  },
+  mounted() {
+    this.setDaysAndMonths();
+    this.calcTotalPages();
   }
 }
 </script>
@@ -433,15 +643,30 @@ button {
   cursor: pointer;
 }
 
-.holiday-container{
-  button{
+.formDates {
+  max-width: 600px;
+  width: 100%;
+}
+
+.holiday-container {
+  button {
     background-color: #FAF0EC;
     border-radius: 0px;
     border: none;
   }
-  .button__selected{
+
+  .button__selected {
     background-color: #F3D7D3 !important;
   }
+}
+
+.page-counter {
+  position: absolute;
+  bottom: 170px;
+  right: 20px;
+  background-color: #FDF8F7;
+  border: #E5A49A 2px solid;
+  padding: 20px 40px;
 }
 
 .build-container {
