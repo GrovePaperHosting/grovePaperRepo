@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: 'Champagne & Limousines';
+  src: url('./fonts/Champagne & Limousines.ttf');
+}
+
+@font-face {
+  font-family: 'Kontour Type - Kopius-Light';
+  src: url('./fonts/Kontour Type - Kopius-Light.otf');
+}
+
+@font-face {
+  font-family: 'Sans And Sons - LaMango-Light';
+  src: url('./fonts/Sans And Sons - LaMango-Light.otf');
+}
+
+@font-face {
+  font-family: 'Sans And Sons - FrunchySerif-Light';
+  src: url('./fonts/Sans And Sons - FrunchySerif-Light.otf');
+}
+
+$primary: #E5A49A;
+//$secondary: #F8EEE8;
+$secondary: #FCF9F7;
+$text: #000000;
+$navbar-background-color: #fcf5f5;
+$link: #fcf5f5;
+$navbar-height: 2.8rem;
+$family-primary: "Champagne & Limousines";
+$family-secondary: "Kontour Type - Kopius-Light";
+
+@import "~bulma";
+
+html{
+  height: 100%;
+  width: 100%;
+}
+.w100{
+  width: 100%;
+}
+.kontuor-font{
+  font-family: "Kontour Type - Kopius-Light";
+}
+
+.frunchySerif-font{
+  font-family: 'Sans And Sons - FrunchySerif-Light';
+}
+
+.lamango-font{
+  font-family: 'Sans And Sons - LaMango-Light';
+  &__spacing{
+    letter-spacing: 6pt;
+  }
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgray;
+  border-radius: 10px;
+
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: lightgray;
+  border-radius: 10px;
+}

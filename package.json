@@ -1,5 +1,5 @@
 {
-  "name": "grave-paper",
+  "name": "Grove-Paper",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,8 +8,14 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "buefy": "^0.9.11",
+    "bulma": "^0.9.3",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "firebase": "^9.3.0",
+    "node-sass": "^4.14.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.3",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -18,7 +24,11 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^3.11.2"
   },
   "eslintConfig": {
     "root": true,
