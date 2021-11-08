@@ -11,7 +11,7 @@
 }
 
 @font-face {
-  font-family: 'Sans And Sons - LaMango-Light';
+  font-family: 'LaMango-Light';
   src: url('./fonts/Sans And Sons - LaMango-Light.otf');
 }
 
@@ -27,7 +27,7 @@ $text: #000000;
 $navbar-background-color: #fcf5f5;
 $link: #fcf5f5;
 $navbar-height: 2.5rem;
-$family-primary: "Sans And Sons - LaMango-Light";
+$family-primary: "LaMango-Light";
 $family-secondary: "Kontour Type - Kopius-Light";
 
 @import "~bulma";
