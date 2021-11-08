@@ -16,13 +16,32 @@
           </button>
         </div>
         <div class="build-container-carrousel-options">
-          <div class="card is-flex build-container-carrousel-options-container">
+          <div v-if="layoutPreselect !== null">
+            <div>
+              <div class="columns">
+                <div class="column is-4 p-0 m-0">
+                  <div class="is-flex is-justify-content-flex-start ml-3" style="height: 10%">
+                    <button @click="layoutPreselect = null" class="button__transparent">
+                      <img style="width: 40px; height: 30px" src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7"></button>
+                  </div>
+                  <div class="mt-3" style="height: 90%">
+                    <h1 class="is-uppercase is-size-1 is-size-3-touch lamango-font lamango-font__spacing3 has-text-weight-light mt-2 ">{{layoutPreselect.name}}</h1>
+                    <button class="button button__transparent add-button frunchySerif-font is-size-4" @click="selectItem({category: options[selectedCategory].subcategories[selectedSubcategory].name, subcategory: layoutPreselect}, layoutPreselect.id-1)"> ADD</button>
+                  </div>
+                </div>
+                <div class="column is-8 p-0 m-0">
+                  <img style="height: 650px" :src="layoutPreselect.urlImgFull">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-else class="card is-flex build-container-carrousel-options-container">
             <div class="w100" v-if="options[selectedCategory].type === 'optionsListNested'">
               <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered">
-                <div class="column is-one-fifth" v-for="(option, index) in options[selectedCategory].subcategories"
+                <div class="column is-one-fifth mt-6" v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent"
-                          @click="selectedSubcategory = index">
+                          @click="selectedSubcategory = index; layoutPreselect = null">
                     <div>
                       <img width="w100" :src="option.urlImg">
                     </div>
@@ -34,12 +53,12 @@
               <div v-else class="has-text-left w100">
                 <h2 class="is-size-4 is-size-5-touch kontuor-font has-text-weight-light is-uppercase mt-4">
                   {{ options[selectedCategory].subcategories[selectedSubcategory].name }}</h2>
-                <div class="columns is-multiline is-vcentered">
+                <div class="columns is-multiline is-vcentered mt-6">
                   <div class="column is-one-fifth"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
                        :key="index">
                     <button class="build-container-carrousel-options-container-card button__transparent"
-                            @click="selectItem(option, index)">
+                            @click="selectItem({category: options[selectedCategory].subcategories[selectedSubcategory].name, subcategory: option}, index)">
                       <div>
                         <img :src="option.urlImg">
                       </div>
@@ -208,6 +227,40 @@
                 </div>
               </div>
             </div>
+            <div class="w100" v-if="options[selectedCategory].type === 'layoutOptions'">
+              <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered">
+                <div class="column is-one-fifth" v-for="(option, index) in options[selectedCategory].subcategories"
+                     :key="index">
+                  <button class="build-container-carrousel-options-container-card button__transparent"
+                          @click="selectedSubcategory = index; layoutOption = options[selectedCategory].subcategories[index].name; layoutPreselect = null">
+                    <div>
+                      <img width="w100" :src="option.urlImg">
+                    </div>
+                    <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
+                      {{ option.name }}</h1>
+                  </button>
+                </div>
+              </div>
+              <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left w100">
+                <div class="columns is-multiline is-vcentered">
+                  <div class="column is-one-fifth"
+                       v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
+                       :key="index">
+                    <button class="build-container-carrousel-options-container-card button__transparent"
+                            @click="layoutPreselect = option">
+                      <div>
+                        <img :src="option.urlImg">
+                      </div>
+                      <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
+                        {{ option.name }}</h1>
+                      <img v-if="selectedItem === index"
+                           class="build-container-carrousel-options-container-card__selected"
+                           src="../assets/images/SELECTION.png">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="w100 holiday-container is-flex is-align-items-center"
                  v-else-if="options[selectedCategory].type === 'extras'">
               <div class="is-flex is-flex-direction-column w100" style="padding: 5% 25%">
@@ -232,6 +285,7 @@
         </div>
       </div>
     </div>
+    <pre>{{finalValue}}</pre>
     <div class="page-counter has-text-centered">
       <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">PAGE COUNT</h1>
       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
@@ -261,7 +315,7 @@ export default {
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COIL.png?alt=media&token=3a8cd002-009b-46ef-8897-4820f380a5af',
         },
         {
-          name: 'Fill pag',
+          name: 'Fill page',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/FILL%20PAGE.png?alt=media&token=44834095-fd9b-47a9-bca3-e51b103df646',
         },
         {
@@ -285,6 +339,7 @@ export default {
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/EXTRAS.png?alt=media&token=78261eee-049d-4a89-8adb-b06f835fe70c',
         }
       ],
+      layoutPreselect: null,
       selectedItem: null,
       holidaysSelection: '',
       formValue: {},
@@ -439,17 +494,87 @@ export default {
         {
           name: 'Layout options',
           id: 6,
-          type: 'optionsList',
-          categoriesOptions: [
+          type: 'layoutOptions',
+          subcategories: [
             {
               name: 'daily',
               id: 1.1,
-              urlImg: '../assets/images/COIL.png',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2FDailyOption1.png?alt=media&token=28627ec0-b7c1-4b78-8384-89ec58865a69',
+              subcategoriesOptions: [
+                {
+                  name: 'HOURLY',
+                  id: 1.1,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2FDailyOption1.png?alt=media&token=28627ec0-b7c1-4b78-8384-89ec58865a69',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6',
+                },
+                {
+                  name: 'SECTIONAL',
+                  id: 1.2,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily2.png?alt=media&token=88ad381a-9c3d-41c4-be09-c40474c3a141',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily2Big.png?alt=media&token=d99e7c4a-ab94-4392-b7cb-31f7d84b0208',
+                },
+                {
+                  name: 'REFLECTION',
+                  id: 1.3,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily3%20(1).png?alt=media&token=218a6a96-2b85-4387-adf7-564ec748d451',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily3Big.png?alt=media&token=52697e17-9590-4ed6-810b-8b49437f67a9',
+                }
+              ]
             },
             {
               name: 'weekly',
               id: 1.2,
-              urlImg: '../assets/images/COIL.png',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2FDouble1.png?alt=media&token=60e742d2-b9ae-4fe3-9491-b263840a3962',
+              subcategoriesOptions: [
+                {
+                  name: 'Standar',
+                  id: 1.1,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
+                },
+                {
+                  name: 'hourly',
+                  id: 1.2,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
+                },
+                {
+                  name: 'kids - meals',
+                  id: 1.3,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
+                },
+                {
+                  name: 'projects',
+                  id: 1.3,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
+                },
+                {
+                  name: 'checklist',
+                  id: 1.3,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
+                },
+                {
+                  name: 'sectional',
+                  id: 1.3,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
+                },
+                {
+                  name: 'habits',
+                  id: 1.3,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
+                },
+                {
+                  name: 'goals - errands',
+                  id: 1.3,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
+                }
+              ]
             },
           ]
         },
@@ -577,11 +702,16 @@ export default {
       }
     };
   },
+  watch:{
+    layoutOption(){
+      this.calcTotalPages();
+    }
+  },
   methods: {
     calcTotalPages() {
       if (this.layoutOption === 'daily') this.totalPages = this.days;
-      else if (this.layoutOption === 'weekly') this.totalPages = ((this.days) / 7) * 2;
-      if (this.totalPages > 120) this.price = ((this.totalPages - 120) * 0.1) + 65;
+      else if (this.layoutOption === 'weekly') this.totalPages = (Math.ceil(this.days / 7)) * 2;
+      if (this.totalPages >= 120) this.price = ((this.totalPages - 120) * 0.1) + 65;
     },
     setDaysAndMonths() {
       const startDate = new Date(`${this.dateValue.startDate.year}-${this.dateValue.startDate.month}-01`).getTime();
@@ -592,6 +722,7 @@ export default {
     selectItem(selection, index) {
       this.selectedItem = index;
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection}
+      console.log('finalValue', this.finalValue);
     },
     formChange(value) {
       this.$set(this.finalValue, this.selectedCategory, {id: this.selectedCategory + 1, selection: value});
@@ -612,7 +743,7 @@ export default {
       if (this.dateValue.startDate.year === this.dateValue.endDate.year){
         const monthSelected = this.dateValue.startDate.month
         return this.datesValueOptions.month.filter((month => {
-              if (month.value >= monthSelected)
+              if (month.value > monthSelected)
                 return month;
             })
         )
@@ -639,6 +770,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.add-button{
+  border-radius: 25px;
+  background-color: #F3D7D3;
+  width: 40%;
+  height: 30px
+}
+
 button {
   cursor: pointer;
 }
@@ -684,7 +822,7 @@ button {
   }
 
   &-carrousel {
-    width: 90vw;
+    width: 100%;
     margin: 0 5%;
     height: 80vh;
 
@@ -718,11 +856,6 @@ button {
 
         .columns {
           width: 100%;
-        }
-
-        .button__transparent {
-          border: none;
-          background: none;
         }
 
         &-card {
