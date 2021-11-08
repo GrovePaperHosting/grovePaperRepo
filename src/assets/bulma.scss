@@ -39,6 +39,10 @@ html{
 .w100{
   width: 100%;
 }
+.button__transparent {
+  border: none;
+  background: none;
+}
 .kontuor-font{
   font-family: "Kontour Type - Kopius-Light";
 }
@@ -51,6 +55,9 @@ html{
   font-family: 'Sans And Sons - LaMango-Light';
   &__spacing{
     letter-spacing: 6pt;
+  }
+  &__spacing3{
+    letter-spacing: 3pt;
   }
 }
 ::-webkit-scrollbar {
