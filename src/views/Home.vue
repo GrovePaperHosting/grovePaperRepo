@@ -75,6 +75,7 @@ export default {
 .home-content {
   padding-bottom: 144px;
   background-color: #FCF9F7 !important;
+
   &-top{
      height: fit-content;
     background-color: #FCF9F7 !important;

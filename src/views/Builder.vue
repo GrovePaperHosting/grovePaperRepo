@@ -37,13 +37,13 @@
           </div>
           <div v-else class="card is-flex build-container-carrousel-options-container">
             <div class="w100" v-if="options[selectedCategory].type === 'optionsListNested'">
-              <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered">
-                <div class="column is-one-fifth mt-6" v-for="(option, index) in options[selectedCategory].subcategories"
+              <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered mt-6">
+                <div class="column is-one-fifth mt-6 p-0" v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent"
                           @click="selectedSubcategory = index; layoutPreselect = null">
                     <div>
-                      <img width="w100" :src="option.urlImg">
+                      <img class="image-option" width="w100" :src="option.urlImg">
                     </div>
                     <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
                       {{ option.name }}</h1>
@@ -54,13 +54,13 @@
                 <h2 class="is-size-4 is-size-5-touch kontuor-font has-text-weight-light is-uppercase mt-4">
                   {{ options[selectedCategory].subcategories[selectedSubcategory].name }}</h2>
                 <div class="columns is-multiline is-vcentered mt-6">
-                  <div class="column is-one-fifth"
+                  <div class="column is-one-fifth p-0"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
                        :key="index">
                     <button class="build-container-carrousel-options-container-card button__transparent"
                             @click="selectItem({category: options[selectedCategory].subcategories[selectedSubcategory].name, subcategory: option}, index)">
                       <div>
-                        <img :src="option.urlImg">
+                        <img class="image-option" :src="option.urlImg">
                       </div>
                       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
                         {{ option.name }}</h1>
@@ -73,14 +73,14 @@
               </div>
             </div>
             <div class="w100" v-else-if="options[selectedCategory].type === 'optionsList'">
-              <div class="columns is-multiline is-vcentered w100 is-gapless">
+              <div class="columns is-multiline is-vcentered w100 is-gapless mt-6">
                 <div class="column is-one-fifth"
                      v-for="(option, index) in options[selectedCategory].categoriesOptions"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent w100"
                           @click="selectItem(option, index)">
                     <div class="w100">
-                      <img :src="option.urlImg">
+                      <img class="image-option" :src="option.urlImg">
                     </div>
                     <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
                       {{ option.name }}</h1>
@@ -94,7 +94,6 @@
             <div class="w100 my-6" v-else-if="options[selectedCategory].type === 'formFillPage'">
               <div class="columns">
                 <div class="column is-6">
-                  <!--                <div class="column is-6" v-for="(field, index) in options[selectedCategory].fields" :key="index">-->
                   <div class="w100">
                     <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">name </h1>
                     <input class="input" v-model="formValue['Name']" @keyup="formChange(formValue)">
@@ -127,7 +126,7 @@
                  v-else-if="options[selectedCategory].type === 'formDates'">
               <div class="formDates">
                 <div class="mt-6">
-                  <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">Start month </h1>
+                  <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">Start date </h1>
                   <div class="columns w100 m-0">
                     <div class="column">
                       <b-field>
@@ -228,13 +227,13 @@
               </div>
             </div>
             <div class="w100" v-if="options[selectedCategory].type === 'layoutOptions'">
-              <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered">
-                <div class="column is-one-fifth" v-for="(option, index) in options[selectedCategory].subcategories"
+              <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered py-6">
+                <div class="column is-one-fifth p-0" v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent"
                           @click="selectedSubcategory = index; layoutOption = options[selectedCategory].subcategories[index].name; layoutPreselect = null">
                     <div>
-                      <img width="w100" :src="option.urlImg">
+                      <img class="image-option" width="w100" :src="option.urlImg">
                     </div>
                     <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
                       {{ option.name }}</h1>
@@ -242,14 +241,14 @@
                 </div>
               </div>
               <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left w100">
-                <div class="columns is-multiline is-vcentered">
-                  <div class="column is-one-fifth"
+                <div class="columns is-multiline is-vcentered py-6">
+                  <div class="column is-one-fifth p-0"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
                        :key="index">
                     <button class="build-container-carrousel-options-container-card button__transparent"
                             @click="layoutPreselect = option">
                       <div>
-                        <img :src="option.urlImg">
+                        <img class="image-option" :src="option.urlImg">
                       </div>
                       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
                         {{ option.name }}</h1>
@@ -770,6 +769,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.image-option{
+  width: 100%;
+  max-width: 160px;
+  height: 160px;
+}
 .add-button{
   border-radius: 25px;
   background-color: #F3D7D3;
@@ -868,7 +872,7 @@ button {
           &__selected {
             position: absolute;
             top: -10px;
-            right: -10px;
+            right: 10px;
             width: 50px;
             height: 50px;
           }

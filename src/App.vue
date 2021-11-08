@@ -1,29 +1,29 @@
 <template>
   <div id="app">
-    <b-navbar>
+    <b-navbar centered class="champagne-limousines-font">
       <template #brand>
         <b-navbar-item class="navbar-logo py-0" tag="router-link" :to="{ path: '/' }">
           <img
               src="../public/assets/images/grovePaperIcon-Pink.png"
               alt="Grove paper icon"
           >
-          <h1 class="has-text-primary is-size-2 is-size-3-touch lamango-font">GROVE PAPER</h1>
+          <h1 class="has-text-primary is-size-1 lamango-font">GROVE PAPER</h1>
         </b-navbar-item>
       </template>
       <template #start>
-        <b-navbar-item class="has-text-primary is-size-4 is-size-5-touch has-text-weight-bold" href="#">
+        <b-navbar-item class="has-text-primary is-size-3 is-size-4-touch has-text-weight-bold px-4" href="/build">
           BUILD
         </b-navbar-item>
-        <b-navbar-item class="has-text-primary is-size-4 is-size-5-touch has-text-weight-bold" href="#">
+        <b-navbar-item class="has-text-primary is-size-3 is-size-5-touch has-text-weight-bold px-4" href="#">
           DETAILS
         </b-navbar-item>
-        <b-navbar-item class="has-text-primary is-size-4 is-size-5-touch has-text-weight-bold" href="#">
+        <b-navbar-item class="has-text-primary is-size-3 is-size-5-touch has-text-weight-bold px-4" href="#">
           TUTORIAL
         </b-navbar-item>
-        <b-navbar-item class="has-text-primary is-size-4 is-size-5-touch has-text-weight-bold" href="#">
+        <b-navbar-item class="has-text-primary is-size-3 is-size-5-touch has-text-weight-bold px-4" href="#">
           BLOG
         </b-navbar-item>
-        <b-navbar-item class="has-text-primary is-size-4 is-size-5-touch has-text-weight-bold" href="#">
+        <b-navbar-item class="has-text-primary is-size-3 is-size-5-touch has-text-weight-bold px-4" href="#">
           ABOUT US
         </b-navbar-item>
       </template>
@@ -75,6 +75,8 @@ export default {
 .navbar-logo{
   img{
     width: 50px;
+    height: 50px;
+    max-height: 100% !important;
   }
 }
 .shopping-cart-button{

@@ -26,8 +26,8 @@ $secondary: #FCF9F7;
 $text: #000000;
 $navbar-background-color: #fcf5f5;
 $link: #fcf5f5;
-$navbar-height: 2.8rem;
-$family-primary: "Champagne & Limousines";
+$navbar-height: 2.5rem;
+$family-primary: "Sans And Sons - LaMango-Light";
 $family-secondary: "Kontour Type - Kopius-Light";
 
 @import "~bulma";
@@ -49,6 +49,10 @@ html{
 
 .frunchySerif-font{
   font-family: 'Sans And Sons - FrunchySerif-Light';
+}
+
+.champagne-limousines-font{
+  font-family: 'Champagne & Limousines';
 }
 
 .lamango-font{
