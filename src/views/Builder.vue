@@ -202,40 +202,40 @@
                 <div class="column is-flex is-flex-direction-column">
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'canadian holidays'}"
-                      @click="setHolidays('canadian holidays')"> canadian holidays
+                      :class="{'button__selected' : holidaysSelection.name === 'canadian holidays'}"
+                      @click="setHolidays({name: 'canadian holidays'})"> canadian holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'us holidays'}"
-                      @click="setHolidays('us holidays')"> us holidays
+                      :class="{'button__selected' : holidaysSelection.name === 'us holidays'}"
+                      @click="setHolidays({name:'us holidays'})"> us holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'christian holidays'}"
-                      @click="setHolidays( 'christian holidays')">christian holidays
+                      :class="{'button__selected' : holidaysSelection.name === 'christian holidays'}"
+                      @click="setHolidays({name: 'christian holidays'})">christian holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'hindu holidays'}"
-                      @click="setHolidays('hindu holidays')"> hindu holidays
+                      :class="{'button__selected' : holidaysSelection.name === 'hindu holidays'}"
+                      @click="setHolidays({name: 'hindu holidays'})"> hindu holidays
                   </button>
                 </div>
                 <div class="column is-flex is-flex-direction-column">
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'jewish holidays'}"
-                      @click="setHolidays('jewish holidays')"> jewish holidays
+                      :class="{'button__selected' : holidaysSelection.name === 'jewish holidays'}"
+                      @click="setHolidays({name: 'jewish holidays'})"> jewish holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'muslim holidays'}"
-                      @click="setHolidays('muslim holidays')"> muslim holidays
+                      :class="{'button__selected' : holidaysSelection.name === 'muslim holidays'}"
+                      @click="setHolidays({name: 'muslim holidays'})"> muslim holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'fun holidays'}"
-                      @click="setHolidays('fun holidays')"> fun holidays
+                      :class="{'button__selected' : holidaysSelection.name === 'fun holidays'}"
+                      @click="setHolidays({name: 'fun holidays'})"> fun holidays
                   </button>
                 </div>
               </div>
@@ -313,18 +313,18 @@
               <div class="is-flex is-flex-direction-column w100" style="padding: 5% 25%">
                 <button
                     class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-3 py-2"
-                    :class="{'button__selected' : holidaysSelection === 'Motivational quotes'}"
-                    @click="setHolidays('Motivational quotes')"> Motivational quotes
+                    :class="{'button__selected' : holidaysSelection.name === 'Motivational quotes'}"
+                    @click="setHolidays({name: 'Motivational quotes'})"> Motivational quotes
                 </button>
                 <button
                     class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-6 py-2"
-                    :class="{'button__selected' : holidaysSelection === 'self-care challenges'}"
-                    @click="setHolidays('self-care challenges')"> self-care challenges
+                    :class="{'button__selected' : holidaysSelection.name === 'self-care challenges'}"
+                    @click="setHolidays({name: 'self-care challenges'})"> self-care challenges
                 </button>
                 <button
                     class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-6 py-2"
-                    :class="{'button__selected' : holidaysSelection === 'personal check ins'}"
-                    @click="setHolidays('personal check ins')"> personal check ins
+                    :class="{'button__selected' : holidaysSelection.name === 'personal check ins'}"
+                    @click="setHolidays({name: 'personal check ins'})"> personal check ins
                 </button>
               </div>
             </div>
@@ -332,7 +332,55 @@
         </div>
       </div>
     </div>
-    <pre> {{finalValue}}</pre>
+    <pre > {{finalValue}}</pre>
+    <div v-show="false">
+      <table v-if="finalValue.length !== 0" id="my-table" class="w100 p-6">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Selection</th>
+        </tr>
+        <tr v-for="(singleValue, index) in finalValue" :key="index">
+          <td>{{ singleValue.id }}</td>
+          <td>{{ carrouselCategories[singleValue.id - 1].name }}</td>
+          <td>
+            <span v-if="singleValue.selection.category">{{ singleValue.selection.category }}</span>
+            <span v-else>N/A</span>
+          </td>
+          <td>
+            <span v-if="singleValue.selection.subcategory">{{ singleValue.selection.subcategory.name }}</span>
+            <div v-else-if="singleValue.id == 3">
+              <h1><span class="has-text-weight-bold">Name: </span> {{ singleValue.selection.Name }} - </h1>
+              <h1><span class="has-text-weight-bold">Email: </span> {{ singleValue.selection.Email }} - </h1>
+              <h1><span class="has-text-weight-bold">Telephone: </span> {{ singleValue.selection.Telephone }} - </h1>
+              <h1><span class="has-text-weight-bold">Year: </span> {{ singleValue.selection.Year }} - </h1>
+              <h1><span class="has-text-weight-bold">Message:  </span> {{ singleValue.selection.Message }}</h1>
+            </div>
+            <div v-else-if="singleValue.id == 4">
+              <h1>Start date: {{ singleValue.selection.startDate.year }} -
+                {{ singleValue.selection.startDate.month }}/ </h1>
+              <h1>End date: {{ singleValue.selection.endDate.year }} - {{ singleValue.selection.endDate.month }} </h1>
+            </div>
+            <div v-if="singleValue.id == 7">
+              <div v-for="(selection, index) in singleValue.selection" :key="index">
+                <span> {{ selection.category }} : {{ selection.subcategory.name }}, pages: {{
+                    selection.pages
+                  }} /</span>
+              </div>
+            </div>
+            <span v-else>{{ singleValue.selection.name }}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <button @click="exportPDF">Send PDF</button>
+    <!--<template>
+      <flipbook class="flipbook" v-slot="flipbook" :pages="['https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6', 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6', 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6', 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6']">
+        <button @click="flipbook.flipLeft">Previous Page</button>
+        <button @click="flipbook.flipRight">Next Page</button>
+      </flipbook>
+    </template>-->
     <div class="page-counter has-text-centered">
       <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">PAGE COUNT</h1>
       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
@@ -345,10 +393,21 @@
 </template>
 
 <script>
+//import Flipbook from 'flipbook-vue';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import storageRef from "../firebase";
+import{ init, send } from 'emailjs-com';
+init("user_rVFW3uNdwPo3aLyWfIMyo");
+
 export default {
   name: "Builder",
+  components: {
+    //Flipbook
+  },
   data() {
     return {
+      generateTable: false,
       selectedCategory: 0,
       selectedSubcategory: null,
       carrouselCategories: [
@@ -358,14 +417,17 @@ export default {
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COVER_BLACK.png?alt=media&token=53768c29-cce4-4428-b85c-8eb6ce650db9',
         },
         {
+          id: '2',
           name: 'Coil',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COIL.png?alt=media&token=3a8cd002-009b-46ef-8897-4820f380a5af',
         },
         {
+          id: '3',
           name: 'Fill page',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/FILL%20PAGE.png?alt=media&token=44834095-fd9b-47a9-bca3-e51b103df646',
         },
         {
+          id: '4',
           name: 'Dates',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/DATES.png?alt=media&token=eca47e0b-acf3-4a0f-acff-e75f112f73dd',
         },
@@ -1281,8 +1343,9 @@ export default {
       this.$set(this.finalValue, this.selectedCategory, {id: this.selectedCategory + 1, selection: value});
       //this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: value}
     },
-    async dateChange(value) {
-      await this.formChange(value);
+    dateChange(value) {
+      this.finalValue[this.selectedCategory]={};
+      this.formChange(value);
       if (this.dateValue.startDate.month && this.dateValue.startDate.year && this.dateValue.endDate.month && this.dateValue.endDate.year) this.setDaysAndMonths();
     },
     setHolidays(value) {
@@ -1297,6 +1360,64 @@ export default {
       let addSelection = this.finalValue[6].selection
       this.finalValue[6].selection = addSelection.filter((element) => element.subcategory.id !==  elementPreselect.id);
       console.log('addSelection', addSelection);
+    },
+    exportPDF() {
+      const ordersRef = storageRef.child('orders');
+
+      /*      const vm = this
+            const data = [vm.finalValue];
+            const columns = [
+              {title: "Title", dataKey: "title"},
+              {title: "Description", dataKey: "description"}
+            ];
+            const doc = new jsPDF('p', 'pt');
+            doc.text('To Do List', 40, 40);
+            //doc.text(data, 40, 40);
+            autoTable(columns, vm.finalValue, {
+               margin: {top: 60},
+            });*/
+      const doc = new jsPDF();
+
+      autoTable(doc,{ html: '#my-table' })
+      console.log('doc', doc);
+      const pdf = doc.output('blob');
+/*      const data = new FormData();
+      data.append("data" , pdf);*/
+      const fileName = `order${Date.now()}`;
+      const spaceRef = ordersRef.child(fileName);
+      spaceRef.put(pdf)
+          .then(function () {
+            spaceRef.getDownloadURL()
+                .then(function (url) {
+                  console.log('url', url);
+                  const templateParams = { url }
+                  send('service_w81r30t', 'template_92dxr79', templateParams )
+                      .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                      }, function(error) {
+                        console.log('FAILED...', error);
+                      });
+                });
+            console.log('succesful');
+/*            spaceRef.getDownloadURL()
+                .then(function (url) {
+                  self.directoryData.images.push({
+                    url,
+                    fileName
+                  });
+                  self.dropFiles = [];
+                  self.$buefy.toast.open({
+                    duration: 3000,
+                    message: 'Imagen cargada correctamente',
+                    position: 'is-bottom-right',
+                    type: 'is-success'
+                  });
+                  self.test = self.test + 1;
+                });*/
+          })
+          .catch(() => {
+          });
+      //doc.save('todos.pdf');
     }
   },
   computed: {
@@ -1332,7 +1453,10 @@ export default {
 
 <style scoped lang="scss">
 @import "./src/assets/breakpoints";
-
+.flipbook {
+  width: 90vw;
+  height: 90vh;
+}
 .image-option{
   width: 100%;
   max-width: 160px;
