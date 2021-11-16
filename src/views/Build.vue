@@ -3,15 +3,15 @@
     <div class="container is-flex is-flex-direction-column is-justify-content-center has-text-centered">
       <div class="build-container__options">
         <h1 class="build-container__title has-text-primary frunchySerif-font">BUILD</h1>
-        <h4 class="has-text-text is-size-4 lamango-font">Choose which product you'd like to customize today.</h4>
+        <h4 class="has-text-text is-size-3 lamango-font">Choose which product you'd like to customize today.</h4>
         <div class="columns is-vcentered is-8 mt-6 p-3">
           <div class="column">
             <router-link class="planner" to="/builder"><img src="../../public/assets/images/Planner.png" alt="Planner"></router-link>
-            <h2 class="is-size-4 kontuor-font has-text-weight-light"> PLANNER</h2>
+            <h2 class="is-size-3 kontuor-font has-text-weight-light"> PLANNER</h2>
           </div>
           <div class="column">
             <router-link to="/"><img src="../../public/assets/images/Notebook.png" alt="Notebook"></router-link>
-            <h2 class="is-size-4 kontuor-font has-text-weight-light"> NOTEBOOK</h2>
+            <h2 class="is-size-3 kontuor-font has-text-weight-light"> NOTEBOOK</h2>
           </div>
         </div>
       </div>
