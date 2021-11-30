@@ -16,19 +16,95 @@
           </button>
         </div>
         <div class="build-container-carrousel-options">
-          <div v-if="layoutPreselect !== null">
+          <div v-show="selectedCategory === 8">
+            <div class="w100 is-flex">
+              <div class="add-container">
+                <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100">
+                  ADD TO CART
+                </button>
+              </div>
+              {{viewReview}}
+              <div class="book mx-3">
+                <div class="page page0" @click="flipSelectedPage($event)">
+                  <div class="side side0">
+                    cover
+                  </div>
+                  <div class="side side1">
+                    <Hourly1 :date="{ day: 'Tuesday', month:'June', dayNumber:'3'}"></Hourly1>
+                  </div>
+                </div>
+                <div class="page" :class="`page${index+1}`" v-for="(page, index) in totalDatesArray" :key="index" @click="flipSelectedPage($event)">
+                  <div class="side side0">
+                    {{page}}
+                    <hourly2 :date="{ day: 'Monday',month: 'June', dayNumber: '2'}"></hourly2>
+                  </div>
+                  <div class="side side1">
+                    {{page}}
+                    <Hourly1 :date="{ day: 'Tuesday', month:'June', dayNumber:'3'}"></Hourly1>
+                  </div>
+                </div>
+<!--                <div class="page page1">
+                  <div class="side side0">
+                    <hourly2 :date="{ day: 'Monday',month: 'June', dayNumber: '2'}"></hourly2>
+                  </div>
+                  <div class="side side1">
+                    <Hourly1 :date="{ day: 'Tuesday', month:'June', dayNumber:'3'}"></Hourly1>
+                  </div>
+                </div>
+                <div class="page page2">
+                  <div class="side side0">
+                    <hourly2 :date="{ day: 'Wednesday',month: 'June', dayNumber: '4'}"></hourly2>
+                  </div>
+                  <div class="side side1">
+                    <Hourly1 :date="{ day: 'Thursday', month:'June', dayNumber:'5'}"></Hourly1>
+                  </div>
+                </div>
+                <div class="page page3">
+                  <div class="side side0">
+                    <hourly2 :date="{ day: 'Friday',month: 'June', dayNumber: '6'}"></hourly2>
+
+                  </div>
+                  <div class="side side1">
+                    <Hourly1 :date="{ day: 'Saturday', month:'June', dayNumber:'7'}"></Hourly1>
+                  </div>
+                </div>
+                <div class="page page4">
+                  <div class="side side0">
+                    <hourly2 :date="{ day: 'Sunday',month: 'June', dayNumber: '8'}"></hourly2>
+                  </div>
+                  <div class="side side1">
+                    <Hourly1 :date="{ day: 'Monday', month:'June', dayNumber:'9'}"></Hourly1>
+                  </div>
+                </div>
+                <div class="page page5">
+                  <div class="side side0">
+                    <hourly2 :date="{ day: 'Tuesday',month: 'June', dayNumber: '10'}"></hourly2>
+                  </div>
+                  <div class="side side1">
+                    <Hourly1 :date="{ day: 'Friday', month:'June', dayNumber:'11'}"></Hourly1>
+                  </div>
+                </div>-->
+
+              </div>
+            </div>
+          </div>
+          <div v-if="layoutPreselect !== null && selectedCategory !== 8">
             <div>
               <div class="columns">
                 <div class="column is-4 p-0 m-0">
                   <div class="is-flex is-justify-content-flex-start ml-3" style="height: 10%">
                     <button @click="layoutPreselect = null" class="button__transparent">
-                      <img style="width: 40px; height: 30px" src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7"></button>
+                      <img style="width: 40px; height: 30px"
+                           src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7">
+                    </button>
                   </div>
                   <div class="mt-3 is-flex is-justify-content-center is-flex-direction-column" style="height: 90%">
-                    <h1 class="is-uppercase is-size-1 is-size-3-touch lamango-font lamango-font__spacing3 has-text-weight-light mt-2 ">{{layoutPreselect.name}}</h1>
+                    <h1 class="is-uppercase is-size-1 is-size-3-touch lamango-font lamango-font__spacing3 has-text-weight-light mt-2 ">
+                      {{ layoutPreselect.name }}</h1>
                     <div v-if="selectedCategory === 6" class="add-container">
-                      <input  type="number" class="input" v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">
-<!--                      <input  type="number" class="input" v-model.number="pagesToAdd">-->
+                      <input type="number" class="input"
+                             v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">
+                      <!--                      <input  type="number" class="input" v-model.number="pagesToAdd">-->
                       <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
                               @click="selectItemAddPages({category: options[selectedCategory].subcategories[selectedSubcategory].name, subcategory: layoutPreselect})">
                         ADD
@@ -49,10 +125,11 @@
               </div>
             </div>
           </div>
-          <div v-else class="card is-flex build-container-carrousel-options-container">
+          <div v-else-if="selectedCategory !== 8" class="card is-flex build-container-carrousel-options-container">
             <div class="w100" v-if="options[selectedCategory].type === 'optionsListNested'">
               <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered mt-6">
-                <div class="column is-one-fifth mt-6 p-0" v-for="(option, index) in options[selectedCategory].subcategories"
+                <div class="column is-one-fifth mt-6 p-0"
+                     v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent"
                           @click="selectedSubcategory = index; layoutPreselect = null">
@@ -183,9 +260,10 @@
                     </div>
                     <div class="column">
                       <b-field>
-                        <b-select :disabled="(!dateValue.startDate.year || !dateValue.startDate.month || !dateValue.endDate.year)"
-                                  placeholder="Select a month" v-model="dateValue.endDate['month']"
-                                  @click.native="dateChange(dateValue)" expanded>
+                        <b-select
+                            :disabled="(!dateValue.startDate.year || !dateValue.startDate.month || !dateValue.endDate.year)"
+                            placeholder="Select a month" v-model="dateValue.endDate['month']"
+                            @click.native="dateChange(dateValue)" expanded>
                           <option v-for="(monthOption, index) in endMonthDate" :key="index"
                                   :value="monthOption.value">
                             {{ monthOption.key }}
@@ -288,7 +366,7 @@
                   </button>
                 </div>
               </div>
-              <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left wthis.100">
+              <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left w100">
                 <div class="columns is-multiline is-vcentered py-6">
                   <div class="column is-one-fifth p-0"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
@@ -332,7 +410,7 @@
         </div>
       </div>
     </div>
-    <pre > {{finalValue}}</pre>
+    <!--    <pre> {{ finalValue }}</pre>-->
     <div v-show="false">
       <table v-if="finalValue.length !== 0" id="my-table" class="w100 p-6">
         <tr>
@@ -374,13 +452,9 @@
         </tr>
       </table>
     </div>
-    <button @click="exportPDF">Send PDF</button>
-    <!--<template>
-      <flipbook class="flipbook" v-slot="flipbook" :pages="['https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6', 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6', 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6', 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6']">
-        <button @click="flipbook.flipLeft">Previous Page</button>
-        <button @click="flipbook.flipRight">Next Page</button>
-      </flipbook>
-    </template>-->
+    <button @click="exportPDFDemo">Send PDF</button>
+    <template>
+    </template>
     <div class="page-counter has-text-centered">
       <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">PAGE COUNT</h1>
       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
@@ -389,24 +463,74 @@
       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
         {{ price }}</h1>
     </div>
+    <!--<div class="book">
+      <div class="page page0">
+        <div class="side side0">
+        </div>
+        <div class="side side1">
+        </div>
+      </div>
+      <div class="page page1">
+        <div class="side side0">
+          <div style="height: 100%; width: 100%">
+            <hourly2 :date="{ day:'Saturday',month:'February', dayNumber:1}"></hourly2>
+          </div>
+        </div>
+        <div class="side side1">
+          <div style="height: 100%; width: 100%">
+            <Hourly1 :date="{ day:'Saturday',month:'February', dayNumber:1}"></Hourly1>
+          </div>
+        </div>
+      </div>
+      <div class="page page2">
+        <div class="side side0">
+          <div style="height: 100%; width: 100%">
+            <hourly2 :date="{ day:'Saturday',month:'February', dayNumber:1}"></hourly2>
+          </div>
+        </div>
+        <div class="side side1">
+          <div style="height: 100%; width: 100%">
+            <Hourly1 :date="{ day:'Saturday',month:'February', dayNumber:1}"></Hourly1>
+          </div>
+        </div>
+      </div>
+      <div class="page page3">
+        <div class="side side0">page 3 side 0
+        </div>
+        <div class="side side1">page 3 side 1
+        </div>
+      </div>
+      <div class="page page4">
+        <div class="side side0">page 3 side 0
+        </div>
+        <div class="side side1">page 3 side 1
+        </div>
+      </div>
+    </div>-->
   </div>
 </template>
 
 <script>
-//import Flipbook from 'flipbook-vue';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import storageRef from "../firebase";
-import{ init, send } from 'emailjs-com';
+import {init, send} from 'emailjs-com';
+
 init("user_rVFW3uNdwPo3aLyWfIMyo");
+
+import Hourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
+import Hourly2 from "../htmlPages/dailyLayouts/hourly/Hourly2";
 
 export default {
   name: "Builder",
   components: {
-    //Flipbook
+    Hourly1,
+    Hourly2
   },
   data() {
     return {
+      viewReview: false,
+      output: [],
       generateTable: false,
       selectedCategory: 0,
       selectedSubcategory: null,
@@ -446,6 +570,10 @@ export default {
         {
           name: 'Extras',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/EXTRAS.png?alt=media&token=78261eee-049d-4a89-8adb-b06f835fe70c',
+        },
+        {
+          name: 'Review & submit',
+          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/REVIEW%20%26%20SUBMIT.png?alt=media&token=60901b2f-c127-45b7-9190-32ba42484855',
         }
       ],
       layoutPreselect: null,
@@ -1231,6 +1359,11 @@ export default {
           id: 7,
           type: 'extras',
         },
+        {
+          name: 'review',
+          id: 8,
+          type: 'review',
+        },
       ],
       finalValue: [],
       days: 0,
@@ -1292,15 +1425,150 @@ export default {
         years: ['2022', '2023', '2024', '2025', '2026']
       },
       pagesToAdd: 0,
-      arrayPagesToAdd: [[],[],[],[],[],[],[],[],[],[]]
+      arrayPagesToAdd: [[], [], [], [], [], [], [], [], [], []],
+      totalMonths: [],
+      weekday: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      totalDatesArray: [{"day":"Saturday","month":"February","dayNumber":1}, {"day":"Saturday","month":"February","dayNumber":2}, {"day":"Saturday","month":"February","dayNumber":3}],
+      page: 1,
+      timerId: null,
+      pagesBook: [],
+      leftStack: [],
+      rightStack: [],
+      currentPage: null
     };
   },
-  watch:{
-    layoutOption(){
+  watch: {
+    layoutOption() {
       this.calcTotalPages();
     }
   },
   methods: {
+    updatePagesDepth(stack) { // first el = farthest
+      console.log('stack',stack)
+      for (const [i, page] of stack.entries()) {
+        if (stack == this.leftStack) {
+          page.style.transform = `rotateY(-180deg) translateZ(${-i}px)`;
+        } else {
+          page.style.transform = `rotateY(0) translateZ(${i}px)`;
+        }
+      }
+    },
+    flipSelectedPage(event){
+      console.log('event', event);
+      console.log('pageeeeee', event.target.classList);
+      if (event.path[1].classList.contains("flip")) { //clicked on left stack page
+        this.currentPage = this.leftStack.pop();
+        this.rightStack.push(this.currentPage);
+        this.currentPage.classList.remove("flip");
+        this.updatePagesDepth(this.rightStack);
+      } else { // clicked on right stack page
+        this.currentPage = this.rightStack.pop();
+        this.leftStack.push(this.currentPage);
+        this.currentPage.classList.add("flip");
+        this.updatePagesDepth(this.leftStack);
+      }
+    },
+    generateReport() {
+      this.$refs.html2Pdf.generatePdf()
+    },
+    async print(index) {
+      //const el = import('../htmlPages/dailyLayouts/hourly/Hourly.html');
+      // add option type to get the image version
+      // if not provided the promise will return
+      // the canvas.
+      /*      const options = {
+              type: 'dataURL'
+            }*/
+      //console.log('html', htmlv, options);
+      /*      const el = this.$refs.printMe1;
+            console.log('printMe1', el);
+            // add option type to get the image version
+            // if not provided the promise will return
+            // the canvas.
+      /!*      const options = {
+              type: 'dataURL'
+            }
+            this.output = await this.$html2canvas(el, options);*!/
+            this.$html2canvas(('.printMe1').get(0)).then( function (canvas) {
+              console.log(canvas);
+            });*/
+      this.output = []
+      const node = document.getElementsByClassName("page1");
+      const options = {
+        type: 'dataURL'
+      }
+      const start = index;
+      for (let i = start; i < start + 1; i++) {
+        console.log('node', node[i]);
+        const output = await this.$html2canvas(node[i], options);
+        console.log('output', output);
+        this.output.push(output);
+      }
+      this.flipbook.flipRight();
+      //this.output = await this.$html2canvas(node[0], options);
+      /*      domtoimage
+                .toPng(node)
+                .then(function (dataUrl) {
+                  const img = new Image();
+                  img.src = dataUrl;
+                  console.log(img)
+                  //document.body.appendChild(img);
+                })
+                .catch(function (error) {
+                  console.error("oops, something went wrong!", error);
+                });*/
+    },
+    calcTotalDates() {
+      this.totalDatesArray = [];
+/*      this.totalDatesArray = [{"day":"Saturday","month":"February","dayNumber":1}, {"day":"Saturday","month":"February","dayNumber":2}, {"day":"Saturday","month":"February","dayNumber":3}, {"day":"Saturday","month":"February","dayNumber":4}, {"day":"Saturday","month":"February","dayNumber":5}, {"day":"Saturday","month":"February","dayNumber":6}];
+      setTimeout(function(){
+        this.viewReview = true;
+        console.log('viewReview', this.viewReview);
+      }.bind(this), 5000); */
+      this.totalMonths.map((element) => {
+              for (let y = 1; y <= element.totalDays; y++) {
+                const currentDate = new Date(`${element.year}-${element.month}-${y}`);
+                this.totalDatesArray.push({
+                  day: this.weekday[currentDate.getDay()],
+                  month: this.datesValueOptions.month[element.month].key,
+                  dayNumber: y
+                })
+                console.log('currentDate', this.weekday[currentDate.getDay()], this.datesValueOptions.month[element.month].key, y);
+              }
+            })
+
+      /*      if (element) {
+              for (let y = 1; y <= element.totalDays; y++) {
+                const currentDate = new Date(`${element.year}-${element.month}-${y}`);
+                console.log('currentDate', this.weekday[currentDate.getDay()]);
+              }
+            }*/
+      this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
+      //const book = document.querySelector(".book");
+      this.rightStack = Array.from(this.pagesBook).reverse();
+      this.updatePagesDepth(this.rightStack);
+    },
+    calcMonthsArray() {
+      const numberOfYears = this.dateValue.endDate.year - this.dateValue.startDate.year;
+      for (let x = 0; x < numberOfYears + 1; x++) {
+        let start = (x == 0 || (this.dateValue.endDate.year == this.dateValue.startDate.year) ? this.dateValue.startDate.month : 1);
+        let finish = (x == numberOfYears || (this.dateValue.endDate.year == this.dateValue.startDate.year) ? this.dateValue.endDate.month : 12);
+        /*        if (this.dateValue.endDate.year > this.dateValue.startDate.year) {
+
+                } else if (this.dateValue.endDate.year == this.dateValue.startDate.year) {
+                  for (let y = this.dateValue.startDate.month; y <= this.dateValue.endDate.month; y++) {
+                    console.log('meses1', y, Number(this.dateValue.endDate.year));
+                  }
+                }*/
+        for (let y = start; y <= finish; y++) {
+          const month = Number(y);
+          const year = Number(this.dateValue.startDate.year) + x;
+          const totalDays = new Date(year, month, 0).getDate();
+          this.totalMonths.push({month, year, totalDays})
+        }
+      }
+      this.calcTotalDates();
+    },
     calcTotalPages() {
       if (this.layoutOption === 'daily') this.totalPages = this.days;
       else if (this.layoutOption === 'weekly') this.totalPages = (Math.ceil(this.days / 7)) * 2;
@@ -1311,6 +1579,7 @@ export default {
       const endDate = new Date(`${this.dateValue.endDate.year}-${this.dateValue.endDate.month}-01`).getTime();
       this.days = (endDate - startDate) / (1000 * 60 * 60 * 24);
       this.calcTotalPages();
+      this.calcMonthsArray();
     },
     selectItem(selection, index) {
       this.selectedItem = index;
@@ -1328,15 +1597,18 @@ export default {
         }
       }
       selectionArray = selectionArray.filter((element) => {
-        if(element.subcategory === layoutPreselect) this.totalPages = this.totalPages - element.pages;
+        if (element.subcategory === layoutPreselect) this.totalPages = this.totalPages - element.pages;
         return element.subcategory !== layoutPreselect;
 
       });
       console.log('selectionArray', selectionArray);
-      selectionArray.push({...selection, pages: this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id)-1]});
-      this.totalPages = this.totalPages + Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id)-1]);
+      selectionArray.push({
+        ...selection,
+        pages: this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]
+      });
+      this.totalPages = this.totalPages + Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]);
       this.calcTotalPages();
-      this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: selectionArray }
+      this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: selectionArray}
       this.layoutPreselect = null;
     },
     formChange(value) {
@@ -1344,7 +1616,7 @@ export default {
       //this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: value}
     },
     dateChange(value) {
-      this.finalValue[this.selectedCategory]={};
+      this.finalValue[this.selectedCategory] = {};
       this.formChange(value);
       if (this.dateValue.startDate.month && this.dateValue.startDate.year && this.dateValue.endDate.month && this.dateValue.endDate.year) this.setDaysAndMonths();
     },
@@ -1353,36 +1625,27 @@ export default {
       this.holidaysSelection = value;
       this.formChange(value);
     },
-    deletePages(){
-      this.totalPages = this.totalPages - this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id)-1]
-      this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id)-1] = null;
+    deletePages() {
+      this.totalPages = this.totalPages - this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]
+      this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1] = null;
       const elementPreselect = this.layoutPreselect;
       let addSelection = this.finalValue[6].selection
-      this.finalValue[6].selection = addSelection.filter((element) => element.subcategory.id !==  elementPreselect.id);
+      this.finalValue[6].selection = addSelection.filter((element) => element.subcategory.id !== elementPreselect.id);
       console.log('addSelection', addSelection);
+    },
+    exportPDFDemo() {
+      this.print();
+      //this.generateReport();
     },
     exportPDF() {
       const ordersRef = storageRef.child('orders');
-
-      /*      const vm = this
-            const data = [vm.finalValue];
-            const columns = [
-              {title: "Title", dataKey: "title"},
-              {title: "Description", dataKey: "description"}
-            ];
-            const doc = new jsPDF('p', 'pt');
-            doc.text('To Do List', 40, 40);
-            //doc.text(data, 40, 40);
-            autoTable(columns, vm.finalValue, {
-               margin: {top: 60},
-            });*/
       const doc = new jsPDF();
 
-      autoTable(doc,{ html: '#my-table' })
+      autoTable(doc, {html: '#my-table'})
       console.log('doc', doc);
       const pdf = doc.output('blob');
-/*      const data = new FormData();
-      data.append("data" , pdf);*/
+      /*      const data = new FormData();
+            data.append("data" , pdf);*/
       const fileName = `order${Date.now()}`;
       const spaceRef = ordersRef.child(fileName);
       spaceRef.put(pdf)
@@ -1390,39 +1653,40 @@ export default {
             spaceRef.getDownloadURL()
                 .then(function (url) {
                   console.log('url', url);
-                  const templateParams = { url }
-                  send('service_w81r30t', 'template_92dxr79', templateParams )
-                      .then(function(response) {
+                  const templateParams = {url}
+                  send('service_w81r30t', 'template_92dxr79', templateParams)
+                      .then(function (response) {
                         console.log('SUCCESS!', response.status, response.text);
-                      }, function(error) {
+                      }, function (error) {
                         console.log('FAILED...', error);
                       });
                 });
             console.log('succesful');
-/*            spaceRef.getDownloadURL()
-                .then(function (url) {
-                  self.directoryData.images.push({
-                    url,
-                    fileName
-                  });
-                  self.dropFiles = [];
-                  self.$buefy.toast.open({
-                    duration: 3000,
-                    message: 'Imagen cargada correctamente',
-                    position: 'is-bottom-right',
-                    type: 'is-success'
-                  });
-                  self.test = self.test + 1;
-                });*/
+
           })
           .catch(() => {
           });
-      //doc.save('todos.pdf');
-    }
+    },
+/*    toggleClass(id, cssClass) {
+      document.getElementById(id).classList.toggle(cssClass);
+    },
+
+    flipPage() {
+      if (this.page === 1) {
+        this.toggleClass('book', 'two-pages');
+      } else if (this.page === 8) {
+        this.toggleClass('book', 'closed');
+        this.toggleClass('book', 'two-pages');
+        clearInterval(this.timerId);
+      }
+      this.toggleClass('page-' + this.page, 'flipped');
+      this.page++;
+
+    }*/
   },
   computed: {
     endMonthDate() {
-      if (this.dateValue.startDate.year === this.dateValue.endDate.year){
+      if (this.dateValue.startDate.year === this.dateValue.endDate.year) {
         const monthSelected = this.dateValue.startDate.month
         return this.datesValueOptions.month.filter((month => {
               if (month.value > monthSelected)
@@ -1436,36 +1700,272 @@ export default {
       if (this.dateValue.startDate.year) {
         const yearSelected = this.dateValue.startDate.year
         return this.datesValueOptions.years.filter((year => {
-          if (year >= yearSelected)
-             return year;
-          })
+              if (year >= yearSelected)
+                return year;
+            })
         )
       }
       return this.datesValueOptions.years;
     }
   },
+  updated() {
+    this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
+    //const book = document.querySelector(".book");
+    this.rightStack = Array.from(this.pagesBook).reverse();
+    this.updatePagesDepth(this.rightStack);
+/*    const pages = Array.from(document.querySelectorAll(".book .page"));
+    //const book = document.querySelector(".book");
+    let leftStack = [];
+    let rightStack = Array.from(pages).reverse(); // [p3,p2,p1,p0]
+
+    updatePagesDepth(rightStack);*/
+
+/*    for (const page of pages) {
+      page.addEventListener("click", function (e) {
+        if (e.currentTarget.classList.contains("flip")) { //clicked on left stack page
+          const page = leftStack.pop();
+          rightStack.push(page);
+          page.classList.remove("flip");
+          updatePagesDepth(rightStack);
+        } else { // clicked on right stack page
+          const page = rightStack.pop();
+          leftStack.push(page);
+          page.classList.add("flip");
+          updatePagesDepth(leftStack);
+        }
+      });
+    }*/
+
+/*    function updatePagesDepth(stack) { // first el = farthest
+      for (const [i, page] of stack.entries()) {
+        if (stack == leftStack) {
+          page.style.transform = `rotateY(-180deg) translateZ(${-i}px)`;
+        } else {
+          page.style.transform = `rotateY(0) translateZ(${i}px)`;
+        }
+      }
+    }*/
+  },
   mounted() {
-    this.setDaysAndMonths();
+    //this.setDaysAndMonths();
     this.calcTotalPages();
+
+
+    //var numPanels = $('.panel').length;
+
+// if a panel is open, lower its z-idx
+// otherwise, set zIdx back to original
+    /*    function checkZ($aPanel) {
+          if ( $aPanel.hasClass('open') ) {
+            $aPanel.css('z-index','1');
+          } else {
+            // set z-index back to original stored in data
+            zIdx = $aPanel.data('zIdx');
+            $aPanel.css( 'z-index', zIdx );
+          }
+        }*/
+
+// loop through all panels and reverse sort via zIdx
+    /*    for (let i=0; i<(numPanels); i++  ) {
+          var zIdx =  numPanels-i;
+          $('.panel').eq(i).css('z-index',zIdx).data('zIdx',zIdx);
+        }*/
+
+// when clicking the front panel add class 'open' to panel
+// if clicking bacl panel, remove 'open' from panel
+    /*    $('.panel').on('click', '.front, .back', function() {
+          $(this).parent('.panel').toggleClass('open');
+          checkZ($(this).parent('.panel'));
+        });*/
+    //this.timerId = setInterval(this.flipPage, 1000);
+    //this.print();
   }
 }
 </script>
 
 <style scoped lang="scss">
 @import "./src/assets/breakpoints";
-.flipbook {
-  width: 90vw;
-  height: 90vh;
+
+
+html, body {
+  min-height: 100vh
 }
-.image-option{
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.book {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.page {
+  position: absolute;
+  width: 45%;
+  height: 80%;
+  top: 0;
+  left: 50%;
+  transform-style: preserve-3d;
+}
+
+.side {
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.side0 {
+  transform: none;
+}
+
+.side1 {
+  transform: rotateY(180deg);
+}
+
+.flip { /*do nothing, its used by js*/
+}
+
+/*
+preserntaiton
+*/
+body {
+  background: slategray;
+}
+
+.book {
+  width: 80vw;
+  height: 70vw;
+  max-width: 1044px;
+  max-height: 684px;
+  perspective: 800px;
+}
+
+.page {
+  transition: transform 1s;
+  transform-origin: left center;
+}
+
+.side0 {
+  background-color: white;
+  padding: 1em;
+  box-sizing: border-box;
+  //box-shadow:1px 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+.side1 {
+  background-color: white;
+  padding: 1em;
+  box-sizing: border-box;
+  box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.page:first-of-type .side0 {
+  box-shadow: -10px 0 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+.page:last-of-type .side1 {
+  z-index: 0;
+  box-shadow: 10px 0 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+/*
+.flip-panel {
+  display: block;
+  position: relative;
+  width: 522px;
+  height: 684px;
+  margin: 20px 50%;
+  perspective: 1200px;
+}
+
+.panel {
+  transition: z-index 1s ease-in-out 1s;
+}
+
+.panel,
+.panel .front,
+.panel .back {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  -moz-transform-style: preserve-3d;
+  -moz-transition: -moz-transform 1s;
+  transform-style: preserve-3d;
+  transition: transform 1s, box-shadow 1s;
+}
+
+.panel .front {
+  z-index: 2;
+  -moz-transform: rotateY(0deg);
+  -moz-transform-origin: left;
+  transform: rotateY(0deg);
+  transform-origin: left;
+  backface-visibility: hidden;
+  box-shadow: 0px 1px 0px lightgrey;
+}
+
+.panel .back {
+  left: -100%;
+  z-index: 1;
+  -moz-transform: rotateY(180deg);
+  -moz-transform-origin: right;
+  transform: rotateY(180deg);
+  transform-origin: right;
+  backface-visibility: hidden;
+  box-shadow: 2px 1px 2px lightgrey;
+}
+
+.panel .front:hover {
+  -moz-transform: rotateY(-25deg);
+  -moz-transform-origin: left;
+  transform: rotateY(-25deg);
+  transform-origin: left;
+  box-shadow: 4px 4px 12px rgb(100,100,100);
+}
+
+.panel.open {
+  z-index: 1;
+}
+
+.panel.open .front {z-index
+  z-index: 1;
+  -moz-transform: rotateY(-180deg);
+  -moz-transform-origin: left;
+  transform: rotateY(-180deg);
+  transform-origin: left;
+}
+
+.panel.open .back {
+  z-index: 2;
+  -moz-transform: rotateY(0deg);
+  -moz-transform-origin: right;
+  transform: rotateY(0deg);
+  transform-origin: right;
+}
+*/
+
+.image-option {
   width: 100%;
   max-width: 160px;
   height: 160px;
 }
 
-.add-container{
+.add-container {
   width: 40%;
   margin: 0 auto;
+
   .add-button {
     border-radius: 25px;
     background-color: #F3D7D3;
