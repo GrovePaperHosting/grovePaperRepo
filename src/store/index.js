@@ -1,23 +1,26 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-//import createPersistedState from 'vuex-persistedstate';
-
-
+import Vue from 'vue'
+import Vuex from 'vuex'
 Vue.use(Vuex)
 
-/*const persisteceData = createPersistedState({
-  paths: ['User.user', 'User.jwt', 'User.token', 'User.auth', 'Commercial.notice']
-})*/
+const store = new Vuex.Store({
+    state: {
+        finalValue: []
+    },
+    mutations: {
+        SET_FINAL_VALUE (state, payload)
+        {
+            state.finalValue = payload;
+        },
+    },
+    actions: {
 
-export default new Vuex.Store({
-/*  modules: {
-    User,
-    Loading,
-    Job,
-    Follow,
-    Commercial,
-    Notifications,
-    Tutorial
-  },
-  plugins: [persisteceData]*/
+    },
+    getters: {
+        getFinalValue (state)
+        {
+            return state.finalValue;
+        }
+    }
 })
+
+export default store;

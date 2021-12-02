@@ -23,68 +23,71 @@
                   ADD TO CART
                 </button>
               </div>
-              {{viewReview}}
-              <div class="book mx-3">
+              <div v-if="totalDatesArray.length>0" class="book mx-3">
                 <div class="page page0" @click="flipSelectedPage($event)">
                   <div class="side side0">
                     cover
                   </div>
                   <div class="side side1">
-                    <Hourly1 :date="{ day: 'Tuesday', month:'June', dayNumber:'3'}"></Hourly1>
+                    <Hourly1 :date="{ day: totalDatesArray[0].day, month: totalDatesArray[0].month, dayNumber: totalDatesArray[0].dayNumber}"></Hourly1>
                   </div>
                 </div>
                 <div class="page" :class="`page${index+1}`" v-for="(page, index) in totalDatesArray" :key="index" @click="flipSelectedPage($event)">
-                  <div class="side side0">
-                    {{page}}
-                    <hourly2 :date="{ day: 'Monday',month: 'June', dayNumber: '2'}"></hourly2>
+                  <div v-if="(index+1)*2-1 < totalDatesArray.length" class="side side0">
+                    <hourly2 :date="{ day: totalDatesArray[(index+1)*2-1].day ,month: totalDatesArray[(index+1)*2-1].month, dayNumber: totalDatesArray[(index+1)*2-1].dayNumber}"></hourly2>
                   </div>
-                  <div class="side side1">
-                    {{page}}
-                    <Hourly1 :date="{ day: 'Tuesday', month:'June', dayNumber:'3'}"></Hourly1>
+                  <div v-if="(index+1)*2 < totalDatesArray.length" class="side side1">
+                    <Hourly1 :date="{ day: totalDatesArray[(index+1)*2].day, month: totalDatesArray[(index+1)*2].month, dayNumber: totalDatesArray[(index+1)*2].dayNumber}"></Hourly1>
                   </div>
                 </div>
-<!--                <div class="page page1">
+                <div class="page page4" @click="flipSelectedPage($event)">
                   <div class="side side0">
-                    <hourly2 :date="{ day: 'Monday',month: 'June', dayNumber: '2'}"></hourly2>
+                    <month-memories1></month-memories1>
                   </div>
                   <div class="side side1">
-                    <Hourly1 :date="{ day: 'Tuesday', month:'June', dayNumber:'3'}"></Hourly1>
+                    <month-memories2></month-memories2>
                   </div>
                 </div>
-                <div class="page page2">
+                <div class="page page5" @click="flipSelectedPage($event)">
                   <div class="side side0">
-                    <hourly2 :date="{ day: 'Wednesday',month: 'June', dayNumber: '4'}"></hourly2>
+                    <month-ideas2></month-ideas2>
                   </div>
                   <div class="side side1">
-                    <Hourly1 :date="{ day: 'Thursday', month:'June', dayNumber:'5'}"></Hourly1>
+                    <month-ideas1></month-ideas1>
                   </div>
                 </div>
-                <div class="page page3">
+                <div class="page page6" @click="flipSelectedPage($event)">
                   <div class="side side0">
-                    <hourly2 :date="{ day: 'Friday',month: 'June', dayNumber: '6'}"></hourly2>
-
+                    <blank-month1></blank-month1>
                   </div>
                   <div class="side side1">
-                    <Hourly1 :date="{ day: 'Saturday', month:'June', dayNumber:'7'}"></Hourly1>
+                    <blank-month2></blank-month2>
                   </div>
                 </div>
-                <div class="page page4">
+                <div class="page page7" @click="flipSelectedPage($event)">
                   <div class="side side0">
-                    <hourly2 :date="{ day: 'Sunday',month: 'June', dayNumber: '8'}"></hourly2>
+                    <blank-month1></blank-month1>
                   </div>
                   <div class="side side1">
-                    <Hourly1 :date="{ day: 'Monday', month:'June', dayNumber:'9'}"></Hourly1>
+                    <blank-month2></blank-month2>
                   </div>
                 </div>
-                <div class="page page5">
+                <div class="page page8" @click="flipSelectedPage($event)">
                   <div class="side side0">
-                    <hourly2 :date="{ day: 'Tuesday',month: 'June', dayNumber: '10'}"></hourly2>
+                    <my-year-months2></my-year-months2>
                   </div>
                   <div class="side side1">
-                    <Hourly1 :date="{ day: 'Friday', month:'June', dayNumber:'11'}"></Hourly1>
+                    <my-year-months1></my-year-months1>
                   </div>
-                </div>-->
-
+                </div>
+                <div class="page page9" @click="flipSelectedPage($event)">
+                  <div class="side side0">
+                    <my-year-days1></my-year-days1>
+                  </div>
+                  <div class="side side1">
+                    <my-year-days2></my-year-days2>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -410,7 +413,6 @@
         </div>
       </div>
     </div>
-    <!--    <pre> {{ finalValue }}</pre>-->
     <div v-show="false">
       <table v-if="finalValue.length !== 0" id="my-table" class="w100 p-6">
         <tr>
@@ -463,50 +465,6 @@
       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
         {{ price }}</h1>
     </div>
-    <!--<div class="book">
-      <div class="page page0">
-        <div class="side side0">
-        </div>
-        <div class="side side1">
-        </div>
-      </div>
-      <div class="page page1">
-        <div class="side side0">
-          <div style="height: 100%; width: 100%">
-            <hourly2 :date="{ day:'Saturday',month:'February', dayNumber:1}"></hourly2>
-          </div>
-        </div>
-        <div class="side side1">
-          <div style="height: 100%; width: 100%">
-            <Hourly1 :date="{ day:'Saturday',month:'February', dayNumber:1}"></Hourly1>
-          </div>
-        </div>
-      </div>
-      <div class="page page2">
-        <div class="side side0">
-          <div style="height: 100%; width: 100%">
-            <hourly2 :date="{ day:'Saturday',month:'February', dayNumber:1}"></hourly2>
-          </div>
-        </div>
-        <div class="side side1">
-          <div style="height: 100%; width: 100%">
-            <Hourly1 :date="{ day:'Saturday',month:'February', dayNumber:1}"></Hourly1>
-          </div>
-        </div>
-      </div>
-      <div class="page page3">
-        <div class="side side0">page 3 side 0
-        </div>
-        <div class="side side1">page 3 side 1
-        </div>
-      </div>
-      <div class="page page4">
-        <div class="side side0">page 3 side 0
-        </div>
-        <div class="side side1">page 3 side 1
-        </div>
-      </div>
-    </div>-->
   </div>
 </template>
 
@@ -520,12 +478,32 @@ init("user_rVFW3uNdwPo3aLyWfIMyo");
 
 import Hourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
 import Hourly2 from "../htmlPages/dailyLayouts/hourly/Hourly2";
+import monthMemories1 from "../htmlPages/Scheduling/monthMemories1";
+import monthMemories2 from "../htmlPages/Scheduling/monthMomories2";
+import monthIdeas1 from "../htmlPages/Scheduling/monthIdeas/monthIdeas1";
+import monthIdeas2 from "../htmlPages/Scheduling/monthIdeas/monthIdeas2";
+import blankMonth1 from "../htmlPages/Scheduling/blankMonth/blankMonth1";
+import blankMonth2 from "../htmlPages/Scheduling/blankMonth/blankMonth2";
+import myYearMonths1 from "../htmlPages/Scheduling/myYearMonths/myYearMonths1";
+import myYearMonths2 from "../htmlPages/Scheduling/myYearMonths/myYearMonths2";
+import myYearDays1 from "../htmlPages/Scheduling/myYearDays/myYearDays1";
+import myYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";
 
 export default {
   name: "Builder",
   components: {
     Hourly1,
-    Hourly2
+    Hourly2,
+    monthMemories1,
+    monthMemories2,
+    monthIdeas1,
+    monthIdeas2,
+    blankMonth1,
+    blankMonth2,
+    myYearMonths1,
+    myYearMonths2,
+    myYearDays1,
+    myYearDays2
   },
   data() {
     return {
@@ -1444,7 +1422,6 @@ export default {
   },
   methods: {
     updatePagesDepth(stack) { // first el = farthest
-      console.log('stack',stack)
       for (const [i, page] of stack.entries()) {
         if (stack == this.leftStack) {
           page.style.transform = `rotateY(-180deg) translateZ(${-i}px)`;
@@ -1454,8 +1431,6 @@ export default {
       }
     },
     flipSelectedPage(event){
-      console.log('event', event);
-      console.log('pageeeeee', event.target.classList);
       if (event.path[1].classList.contains("flip")) { //clicked on left stack page
         this.currentPage = this.leftStack.pop();
         this.rightStack.push(this.currentPage);
@@ -1520,31 +1495,18 @@ export default {
     },
     calcTotalDates() {
       this.totalDatesArray = [];
-/*      this.totalDatesArray = [{"day":"Saturday","month":"February","dayNumber":1}, {"day":"Saturday","month":"February","dayNumber":2}, {"day":"Saturday","month":"February","dayNumber":3}, {"day":"Saturday","month":"February","dayNumber":4}, {"day":"Saturday","month":"February","dayNumber":5}, {"day":"Saturday","month":"February","dayNumber":6}];
-      setTimeout(function(){
-        this.viewReview = true;
-        console.log('viewReview', this.viewReview);
-      }.bind(this), 5000); */
       this.totalMonths.map((element) => {
               for (let y = 1; y <= element.totalDays; y++) {
                 const currentDate = new Date(`${element.year}-${element.month}-${y}`);
                 this.totalDatesArray.push({
                   day: this.weekday[currentDate.getDay()],
-                  month: this.datesValueOptions.month[element.month].key,
+                  month: this.datesValueOptions.month[element.month-1].key,
                   dayNumber: y
                 })
-                console.log('currentDate', this.weekday[currentDate.getDay()], this.datesValueOptions.month[element.month].key, y);
+                console.log('currentDate', this.weekday[currentDate.getDay()], this.datesValueOptions.month[element.month-1].key, y);
               }
             })
-
-      /*      if (element) {
-              for (let y = 1; y <= element.totalDays; y++) {
-                const currentDate = new Date(`${element.year}-${element.month}-${y}`);
-                console.log('currentDate', this.weekday[currentDate.getDay()]);
-              }
-            }*/
       this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
-      //const book = document.querySelector(".book");
       this.rightStack = Array.from(this.pagesBook).reverse();
       this.updatePagesDepth(this.rightStack);
     },
@@ -1553,13 +1515,6 @@ export default {
       for (let x = 0; x < numberOfYears + 1; x++) {
         let start = (x == 0 || (this.dateValue.endDate.year == this.dateValue.startDate.year) ? this.dateValue.startDate.month : 1);
         let finish = (x == numberOfYears || (this.dateValue.endDate.year == this.dateValue.startDate.year) ? this.dateValue.endDate.month : 12);
-        /*        if (this.dateValue.endDate.year > this.dateValue.startDate.year) {
-
-                } else if (this.dateValue.endDate.year == this.dateValue.startDate.year) {
-                  for (let y = this.dateValue.startDate.month; y <= this.dateValue.endDate.month; y++) {
-                    console.log('meses1', y, Number(this.dateValue.endDate.year));
-                  }
-                }*/
         for (let y = start; y <= finish; y++) {
           const month = Number(y);
           const year = Number(this.dateValue.startDate.year) + x;
@@ -1584,11 +1539,10 @@ export default {
     selectItem(selection, index) {
       this.selectedItem = index;
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection};
+      this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.layoutPreselect = null;
-      console.log('finalValue', this.finalValue);
     },
     async selectItemAddPages(selection) {
-      console.log('selection', selection);
       let selectionArray = [];
       const layoutPreselect = this.layoutPreselect;
       if (this.finalValue[this.selectedCategory]) {
@@ -1601,7 +1555,6 @@ export default {
         return element.subcategory !== layoutPreselect;
 
       });
-      console.log('selectionArray', selectionArray);
       selectionArray.push({
         ...selection,
         pages: this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]
@@ -1609,19 +1562,21 @@ export default {
       this.totalPages = this.totalPages + Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]);
       this.calcTotalPages();
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: selectionArray}
+      this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.layoutPreselect = null;
     },
     formChange(value) {
       this.$set(this.finalValue, this.selectedCategory, {id: this.selectedCategory + 1, selection: value});
+      this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       //this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: value}
     },
     dateChange(value) {
       this.finalValue[this.selectedCategory] = {};
+      this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.formChange(value);
       if (this.dateValue.startDate.month && this.dateValue.startDate.year && this.dateValue.endDate.month && this.dateValue.endDate.year) this.setDaysAndMonths();
     },
     setHolidays(value) {
-      console.log('setHolidays', value);
       this.holidaysSelection = value;
       this.formChange(value);
     },
@@ -1631,7 +1586,7 @@ export default {
       const elementPreselect = this.layoutPreselect;
       let addSelection = this.finalValue[6].selection
       this.finalValue[6].selection = addSelection.filter((element) => element.subcategory.id !== elementPreselect.id);
-      console.log('addSelection', addSelection);
+      this.$store.commit('SET_FINAL_VALUE', this.finalValue);
     },
     exportPDFDemo() {
       this.print();
@@ -1642,7 +1597,6 @@ export default {
       const doc = new jsPDF();
 
       autoTable(doc, {html: '#my-table'})
-      console.log('doc', doc);
       const pdf = doc.output('blob');
       /*      const data = new FormData();
             data.append("data" , pdf);*/
@@ -1667,22 +1621,6 @@ export default {
           .catch(() => {
           });
     },
-/*    toggleClass(id, cssClass) {
-      document.getElementById(id).classList.toggle(cssClass);
-    },
-
-    flipPage() {
-      if (this.page === 1) {
-        this.toggleClass('book', 'two-pages');
-      } else if (this.page === 8) {
-        this.toggleClass('book', 'closed');
-        this.toggleClass('book', 'two-pages');
-        clearInterval(this.timerId);
-      }
-      this.toggleClass('page-' + this.page, 'flipped');
-      this.page++;
-
-    }*/
   },
   computed: {
     endMonthDate() {
@@ -1710,75 +1648,12 @@ export default {
   },
   updated() {
     this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
-    //const book = document.querySelector(".book");
     this.rightStack = Array.from(this.pagesBook).reverse();
     this.updatePagesDepth(this.rightStack);
-/*    const pages = Array.from(document.querySelectorAll(".book .page"));
-    //const book = document.querySelector(".book");
-    let leftStack = [];
-    let rightStack = Array.from(pages).reverse(); // [p3,p2,p1,p0]
-
-    updatePagesDepth(rightStack);*/
-
-/*    for (const page of pages) {
-      page.addEventListener("click", function (e) {
-        if (e.currentTarget.classList.contains("flip")) { //clicked on left stack page
-          const page = leftStack.pop();
-          rightStack.push(page);
-          page.classList.remove("flip");
-          updatePagesDepth(rightStack);
-        } else { // clicked on right stack page
-          const page = rightStack.pop();
-          leftStack.push(page);
-          page.classList.add("flip");
-          updatePagesDepth(leftStack);
-        }
-      });
-    }*/
-
-/*    function updatePagesDepth(stack) { // first el = farthest
-      for (const [i, page] of stack.entries()) {
-        if (stack == leftStack) {
-          page.style.transform = `rotateY(-180deg) translateZ(${-i}px)`;
-        } else {
-          page.style.transform = `rotateY(0) translateZ(${i}px)`;
-        }
-      }
-    }*/
   },
   mounted() {
     //this.setDaysAndMonths();
     this.calcTotalPages();
-
-
-    //var numPanels = $('.panel').length;
-
-// if a panel is open, lower its z-idx
-// otherwise, set zIdx back to original
-    /*    function checkZ($aPanel) {
-          if ( $aPanel.hasClass('open') ) {
-            $aPanel.css('z-index','1');
-          } else {
-            // set z-index back to original stored in data
-            zIdx = $aPanel.data('zIdx');
-            $aPanel.css( 'z-index', zIdx );
-          }
-        }*/
-
-// loop through all panels and reverse sort via zIdx
-    /*    for (let i=0; i<(numPanels); i++  ) {
-          var zIdx =  numPanels-i;
-          $('.panel').eq(i).css('z-index',zIdx).data('zIdx',zIdx);
-        }*/
-
-// when clicking the front panel add class 'open' to panel
-// if clicking bacl panel, remove 'open' from panel
-    /*    $('.panel').on('click', '.front, .back', function() {
-          $(this).parent('.panel').toggleClass('open');
-          checkZ($(this).parent('.panel'));
-        });*/
-    //this.timerId = setInterval(this.flipPage, 1000);
-    //this.print();
   }
 }
 </script>
