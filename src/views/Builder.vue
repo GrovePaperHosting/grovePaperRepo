@@ -23,24 +23,29 @@
                   ADD TO CART
                 </button>
               </div>
-              <div v-if="totalDatesArray.length>0" class="book mx-3">
+              <div v-if="pagesBookStructure.length>0" class="book mx-3">
                 <div class="page page0" @click="flipSelectedPage($event)">
                   <div class="side side0">
                     cover
                   </div>
                   <div class="side side1">
-                    <Hourly1 :date="{ day: totalDatesArray[0].day, month: totalDatesArray[0].month, dayNumber: totalDatesArray[0].dayNumber}"></Hourly1>
+                    <component v-if="layoutOption === 'daily'" :is="`${pagesBookStructure[0].type}1`" :date="{ day: pagesBookStructure[0].day ,month: pagesBookStructure[0].month, dayNumber: pagesBookStructure[0].dayNumber}"></component>
+                    <component v-else-if="layoutOption === 'weekly'" :is="`${pagesBookStructure[0].type}1`" :data="{ month: pagesBookStructure[0].daysGroup[0].month, dates: pagesBookStructure[0].daysGroup}"></component>
                   </div>
                 </div>
-                <div class="page" :class="`page${index+1}`" v-for="(page, index) in totalDatesArray" :key="index" @click="flipSelectedPage($event)">
-                  <div v-if="(index+1)*2-1 < totalDatesArray.length" class="side side0">
-                    <hourly2 :date="{ day: totalDatesArray[(index+1)*2-1].day ,month: totalDatesArray[(index+1)*2-1].month, dayNumber: totalDatesArray[(index+1)*2-1].dayNumber}"></hourly2>
+                <div class="page" :class="`page${index+1}`" v-for="(page, index) in pagesBookStructure" :key="index" @click="flipSelectedPage($event)">
+                  <div class="side side0">
+                    <!--<hourly2 :date="{ day: totalDatesArray[(index+1)*2-1].day ,month: totalDatesArray[(index+1)*2-1].month, dayNumber: totalDatesArray[(index+1)*2-1].dayNumber}"></hourly2>-->
+                    <component v-if="layoutOption === 'daily' && (index+1)*2-1 < pagesBookStructure.length" :is="`${page.type}2`" :date="{ day: pagesBookStructure[(index+1)*2-1].day ,month: pagesBookStructure[(index+1)*2-1].month, dayNumber: pagesBookStructure[(index+1)*2-1].dayNumber}"></component>
+                    <component v-else-if="layoutOption === 'weekly' && (index) < pagesBookStructure.length" :is="`${page.type}2`" :data="{month: pagesBookStructure[(index)].daysGroup[0].month, dates: pagesBookStructure[(index)].daysGroup}"></component>
                   </div>
-                  <div v-if="(index+1)*2 < totalDatesArray.length" class="side side1">
-                    <Hourly1 :date="{ day: totalDatesArray[(index+1)*2].day, month: totalDatesArray[(index+1)*2].month, dayNumber: totalDatesArray[(index+1)*2].dayNumber}"></Hourly1>
+                  <div class="side side1">
+                    <component v-if="layoutOption === 'daily' && (index+1)*2 < pagesBookStructure.length" :is="`${page.type}1`" :date="{ day: pagesBookStructure[(index+1)*2].day ,month: pagesBookStructure[(index+1)*2].month, dayNumber: pagesBookStructure[(index+1)*2].dayNumber}"></component>
+                    <component v-else-if="layoutOption === 'weekly' && (index+1) < pagesBookStructure.length" :is="`${page.type}1`" :data="{ month: pagesBookStructure[(index+1)].daysGroup[0].month, dates: pagesBookStructure[(index+1)].daysGroup}"></component>
+                    <!--<Hourly1 :date="{ day: totalDatesArray[(index+1)*2].day, month: totalDatesArray[(index+1)*2].month, dayNumber: totalDatesArray[(index+1)*2].dayNumber}"></Hourly1>-->
                   </div>
                 </div>
-                <div class="page page4" @click="flipSelectedPage($event)">
+                <!--<div class="page page4" @click="flipSelectedPage($event)">
                   <div class="side side0">
                     <month-memories1></month-memories1>
                   </div>
@@ -87,7 +92,7 @@
                   <div class="side side1">
                     <my-year-days2></my-year-days2>
                   </div>
-                </div>
+                </div>-->
               </div>
             </div>
           </div>
@@ -326,7 +331,7 @@
                 <div class="column is-one-fifth p-0" v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent"
-                          @click="selectedSubcategory = index; layoutOption = options[selectedCategory].subcategories[index].name; layoutPreselect = null">
+                          @click="selectedSubcategory = index; layoutOption = options[selectedCategory].subcategories[index].name; layoutPreselect = null; pagesBookStructure = []">
                     <div>
                       <img class="image-option" width="w100" :src="option.urlImg">
                     </div>
@@ -476,8 +481,10 @@ import {init, send} from 'emailjs-com';
 
 init("user_rVFW3uNdwPo3aLyWfIMyo");
 
-import Hourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
-import Hourly2 from "../htmlPages/dailyLayouts/hourly/Hourly2";
+import dailyhourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
+import dailyhourly2 from "../htmlPages/dailyLayouts/hourly/Hourly2";
+import weeklystandard1 from "../htmlPages/weeklyLayout/standard/Standard1";
+import weeklystandard2 from "../htmlPages/weeklyLayout/standard/Standard2";
 import monthMemories1 from "../htmlPages/Scheduling/monthMemories1";
 import monthMemories2 from "../htmlPages/Scheduling/monthMomories2";
 import monthIdeas1 from "../htmlPages/Scheduling/monthIdeas/monthIdeas1";
@@ -492,8 +499,10 @@ import myYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";
 export default {
   name: "Builder",
   components: {
-    Hourly1,
-    Hourly2,
+    dailyhourly1,
+    dailyhourly2,
+    weeklystandard1,
+    weeklystandard2,
     monthMemories1,
     monthMemories2,
     monthIdeas1,
@@ -507,6 +516,7 @@ export default {
   },
   data() {
     return {
+      //components: [Hourly1, Hourly2],
       viewReview: false,
       output: [],
       generateTable: false,
@@ -717,19 +727,19 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2FDailyOption1.png?alt=media&token=28627ec0-b7c1-4b78-8384-89ec58865a69',
               subcategoriesOptions: [
                 {
-                  name: 'HOURLY',
+                  name: 'hourly',
                   id: 1.1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2FDailyOption1.png?alt=media&token=28627ec0-b7c1-4b78-8384-89ec58865a69',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6',
                 },
                 {
-                  name: 'SECTIONAL',
+                  name: 'sectional',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily2.png?alt=media&token=88ad381a-9c3d-41c4-be09-c40474c3a141',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily2Big.png?alt=media&token=d99e7c4a-ab94-4392-b7cb-31f7d84b0208',
                 },
                 {
-                  name: 'REFLECTION',
+                  name: 'reflection',
                   id: 1.3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily3%20(1).png?alt=media&token=218a6a96-2b85-4387-adf7-564ec748d451',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily3Big.png?alt=media&token=52697e17-9590-4ed6-810b-8b49437f67a9',
@@ -742,7 +752,7 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2FDouble1.png?alt=media&token=60e742d2-b9ae-4fe3-9491-b263840a3962',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: 'standard',
                   id: 1.1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
@@ -1412,7 +1422,8 @@ export default {
       pagesBook: [],
       leftStack: [],
       rightStack: [],
-      currentPage: null
+      currentPage: null,
+      pagesBookStructure:[]
     };
   },
   watch: {
@@ -1493,6 +1504,29 @@ export default {
                   console.error("oops, something went wrong!", error);
                 });*/
     },
+    calcBookStructure(){
+      this.pagesBookStructure = [];
+      console.log('calcBookStructureEEEEEEEEEE');
+      const type = `${this.finalValue[5].selection.category}${this.finalValue[5].selection.subcategory.name}`
+      if (this.layoutOption === 'daily'){
+        this.totalDatesArray.map((element) =>{
+          this.pagesBookStructure.push({...element, type});
+        })
+      }else {
+        //const type = 'weekly-standard';
+        const totalDaysGroup = Math.ceil(this.totalDatesArray.length / 7);
+        for (let y = 0; y < totalDaysGroup; y++) {
+          const daysGroup = this.totalDatesArray.slice((y*7), (y*7+7));
+          this.pagesBookStructure.push({daysGroup, type});
+        }
+        let i = 1;
+        while (this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.length < 7) {
+          this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.push({dayNumber: i});
+          i++;
+        }
+      }
+      console.log('pagesBookStructure', this.pagesBookStructure);
+    },
     calcTotalDates() {
       this.totalDatesArray = [];
       this.totalMonths.map((element) => {
@@ -1503,9 +1537,10 @@ export default {
                   month: this.datesValueOptions.month[element.month-1].key,
                   dayNumber: y
                 })
-                console.log('currentDate', this.weekday[currentDate.getDay()], this.datesValueOptions.month[element.month-1].key, y);
+                //console.log('currentDate', this.weekday[currentDate.getDay()], this.datesValueOptions.month[element.month-1].key, y);
               }
             })
+      //this.calcBookStructure();
       this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
       this.rightStack = Array.from(this.pagesBook).reverse();
       this.updatePagesDepth(this.rightStack);
@@ -1540,6 +1575,7 @@ export default {
       this.selectedItem = index;
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection};
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
+      if(this.selectedCategory == 5)this.calcBookStructure();
       this.layoutPreselect = null;
     },
     async selectItemAddPages(selection) {

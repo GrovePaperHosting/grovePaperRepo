@@ -72,7 +72,7 @@
         <p class="g-pstyle0">15</p>
       </div>
       <div id="g-ai0-23" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.8433%;margin-top:-7.5px;left:11.1874%;width:103px;">
-        <p class="g-pstyle1">Saturday 08</p>
+        <p class="g-pstyle1">Saturday {{data.dates[5].dayNumber}}</p>
       </div>
       <div id="g-ai0-24" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.9895%;margin-top:-7.5px;left:65.669%;width:34px;">
         <p class="g-pstyle0">16</p>
@@ -126,7 +126,7 @@
         <p class="g-pstyle0">31</p>
       </div>
       <div id="g-ai0-41" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:29.6094%;margin-top:-7.5px;left:11.1874%;width:90px;">
-        <p class="g-pstyle1">Sunday 09</p>
+        <p class="g-pstyle1">Sunday {{data.dates[6].dayNumber}}</p>
       </div>
       <div id="g-ai0-42" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:31.7099%;margin-top:-5.9px;left:11.4161%;width:64px;">
         <p class="g-pstyle2">holiday</p>
@@ -143,7 +143,10 @@
 
 <script>
 export default {
-  name: "Standard2"
+  name: "Standard2",
+  props:{
+    data: Object
+  }
 }
 </script>
 
@@ -181,7 +184,7 @@ export default {
   -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity:1;
   letter-spacing:0.025em;
-  font-size:12px;
+  font-size:11px;
   text-align:left;
   text-transform:none;
   color:rgb(175,177,180);
@@ -203,7 +206,7 @@ export default {
 #g-Weekly-Layouts-Artboard_3 .g-pstyle2 {
   line-height:11px;
   height:11px;
-  font-size:9px;
+  font-size:8px;
   text-transform:uppercase;
   color:rgb(129,131,133);
 }

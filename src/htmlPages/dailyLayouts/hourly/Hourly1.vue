@@ -101,10 +101,10 @@ export default {
 </script>
 
 <style media="screen,print">
-                           #g-Hourly-box ,
-                           #g-Hourly-box .g-artboard {
-                             margin:0 auto;
-                           }
+ #g-Hourly-box ,
+ #g-Hourly-box .g-artboard {
+   margin:0 auto;
+ }
 #g-Hourly-box p {
   margin:0;
 }
@@ -134,7 +134,7 @@ export default {
   -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity:1;
   letter-spacing:0em;
-  font-size:12px;
+  font-size:10.5px;
   text-align:left;
   text-transform:none;
   color:rgb(0,0,0);
@@ -152,7 +152,7 @@ export default {
   line-height:11px;
   height:11px;
   letter-spacing:0.025em;
-  font-size:9px;
+  font-size:7.5px;
   text-transform:uppercase;
   color:rgb(129,130,133);
 }
