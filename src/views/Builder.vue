@@ -29,20 +29,27 @@
                     cover
                   </div>
                   <div class="side side1">
-                    <component v-if="layoutOption === 'daily'" :is="`${pagesBookStructure[0].type}1`" :date="{ day: pagesBookStructure[0].day ,month: pagesBookStructure[0].month, dayNumber: pagesBookStructure[0].dayNumber}"></component>
-                    <component v-else-if="layoutOption === 'weekly'" :is="`${pagesBookStructure[0].type}1`" :data="{ month: pagesBookStructure[0].daysGroup[0].month, dates: pagesBookStructure[0].daysGroup}"></component>
+                    <component v-if="pagesBookStructure[0].category === 'daily'" :is="`${pagesBookStructure[0].type}1`" :date="{ day: pagesBookStructure[0].day ,month: pagesBookStructure[0].month, dayNumber: pagesBookStructure[0].dayNumber}"></component>
                   </div>
                 </div>
-                <div class="page" :class="`page${index+1}`" v-for="(page, index) in pagesBookStructure" :key="index" @click="flipSelectedPage($event)">
+                <div class="page" :class="`page${index+1}`" v-for="(page, index) in pagesBookStructureRender" :key="index" @click="flipSelectedPage($event)">
                   <div class="side side0">
                     <!--<hourly2 :date="{ day: totalDatesArray[(index+1)*2-1].day ,month: totalDatesArray[(index+1)*2-1].month, dayNumber: totalDatesArray[(index+1)*2-1].dayNumber}"></hourly2>-->
-                    <component v-if="layoutOption === 'daily' && (index+1)*2-1 < pagesBookStructure.length" :is="`${page.type}2`" :date="{ day: pagesBookStructure[(index+1)*2-1].day ,month: pagesBookStructure[(index+1)*2-1].month, dayNumber: pagesBookStructure[(index+1)*2-1].dayNumber}"></component>
-                    <component v-else-if="layoutOption === 'weekly' && (index) < pagesBookStructure.length" :is="`${page.type}2`" :data="{month: pagesBookStructure[(index)].daysGroup[0].month, dates: pagesBookStructure[(index)].daysGroup}"></component>
+                      <component v-if="page.category ==='daily'"
+                                 :is="`${page.type}2`"
+                                 :date="{ day: page.daysGroup[0].day ,month: page.daysGroup[0].month, dayNumber: page.daysGroup[0].dayNumber}"></component>
+                      <component v-else-if="page.category ==='weekly'"
+                                 :is="`${page.type}2`"
+                                 :data="{month: page.daysGroup[0].month, dates: page.daysGroup}"></component>
+                      <component v-else :is="`${page.type}2`"></component>
                   </div>
                   <div class="side side1">
-                    <component v-if="layoutOption === 'daily' && (index+1)*2 < pagesBookStructure.length" :is="`${page.type}1`" :date="{ day: pagesBookStructure[(index+1)*2].day ,month: pagesBookStructure[(index+1)*2].month, dayNumber: pagesBookStructure[(index+1)*2].dayNumber}"></component>
-                    <component v-else-if="layoutOption === 'weekly' && (index+1) < pagesBookStructure.length" :is="`${page.type}1`" :data="{ month: pagesBookStructure[(index+1)].daysGroup[0].month, dates: pagesBookStructure[(index+1)].daysGroup}"></component>
-                    <!--<Hourly1 :date="{ day: totalDatesArray[(index+1)*2].day, month: totalDatesArray[(index+1)*2].month, dayNumber: totalDatesArray[(index+1)*2].dayNumber}"></Hourly1>-->
+                      <component v-if="page.category === 'daily' && page.daysGroup.length>1" :is="`${page.type}1`" :date="{ day: page.daysGroup[1].day ,month: page.daysGroup[1].month, dayNumber: page.daysGroup[1].dayNumber}"></component>
+<!--                      <component v-if="page.category === 'daily' && (index+1)*2 < pagesBookStructure.length" :is="`${page.type}1`" :date="{ day: pagesBookStructure[(index+1)*2].day ,month: pagesBookStructure[(index+1)*2].month, dayNumber: pagesBookStructure[(index+1)*2].dayNumber}"></component>-->
+                      <component v-else-if="page.category === 'weekly'" :is="`${page.type}1`" :data="{ month: page.daysGroup[0].month, dates: page.daysGroup}"></component>
+<!--                      <component v-else-if="page.category === 'weekly' && (index+1) < pagesBookStructure.length" :is="`${page.type}1`" :data="{ month: pagesBookStructure[(index+1)].daysGroup[0].month, dates: pagesBookStructure[(index+1)].daysGroup}"></component>-->
+                      <component v-else :is="`${page.type}1`"></component>
+                      <!--<Hourly1 :date="{ day: totalDatesArray[(index+1)*2].day, month: totalDatesArray[(index+1)*2].month, dayNumber: totalDatesArray[(index+1)*2].dayNumber}"></Hourly1>-->
                   </div>
                 </div>
                 <!--<div class="page page4" @click="flipSelectedPage($event)">
@@ -485,16 +492,16 @@ import dailyhourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
 import dailyhourly2 from "../htmlPages/dailyLayouts/hourly/Hourly2";
 import weeklystandard1 from "../htmlPages/weeklyLayout/standard/Standard1";
 import weeklystandard2 from "../htmlPages/weeklyLayout/standard/Standard2";
-import monthMemories1 from "../htmlPages/Scheduling/monthMemories1";
-import monthMemories2 from "../htmlPages/Scheduling/monthMomories2";
-import monthIdeas1 from "../htmlPages/Scheduling/monthIdeas/monthIdeas1";
-import monthIdeas2 from "../htmlPages/Scheduling/monthIdeas/monthIdeas2";
-import blankMonth1 from "../htmlPages/Scheduling/blankMonth/blankMonth1";
-import blankMonth2 from "../htmlPages/Scheduling/blankMonth/blankMonth2";
-import myYearMonths1 from "../htmlPages/Scheduling/myYearMonths/myYearMonths1";
-import myYearMonths2 from "../htmlPages/Scheduling/myYearMonths/myYearMonths2";
-import myYearDays1 from "../htmlPages/Scheduling/myYearDays/myYearDays1";
-import myYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";
+import schedulingmonthMemories1 from "../htmlPages/Scheduling/monthMemories1";
+import schedulingmonthMemories2 from "../htmlPages/Scheduling/monthMomories2";
+import schedulingmonthIdeas1 from "../htmlPages/Scheduling/monthIdeas/monthIdeas1";
+import schedulingmonthIdeas2 from "../htmlPages/Scheduling/monthIdeas/monthIdeas2";
+import schedulingblankMonth1 from "../htmlPages/Scheduling/blankMonth/blankMonth1";
+import schedulingblankMonth2 from "../htmlPages/Scheduling/blankMonth/blankMonth2";
+import schedulingmyYearMonths1 from "../htmlPages/Scheduling/myYearMonths/myYearMonths1";
+import schedulingmyYearMonths2 from "../htmlPages/Scheduling/myYearMonths/myYearMonths2";
+import schedulingmyYearDays1 from "../htmlPages/Scheduling/myYearDays/myYearDays1";
+import schedulingmyYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";
 
 export default {
   name: "Builder",
@@ -503,16 +510,16 @@ export default {
     dailyhourly2,
     weeklystandard1,
     weeklystandard2,
-    monthMemories1,
-    monthMemories2,
-    monthIdeas1,
-    monthIdeas2,
-    blankMonth1,
-    blankMonth2,
-    myYearMonths1,
-    myYearMonths2,
-    myYearDays1,
-    myYearDays2
+    schedulingmonthMemories1,
+    schedulingmonthMemories2,
+    schedulingmonthIdeas1,
+    schedulingmonthIdeas2,
+    schedulingblankMonth1,
+    schedulingblankMonth2,
+    schedulingmyYearMonths1,
+    schedulingmyYearMonths2,
+    schedulingmyYearDays1,
+    schedulingmyYearDays2
   },
   data() {
     return {
@@ -815,30 +822,35 @@ export default {
               subcategoriesOptions: [
                 {
                   name: 'MONTH-MEMORIES',
+                  key: 'monthMemories',
                   id: 1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance1.png?alt=media&token=9b1ae680-0a62-4a24-b281-7a6a05492538',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance1Big.png?alt=media&token=71287cd5-92d6-4a39-bb3b-3ba8a3cc3373',
                 },
                 {
                   name: 'MONTH-IDEAS',
+                  key: 'monthIdeas',
                   id: 2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance2.png?alt=media&token=4b92ecb0-c9d7-4d35-af6d-58411ee96a4a',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance2Big.png?alt=media&token=cf71aa96-d555-4ce4-a0a5-27cdd3e63597',
                 },
                 {
                   name: 'BLANK MONTH',
+                  key: 'blankMonth',
                   id: 3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance3.png?alt=media&token=d2a7c500-bb55-4a7a-b6b9-2d186e26b1ed',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance3Big.png?alt=media&token=de9daf7d-e583-483f-9292-c3bd6713e6a0',
                 },
                 {
                   name: 'MY YEAR / 365',
+                  key: 'myYearDays',
                   id: 3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts1.png?alt=media&token=88158025-c05c-4f08-93b7-b91a89cfbfee',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts1Big.png?alt=media&token=dc5f37c4-ef05-4d8e-b77e-4c5137c08628',
                 },
                 {
                   name: 'MY YEAR / 12',
+                  key: 'myYearMonths',
                   id: 3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts2.png?alt=media&token=e05e0d38-ee3e-49da-8729-adc2f087c37c',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts2Big.png?alt=media&token=259b0801-f795-4c26-94aa-5f2d7a155a72',
@@ -851,49 +863,57 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FLined%20pages1.png?alt=media&token=fa48db3a-393d-46cd-9e86-9b3a57991eeb',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: 'Standard',
+                  key: 'Standard',
                   id: 1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
                 },
                 {
                   name: 'hourly',
+                  key: 'hourly',
                   id: 2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
                 },
                 {
                   name: 'kids - meals',
+                  key: 'kidsMeals',
                   id: 4,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
                 },
                 {
                   name: 'projects',
+                  key: 'projects',
                   id: 5,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
                 },
                 {
                   name: 'checklist',
+                  key: 'checklist',
                   id: 6,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
                 },
                 {
                   name: 'sectional',
+                  key: 'sectional',
                   id: 7,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
                 },
                 {
                   name: 'habits',
+                  key: 'habits',
                   id: 8,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
                 },
                 {
                   name: 'goals - errands',
+                  key: 'goalsErrands',
                   id: 1.3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
@@ -906,7 +926,7 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FList%20Page.png?alt=media&token=716a49e9-9cb8-4073-b5e2-18c65a8c1d29',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: 'Standard',
                   id: 1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
@@ -1498,7 +1518,7 @@ export default {
                   const img = new Image();
                   img.src = dataUrl;
                   console.log(img)
-                  //document.body.appendChild(img);
+                  //document.body.apcategory: 'layout'pendChild(img);
                 })
                 .catch(function (error) {
                   console.error("oops, something went wrong!", error);
@@ -1506,26 +1526,45 @@ export default {
     },
     calcBookStructure(){
       this.pagesBookStructure = [];
-      console.log('calcBookStructureEEEEEEEEEE');
       const type = `${this.finalValue[5].selection.category}${this.finalValue[5].selection.subcategory.name}`
       if (this.layoutOption === 'daily'){
-        this.totalDatesArray.map((element) =>{
-          this.pagesBookStructure.push({...element, type});
-        })
+        // this.totalDatesArray.map((element) =>{
+        //   this.pagesBookStructure.push({...element, type, category: this.finalValue[5].selection.category});
+        // })
+        this.pagesBookStructure.push({...this.totalDatesArray[0], type, category: this.finalValue[5].selection.category});
+        console.log('pagesBookStructure', this.pagesBookStructure);
+
+        const totalDaysGroup = Math.ceil((this.totalDatesArray.length-1) / 2);
+        for (let y = 0; y < totalDaysGroup; y++) {
+          const daysGroup = this.totalDatesArray.slice((y*2+1), (y*2+3));
+          this.pagesBookStructure.push({daysGroup, type, category: this.finalValue[5].selection.category});
+        }
+        let i = 1;
+        while (this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.length < 2) {
+          this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.push({dayNumber: i});
+          i++;
+        }
+        this.pagesBookStructure[this.pagesBookStructure.length] = {daysGroup: [{day:'Tuesday',month:'March',dayNumber:1}], type, category: this.finalValue[5].selection.category}
+
       }else {
         //const type = 'weekly-standard';
-        const totalDaysGroup = Math.ceil(this.totalDatesArray.length / 7);
+        this.pagesBookStructure.push({daysGroup: this.totalDatesArray.slice(0,5), type, category: this.finalValue[5].selection.category});
+        const totalDaysGroup = Math.ceil((this.totalDatesArray.length -5) / 7);
         for (let y = 0; y < totalDaysGroup; y++) {
-          const daysGroup = this.totalDatesArray.slice((y*7), (y*7+7));
-          this.pagesBookStructure.push({daysGroup, type});
+          console.log('pagesBookStructure1', this.pagesBookStructure);
+          const daysGroup = this.totalDatesArray.slice((y*7+5), (y*7+12));
+          this.pagesBookStructure.push({daysGroup, type, category: this.finalValue[5].selection.category});
+          console.log('pagesBookStructure2', this.pagesBookStructure);
+
         }
         let i = 1;
         while (this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.length < 7) {
           this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.push({dayNumber: i});
           i++;
         }
+        this.pagesBookStructure.push({daysGroup: [{dayNumber: 3},{dayNumber: 4}], type, category: this.finalValue[5].selection.category});
       }
-      console.log('pagesBookStructure', this.pagesBookStructure);
+      console.log('pagesBookStructureFinal', this.pagesBookStructure);
     },
     calcTotalDates() {
       this.totalDatesArray = [];
@@ -1595,6 +1634,12 @@ export default {
         ...selection,
         pages: this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]
       });
+      for(let x = 0; x < this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]; x++) {
+        this.pagesBookStructure.push({
+          type: `${selection.category}${selection.subcategory.key}`,
+          category: 'addOnPages'
+        })
+      }
       this.totalPages = this.totalPages + Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]);
       this.calcTotalPages();
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: selectionArray}
@@ -1622,6 +1667,7 @@ export default {
       const elementPreselect = this.layoutPreselect;
       let addSelection = this.finalValue[6].selection
       this.finalValue[6].selection = addSelection.filter((element) => element.subcategory.id !== elementPreselect.id);
+      this.pagesBookStructure = this.pagesBookStructure.filter((element) => element.type !== `${this.layoutOption}${elementPreselect.key}`);
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
     },
     exportPDFDemo() {
@@ -1659,6 +1705,11 @@ export default {
     },
   },
   computed: {
+    pagesBookStructureRender(){
+       let pagesBookStructureRender = this.pagesBookStructure;
+       pagesBookStructureRender.shift();
+       return pagesBookStructureRender;
+    },
     endMonthDate() {
       if (this.dateValue.startDate.year === this.dateValue.endDate.year) {
         const monthSelected = this.dateValue.startDate.month

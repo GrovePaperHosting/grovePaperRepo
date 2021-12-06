@@ -27,106 +27,106 @@
         <p class="g-pstyle0">S</p>
       </div>
       <div id="g-ai0-8" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:8.1181%;margin-top:-7.5px;left:92.2399%;width:27px;">
-        <p class="g-pstyle0">1</p>
+        <p :class=" arrayDates.includes(1)?'g-pstyle1':'g-pstyle0'">1</p>
       </div>
       <div id="g-ai0-9" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.4573%;margin-top:-7.5px;left:66.2149%;width:28px;">
-        <p class="g-pstyle0">2</p>
+        <p :class=" arrayDates.includes(2)?'g-pstyle1':'g-pstyle0'">2</p>
       </div>
       <div id="g-ai0-10" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.4573%;margin-top:-7.5px;left:70.5394%;width:28px;">
-        <p class="g-pstyle1">3</p>
+        <p :class=" arrayDates.includes(3)?'g-pstyle1':'g-pstyle0'">3</p>
       </div>
       <div id="g-ai0-11" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.4573%;margin-top:-7.5px;left:74.9349%;width:29px;">
-        <p class="g-pstyle1">4</p>
+        <p :class=" arrayDates.includes(4)?'g-pstyle1':'g-pstyle0'">4</p>
       </div>
       <div id="g-ai0-12" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.4573%;margin-top:-7.5px;left:79.5607%;width:28px;">
-        <p class="g-pstyle1">5</p>
+        <p :class=" arrayDates.includes(5)?'g-pstyle1':'g-pstyle0'">5</p>
       </div>
       <div id="g-ai0-13" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.4573%;margin-top:-7.5px;left:84.0631%;width:29px;">
-        <p class="g-pstyle1">6</p>
+        <p :class=" arrayDates.includes(6)?'g-pstyle1':'g-pstyle0'">6</p>
       </div>
       <div id="g-ai0-14" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.4573%;margin-top:-7.5px;left:88.2154%;width:28px;">
-        <p class="g-pstyle1">7</p>
+        <p :class=" arrayDates.includes(7)?'g-pstyle1':'g-pstyle0'">7</p>
       </div>
       <div id="g-ai0-15" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.4573%;margin-top:-7.5px;left:92.0674%;width:29px;">
-        <p class="g-pstyle1">8</p>
+        <p :class=" arrayDates.includes(8)?'g-pstyle1':'g-pstyle0'">8</p>
       </div>
       <div id="g-ai0-16" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.6503%;margin-top:-7.5px;left:66.1563%;width:29px;">
-        <p class="g-pstyle1">9</p>
+        <p :class=" arrayDates.includes(9)?'g-pstyle1':'g-pstyle0'">9</p>
       </div>
       <div id="g-ai0-17" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.6503%;margin-top:-7.5px;left:69.9256%;width:35px;">
-        <p class="g-pstyle0">10</p>
+        <p :class=" arrayDates.includes(10)?'g-pstyle1':'g-pstyle0'">10</p>
       </div>
       <div id="g-ai0-18" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.6503%;margin-top:-7.5px;left:74.6453%;width:32px;">
-        <p class="g-pstyle0">11</p>
+        <p :class=" arrayDates.includes(11)?'g-pstyle1':'g-pstyle0'">11</p>
       </div>
       <div id="g-ai0-19" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.6503%;margin-top:-7.5px;left:79.0928%;width:33px;">
-        <p class="g-pstyle0">12</p>
+        <p :class=" arrayDates.includes(12)?'g-pstyle1':'g-pstyle0'">12</p>
       </div>
       <div id="g-ai0-20" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.6503%;margin-top:-7.5px;left:83.6493%;width:33px;">
-        <p class="g-pstyle0">13</p>
+        <p :class=" arrayDates.includes(13)?'g-pstyle1':'g-pstyle0'">13</p>
       </div>
       <div id="g-ai0-21" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.6503%;margin-top:-7.5px;left:87.6452%;width:34px;">
-        <p class="g-pstyle0">14</p>
+        <p :class=" arrayDates.includes(14)?'g-pstyle1':'g-pstyle0'">14</p>
       </div>
       <div id="g-ai0-22" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.6503%;margin-top:-7.5px;left:91.6386%;width:33px;">
-        <p class="g-pstyle0">15</p>
+        <p :class=" arrayDates.includes(15)?'g-pstyle1':'g-pstyle0'">15</p>
       </div>
       <div id="g-ai0-23" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.8433%;margin-top:-7.5px;left:11.1874%;width:103px;">
-        <p class="g-pstyle1">Saturday {{data.dates[5].dayNumber}}</p>
+        <p class="g-pstyle1">Saturday {{data.dates[0].dayNumber}}</p>
       </div>
       <div id="g-ai0-24" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.9895%;margin-top:-7.5px;left:65.669%;width:34px;">
-        <p class="g-pstyle0">16</p>
+        <p :class=" arrayDates.includes(16)?'g-pstyle1':'g-pstyle0'">16</p>
       </div>
       <div id="g-ai0-25" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.9895%;margin-top:-7.5px;left:70.114%;width:33px;">
-        <p class="g-pstyle0">17</p>
+        <p :class=" arrayDates.includes(17)?'g-pstyle1':'g-pstyle0'">17</p>
       </div>
       <div id="g-ai0-26" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.9895%;margin-top:-7.5px;left:74.473%;width:34px;">
-        <p class="g-pstyle0">18</p>
+        <p :class=" arrayDates.includes(18)?'g-pstyle1':'g-pstyle0'">18</p>
       </div>
       <div id="g-ai0-27" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.9895%;margin-top:-7.5px;left:79.0342%;width:34px;">
-        <p class="g-pstyle0">19</p>
+        <p :class=" arrayDates.includes(19)?'g-pstyle1':'g-pstyle0'">19</p>
       </div>
       <div id="g-ai0-28" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.9895%;margin-top:-7.5px;left:83.3941%;width:36px;">
-        <p class="g-pstyle0">20</p>
+        <p :class=" arrayDates.includes(20)?'g-pstyle1':'g-pstyle0'">20</p>
       </div>
       <div id="g-ai0-29" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.9895%;margin-top:-7.5px;left:87.7142%;width:33px;">
-        <p class="g-pstyle0">21</p>
+        <p :class=" arrayDates.includes(21)?'g-pstyle1':'g-pstyle0'">21</p>
       </div>
       <div id="g-ai0-30" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.9895%;margin-top:-7.5px;left:91.5295%;width:34px;">
-        <p class="g-pstyle0">22</p>
+        <p :class=" arrayDates.includes(22)?'g-pstyle1':'g-pstyle0'">22</p>
       </div>
       <div id="g-ai0-31" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:16.5053%;margin-top:-5.9px;left:11.3781%;width:64px;">
         <p class="g-pstyle2">holiday</p>
       </div>
       <div id="g-ai0-32" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:17.1824%;margin-top:-7.5px;left:65.6138%;width:34px;">
-        <p class="g-pstyle0">23</p>
+        <p :class=" arrayDates.includes(23)?'g-pstyle1':'g-pstyle0'">23</p>
       </div>
       <div id="g-ai0-33" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:17.1825%;margin-top:-7.5px;left:69.8854%;width:35px;">
-        <p class="g-pstyle0">24</p>
+        <p :class=" arrayDates.includes(24)?'g-pstyle1':'g-pstyle0'">24</p>
       </div>
       <div id="g-ai0-34" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:17.1825%;margin-top:-7.5px;left:74.4028%;width:34px;">
-        <p class="g-pstyle0">25</p>
+        <p :class=" arrayDates.includes(25)?'g-pstyle1':'g-pstyle0'">25</p>
       </div>
       <div id="g-ai0-35" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:17.1825%;margin-top:-7.5px;left:78.9055%;width:35px;">
-        <p class="g-pstyle0">26</p>
+        <p :class=" arrayDates.includes(26)?'g-pstyle1':'g-pstyle0'">26</p>
       </div>
       <div id="g-ai0-36" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:17.1825%;margin-top:-7.5px;left:83.5655%;width:34px;">
-        <p class="g-pstyle0">27</p>
+        <p :class=" arrayDates.includes(27)?'g-pstyle1':'g-pstyle0'">27</p>
       </div>
       <div id="g-ai0-37" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:17.1825%;margin-top:-7.5px;left:87.5417%;width:35px;">
-        <p class="g-pstyle0">28</p>
+        <p :class=" arrayDates.includes(28)?'g-pstyle1':'g-pstyle0'">28</p>
       </div>
       <div id="g-ai0-38" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:17.1825%;margin-top:-7.5px;left:91.4708%;width:35px;">
-        <p class="g-pstyle0">29</p>
+        <p :class=" arrayDates.includes(29)?'g-pstyle1':'g-pstyle0'">29</p>
       </div>
       <div id="g-ai0-39" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:19.5216%;margin-top:-7.5px;left:65.4677%;width:36px;">
-        <p class="g-pstyle0">30</p>
+        <p :class=" arrayDates.includes(30)?'g-pstyle1':'g-pstyle0'">30</p>
       </div>
       <div id="g-ai0-40" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:19.5216%;margin-top:-7.5px;left:70.0635%;width:33px;">
-        <p class="g-pstyle0">31</p>
+        <p :class=" arrayDates.includes(31)?'g-pstyle1':'g-pstyle0'">31</p>
       </div>
       <div id="g-ai0-41" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:29.6094%;margin-top:-7.5px;left:11.1874%;width:90px;">
-        <p class="g-pstyle1">Sunday {{data.dates[6].dayNumber}}</p>
+        <p class="g-pstyle1">Sunday {{data.dates[1].dayNumber}}</p>
       </div>
       <div id="g-ai0-42" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:31.7099%;margin-top:-5.9px;left:11.4161%;width:64px;">
         <p class="g-pstyle2">holiday</p>
@@ -146,6 +146,14 @@ export default {
   name: "Standard2",
   props:{
     data: Object
+  },
+  computed:{
+    arrayDates(){
+      const arrayDates = this.data.dates.map(element=>{
+        return element.dayNumber;
+      })
+    return arrayDates;
+    }
   }
 }
 </script>
