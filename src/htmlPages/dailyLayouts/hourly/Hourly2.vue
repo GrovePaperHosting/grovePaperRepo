@@ -6,13 +6,13 @@
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-Hourly-Artboard_3-img" class="g-aiImg" alt="" src="./Hourly-Artboard_3.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;left:69.3997%;width:70px;">
-        <p class="g-pstyle0">{{date.day}}</p>
+        <p class="g-pstyle0">{{data.day}}</p>
       </div>
       <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;left:80.6089%;width:75px;">
-        <p class="g-pstyle0">{{date.month}}</p>
+        <p class="g-pstyle0">{{data.month}}</p>
       </div>
       <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;left:92.9044%;width:35px;">
-        <p class="g-pstyle0">{{date.dayNumber}}</p>
+        <p class="g-pstyle0">{{data.dayNumber}}</p>
       </div>
       <div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:8.9029%;margin-top:-5.9px;left:87.4454%;width:64px;">
         <p class="g-pstyle1">holiday</p>
@@ -89,7 +89,7 @@
 export default {
   name: "Hourly2",
   props:{
-    date:{
+    data:{
       type: Object,
     },
   }

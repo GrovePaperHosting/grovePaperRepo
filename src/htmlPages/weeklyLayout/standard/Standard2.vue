@@ -72,7 +72,7 @@
         <p :class=" arrayDates.includes(15)?'g-pstyle1':'g-pstyle0'">15</p>
       </div>
       <div id="g-ai0-23" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.8433%;margin-top:-7.5px;left:11.1874%;width:103px;">
-        <p class="g-pstyle1">Saturday {{data.dates[0].dayNumber}}</p>
+        <p class="g-pstyle1">Saturday {{data[5].dayNumber}}</p>
       </div>
       <div id="g-ai0-24" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.9895%;margin-top:-7.5px;left:65.669%;width:34px;">
         <p :class=" arrayDates.includes(16)?'g-pstyle1':'g-pstyle0'">16</p>
@@ -126,7 +126,7 @@
         <p :class=" arrayDates.includes(31)?'g-pstyle1':'g-pstyle0'">31</p>
       </div>
       <div id="g-ai0-41" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:29.6094%;margin-top:-7.5px;left:11.1874%;width:90px;">
-        <p class="g-pstyle1">Sunday {{data.dates[1].dayNumber}}</p>
+        <p class="g-pstyle1">Sunday {{data[6].dayNumber}}</p>
       </div>
       <div id="g-ai0-42" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:31.7099%;margin-top:-5.9px;left:11.4161%;width:64px;">
         <p class="g-pstyle2">holiday</p>
@@ -145,11 +145,11 @@
 export default {
   name: "Standard2",
   props:{
-    data: Object
+    data: Array
   },
   computed:{
     arrayDates(){
-      const arrayDates = this.data.dates.map(element=>{
+      const arrayDates = this.data.map(element=>{
         return element.dayNumber;
       })
     return arrayDates;

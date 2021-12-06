@@ -24,32 +24,37 @@
                 </button>
               </div>
               <div v-if="pagesBookStructure.length>0" class="book mx-3">
-                <div class="page page0" @click="flipSelectedPage($event)">
+                <!--                <div class="page page0" @click="flipSelectedPage($event)">
+                                  <div class="side side0">
+                                    cover
+                                  </div>
+                                  <div class="side side1">
+                                    <component v-if="pagesBookStructure[0].category === 'daily'" :is="`${pagesBookStructure[0].type}1`" :date="{ day: pagesBookStructure[0].day ,month: pagesBookStructure[0].month, dayNumber: pagesBookStructure[0].dayNumber}"></component>
+                                  </div>
+                                </div>-->
+                <div class="page" :class="`page${index}`" v-for="(page, index) in pagesBookStructure" :key="index"
+                     @click="flipSelectedPage($event)">
                   <div class="side side0">
-                    cover
-                  </div>
-                  <div class="side side1">
-                    <component v-if="pagesBookStructure[0].category === 'daily'" :is="`${pagesBookStructure[0].type}1`" :date="{ day: pagesBookStructure[0].day ,month: pagesBookStructure[0].month, dayNumber: pagesBookStructure[0].dayNumber}"></component>
-                  </div>
-                </div>
-                <div class="page" :class="`page${index+1}`" v-for="(page, index) in pagesBookStructureRender" :key="index" @click="flipSelectedPage($event)">
-                  <div class="side side0">
+                    <component :is="`${page[0].type}`" :data="page[0].data"></component>
                     <!--<hourly2 :date="{ day: totalDatesArray[(index+1)*2-1].day ,month: totalDatesArray[(index+1)*2-1].month, dayNumber: totalDatesArray[(index+1)*2-1].dayNumber}"></hourly2>-->
-                      <component v-if="page.category ==='daily'"
-                                 :is="`${page.type}2`"
-                                 :date="{ day: page.daysGroup[0].day ,month: page.daysGroup[0].month, dayNumber: page.daysGroup[0].dayNumber}"></component>
-                      <component v-else-if="page.category ==='weekly'"
-                                 :is="`${page.type}2`"
-                                 :data="{month: page.daysGroup[0].month, dates: page.daysGroup}"></component>
-                      <component v-else :is="`${page.type}2`"></component>
+                    <!--                    <component v-if="page.type === 'fillPage'" :data="page.data" :is="`${page.type}`"></component>
+                                        <component v-if="page.category ==='daily'"
+                                                     :is="`${page.type}2`"
+                                                     :date="{ day: page.daysGroup[0].day ,month: page.daysGroup[0].month, dayNumber: page.daysGroup[0].dayNumber}"></component>
+                                          <component v-else-if="page.category ==='weekly'"
+                                                     :is="`${page.type}2`"
+                                                     :data="{month: page.daysGroup[0].month, dates: page.daysGroup}"></component>
+                                          <component v-else :is="`${page.type}2`"></component>-->
                   </div>
                   <div class="side side1">
-                      <component v-if="page.category === 'daily' && page.daysGroup.length>1" :is="`${page.type}1`" :date="{ day: page.daysGroup[1].day ,month: page.daysGroup[1].month, dayNumber: page.daysGroup[1].dayNumber}"></component>
-<!--                      <component v-if="page.category === 'daily' && (index+1)*2 < pagesBookStructure.length" :is="`${page.type}1`" :date="{ day: pagesBookStructure[(index+1)*2].day ,month: pagesBookStructure[(index+1)*2].month, dayNumber: pagesBookStructure[(index+1)*2].dayNumber}"></component>-->
-                      <component v-else-if="page.category === 'weekly'" :is="`${page.type}1`" :data="{ month: page.daysGroup[0].month, dates: page.daysGroup}"></component>
-<!--                      <component v-else-if="page.category === 'weekly' && (index+1) < pagesBookStructure.length" :is="`${page.type}1`" :data="{ month: pagesBookStructure[(index+1)].daysGroup[0].month, dates: pagesBookStructure[(index+1)].daysGroup}"></component>-->
-                      <component v-else :is="`${page.type}1`"></component>
-                      <!--<Hourly1 :date="{ day: totalDatesArray[(index+1)*2].day, month: totalDatesArray[(index+1)*2].month, dayNumber: totalDatesArray[(index+1)*2].dayNumber}"></Hourly1>-->
+                    <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data"></component>
+
+                    <!--                      <component v-if="page.category === 'daily' && page.daysGroup.length>1" :is="`${page.type}1`" :date="{ day: page.daysGroup[1].day ,month: page.daysGroup[1].month, dayNumber: page.daysGroup[1].dayNumber}"></component>
+                    &lt;!&ndash;                      <component v-if="page.category === 'daily' && (index+1)*2 < pagesBookStructure.length" :is="`${page.type}1`" :date="{ day: pagesBookStructure[(index+1)*2].day ,month: pagesBookStructure[(index+1)*2].month, dayNumber: pagesBookStructure[(index+1)*2].dayNumber}"></component>&ndash;&gt;
+                                          <component v-else-if="page.category === 'weekly'" :is="`${page.type}1`" :data="{ month: page.daysGroup[0].month, dates: page.daysGroup}"></component>
+                    &lt;!&ndash;                      <component v-else-if="page.category === 'weekly' && (index+1) < pagesBookStructure.length" :is="`${page.type}1`" :data="{ month: pagesBookStructure[(index+1)].daysGroup[0].month, dates: pagesBookStructure[(index+1)].daysGroup}"></component>&ndash;&gt;
+                                          <component v-else :is="`${page.type}1`"></component>-->
+                    <!--<Hourly1 :date="{ day: totalDatesArray[(index+1)*2].day, month: totalDatesArray[(index+1)*2].month, dayNumber: totalDatesArray[(index+1)*2].dayNumber}"></Hourly1>-->
                   </div>
                 </div>
                 <!--<div class="page page4" @click="flipSelectedPage($event)">
@@ -488,11 +493,12 @@ import {init, send} from 'emailjs-com';
 
 init("user_rVFW3uNdwPo3aLyWfIMyo");
 
+import fillpage from "../htmlPages/fillPage/fillPage";
 import dailyhourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
 import dailyhourly2 from "../htmlPages/dailyLayouts/hourly/Hourly2";
 import weeklystandard1 from "../htmlPages/weeklyLayout/standard/Standard1";
 import weeklystandard2 from "../htmlPages/weeklyLayout/standard/Standard2";
-import schedulingmonthMemories1 from "../htmlPages/Scheduling/monthMemories1";
+/*import schedulingmonthMemories1 from "../htmlPages/Scheduling/monthMemories1";
 import schedulingmonthMemories2 from "../htmlPages/Scheduling/monthMomories2";
 import schedulingmonthIdeas1 from "../htmlPages/Scheduling/monthIdeas/monthIdeas1";
 import schedulingmonthIdeas2 from "../htmlPages/Scheduling/monthIdeas/monthIdeas2";
@@ -501,25 +507,26 @@ import schedulingblankMonth2 from "../htmlPages/Scheduling/blankMonth/blankMonth
 import schedulingmyYearMonths1 from "../htmlPages/Scheduling/myYearMonths/myYearMonths1";
 import schedulingmyYearMonths2 from "../htmlPages/Scheduling/myYearMonths/myYearMonths2";
 import schedulingmyYearDays1 from "../htmlPages/Scheduling/myYearDays/myYearDays1";
-import schedulingmyYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";
+import schedulingmyYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";*/
 
 export default {
   name: "Builder",
   components: {
-    dailyhourly1,
-    dailyhourly2,
-    weeklystandard1,
-    weeklystandard2,
-    schedulingmonthMemories1,
-    schedulingmonthMemories2,
-    schedulingmonthIdeas1,
-    schedulingmonthIdeas2,
-    schedulingblankMonth1,
-    schedulingblankMonth2,
-    schedulingmyYearMonths1,
-    schedulingmyYearMonths2,
-    schedulingmyYearDays1,
-    schedulingmyYearDays2
+        fillpage,
+        dailyhourly1,
+        dailyhourly2,
+        weeklystandard1,
+        weeklystandard2,
+/*        schedulingmonthMemories1,
+        schedulingmonthMemories2,
+        schedulingmonthIdeas1,
+        schedulingmonthIdeas2,
+        schedulingblankMonth1,
+        schedulingblankMonth2,
+        schedulingmyYearMonths1,
+        schedulingmyYearMonths2,
+        schedulingmyYearDays1,
+        schedulingmyYearDays2*/
   },
   data() {
     return {
@@ -1436,14 +1443,18 @@ export default {
       arrayPagesToAdd: [[], [], [], [], [], [], [], [], [], []],
       totalMonths: [],
       weekday: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      totalDatesArray: [{"day":"Saturday","month":"February","dayNumber":1}, {"day":"Saturday","month":"February","dayNumber":2}, {"day":"Saturday","month":"February","dayNumber":3}],
+      totalDatesArray: [{"day": "Saturday", "month": "February", "dayNumber": 1}, {
+        "day": "Saturday",
+        "month": "February",
+        "dayNumber": 2
+      }, {"day": "Saturday", "month": "February", "dayNumber": 3}],
       page: 1,
       timerId: null,
       pagesBook: [],
       leftStack: [],
       rightStack: [],
       currentPage: null,
-      pagesBookStructure:[]
+      pagesBookStructure: []
     };
   },
   watch: {
@@ -1461,7 +1472,7 @@ export default {
         }
       }
     },
-    flipSelectedPage(event){
+    flipSelectedPage(event) {
       if (event.path[1].classList.contains("flip")) { //clicked on left stack page
         this.currentPage = this.leftStack.pop();
         this.rightStack.push(this.currentPage);
@@ -1524,61 +1535,146 @@ export default {
                   console.error("oops, something went wrong!", error);
                 });*/
     },
-    calcBookStructure(){
+    calcBookStructure() {
       this.pagesBookStructure = [];
       const type = `${this.finalValue[5].selection.category}${this.finalValue[5].selection.subcategory.name}`
-      if (this.layoutOption === 'daily'){
+      this.pagesBookStructure = [[{type: 'fillpage', category: 'fillpage', data: this.finalValue[2].selection}]];
+      if (this.layoutOption === 'daily') {
+        this.totalDatesArray.map((element) => {
+          if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
+            this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
+              data: {...element},
+              type:`${type}1`,
+              category: this.finalValue[5].selection.category
+            };
+          } else if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 2) {
+            this.pagesBookStructure.push([{data: {...element}, type:`${type}2`, category: this.finalValue[5].selection.category}])
+          }
+        })
+        if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 2) {
+          const currentDate = new Date(`${this.totalMonths[this.totalMonths.length - 1].year}-${this.totalMonths[this.totalMonths.length - 1].month + 1}-1`);
+          this.pagesBookStructure.push(
+            [{
+              data: {
+                day: this.weekday[currentDate.getDay()],
+                month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length-1].month].key,
+                dayNumber: 1
+              },
+              type:`${type}2`,
+              category: this.finalValue[5].selection.category
+            }]
+          )
+        }
+
         // this.totalDatesArray.map((element) =>{
         //   this.pagesBookStructure.push({...element, type, category: this.finalValue[5].selection.category});
         // })
-        this.pagesBookStructure.push({...this.totalDatesArray[0], type, category: this.finalValue[5].selection.category});
-        console.log('pagesBookStructure', this.pagesBookStructure);
 
-        const totalDaysGroup = Math.ceil((this.totalDatesArray.length-1) / 2);
+
+        /*        this.pagesBookStructure.push({...this.totalDatesArray[0], type, category: this.finalValue[5].selection.category});
+                console.log('pagesBookStructure', this.pagesBookStructure);*/
+
+        /*        const totalDaysGroup = Math.ceil((this.totalDatesArray.length-1) / 2);
+                for (let y = 0; y < totalDaysGroup; y++) {
+                  const daysGroup = this.totalDatesArray.slice((y*2+1), (y*2+3));
+                  this.pagesBookStructure.push({daysGroup, type, category: this.finalValue[5].selection.category});
+                }
+                let i = 1;
+                while (this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.length < 2) {
+                  this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.push({dayNumber: i});
+                  i++;
+                }
+                this.pagesBookStructure[this.pagesBookStructure.length] = {daysGroup: [{day:'Tuesday',month:'March',dayNumber:1}], type, category: this.finalValue[5].selection.category}*/
+
+
+      } else {
+        const totalDaysGroup = Math.ceil((this.totalDatesArray.length) / 7);
+        console.log('checkpoint', totalDaysGroup);
         for (let y = 0; y < totalDaysGroup; y++) {
-          const daysGroup = this.totalDatesArray.slice((y*2+1), (y*2+3));
-          this.pagesBookStructure.push({daysGroup, type, category: this.finalValue[5].selection.category});
-        }
-        let i = 1;
-        while (this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.length < 2) {
-          this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.push({dayNumber: i});
-          i++;
-        }
-        this.pagesBookStructure[this.pagesBookStructure.length] = {daysGroup: [{day:'Tuesday',month:'March',dayNumber:1}], type, category: this.finalValue[5].selection.category}
+          let daysGroup = this.totalDatesArray.slice((y * 7), (y * 7 + 7));
+          let i = 1;
+          while (daysGroup.length<7) {
+            const currentDate = new Date(`${this.totalMonths[this.totalMonths.length - 1].year}-${this.totalMonths[this.totalMonths.length - 1].month + 1}-${i}`);
+            daysGroup.push(
+              {
+                day: this.weekday[currentDate.getDay()],
+                month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length-1].month].key,
+                dayNumber: 1
+              }
+            )
+            i++;
+          }
+          if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
+            this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
+              data: daysGroup,
+              type:`${type}1`,
+              category: this.finalValue[5].selection.category
+            };
+          }
+          this.pagesBookStructure.push([{data: this.pagesBookStructure[this.pagesBookStructure.length - 1][1].data, type:`${type}2`, category: this.finalValue[5].selection.category}]);
+            //this.pagesBookStructure.push([{data: {...daysGroup}, type:`${type}2`, category: this.finalValue[5].selection.category}])
 
-      }else {
+        }
+/*        let i = 1;
+        while (this.pagesBookStructure[this.pagesBookStructure.length - 1].data.length < 7) {
+          this.pagesBookStructure[this.pagesBookStructure.length - 1].daysGroup.push({dayNumber: i});
+          i++;
+        }*/
+/*        if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 2) {
+          const currentDate = new Date(`${this.totalMonths[this.totalMonths.length - 1].year}-${this.totalMonths[this.totalMonths.length - 1].month + 1}-1`);
+          this.pagesBookStructure.push(
+              {
+                data: {
+                  day: this.weekday[currentDate.getDay()],
+                  month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length-1].month+1].key,
+                  dayNumber: 1
+                },
+                type:`${type}2`,
+                category: this.finalValue[5].selection.category
+              }
+          )
+        }*/
+
         //const type = 'weekly-standard';
-        this.pagesBookStructure.push({daysGroup: this.totalDatesArray.slice(0,5), type, category: this.finalValue[5].selection.category});
-        const totalDaysGroup = Math.ceil((this.totalDatesArray.length -5) / 7);
+/*        this.pagesBookStructure.push({
+          daysGroup: this.totalDatesArray.slice(0, 5),
+          type,
+          category: this.finalValue[5].selection.category
+        });
+        const totalDaysGroup = Math.ceil((this.totalDatesArray.length - 5) / 7);
         for (let y = 0; y < totalDaysGroup; y++) {
           console.log('pagesBookStructure1', this.pagesBookStructure);
-          const daysGroup = this.totalDatesArray.slice((y*7+5), (y*7+12));
+          const daysGroup = this.totalDatesArray.slice((y * 7 + 5), (y * 7 + 12));
           this.pagesBookStructure.push({daysGroup, type, category: this.finalValue[5].selection.category});
           console.log('pagesBookStructure2', this.pagesBookStructure);
 
         }
         let i = 1;
-        while (this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.length < 7) {
-          this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.push({dayNumber: i});
+        while (this.pagesBookStructure[this.pagesBookStructure.length - 1].daysGroup.length < 7) {
+          this.pagesBookStructure[this.pagesBookStructure.length - 1].daysGroup.push({dayNumber: i});
           i++;
         }
-        this.pagesBookStructure.push({daysGroup: [{dayNumber: 3},{dayNumber: 4}], type, category: this.finalValue[5].selection.category});
+        this.pagesBookStructure.push({
+          daysGroup: [{dayNumber: 3}, {dayNumber: 4}],
+          type,
+          category: this.finalValue[5].selection.category
+        });*/
       }
       console.log('pagesBookStructureFinal', this.pagesBookStructure);
     },
     calcTotalDates() {
       this.totalDatesArray = [];
       this.totalMonths.map((element) => {
-              for (let y = 1; y <= element.totalDays; y++) {
-                const currentDate = new Date(`${element.year}-${element.month}-${y}`);
-                this.totalDatesArray.push({
-                  day: this.weekday[currentDate.getDay()],
-                  month: this.datesValueOptions.month[element.month-1].key,
-                  dayNumber: y
-                })
-                //console.log('currentDate', this.weekday[currentDate.getDay()], this.datesValueOptions.month[element.month-1].key, y);
-              }
-            })
+        for (let y = 1; y <= element.totalDays; y++) {
+          const currentDate = new Date(`${element.year}-${element.month}-${y}`);
+          this.totalDatesArray.push({
+            day: this.weekday[currentDate.getDay()],
+            month: this.datesValueOptions.month[element.month - 1].key,
+            dayNumber: y
+          })
+          //console.log('currentDate', this.weekday[currentDate.getDay()], this.datesValueOptions.month[element.month-1].key, y);
+        }
+      })
       //this.calcBookStructure();
       this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
       this.rightStack = Array.from(this.pagesBook).reverse();
@@ -1614,7 +1710,7 @@ export default {
       this.selectedItem = index;
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection};
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
-      if(this.selectedCategory == 5)this.calcBookStructure();
+      if (this.selectedCategory == 5) this.calcBookStructure();
       this.layoutPreselect = null;
     },
     async selectItemAddPages(selection) {
@@ -1634,7 +1730,7 @@ export default {
         ...selection,
         pages: this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]
       });
-      for(let x = 0; x < this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]; x++) {
+      for (let x = 0; x < this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]; x++) {
         this.pagesBookStructure.push({
           type: `${selection.category}${selection.subcategory.key}`,
           category: 'addOnPages'
@@ -1705,10 +1801,10 @@ export default {
     },
   },
   computed: {
-    pagesBookStructureRender(){
-       let pagesBookStructureRender = this.pagesBookStructure;
-       pagesBookStructureRender.shift();
-       return pagesBookStructureRender;
+    pagesBookStructureRender() {
+      let pagesBookStructureRender = this.pagesBookStructure;
+      pagesBookStructureRender.shift();
+      return pagesBookStructureRender;
     },
     endMonthDate() {
       if (this.dateValue.startDate.year === this.dateValue.endDate.year) {
