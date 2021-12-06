@@ -1565,31 +1565,8 @@ export default {
             }]
           )
         }
-
-        // this.totalDatesArray.map((element) =>{
-        //   this.pagesBookStructure.push({...element, type, category: this.finalValue[5].selection.category});
-        // })
-
-
-        /*        this.pagesBookStructure.push({...this.totalDatesArray[0], type, category: this.finalValue[5].selection.category});
-                console.log('pagesBookStructure', this.pagesBookStructure);*/
-
-        /*        const totalDaysGroup = Math.ceil((this.totalDatesArray.length-1) / 2);
-                for (let y = 0; y < totalDaysGroup; y++) {
-                  const daysGroup = this.totalDatesArray.slice((y*2+1), (y*2+3));
-                  this.pagesBookStructure.push({daysGroup, type, category: this.finalValue[5].selection.category});
-                }
-                let i = 1;
-                while (this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.length < 2) {
-                  this.pagesBookStructure[this.pagesBookStructure.length-1].daysGroup.push({dayNumber: i});
-                  i++;
-                }
-                this.pagesBookStructure[this.pagesBookStructure.length] = {daysGroup: [{day:'Tuesday',month:'March',dayNumber:1}], type, category: this.finalValue[5].selection.category}*/
-
-
       } else {
         const totalDaysGroup = Math.ceil((this.totalDatesArray.length) / 7);
-        console.log('checkpoint', totalDaysGroup);
         for (let y = 0; y < totalDaysGroup; y++) {
           let daysGroup = this.totalDatesArray.slice((y * 7), (y * 7 + 7));
           let i = 1;
@@ -1612,53 +1589,7 @@ export default {
             };
           }
           this.pagesBookStructure.push([{data: this.pagesBookStructure[this.pagesBookStructure.length - 1][1].data, type:`${type}2`, category: this.finalValue[5].selection.category}]);
-            //this.pagesBookStructure.push([{data: {...daysGroup}, type:`${type}2`, category: this.finalValue[5].selection.category}])
-
         }
-/*        let i = 1;
-        while (this.pagesBookStructure[this.pagesBookStructure.length - 1].data.length < 7) {
-          this.pagesBookStructure[this.pagesBookStructure.length - 1].daysGroup.push({dayNumber: i});
-          i++;
-        }*/
-/*        if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 2) {
-          const currentDate = new Date(`${this.totalMonths[this.totalMonths.length - 1].year}-${this.totalMonths[this.totalMonths.length - 1].month + 1}-1`);
-          this.pagesBookStructure.push(
-              {
-                data: {
-                  day: this.weekday[currentDate.getDay()],
-                  month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length-1].month+1].key,
-                  dayNumber: 1
-                },
-                type:`${type}2`,
-                category: this.finalValue[5].selection.category
-              }
-          )
-        }*/
-
-        //const type = 'weekly-standard';
-/*        this.pagesBookStructure.push({
-          daysGroup: this.totalDatesArray.slice(0, 5),
-          type,
-          category: this.finalValue[5].selection.category
-        });
-        const totalDaysGroup = Math.ceil((this.totalDatesArray.length - 5) / 7);
-        for (let y = 0; y < totalDaysGroup; y++) {
-          console.log('pagesBookStructure1', this.pagesBookStructure);
-          const daysGroup = this.totalDatesArray.slice((y * 7 + 5), (y * 7 + 12));
-          this.pagesBookStructure.push({daysGroup, type, category: this.finalValue[5].selection.category});
-          console.log('pagesBookStructure2', this.pagesBookStructure);
-
-        }
-        let i = 1;
-        while (this.pagesBookStructure[this.pagesBookStructure.length - 1].daysGroup.length < 7) {
-          this.pagesBookStructure[this.pagesBookStructure.length - 1].daysGroup.push({dayNumber: i});
-          i++;
-        }
-        this.pagesBookStructure.push({
-          daysGroup: [{dayNumber: 3}, {dayNumber: 4}],
-          type,
-          category: this.finalValue[5].selection.category
-        });*/
       }
       console.log('pagesBookStructureFinal', this.pagesBookStructure);
     },

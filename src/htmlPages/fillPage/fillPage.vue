@@ -5,14 +5,14 @@
       <img id="g-1_-Fill-Page-Artboard_2-img" class="g-aiImg" alt="" src="1_-Fill-Page-Artboard_2.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:50.0187%;margin-top:-65.1px;left:52.6521%;margin-left:-71px;width:142px;">
         <p class="g-pstyle0">From the desk of: </p>
+        <p class="g-pstyle0">{{data.Name}}</p>
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p class="g-pstyle0">2022</p>
+        <p class="g-pstyle0">{{data.Year}}</p>
         <p class="g-pstyle0"> </p>
-        <p class="g-pstyle0">Email</p>
-        <p class="g-pstyle0">Telephone</p>
+        <p class="g-pstyle0">Email: {{data.Email}}</p>
+        <p class="g-pstyle0">Telephone: {{data.Telephone}}</p>
       </div>
     </div>
   </div>
