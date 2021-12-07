@@ -6,7 +6,7 @@
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-Month-_-Memories-Artboard_1-img" class="g-aiImg" alt="" src="./Month-_-Memories-Artboard_1.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.7421%;margin-top:-9.1px;left:5.4181%;width:105px;">
-        <p class="g-pstyle0">My MONTH</p>
+        <p class="g-pstyle0 is-size-7-touch">My MONTH</p>
       </div>
       <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:13.6737%;margin-top:-7.5px;left:6.4734%;margin-left:-13.5px;width:27px;">
         <p class="g-pstyle1">1</p>
@@ -111,7 +111,7 @@
 
 <script>
 export default {
-  name: "montMemories"
+  name: "montMemories2"
 }
 </script>
 

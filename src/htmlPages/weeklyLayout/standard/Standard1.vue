@@ -59,6 +59,9 @@ export default {
 </script>
 
 <style scoped>
+p{
+  font-family: 'LaMango-Light';
+}
 #g-Standard-box ,
 #g-Standard-box .g-artboard {
   margin:0 auto;

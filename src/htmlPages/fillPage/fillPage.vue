@@ -2,7 +2,7 @@
   <div id="g-1_-Fill-Page-box" class="ai2html">
     <div id="g-1_-Fill-Page-Artboard_2" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
-      <img id="g-1_-Fill-Page-Artboard_2-img" class="g-aiImg" alt="" src="1_-Fill-Page-Artboard_2.png"/>
+      <img id="g-1_-Fill-Page-Artboard_2-img" class="g-aiImg" alt="" src="./1_-Fill-Page-Artboard_2.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:50.0187%;margin-top:-65.1px;left:52.6521%;margin-left:-71px;width:142px;">
         <p class="g-pstyle0">From the desk of: </p>
         <p class="g-pstyle0">{{data.Name}}</p>
@@ -30,6 +30,9 @@ export default {
 </script>
 
 <style scoped>
+p{
+  font-family: 'LaMango-Light';
+}
 #g-1_-Fill-Page-box ,
 #g-1_-Fill-Page-box .g-artboard {
   margin:0 auto;
@@ -63,7 +66,7 @@ export default {
   -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity:1;
   letter-spacing:0em;
-  font-size:12px;
+  font-size:11px;
   text-align:left;
   text-transform:none;
   color:rgb(0,0,0);

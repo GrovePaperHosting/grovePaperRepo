@@ -101,6 +101,9 @@ export default {
 </script>
 
 <style media="screen,print">
+p{
+  font-family: 'LaMango-Light';
+}
  #g-Hourly-box ,
  #g-Hourly-box .g-artboard {
    margin:0 auto;

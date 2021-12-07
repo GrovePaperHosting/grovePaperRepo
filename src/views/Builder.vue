@@ -32,10 +32,12 @@
                                     <component v-if="pagesBookStructure[0].category === 'daily'" :is="`${pagesBookStructure[0].type}1`" :date="{ day: pagesBookStructure[0].day ,month: pagesBookStructure[0].month, dayNumber: pagesBookStructure[0].dayNumber}"></component>
                                   </div>
                                 </div>-->
-                <div class="page" :class="`page${index}`" v-for="(page, index) in pagesBookStructure" :key="index"
+                <div class="page" style="max-width: 522px;max-height: 684px" :class="`page${index}`" v-for="(page, index) in pagesBookStructure" :key="index"
                      @click="flipSelectedPage($event)">
                   <div class="side side0">
-                    <component :is="`${page[0].type}`" :data="page[0].data"></component>
+                    <div>
+                      <component :is="`${page[0].type}`" :data="page[0].data"></component>
+                    </div>
                     <!--<hourly2 :date="{ day: totalDatesArray[(index+1)*2-1].day ,month: totalDatesArray[(index+1)*2-1].month, dayNumber: totalDatesArray[(index+1)*2-1].dayNumber}"></hourly2>-->
                     <!--                    <component v-if="page.type === 'fillPage'" :data="page.data" :is="`${page.type}`"></component>
                                         <component v-if="page.category ==='daily'"
@@ -48,6 +50,9 @@
                   </div>
                   <div class="side side1">
                     <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data"></component>
+<!--
+                    <div class="w100 has-background-white" style="height: 100%"></div>
+-->
 
                     <!--                      <component v-if="page.category === 'daily' && page.daysGroup.length>1" :is="`${page.type}1`" :date="{ day: page.daysGroup[1].day ,month: page.daysGroup[1].month, dayNumber: page.daysGroup[1].dayNumber}"></component>
                     &lt;!&ndash;                      <component v-if="page.category === 'daily' && (index+1)*2 < pagesBookStructure.length" :is="`${page.type}1`" :date="{ day: pagesBookStructure[(index+1)*2].day ,month: pagesBookStructure[(index+1)*2].month, dayNumber: pagesBookStructure[(index+1)*2].dayNumber}"></component>&ndash;&gt;
@@ -498,8 +503,8 @@ import dailyhourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
 import dailyhourly2 from "../htmlPages/dailyLayouts/hourly/Hourly2";
 import weeklystandard1 from "../htmlPages/weeklyLayout/standard/Standard1";
 import weeklystandard2 from "../htmlPages/weeklyLayout/standard/Standard2";
-/*import schedulingmonthMemories1 from "../htmlPages/Scheduling/monthMemories1";
-import schedulingmonthMemories2 from "../htmlPages/Scheduling/monthMomories2";
+import schedulingmonthMemories1 from "../htmlPages/Scheduling/monthMemories2";
+import schedulingmonthMemories2 from "../htmlPages/Scheduling/monthMomories1";
 import schedulingmonthIdeas1 from "../htmlPages/Scheduling/monthIdeas/monthIdeas1";
 import schedulingmonthIdeas2 from "../htmlPages/Scheduling/monthIdeas/monthIdeas2";
 import schedulingblankMonth1 from "../htmlPages/Scheduling/blankMonth/blankMonth1";
@@ -507,7 +512,7 @@ import schedulingblankMonth2 from "../htmlPages/Scheduling/blankMonth/blankMonth
 import schedulingmyYearMonths1 from "../htmlPages/Scheduling/myYearMonths/myYearMonths1";
 import schedulingmyYearMonths2 from "../htmlPages/Scheduling/myYearMonths/myYearMonths2";
 import schedulingmyYearDays1 from "../htmlPages/Scheduling/myYearDays/myYearDays1";
-import schedulingmyYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";*/
+import schedulingmyYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";
 
 export default {
   name: "Builder",
@@ -517,7 +522,7 @@ export default {
         dailyhourly2,
         weeklystandard1,
         weeklystandard2,
-/*        schedulingmonthMemories1,
+        schedulingmonthMemories1,
         schedulingmonthMemories2,
         schedulingmonthIdeas1,
         schedulingmonthIdeas2,
@@ -526,7 +531,7 @@ export default {
         schedulingmyYearMonths1,
         schedulingmyYearMonths2,
         schedulingmyYearDays1,
-        schedulingmyYearDays2*/
+        schedulingmyYearDays2
   },
   data() {
     return {
@@ -1473,7 +1478,8 @@ export default {
       }
     },
     flipSelectedPage(event) {
-      if (event.path[1].classList.contains("flip")) { //clicked on left stack page
+      console.log('event', event);
+      if (event.path[1].classList.contains("flip") || event.path[2].classList.contains("flip") || event.path[3].classList.contains("flip")) { //clicked on left stack page
         this.currentPage = this.leftStack.pop();
         this.rightStack.push(this.currentPage);
         this.currentPage.classList.remove("flip");
@@ -1655,17 +1661,24 @@ export default {
       selectionArray = selectionArray.filter((element) => {
         if (element.subcategory === layoutPreselect) this.totalPages = this.totalPages - element.pages;
         return element.subcategory !== layoutPreselect;
-
       });
       selectionArray.push({
         ...selection,
         pages: this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]
       });
       for (let x = 0; x < this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]; x++) {
-        this.pagesBookStructure.push({
-          type: `${selection.category}${selection.subcategory.key}`,
+        if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
+          this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
+            data: 'addOnPages',
+            type:`${selection.category}${selection.subcategory.key}1`,
+            category: 'addOnPages'
+          };
+        }
+        this.pagesBookStructure.push([{
+          data: 'addOnPages',
+          type:`${selection.category}${selection.subcategory.key}2`,
           category: 'addOnPages'
-        })
+        }])
       }
       this.totalPages = this.totalPages + Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]);
       this.calcTotalPages();
@@ -1790,12 +1803,14 @@ body {
 .book {
   position: relative;
   transform-style: preserve-3d;
+  max-width: 522px;
+  max-height: 684px;
 }
 
 .page {
   position: absolute;
   width: 45%;
-  height: 80%;
+  height: fit-content;
   top: 0;
   left: 50%;
   transform-style: preserve-3d;
@@ -1844,15 +1859,17 @@ body {
 
 .side0 {
   background-color: white;
-  padding: 1em;
-  box-sizing: border-box;
+  //padding: 1em;
+  //box-sizing: border-box;
   //box-shadow:1px 1px 1px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.3);
+
 }
 
 .side1 {
   background-color: white;
-  padding: 1em;
-  box-sizing: border-box;
+  //padding: 1em;
+  //box-sizing: border-box;
   box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.3);
 }
 

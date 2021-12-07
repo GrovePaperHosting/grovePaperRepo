@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "monthMomories2"
+  name: "monthMemories1"
 }
 </script>
 
