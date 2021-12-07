@@ -16,19 +16,120 @@
           </button>
         </div>
         <div class="build-container-carrousel-options">
-          <div v-if="layoutPreselect !== null">
+          <div v-show="selectedCategory === 8">
+            <div class="w100 is-flex">
+              <div class="add-container">
+                <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100">
+                  ADD TO CART
+                </button>
+              </div>
+              <div v-if="pagesBookStructure.length>0" class="book mx-3">
+                <!--                <div class="page page0" @click="flipSelectedPage($event)">
+                                  <div class="side side0">
+                                    cover
+                                  </div>
+                                  <div class="side side1">
+                                    <component v-if="pagesBookStructure[0].category === 'daily'" :is="`${pagesBookStructure[0].type}1`" :date="{ day: pagesBookStructure[0].day ,month: pagesBookStructure[0].month, dayNumber: pagesBookStructure[0].dayNumber}"></component>
+                                  </div>
+                                </div>-->
+                <div class="page" style="max-width: 522px;max-height: 684px" :class="`page${index}`" v-for="(page, index) in pagesBookStructure" :key="index"
+                     @click="flipSelectedPage($event)">
+                  <div class="side side0">
+                    <div>
+                      <component :is="`${page[0].type}`" :data="page[0].data"></component>
+                    </div>
+                    <!--<hourly2 :date="{ day: totalDatesArray[(index+1)*2-1].day ,month: totalDatesArray[(index+1)*2-1].month, dayNumber: totalDatesArray[(index+1)*2-1].dayNumber}"></hourly2>-->
+                    <!--                    <component v-if="page.type === 'fillPage'" :data="page.data" :is="`${page.type}`"></component>
+                                        <component v-if="page.category ==='daily'"
+                                                     :is="`${page.type}2`"
+                                                     :date="{ day: page.daysGroup[0].day ,month: page.daysGroup[0].month, dayNumber: page.daysGroup[0].dayNumber}"></component>
+                                          <component v-else-if="page.category ==='weekly'"
+                                                     :is="`${page.type}2`"
+                                                     :data="{month: page.daysGroup[0].month, dates: page.daysGroup}"></component>
+                                          <component v-else :is="`${page.type}2`"></component>-->
+                  </div>
+                  <div class="side side1">
+                    <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data"></component>
+<!--
+                    <div class="w100 has-background-white" style="height: 100%"></div>
+-->
+
+                    <!--                      <component v-if="page.category === 'daily' && page.daysGroup.length>1" :is="`${page.type}1`" :date="{ day: page.daysGroup[1].day ,month: page.daysGroup[1].month, dayNumber: page.daysGroup[1].dayNumber}"></component>
+                    &lt;!&ndash;                      <component v-if="page.category === 'daily' && (index+1)*2 < pagesBookStructure.length" :is="`${page.type}1`" :date="{ day: pagesBookStructure[(index+1)*2].day ,month: pagesBookStructure[(index+1)*2].month, dayNumber: pagesBookStructure[(index+1)*2].dayNumber}"></component>&ndash;&gt;
+                                          <component v-else-if="page.category === 'weekly'" :is="`${page.type}1`" :data="{ month: page.daysGroup[0].month, dates: page.daysGroup}"></component>
+                    &lt;!&ndash;                      <component v-else-if="page.category === 'weekly' && (index+1) < pagesBookStructure.length" :is="`${page.type}1`" :data="{ month: pagesBookStructure[(index+1)].daysGroup[0].month, dates: pagesBookStructure[(index+1)].daysGroup}"></component>&ndash;&gt;
+                                          <component v-else :is="`${page.type}1`"></component>-->
+                    <!--<Hourly1 :date="{ day: totalDatesArray[(index+1)*2].day, month: totalDatesArray[(index+1)*2].month, dayNumber: totalDatesArray[(index+1)*2].dayNumber}"></Hourly1>-->
+                  </div>
+                </div>
+                <!--<div class="page page4" @click="flipSelectedPage($event)">
+                  <div class="side side0">
+                    <month-memories1></month-memories1>
+                  </div>
+                  <div class="side side1">
+                    <month-memories2></month-memories2>
+                  </div>
+                </div>
+                <div class="page page5" @click="flipSelectedPage($event)">
+                  <div class="side side0">
+                    <month-ideas2></month-ideas2>
+                  </div>
+                  <div class="side side1">
+                    <month-ideas1></month-ideas1>
+                  </div>
+                </div>
+                <div class="page page6" @click="flipSelectedPage($event)">
+                  <div class="side side0">
+                    <blank-month1></blank-month1>
+                  </div>
+                  <div class="side side1">
+                    <blank-month2></blank-month2>
+                  </div>
+                </div>
+                <div class="page page7" @click="flipSelectedPage($event)">
+                  <div class="side side0">
+                    <blank-month1></blank-month1>
+                  </div>
+                  <div class="side side1">
+                    <blank-month2></blank-month2>
+                  </div>
+                </div>
+                <div class="page page8" @click="flipSelectedPage($event)">
+                  <div class="side side0">
+                    <my-year-months2></my-year-months2>
+                  </div>
+                  <div class="side side1">
+                    <my-year-months1></my-year-months1>
+                  </div>
+                </div>
+                <div class="page page9" @click="flipSelectedPage($event)">
+                  <div class="side side0">
+                    <my-year-days1></my-year-days1>
+                  </div>
+                  <div class="side side1">
+                    <my-year-days2></my-year-days2>
+                  </div>
+                </div>-->
+              </div>
+            </div>
+          </div>
+          <div v-if="layoutPreselect !== null && selectedCategory !== 8">
             <div>
               <div class="columns">
                 <div class="column is-4 p-0 m-0">
                   <div class="is-flex is-justify-content-flex-start ml-3" style="height: 10%">
                     <button @click="layoutPreselect = null" class="button__transparent">
-                      <img style="width: 40px; height: 30px" src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7"></button>
+                      <img style="width: 40px; height: 30px"
+                           src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7">
+                    </button>
                   </div>
                   <div class="mt-3 is-flex is-justify-content-center is-flex-direction-column" style="height: 90%">
-                    <h1 class="is-uppercase is-size-1 is-size-3-touch lamango-font lamango-font__spacing3 has-text-weight-light mt-2 ">{{layoutPreselect.name}}</h1>
+                    <h1 class="is-uppercase is-size-1 is-size-3-touch lamango-font lamango-font__spacing3 has-text-weight-light mt-2 ">
+                      {{ layoutPreselect.name }}</h1>
                     <div v-if="selectedCategory === 6" class="add-container">
-                      <input  type="number" class="input" v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">
-<!--                      <input  type="number" class="input" v-model.number="pagesToAdd">-->
+                      <input type="number" class="input"
+                             v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">
+                      <!--                      <input  type="number" class="input" v-model.number="pagesToAdd">-->
                       <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
                               @click="selectItemAddPages({category: options[selectedCategory].subcategories[selectedSubcategory].name, subcategory: layoutPreselect})">
                         ADD
@@ -49,10 +150,11 @@
               </div>
             </div>
           </div>
-          <div v-else class="card is-flex build-container-carrousel-options-container">
+          <div v-else-if="selectedCategory !== 8" class="card is-flex build-container-carrousel-options-container">
             <div class="w100" v-if="options[selectedCategory].type === 'optionsListNested'">
               <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered mt-6">
-                <div class="column is-one-fifth mt-6 p-0" v-for="(option, index) in options[selectedCategory].subcategories"
+                <div class="column is-one-fifth mt-6 p-0"
+                     v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent"
                           @click="selectedSubcategory = index; layoutPreselect = null">
@@ -183,9 +285,10 @@
                     </div>
                     <div class="column">
                       <b-field>
-                        <b-select :disabled="(!dateValue.startDate.year || !dateValue.startDate.month || !dateValue.endDate.year)"
-                                  placeholder="Select a month" v-model="dateValue.endDate['month']"
-                                  @click.native="dateChange(dateValue)" expanded>
+                        <b-select
+                            :disabled="(!dateValue.startDate.year || !dateValue.startDate.month || !dateValue.endDate.year)"
+                            placeholder="Select a month" v-model="dateValue.endDate['month']"
+                            @click.native="dateChange(dateValue)" expanded>
                           <option v-for="(monthOption, index) in endMonthDate" :key="index"
                                   :value="monthOption.value">
                             {{ monthOption.key }}
@@ -245,7 +348,7 @@
                 <div class="column is-one-fifth p-0" v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent"
-                          @click="selectedSubcategory = index; layoutOption = options[selectedCategory].subcategories[index].name; layoutPreselect = null">
+                          @click="selectedSubcategory = index; layoutOption = options[selectedCategory].subcategories[index].name; layoutPreselect = null; pagesBookStructure = []">
                     <div>
                       <img class="image-option" width="w100" :src="option.urlImg">
                     </div>
@@ -288,7 +391,7 @@
                   </button>
                 </div>
               </div>
-              <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left wthis.100">
+              <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left w100">
                 <div class="columns is-multiline is-vcentered py-6">
                   <div class="column is-one-fifth p-0"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
@@ -332,7 +435,6 @@
         </div>
       </div>
     </div>
-    <pre > {{finalValue}}</pre>
     <div v-show="false">
       <table v-if="finalValue.length !== 0" id="my-table" class="w100 p-6">
         <tr>
@@ -374,13 +476,9 @@
         </tr>
       </table>
     </div>
-    <button @click="exportPDF">Send PDF</button>
-    <!--<template>
-      <flipbook class="flipbook" v-slot="flipbook" :pages="['https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6', 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6', 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6', 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6']">
-        <button @click="flipbook.flipLeft">Previous Page</button>
-        <button @click="flipbook.flipRight">Next Page</button>
-      </flipbook>
-    </template>-->
+    <button @click="exportPDFDemo">Send PDF</button>
+    <template>
+    </template>
     <div class="page-counter has-text-centered">
       <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">PAGE COUNT</h1>
       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
@@ -393,20 +491,53 @@
 </template>
 
 <script>
-//import Flipbook from 'flipbook-vue';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import storageRef from "../firebase";
-import{ init, send } from 'emailjs-com';
+import {init, send} from 'emailjs-com';
+
 init("user_rVFW3uNdwPo3aLyWfIMyo");
+
+import fillpage from "../htmlPages/fillPage/fillPage";
+import dailyhourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
+import dailyhourly2 from "../htmlPages/dailyLayouts/hourly/Hourly2";
+import weeklystandard1 from "../htmlPages/weeklyLayout/standard/Standard1";
+import weeklystandard2 from "../htmlPages/weeklyLayout/standard/Standard2";
+import schedulingmonthMemories1 from "../htmlPages/Scheduling/monthMemories2";
+import schedulingmonthMemories2 from "../htmlPages/Scheduling/monthMomories1";
+import schedulingmonthIdeas1 from "../htmlPages/Scheduling/monthIdeas/monthIdeas1";
+import schedulingmonthIdeas2 from "../htmlPages/Scheduling/monthIdeas/monthIdeas2";
+import schedulingblankMonth1 from "../htmlPages/Scheduling/blankMonth/blankMonth1";
+import schedulingblankMonth2 from "../htmlPages/Scheduling/blankMonth/blankMonth2";
+import schedulingmyYearMonths1 from "../htmlPages/Scheduling/myYearMonths/myYearMonths1";
+import schedulingmyYearMonths2 from "../htmlPages/Scheduling/myYearMonths/myYearMonths2";
+import schedulingmyYearDays1 from "../htmlPages/Scheduling/myYearDays/myYearDays1";
+import schedulingmyYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";
 
 export default {
   name: "Builder",
   components: {
-    //Flipbook
+        fillpage,
+        dailyhourly1,
+        dailyhourly2,
+        weeklystandard1,
+        weeklystandard2,
+        schedulingmonthMemories1,
+        schedulingmonthMemories2,
+        schedulingmonthIdeas1,
+        schedulingmonthIdeas2,
+        schedulingblankMonth1,
+        schedulingblankMonth2,
+        schedulingmyYearMonths1,
+        schedulingmyYearMonths2,
+        schedulingmyYearDays1,
+        schedulingmyYearDays2
   },
   data() {
     return {
+      //components: [Hourly1, Hourly2],
+      viewReview: false,
+      output: [],
       generateTable: false,
       selectedCategory: 0,
       selectedSubcategory: null,
@@ -446,6 +577,10 @@ export default {
         {
           name: 'Extras',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/EXTRAS.png?alt=media&token=78261eee-049d-4a89-8adb-b06f835fe70c',
+        },
+        {
+          name: 'Review & submit',
+          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/REVIEW%20%26%20SUBMIT.png?alt=media&token=60901b2f-c127-45b7-9190-32ba42484855',
         }
       ],
       layoutPreselect: null,
@@ -611,19 +746,19 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2FDailyOption1.png?alt=media&token=28627ec0-b7c1-4b78-8384-89ec58865a69',
               subcategoriesOptions: [
                 {
-                  name: 'HOURLY',
+                  name: 'hourly',
                   id: 1.1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2FDailyOption1.png?alt=media&token=28627ec0-b7c1-4b78-8384-89ec58865a69',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6',
                 },
                 {
-                  name: 'SECTIONAL',
+                  name: 'sectional',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily2.png?alt=media&token=88ad381a-9c3d-41c4-be09-c40474c3a141',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily2Big.png?alt=media&token=d99e7c4a-ab94-4392-b7cb-31f7d84b0208',
                 },
                 {
-                  name: 'REFLECTION',
+                  name: 'reflection',
                   id: 1.3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily3%20(1).png?alt=media&token=218a6a96-2b85-4387-adf7-564ec748d451',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily3Big.png?alt=media&token=52697e17-9590-4ed6-810b-8b49437f67a9',
@@ -636,7 +771,7 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2FDouble1.png?alt=media&token=60e742d2-b9ae-4fe3-9491-b263840a3962',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: 'standard',
                   id: 1.1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
@@ -699,30 +834,35 @@ export default {
               subcategoriesOptions: [
                 {
                   name: 'MONTH-MEMORIES',
+                  key: 'monthMemories',
                   id: 1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance1.png?alt=media&token=9b1ae680-0a62-4a24-b281-7a6a05492538',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance1Big.png?alt=media&token=71287cd5-92d6-4a39-bb3b-3ba8a3cc3373',
                 },
                 {
                   name: 'MONTH-IDEAS',
+                  key: 'monthIdeas',
                   id: 2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance2.png?alt=media&token=4b92ecb0-c9d7-4d35-af6d-58411ee96a4a',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance2Big.png?alt=media&token=cf71aa96-d555-4ce4-a0a5-27cdd3e63597',
                 },
                 {
                   name: 'BLANK MONTH',
+                  key: 'blankMonth',
                   id: 3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance3.png?alt=media&token=d2a7c500-bb55-4a7a-b6b9-2d186e26b1ed',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance3Big.png?alt=media&token=de9daf7d-e583-483f-9292-c3bd6713e6a0',
                 },
                 {
                   name: 'MY YEAR / 365',
+                  key: 'myYearDays',
                   id: 3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts1.png?alt=media&token=88158025-c05c-4f08-93b7-b91a89cfbfee',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts1Big.png?alt=media&token=dc5f37c4-ef05-4d8e-b77e-4c5137c08628',
                 },
                 {
                   name: 'MY YEAR / 12',
+                  key: 'myYearMonths',
                   id: 3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts2.png?alt=media&token=e05e0d38-ee3e-49da-8729-adc2f087c37c',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts2Big.png?alt=media&token=259b0801-f795-4c26-94aa-5f2d7a155a72',
@@ -735,49 +875,57 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FLined%20pages1.png?alt=media&token=fa48db3a-393d-46cd-9e86-9b3a57991eeb',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: 'Standard',
+                  key: 'Standard',
                   id: 1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
                 },
                 {
                   name: 'hourly',
+                  key: 'hourly',
                   id: 2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
                 },
                 {
                   name: 'kids - meals',
+                  key: 'kidsMeals',
                   id: 4,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
                 },
                 {
                   name: 'projects',
+                  key: 'projects',
                   id: 5,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
                 },
                 {
                   name: 'checklist',
+                  key: 'checklist',
                   id: 6,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
                 },
                 {
                   name: 'sectional',
+                  key: 'sectional',
                   id: 7,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
                 },
                 {
                   name: 'habits',
+                  key: 'habits',
                   id: 8,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
                 },
                 {
                   name: 'goals - errands',
+                  key: 'goalsErrands',
                   id: 1.3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
@@ -790,7 +938,7 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FList%20Page.png?alt=media&token=716a49e9-9cb8-4073-b5e2-18c65a8c1d29',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: 'Standard',
                   id: 1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
@@ -1231,6 +1379,11 @@ export default {
           id: 7,
           type: 'extras',
         },
+        {
+          name: 'review',
+          id: 8,
+          type: 'review',
+        },
       ],
       finalValue: [],
       days: 0,
@@ -1292,15 +1445,192 @@ export default {
         years: ['2022', '2023', '2024', '2025', '2026']
       },
       pagesToAdd: 0,
-      arrayPagesToAdd: [[],[],[],[],[],[],[],[],[],[]]
+      arrayPagesToAdd: [[], [], [], [], [], [], [], [], [], []],
+      totalMonths: [],
+      weekday: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      totalDatesArray: [{"day": "Saturday", "month": "February", "dayNumber": 1}, {
+        "day": "Saturday",
+        "month": "February",
+        "dayNumber": 2
+      }, {"day": "Saturday", "month": "February", "dayNumber": 3}],
+      page: 1,
+      timerId: null,
+      pagesBook: [],
+      leftStack: [],
+      rightStack: [],
+      currentPage: null,
+      pagesBookStructure: []
     };
   },
-  watch:{
-    layoutOption(){
+  watch: {
+    layoutOption() {
       this.calcTotalPages();
     }
   },
   methods: {
+    updatePagesDepth(stack) { // first el = farthest
+      for (const [i, page] of stack.entries()) {
+        if (stack == this.leftStack) {
+          page.style.transform = `rotateY(-180deg) translateZ(${-i}px)`;
+        } else {
+          page.style.transform = `rotateY(0) translateZ(${i}px)`;
+        }
+      }
+    },
+    flipSelectedPage(event) {
+      console.log('event', event);
+      if (event.path[1].classList.contains("flip") || event.path[2].classList.contains("flip") || event.path[3].classList.contains("flip")) { //clicked on left stack page
+        this.currentPage = this.leftStack.pop();
+        this.rightStack.push(this.currentPage);
+        this.currentPage.classList.remove("flip");
+        this.updatePagesDepth(this.rightStack);
+      } else { // clicked on right stack page
+        this.currentPage = this.rightStack.pop();
+        this.leftStack.push(this.currentPage);
+        this.currentPage.classList.add("flip");
+        this.updatePagesDepth(this.leftStack);
+      }
+    },
+    generateReport() {
+      this.$refs.html2Pdf.generatePdf()
+    },
+    async print(index) {
+      //const el = import('../htmlPages/dailyLayouts/hourly/Hourly.html');
+      // add option type to get the image version
+      // if not provided the promise will return
+      // the canvas.
+      /*      const options = {
+              type: 'dataURL'
+            }*/
+      //console.log('html', htmlv, options);
+      /*      const el = this.$refs.printMe1;
+            console.log('printMe1', el);
+            // add option type to get the image version
+            // if not provided the promise will return
+            // the canvas.
+      /!*      const options = {
+              type: 'dataURL'
+            }
+            this.output = await this.$html2canvas(el, options);*!/
+            this.$html2canvas(('.printMe1').get(0)).then( function (canvas) {
+              console.log(canvas);
+            });*/
+      this.output = []
+      const node = document.getElementsByClassName("page1");
+      const options = {
+        type: 'dataURL'
+      }
+      const start = index;
+      for (let i = start; i < start + 1; i++) {
+        console.log('node', node[i]);
+        const output = await this.$html2canvas(node[i], options);
+        console.log('output', output);
+        this.output.push(output);
+      }
+      this.flipbook.flipRight();
+      //this.output = await this.$html2canvas(node[0], options);
+      /*      domtoimage
+                .toPng(node)
+                .then(function (dataUrl) {
+                  const img = new Image();
+                  img.src = dataUrl;
+                  console.log(img)
+                  //document.body.apcategory: 'layout'pendChild(img);
+                })
+                .catch(function (error) {
+                  console.error("oops, something went wrong!", error);
+                });*/
+    },
+    calcBookStructure() {
+      this.pagesBookStructure = [];
+      const type = `${this.finalValue[5].selection.category}${this.finalValue[5].selection.subcategory.name}`
+      this.pagesBookStructure = [[{type: 'fillpage', category: 'fillpage', data: this.finalValue[2].selection}]];
+      if (this.layoutOption === 'daily') {
+        this.totalDatesArray.map((element) => {
+          if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
+            this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
+              data: {...element},
+              type:`${type}1`,
+              category: this.finalValue[5].selection.category
+            };
+          } else if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 2) {
+            this.pagesBookStructure.push([{data: {...element}, type:`${type}2`, category: this.finalValue[5].selection.category}])
+          }
+        })
+        if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 2) {
+          const currentDate = new Date(`${this.totalMonths[this.totalMonths.length - 1].year}-${this.totalMonths[this.totalMonths.length - 1].month + 1}-1`);
+          this.pagesBookStructure.push(
+            [{
+              data: {
+                day: this.weekday[currentDate.getDay()],
+                month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length-1].month].key,
+                dayNumber: 1
+              },
+              type:`${type}2`,
+              category: this.finalValue[5].selection.category
+            }]
+          )
+        }
+      } else {
+        const totalDaysGroup = Math.ceil((this.totalDatesArray.length) / 7);
+        for (let y = 0; y < totalDaysGroup; y++) {
+          let daysGroup = this.totalDatesArray.slice((y * 7), (y * 7 + 7));
+          let i = 1;
+          while (daysGroup.length<7) {
+            const currentDate = new Date(`${this.totalMonths[this.totalMonths.length - 1].year}-${this.totalMonths[this.totalMonths.length - 1].month + 1}-${i}`);
+            daysGroup.push(
+              {
+                day: this.weekday[currentDate.getDay()],
+                month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length-1].month].key,
+                dayNumber: 1
+              }
+            )
+            i++;
+          }
+          if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
+            this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
+              data: daysGroup,
+              type:`${type}1`,
+              category: this.finalValue[5].selection.category
+            };
+          }
+          this.pagesBookStructure.push([{data: this.pagesBookStructure[this.pagesBookStructure.length - 1][1].data, type:`${type}2`, category: this.finalValue[5].selection.category}]);
+        }
+      }
+      console.log('pagesBookStructureFinal', this.pagesBookStructure);
+    },
+    calcTotalDates() {
+      this.totalDatesArray = [];
+      this.totalMonths.map((element) => {
+        for (let y = 1; y <= element.totalDays; y++) {
+          const currentDate = new Date(`${element.year}-${element.month}-${y}`);
+          this.totalDatesArray.push({
+            day: this.weekday[currentDate.getDay()],
+            month: this.datesValueOptions.month[element.month - 1].key,
+            dayNumber: y
+          })
+          //console.log('currentDate', this.weekday[currentDate.getDay()], this.datesValueOptions.month[element.month-1].key, y);
+        }
+      })
+      //this.calcBookStructure();
+      this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
+      this.rightStack = Array.from(this.pagesBook).reverse();
+      this.updatePagesDepth(this.rightStack);
+    },
+    calcMonthsArray() {
+      const numberOfYears = this.dateValue.endDate.year - this.dateValue.startDate.year;
+      for (let x = 0; x < numberOfYears + 1; x++) {
+        let start = (x == 0 || (this.dateValue.endDate.year == this.dateValue.startDate.year) ? this.dateValue.startDate.month : 1);
+        let finish = (x == numberOfYears || (this.dateValue.endDate.year == this.dateValue.startDate.year) ? this.dateValue.endDate.month : 12);
+        for (let y = start; y <= finish; y++) {
+          const month = Number(y);
+          const year = Number(this.dateValue.startDate.year) + x;
+          const totalDays = new Date(year, month, 0).getDate();
+          this.totalMonths.push({month, year, totalDays})
+        }
+      }
+      this.calcTotalDates();
+    },
     calcTotalPages() {
       if (this.layoutOption === 'daily') this.totalPages = this.days;
       else if (this.layoutOption === 'weekly') this.totalPages = (Math.ceil(this.days / 7)) * 2;
@@ -1311,15 +1641,16 @@ export default {
       const endDate = new Date(`${this.dateValue.endDate.year}-${this.dateValue.endDate.month}-01`).getTime();
       this.days = (endDate - startDate) / (1000 * 60 * 60 * 24);
       this.calcTotalPages();
+      this.calcMonthsArray();
     },
     selectItem(selection, index) {
       this.selectedItem = index;
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection};
+      this.$store.commit('SET_FINAL_VALUE', this.finalValue);
+      if (this.selectedCategory == 5) this.calcBookStructure();
       this.layoutPreselect = null;
-      console.log('finalValue', this.finalValue);
     },
     async selectItemAddPages(selection) {
-      console.log('selection', selection);
       let selectionArray = [];
       const layoutPreselect = this.layoutPreselect;
       if (this.finalValue[this.selectedCategory]) {
@@ -1328,61 +1659,69 @@ export default {
         }
       }
       selectionArray = selectionArray.filter((element) => {
-        if(element.subcategory === layoutPreselect) this.totalPages = this.totalPages - element.pages;
+        if (element.subcategory === layoutPreselect) this.totalPages = this.totalPages - element.pages;
         return element.subcategory !== layoutPreselect;
-
       });
-      console.log('selectionArray', selectionArray);
-      selectionArray.push({...selection, pages: this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id)-1]});
-      this.totalPages = this.totalPages + Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id)-1]);
+      selectionArray.push({
+        ...selection,
+        pages: this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]
+      });
+      for (let x = 0; x < this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]; x++) {
+        if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
+          this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
+            data: 'addOnPages',
+            type:`${selection.category}${selection.subcategory.key}1`,
+            category: 'addOnPages'
+          };
+        }
+        this.pagesBookStructure.push([{
+          data: 'addOnPages',
+          type:`${selection.category}${selection.subcategory.key}2`,
+          category: 'addOnPages'
+        }])
+      }
+      this.totalPages = this.totalPages + Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]);
       this.calcTotalPages();
-      this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: selectionArray }
+      this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: selectionArray}
+      this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.layoutPreselect = null;
     },
     formChange(value) {
       this.$set(this.finalValue, this.selectedCategory, {id: this.selectedCategory + 1, selection: value});
+      this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       //this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: value}
     },
     dateChange(value) {
-      this.finalValue[this.selectedCategory]={};
+      this.finalValue[this.selectedCategory] = {};
+      this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.formChange(value);
       if (this.dateValue.startDate.month && this.dateValue.startDate.year && this.dateValue.endDate.month && this.dateValue.endDate.year) this.setDaysAndMonths();
     },
     setHolidays(value) {
-      console.log('setHolidays', value);
       this.holidaysSelection = value;
       this.formChange(value);
     },
-    deletePages(){
-      this.totalPages = this.totalPages - this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id)-1]
-      this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id)-1] = null;
+    deletePages() {
+      this.totalPages = this.totalPages - this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]
+      this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1] = null;
       const elementPreselect = this.layoutPreselect;
       let addSelection = this.finalValue[6].selection
-      this.finalValue[6].selection = addSelection.filter((element) => element.subcategory.id !==  elementPreselect.id);
-      console.log('addSelection', addSelection);
+      this.finalValue[6].selection = addSelection.filter((element) => element.subcategory.id !== elementPreselect.id);
+      this.pagesBookStructure = this.pagesBookStructure.filter((element) => element.type !== `${this.layoutOption}${elementPreselect.key}`);
+      this.$store.commit('SET_FINAL_VALUE', this.finalValue);
+    },
+    exportPDFDemo() {
+      this.print();
+      //this.generateReport();
     },
     exportPDF() {
       const ordersRef = storageRef.child('orders');
-
-      /*      const vm = this
-            const data = [vm.finalValue];
-            const columns = [
-              {title: "Title", dataKey: "title"},
-              {title: "Description", dataKey: "description"}
-            ];
-            const doc = new jsPDF('p', 'pt');
-            doc.text('To Do List', 40, 40);
-            //doc.text(data, 40, 40);
-            autoTable(columns, vm.finalValue, {
-               margin: {top: 60},
-            });*/
       const doc = new jsPDF();
 
-      autoTable(doc,{ html: '#my-table' })
-      console.log('doc', doc);
+      autoTable(doc, {html: '#my-table'})
       const pdf = doc.output('blob');
-/*      const data = new FormData();
-      data.append("data" , pdf);*/
+      /*      const data = new FormData();
+            data.append("data" , pdf);*/
       const fileName = `order${Date.now()}`;
       const spaceRef = ordersRef.child(fileName);
       spaceRef.put(pdf)
@@ -1390,39 +1729,29 @@ export default {
             spaceRef.getDownloadURL()
                 .then(function (url) {
                   console.log('url', url);
-                  const templateParams = { url }
-                  send('service_w81r30t', 'template_92dxr79', templateParams )
-                      .then(function(response) {
+                  const templateParams = {url}
+                  send('service_w81r30t', 'template_92dxr79', templateParams)
+                      .then(function (response) {
                         console.log('SUCCESS!', response.status, response.text);
-                      }, function(error) {
+                      }, function (error) {
                         console.log('FAILED...', error);
                       });
                 });
             console.log('succesful');
-/*            spaceRef.getDownloadURL()
-                .then(function (url) {
-                  self.directoryData.images.push({
-                    url,
-                    fileName
-                  });
-                  self.dropFiles = [];
-                  self.$buefy.toast.open({
-                    duration: 3000,
-                    message: 'Imagen cargada correctamente',
-                    position: 'is-bottom-right',
-                    type: 'is-success'
-                  });
-                  self.test = self.test + 1;
-                });*/
+
           })
           .catch(() => {
           });
-      //doc.save('todos.pdf');
-    }
+    },
   },
   computed: {
+    pagesBookStructureRender() {
+      let pagesBookStructureRender = this.pagesBookStructure;
+      pagesBookStructureRender.shift();
+      return pagesBookStructureRender;
+    },
     endMonthDate() {
-      if (this.dateValue.startDate.year === this.dateValue.endDate.year){
+      if (this.dateValue.startDate.year === this.dateValue.endDate.year) {
         const monthSelected = this.dateValue.startDate.month
         return this.datesValueOptions.month.filter((month => {
               if (month.value > monthSelected)
@@ -1436,16 +1765,21 @@ export default {
       if (this.dateValue.startDate.year) {
         const yearSelected = this.dateValue.startDate.year
         return this.datesValueOptions.years.filter((year => {
-          if (year >= yearSelected)
-             return year;
-          })
+              if (year >= yearSelected)
+                return year;
+            })
         )
       }
       return this.datesValueOptions.years;
     }
   },
+  updated() {
+    this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
+    this.rightStack = Array.from(this.pagesBook).reverse();
+    this.updatePagesDepth(this.rightStack);
+  },
   mounted() {
-    this.setDaysAndMonths();
+    //this.setDaysAndMonths();
     this.calcTotalPages();
   }
 }
@@ -1453,19 +1787,191 @@ export default {
 
 <style scoped lang="scss">
 @import "./src/assets/breakpoints";
-.flipbook {
-  width: 90vw;
-  height: 90vh;
+
+
+html, body {
+  min-height: 100vh
 }
-.image-option{
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.book {
+  position: relative;
+  transform-style: preserve-3d;
+  max-width: 522px;
+  max-height: 684px;
+}
+
+.page {
+  position: absolute;
+  width: 45%;
+  height: fit-content;
+  top: 0;
+  left: 50%;
+  transform-style: preserve-3d;
+}
+
+.side {
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.side0 {
+  transform: none;
+}
+
+.side1 {
+  transform: rotateY(180deg);
+}
+
+.flip { /*do nothing, its used by js*/
+}
+
+/*
+preserntaiton
+*/
+body {
+  background: slategray;
+}
+
+.book {
+  width: 80vw;
+  height: 70vw;
+  max-width: 1044px;
+  max-height: 684px;
+  perspective: 800px;
+}
+
+.page {
+  transition: transform 1s;
+  transform-origin: left center;
+}
+
+.side0 {
+  background-color: white;
+  //padding: 1em;
+  //box-sizing: border-box;
+  //box-shadow:1px 1px 1px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.3);
+
+}
+
+.side1 {
+  background-color: white;
+  //padding: 1em;
+  //box-sizing: border-box;
+  box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.page:first-of-type .side0 {
+  box-shadow: -10px 0 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+.page:last-of-type .side1 {
+  z-index: 0;
+  box-shadow: 10px 0 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+/*
+.flip-panel {
+  display: block;
+  position: relative;
+  width: 522px;
+  height: 684px;
+  margin: 20px 50%;
+  perspective: 1200px;
+}
+
+.panel {
+  transition: z-index 1s ease-in-out 1s;
+}
+
+.panel,
+.panel .front,
+.panel .back {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  -moz-transform-style: preserve-3d;
+  -moz-transition: -moz-transform 1s;
+  transform-style: preserve-3d;
+  transition: transform 1s, box-shadow 1s;
+}
+
+.panel .front {
+  z-index: 2;
+  -moz-transform: rotateY(0deg);
+  -moz-transform-origin: left;
+  transform: rotateY(0deg);
+  transform-origin: left;
+  backface-visibility: hidden;
+  box-shadow: 0px 1px 0px lightgrey;
+}
+
+.panel .back {
+  left: -100%;
+  z-index: 1;
+  -moz-transform: rotateY(180deg);
+  -moz-transform-origin: right;
+  transform: rotateY(180deg);
+  transform-origin: right;
+  backface-visibility: hidden;
+  box-shadow: 2px 1px 2px lightgrey;
+}
+
+.panel .front:hover {
+  -moz-transform: rotateY(-25deg);
+  -moz-transform-origin: left;
+  transform: rotateY(-25deg);
+  transform-origin: left;
+  box-shadow: 4px 4px 12px rgb(100,100,100);
+}
+
+.panel.open {
+  z-index: 1;
+}
+
+.panel.open .front {z-index
+  z-index: 1;
+  -moz-transform: rotateY(-180deg);
+  -moz-transform-origin: left;
+  transform: rotateY(-180deg);
+  transform-origin: left;
+}
+
+.panel.open .back {
+  z-index: 2;
+  -moz-transform: rotateY(0deg);
+  -moz-transform-origin: right;
+  transform: rotateY(0deg);
+  transform-origin: right;
+}
+*/
+
+.image-option {
   width: 100%;
   max-width: 160px;
   height: 160px;
 }
 
-.add-container{
+.add-container {
   width: 40%;
   margin: 0 auto;
+
   .add-button {
     border-radius: 25px;
     background-color: #F3D7D3;
