@@ -501,8 +501,24 @@ init("user_rVFW3uNdwPo3aLyWfIMyo");
 import fillpage from "../htmlPages/fillPage/fillPage";
 import dailyhourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
 import dailyhourly2 from "../htmlPages/dailyLayouts/hourly/Hourly2";
+import dailyreflection1 from "../htmlPages/dailyLayouts/reflection/dailyReflection1";
+import dailyreflection2 from "../htmlPages/dailyLayouts/reflection/dailyReflection2";
+import dailysectional1 from "../htmlPages/dailyLayouts/sectional/dailySectional1";
+import dailysectional2 from "../htmlPages/dailyLayouts/sectional/dailySectional2";
 import weeklystandard1 from "../htmlPages/weeklyLayout/standard/Standard1";
 import weeklystandard2 from "../htmlPages/weeklyLayout/standard/Standard2";
+import weeklychecklist1 from "../htmlPages/weeklyLayout/checklist/weeklyChecklist1";
+import weeklychecklist2 from "../htmlPages/weeklyLayout/checklist/weeklyChecklist2";
+import weeklygoalserrands1 from "../htmlPages/weeklyLayout/goalserrands/weeklyGoalserrands1";
+import weeklygoalserrands2 from "../htmlPages/weeklyLayout/goalserrands/weeklyGoalerrands2";
+import weeklyhabits1 from "../htmlPages/weeklyLayout/habits/weeklyHabits1";
+import weeklyhabits2 from "../htmlPages/weeklyLayout/habits/weeklyHabits2";
+import weeklyhourly1 from "../htmlPages/weeklyLayout/hourly/weeklyHourly1";
+import weeklyhourly2 from "../htmlPages/weeklyLayout/hourly/weeklyHourly2";
+import weeklyprojects1 from "../htmlPages/weeklyLayout/project/weeklyProjects1";
+import weeklyprojects2 from "../htmlPages/weeklyLayout/project/weeklyProjects2";
+import weeklysectional1 from "../htmlPages/weeklyLayout/sectional/weeklySectional1";
+import weeklysectional2 from "../htmlPages/weeklyLayout/sectional/weeklySectional2";
 import schedulingmonthMemories1 from "../htmlPages/Scheduling/monthMemories2";
 import schedulingmonthMemories2 from "../htmlPages/Scheduling/monthMomories1";
 import schedulingmonthIdeas1 from "../htmlPages/Scheduling/monthIdeas/monthIdeas1";
@@ -522,6 +538,22 @@ export default {
         dailyhourly2,
         weeklystandard1,
         weeklystandard2,
+        dailyreflection1,
+        dailyreflection2,
+        dailysectional1,
+        dailysectional2,
+        weeklychecklist1,
+        weeklychecklist2,
+        weeklygoalserrands1,
+        weeklygoalserrands2,
+        weeklyhabits1,
+        weeklyhabits2,
+        weeklyprojects1,
+        weeklyprojects2,
+        weeklyhourly1,
+        weeklyhourly2,
+        weeklysectional1,
+        weeklysectional2,
         schedulingmonthMemories1,
         schedulingmonthMemories2,
         schedulingmonthIdeas1,
