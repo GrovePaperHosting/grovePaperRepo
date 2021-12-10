@@ -2,7 +2,7 @@
   <div id="g-Hourly-1-box" class="ai2html">
     <div id="g-Hourly-1-Artboard_4" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
-      <img id="g-Hourly-1-Artboard_4-img" class="g-aiImg" alt="" src="./Hourly-1-Artboard_4.png"/>
+      <img id="g-Hourly-1-Artboard_4-img" class="g-aiImg" alt="" src="./Hourly-Artboard_4.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.5485%;margin-top:-11.8px;left:5.4333%;width:105px;">
         <p class="g-pstyle0">January</p>
       </div>
