@@ -4,13 +4,13 @@
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-Sectional-Artboard_5-img" class="g-aiImg" alt="" src="./Sectional-Artboard_5.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;left:68.6136%;width:70px;">
-        <p class="g-pstyle0">SUNDAY</p>
+        <p class="g-pstyle0">{{data.day}}</p>
       </div>
       <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;left:79.9011%;width:75px;">
-        <p class="g-pstyle0">January</p>
+        <p class="g-pstyle0">{{data.month}}</p>
       </div>
       <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;left:92.2822%;width:35px;">
-        <p class="g-pstyle0">02</p>
+        <p class="g-pstyle0">{{data.dayNumber}}</p>
       </div>
       <div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:8.7567%;margin-top:-5.9px;left:86.823%;width:64px;">
         <p class="g-pstyle1">holiday</p>

@@ -4,13 +4,13 @@
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-Reflection-Artboard_6-img" class="g-aiImg" alt="" src="./Reflection-Artboard_6.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;left:5.1033%;width:83px;">
-        <p class="g-pstyle0">Saturday</p>
+        <p class="g-pstyle0">{{data.day}}</p>
       </div>
       <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;left:18.9943%;width:75px;">
-        <p class="g-pstyle0">January</p>
+        <p class="g-pstyle0">{{data.month}}</p>
       </div>
       <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;left:31.2899%;width:34px;">
-        <p class="g-pstyle0">01</p>
+        <p class="g-pstyle0">{{data.dayNumber}}</p>
       </div>
       <div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:8.9029%;margin-top:-5.9px;left:5.1033%;width:64px;">
         <p class="g-pstyle1">holiday</p>
@@ -48,7 +48,12 @@
 
 <script>
 export default {
-  name: "dailyReflection"
+  name: "dailyReflection",
+  props:{
+    data:{
+      type: Object,
+    },
+  }
 }
 </script>
 
