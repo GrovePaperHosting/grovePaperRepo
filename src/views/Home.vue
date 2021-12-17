@@ -23,9 +23,11 @@
     <section class="home-content-middle"></section>
     <section class="home-content-bottom has-background-link">
       <div class="container">
-        <div class="columns is-gapless">
-          <div class="column" v-for="(buttonInformation, index) in buttonsInformation" :key="index">
-            <home-button :buttonInformation="buttonInformation"></home-button>
+        <div class="home-content-bottom-container">
+          <div class="columns is-gapless">
+            <div class="column" v-for="(buttonInformation, index) in buttonsInformation" :key="index">
+              <home-button :buttonInformation="buttonInformation"></home-button>
+            </div>
           </div>
         </div>
       </div>
@@ -52,7 +54,7 @@ export default {
         },
         {
           name: 'Build',
-          urlImg: '../assets/images/Build-1.png',
+          urlImg: '../assets/images/Build.png',
           pathName: 'Build'
         },
         {
@@ -105,7 +107,17 @@ export default {
    background-attachment: fixed;
  }
 &-bottom{
-   height: fit-content;
+   height: 250px;
+  &-container{
+    position: relative;
+    .columns{
+      position: relative;
+      top: -25px;
+      img{
+        height: 250px !important;
+      }
+    }
+  }
    //margin-bottom: 200px;
  }
 }

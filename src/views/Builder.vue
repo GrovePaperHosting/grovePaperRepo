@@ -7,6 +7,18 @@
           each of the options to create the best match for your needs. To learn how to build your own planner, visit our
           Tutorial page.</h4>
       </div>
+      <div :class="`modal ${loadingPDF? 'is-active':'' }`">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="content is-flex is-justify-content-center">
+            <div style="max-width: 80%; width: 500px">
+              <h1 class="has-text-primary has-text-weight-light" style="font-size: 4rem !important;">  Generating...</h1>
+              <progress class="progress" :value="pdfProgress" max="100">{{pdfProgress}}%</progress>
+              <h3 class="has-text-weight-light is-size-4"> Your customized planner will take a few minutes to generate and add to your cart. Please do not refresh this page.</h3>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="build-container-carrousel is-flex">
         <div class="build-container-carrousel-categories">
           <button @click="selectedCategory = index; selectedSubcategory = null; selectedItem = null"
@@ -23,6 +35,42 @@
                   ADD TO CART
                 </button>
               </div>
+              <!--<div id="element-to-print">
+                <span>I'm on page 1!</span>
+                <div class="html2pdf__page-break"></div>
+                <span>I'm on page 2!</span>
+                <div class="html2pdf__page-break"></div>
+                <div v-for="(page, index) in pagesBookStructure" :key="index">
+                  <component :is="`${page[0].type}`" :data="page[0].data" class="pdf"></component>
+                  <div class="html2pdf__page-break"></div>
+                </div>
+              </div>-->
+              <!--<vue-html2pdf
+                  :show-layout="false"
+                  :float-layout="true"
+                  :enable-download="true"
+                  :preview-modal="true"
+                  filename="hee hee"
+                  :pdf-quality="0.3"
+                  :manual-pagination="true"
+                  pdf-format="a4"
+                  pdf-orientation="portrait"
+
+                  @progress="onProgress($event)"
+                  @hasStartedGeneration="hasStartedGeneration()"
+                  @hasGenerated="hasGenerated($event)"
+                  ref="html2Pdf"
+              >
+                <section slot="pdf-content">
+                  <section class="pdf-item">
+                     <div v-for="(page, index) in pagesBookStructure" :key="index">
+                       <component :is="`${page[0].type}`" :data="page[0].data" class="pdf"></component>
+                       <div class="html2pdf__page-break"></div>
+                     </div>
+                  </section>
+                  <div class="html2pdf__page-break"/>
+                </section>
+              </vue-html2pdf>-->
               <div v-if="pagesBookStructure.length>0" class="book mx-3">
                 <!--                <div class="page page0" @click="flipSelectedPage($event)">
                                   <div class="side side0">
@@ -36,30 +84,13 @@
                      @click="flipSelectedPage($event)">
                   <div class="side side0">
                     <div>
-                      <component :is="`${page[0].type}`" :data="page[0].data"></component>
+                      <component :is="`${page[0].type}`" :data="page[0].data" class="pdf"></component>
                     </div>
-                    <!--<hourly2 :date="{ day: totalDatesArray[(index+1)*2-1].day ,month: totalDatesArray[(index+1)*2-1].month, dayNumber: totalDatesArray[(index+1)*2-1].dayNumber}"></hourly2>-->
-                    <!--                    <component v-if="page.type === 'fillPage'" :data="page.data" :is="`${page.type}`"></component>
-                                        <component v-if="page.category ==='daily'"
-                                                     :is="`${page.type}2`"
-                                                     :date="{ day: page.daysGroup[0].day ,month: page.daysGroup[0].month, dayNumber: page.daysGroup[0].dayNumber}"></component>
-                                          <component v-else-if="page.category ==='weekly'"
-                                                     :is="`${page.type}2`"
-                                                     :data="{month: page.daysGroup[0].month, dates: page.daysGroup}"></component>
-                                          <component v-else :is="`${page.type}2`"></component>-->
                   </div>
                   <div class="side side1">
-                    <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data"></component>
-<!--
-                    <div class="w100 has-background-white" style="height: 100%"></div>
--->
-
-                    <!--                      <component v-if="page.category === 'daily' && page.daysGroup.length>1" :is="`${page.type}1`" :date="{ day: page.daysGroup[1].day ,month: page.daysGroup[1].month, dayNumber: page.daysGroup[1].dayNumber}"></component>
-                    &lt;!&ndash;                      <component v-if="page.category === 'daily' && (index+1)*2 < pagesBookStructure.length" :is="`${page.type}1`" :date="{ day: pagesBookStructure[(index+1)*2].day ,month: pagesBookStructure[(index+1)*2].month, dayNumber: pagesBookStructure[(index+1)*2].dayNumber}"></component>&ndash;&gt;
-                                          <component v-else-if="page.category === 'weekly'" :is="`${page.type}1`" :data="{ month: page.daysGroup[0].month, dates: page.daysGroup}"></component>
-                    &lt;!&ndash;                      <component v-else-if="page.category === 'weekly' && (index+1) < pagesBookStructure.length" :is="`${page.type}1`" :data="{ month: pagesBookStructure[(index+1)].daysGroup[0].month, dates: pagesBookStructure[(index+1)].daysGroup}"></component>&ndash;&gt;
-                                          <component v-else :is="`${page.type}1`"></component>-->
-                    <!--<Hourly1 :date="{ day: totalDatesArray[(index+1)*2].day, month: totalDatesArray[(index+1)*2].month, dayNumber: totalDatesArray[(index+1)*2].dayNumber}"></Hourly1>-->
+                    <div>
+                      <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data" class="pdf"></component>
+                    </div>
                   </div>
                 </div>
                 <!--<div class="page page4" @click="flipSelectedPage($event)">
@@ -435,7 +466,7 @@
         </div>
       </div>
     </div>
-    <div v-show="false">
+<!--    <div v-show="false">
       <table v-if="finalValue.length !== 0" id="my-table" class="w100 p-6">
         <tr>
           <th>ID</th>
@@ -475,7 +506,26 @@
           </td>
         </tr>
       </table>
-    </div>
+    </div>-->
+    <template>
+      <div>
+        <template>
+          <div>
+            <div >
+<!--              <div v-for="(page, index) in pagesBookStructure" :key="index">
+                <component :is="`${page[0].type}`" :data="page[0].data"></component>
+                <div class="html2pdf__page-break"/>
+              </div>-->
+<!--              <div class="pdf">content1</div>
+              <div class="pdf">content2</div>
+              <div class="pdf">content3</div>-->
+            </div>
+
+            <!--<button @click="download">Download PDF</button>-->
+          </div>
+        </template>
+      </div>
+    </template>
     <button @click="exportPDFDemo">Send PDF</button>
     <template>
     </template>
@@ -495,6 +545,9 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import storageRef from "../firebase";
 import {init, send} from 'emailjs-com';
+import VueHtml2pdf from 'vue-html2pdf';
+//import * as html2canvas from 'html2canvas';
+import html2pdf from 'html2pdf.js';
 
 init("user_rVFW3uNdwPo3aLyWfIMyo");
 
@@ -563,11 +616,13 @@ export default {
         schedulingmyYearMonths1,
         schedulingmyYearMonths2,
         schedulingmyYearDays1,
-        schedulingmyYearDays2
+        schedulingmyYearDays2,
+        VueHtml2pdf
   },
   data() {
     return {
       //components: [Hourly1, Hourly2],
+      loadingPDF: false,
       viewReview: false,
       output: [],
       generateTable: false,
@@ -1491,7 +1546,8 @@ export default {
       leftStack: [],
       rightStack: [],
       currentPage: null,
-      pagesBookStructure: []
+      pagesBookStructure: [],
+      pdfProgress: 0
     };
   },
   watch: {
@@ -1500,6 +1556,119 @@ export default {
     }
   },
   methods: {
+/*    async beforeDownload ({ html2pdf, options, pdfContent }) {
+      console.log('html:', html2pdf, options, pdfContent);
+      await html2pdf().set(options).from(pdfContent).toPdf().get('pdf').then((pdf) => {
+        console.log(pdf);
+      }).save()
+    },*/
+/*
+    download() {
+      let pdf = new jsPDF();
+      let pdfPages = document.getElementsByClassName('pdf');
+      pdfPages = Array.from(pdfPages);
+      console.log('pdfPages', pdfPages);
+      for (let i = 0; i < pdfPages.length; i++) {
+        html2canvas(pdfPages[i]).then(canvas => {
+          let pdfImage = canvas.toDataURL();
+          pdf.addImage(pdfImage, 'PNG', 15, 40, 180, 160);
+          if(i+1 === pdfPages.length){
+            //const pdfSend = pdf.output('blob');
+            pdf.save();
+/!*            console.log('pdfSend',pdfSend);
+            const ordersRef = storageRef.child('orders');
+            const fileName = `order${Date.now()}`;
+            const spaceRef = ordersRef.child(fileName);
+            spaceRef.put(pdfSend)
+                .then(function () {
+                      spaceRef.getDownloadURL()
+                          .then(function (url) {
+                            console.log('url', url);
+                            //const templateParams = {url}
+                          });
+                });*!/
+          }else{
+            pdf.addPage();
+          }
+        })
+      }
+/!*      pdfPages.map((pdfPage)=>{
+        html2canvas(pdfPage).then(canvas => {
+          let pdfImage = canvas.toDataURL();
+          pdf.addImage(pdfImage, 'PNG', 20, 20);
+          pdf.addPage();
+        })
+      });*!/
+/!*      const ordersRef = storageRef.child('orders');
+      const fileName = `order${Date.now()}`;
+      const spaceRef = ordersRef.child(fileName);
+      spaceRef.put(pdf)
+          .then(function () {
+                spaceRef.getDownloadURL()
+                    .then(function (url) {
+                      console.log('url', url);
+                      //const templateParams = {url}
+                    });
+          });*!/
+    },
+*/
+    async exportHTMLToPDF (){
+      this.loadingPDF = true;
+      const opt = {
+        margin:       [0,0],
+        filename:     'myfile.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        //html2canvas:  { width: '522px', height: '684px' },
+        html2canvas:  { dpi: 192, letterRendering: true },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+      };
+      let pages = document.getElementsByClassName('pdf');
+      pages =  Array.from(pages);
+      const doc = new jsPDF(opt.jsPDF);
+      const pageSize = jsPDF.getPageSize(opt.jsPDF);
+      for(let i = 0; i < pages.length; i++){
+        const page = pages[i];
+        const pageImage = await html2pdf().from(page).set(opt).outputImg();
+        if(i != 0) {
+          doc.addPage();
+        }
+        this.pdfProgress = (i*100)/pages.length;
+        doc.addImage(pageImage.src, 'jpeg', opt.margin[0], opt.margin[1], pageSize.width, pageSize.height);
+      }
+      // This can be whatever output you want. I prefer blob.
+      doc.save();
+      //const pdf = doc.output('blob');
+
+      /*const ordersRef = storageRef.child('orders');
+      const fileName = `order${Date.now()}`;
+      const spaceRef = ordersRef.child(fileName);
+      spaceRef.put(pdf)
+          .then(function () {
+            spaceRef.getDownloadURL()
+                .then(function (url) {
+                  console.log('url', url);
+                  const templateParams = {url}
+                  send('service_w81r30t', 'template_92dxr79', templateParams)
+                      .then(function (response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                      }, function (error) {
+                        console.log('FAILED...', error);
+                      });
+                });
+            console.log('succesful');
+          })
+          .catch(() => {
+          });
+      this.loadingPDF = false;*/
+      this.loadingPDF = false;
+      //doc.save();
+      //console.log('pdffffff', pdf);
+      //return pdf;
+    },
+
+    generateReport () {
+      this.$refs.html2Pdf.generatePdf()
+    },
     updatePagesDepth(stack) { // first el = farthest
       for (const [i, page] of stack.entries()) {
         if (stack == this.leftStack) {
@@ -1522,9 +1691,6 @@ export default {
         this.currentPage.classList.add("flip");
         this.updatePagesDepth(this.leftStack);
       }
-    },
-    generateReport() {
-      this.$refs.html2Pdf.generatePdf()
     },
     async print(index) {
       //const el = import('../htmlPages/dailyLayouts/hourly/Hourly.html');
@@ -1743,8 +1909,18 @@ export default {
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
     },
     exportPDFDemo() {
-      this.print();
+      this.exportHTMLToPDF();
+      //this.print();
       //this.generateReport();
+/*      const element = document.getElementById('element-to-print');
+      const opt = {
+        margin:       1,
+        filename:     'myfile.pdf',
+/!*        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }*!/
+      };
+      html2pdf().from(element).set(opt).save();*/
     },
     exportPDF() {
       const ordersRef = storageRef.child('orders');
@@ -1765,6 +1941,7 @@ export default {
                   send('service_w81r30t', 'template_92dxr79', templateParams)
                       .then(function (response) {
                         console.log('SUCCESS!', response.status, response.text);
+                        this.loadingPDF = false;
                       }, function (error) {
                         console.log('FAILED...', error);
                       });
