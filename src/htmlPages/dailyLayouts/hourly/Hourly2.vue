@@ -1,5 +1,5 @@
 <template>
-  <div id="g-Hourly-box" class="ai2html">
+  <div id="g-Hourly-box" class="ai2html" style="max-width: 522px;max-height: 684px">
 
     <!-- Artboard: Artboard_3 -->
     <div id="g-Hourly-Artboard_3" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
@@ -99,7 +99,6 @@ export default {
 <style media="screen,print">
 #g-Hourly-box ,
 #g-Hourly-box .g-artboard {
-  margin:0 auto;
 }
 #g-Hourly-box p {
   margin:0;
@@ -130,7 +129,7 @@ export default {
   -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity:1;
   letter-spacing:0em;
-  font-size:10.5px;
+  font-size:12px;
   text-align:left;
   text-transform:none;
   color:rgb(0,0,0);
@@ -146,9 +145,9 @@ export default {
 }
 #g-Hourly-Artboard_3 .g-pstyle1 {
   line-height:11px;
-  height:11px;
+  height:12px;
   letter-spacing:0.025em;
-  font-size:7.5px;
+  font-size:ppx;
   text-transform:uppercase;
   color:rgb(129,130,133);
 }
