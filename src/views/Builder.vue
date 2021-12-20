@@ -588,6 +588,20 @@ import schedulingmyYearMonths1 from "../htmlPages/Scheduling/myYearMonths/myYear
 import schedulingmyYearMonths2 from "../htmlPages/Scheduling/myYearMonths/myYearMonths2";
 import schedulingmyYearDays1 from "../htmlPages/Scheduling/myYearDays/myYearDays1";
 import schedulingmyYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";
+import blankPagesblank1 from "../htmlPages/blankPages/blank/blank1";
+import blankPagesblank2 from "../htmlPages/blankPages/blank/blank2";
+import blankPagesblankDays1 from "../htmlPages/blankPages/blankDays/blankDays1";
+import blankPagesblankDays2 from "../htmlPages/blankPages/blankDays/blankDays2";
+import blankPagesdotted1 from "../htmlPages/blankPages/dotted/dotted1";
+import blankPagesdotted2 from "../htmlPages/blankPages/dotted/dotted2";
+import blankPagesgrid1 from "../htmlPages/blankPages/Grid/grid1";
+import blankPagesgrid2 from "../htmlPages/blankPages/Grid/grid2";
+import blankPageslined1 from "../htmlPages/blankPages/lined/lined1";
+import blankPageslined2 from "../htmlPages/blankPages/lined/lined2";
+import blankPagestwoColumns1 from "../htmlPages/blankPages/twoColumns/twoColumns1";
+import blankPagestwoColumns2 from "../htmlPages/blankPages/twoColumns/twoColumns2";
+import blankPagesbucketList1 from "../htmlPages/lifestyle/bucketList/bucketList1";
+import blankPagesbucketList2 from "../htmlPages/lifestyle/bucketList/bucketList2";
 import FillPage from "../htmlPages/FillPage";
 import Hourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
 
@@ -627,6 +641,20 @@ export default {
         schedulingmyYearMonths2,
         schedulingmyYearDays1,
         schedulingmyYearDays2,
+        blankPagesblank1,
+        blankPagesblank2,
+        blankPagesblankDays1,
+        blankPagesblankDays2,
+        blankPagesdotted1,
+        blankPagesdotted2,
+        blankPagesgrid1,
+        blankPagesgrid2,
+        blankPageslined1,
+        blankPageslined2,
+        blankPagestwoColumns1,
+        blankPagestwoColumns2,
+        blankPagesbucketList1,
+        blankPagesbucketList2,
         VueHtml2pdf
   },
   data() {
