@@ -3,9 +3,21 @@
     <div class="container is-flex is-flex-direction-column is-justify-content-center has-text-centered">
       <h1 class="build-container__title has-text-primary frunchySerif-font">PLANNER</h1>
       <div class="build-container__subtitle">
-        <h4 class="has-text-text is-size-4 lamango-font">Let’s make a beautiful planer! Scroll down and select through
+        <h4 class="has-text-text is-size-4 lamango-font">Let's make a beautiful planer! Scroll down and select through
           each of the options to create the best match for your needs. To learn how to build your own planner, visit our
           Tutorial page.</h4>
+      </div>
+      <div :class="`modal ${loadingPDF? 'is-active':'' }`">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="content is-flex is-justify-content-center">
+            <div style="max-width: 80%; width: 500px">
+              <h1 class="has-text-primary has-text-weight-light" style="font-size: 4rem !important;">  Generating...</h1>
+              <progress class="progress" :value="pdfProgress" max="100">{{pdfProgress}}%</progress>
+              <h3 class="has-text-weight-light is-size-4"> Your customized planner will take a few minutes to generate and add to your cart. Please do not refresh this page.</h3>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="build-container-carrousel is-flex">
         <div class="build-container-carrousel-categories">
@@ -19,10 +31,46 @@
           <div v-show="selectedCategory === 8">
             <div class="w100 is-flex">
               <div class="add-container">
-                <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100">
+                <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100" @click="exportPDFDemo">
                   ADD TO CART
                 </button>
               </div>
+              <!--<div id="element-to-print">
+                <span>I'm on page 1!</span>
+                <div class="html2pdf__page-break"></div>
+                <span>I'm on page 2!</span>
+                <div class="html2pdf__page-break"></div>
+                <div v-for="(page, index) in pagesBookStructure" :key="index">
+                  <component :is="`${page[0].type}`" :data="page[0].data" class="pdf"></component>
+                  <div class="html2pdf__page-break"></div>
+                </div>
+              </div>-->
+              <!--<vue-html2pdf
+                  :show-layout="false"
+                  :float-layout="true"
+                  :enable-download="true"
+                  :preview-modal="true"
+                  filename="hee hee"
+                  :pdf-quality="0.3"
+                  :manual-pagination="true"
+                  pdf-format="a4"
+                  pdf-orientation="portrait"
+
+                  @progress="onProgress($event)"
+                  @hasStartedGeneration="hasStartedGeneration()"
+                  @hasGenerated="hasGenerated($event)"
+                  ref="html2Pdf"
+              >
+                <section slot="pdf-content">
+                  <section class="pdf-item">
+                     <div v-for="(page, index) in pagesBookStructure" :key="index">
+                       <component :is="`${page[0].type}`" :data="page[0].data" class="pdf"></component>
+                       <div class="html2pdf__page-break"></div>
+                     </div>
+                  </section>
+                  <div class="html2pdf__page-break"/>
+                </section>
+              </vue-html2pdf>-->
               <div v-if="pagesBookStructure.length>0" class="book mx-3">
                 <!--                <div class="page page0" @click="flipSelectedPage($event)">
                                   <div class="side side0">
@@ -36,30 +84,13 @@
                      @click="flipSelectedPage($event)">
                   <div class="side side0">
                     <div>
-                      <component :is="`${page[0].type}`" :data="page[0].data"></component>
+                      <component :is="`${page[0].type}`" :data="page[0].data" class="pdf"></component>
                     </div>
-                    <!--<hourly2 :date="{ day: totalDatesArray[(index+1)*2-1].day ,month: totalDatesArray[(index+1)*2-1].month, dayNumber: totalDatesArray[(index+1)*2-1].dayNumber}"></hourly2>-->
-                    <!--                    <component v-if="page.type === 'fillPage'" :data="page.data" :is="`${page.type}`"></component>
-                                        <component v-if="page.category ==='daily'"
-                                                     :is="`${page.type}2`"
-                                                     :date="{ day: page.daysGroup[0].day ,month: page.daysGroup[0].month, dayNumber: page.daysGroup[0].dayNumber}"></component>
-                                          <component v-else-if="page.category ==='weekly'"
-                                                     :is="`${page.type}2`"
-                                                     :data="{month: page.daysGroup[0].month, dates: page.daysGroup}"></component>
-                                          <component v-else :is="`${page.type}2`"></component>-->
                   </div>
                   <div class="side side1">
-                    <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data"></component>
-<!--
-                    <div class="w100 has-background-white" style="height: 100%"></div>
--->
-
-                    <!--                      <component v-if="page.category === 'daily' && page.daysGroup.length>1" :is="`${page.type}1`" :date="{ day: page.daysGroup[1].day ,month: page.daysGroup[1].month, dayNumber: page.daysGroup[1].dayNumber}"></component>
-                    &lt;!&ndash;                      <component v-if="page.category === 'daily' && (index+1)*2 < pagesBookStructure.length" :is="`${page.type}1`" :date="{ day: pagesBookStructure[(index+1)*2].day ,month: pagesBookStructure[(index+1)*2].month, dayNumber: pagesBookStructure[(index+1)*2].dayNumber}"></component>&ndash;&gt;
-                                          <component v-else-if="page.category === 'weekly'" :is="`${page.type}1`" :data="{ month: page.daysGroup[0].month, dates: page.daysGroup}"></component>
-                    &lt;!&ndash;                      <component v-else-if="page.category === 'weekly' && (index+1) < pagesBookStructure.length" :is="`${page.type}1`" :data="{ month: pagesBookStructure[(index+1)].daysGroup[0].month, dates: pagesBookStructure[(index+1)].daysGroup}"></component>&ndash;&gt;
-                                          <component v-else :is="`${page.type}1`"></component>-->
-                    <!--<Hourly1 :date="{ day: totalDatesArray[(index+1)*2].day, month: totalDatesArray[(index+1)*2].month, dayNumber: totalDatesArray[(index+1)*2].dayNumber}"></Hourly1>-->
+                    <div>
+                      <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data" class="pdf"></component>
+                    </div>
                   </div>
                 </div>
                 <!--<div class="page page4" @click="flipSelectedPage($event)">
@@ -435,7 +466,7 @@
         </div>
       </div>
     </div>
-    <div v-show="false">
+<!--    <div v-show="false">
       <table v-if="finalValue.length !== 0" id="my-table" class="w100 p-6">
         <tr>
           <th>ID</th>
@@ -475,8 +506,26 @@
           </td>
         </tr>
       </table>
-    </div>
-    <button @click="exportPDFDemo">Send PDF</button>
+    </div>-->
+    <template>
+      <div>
+        <template>
+          <div>
+            <div >
+<!--              <div v-for="(page, index) in pagesBookStructure" :key="index">
+                <component :is="`${page[0].type}`" :data="page[0].data"></component>
+                <div class="html2pdf__page-break"/>
+              </div>-->
+<!--              <div class="pdf">content1</div>
+              <div class="pdf">content2</div>
+              <div class="pdf">content3</div>-->
+            </div>
+
+            <!--<button @click="download">Download PDF</button>-->
+          </div>
+        </template>
+      </div>
+    </template>
     <template>
     </template>
     <div class="page-counter has-text-centered">
@@ -487,6 +536,13 @@
       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
         {{ price }}</h1>
     </div>
+
+    <!--<div style="max-width: 522px;max-height: 684px" v-for="(page, index) in pagesBookStructure" :key="index">
+          <component :is="`${page[0].type}`" :data="page[0].data" class="pdf1"></component>
+          <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data" class="pdf1"></component>
+    </div>-->
+    <!--<dailyhourly1 class="pdf1" :data="{}"></dailyhourly1>-->
+
   </div>
 </template>
 
@@ -495,6 +551,9 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import storageRef from "../firebase";
 import {init, send} from 'emailjs-com';
+import VueHtml2pdf from 'vue-html2pdf';
+//import * as html2canvas from 'html2canvas';
+import html2pdf from 'html2pdf.js';
 
 init("user_rVFW3uNdwPo3aLyWfIMyo");
 
@@ -529,10 +588,14 @@ import schedulingmyYearMonths1 from "../htmlPages/Scheduling/myYearMonths/myYear
 import schedulingmyYearMonths2 from "../htmlPages/Scheduling/myYearMonths/myYearMonths2";
 import schedulingmyYearDays1 from "../htmlPages/Scheduling/myYearDays/myYearDays1";
 import schedulingmyYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";
+import FillPage from "../htmlPages/FillPage";
+import Hourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
 
 export default {
   name: "Builder",
   components: {
+    Hourly1,
+    FillPage,
         fillpage,
         dailyhourly1,
         dailyhourly2,
@@ -563,11 +626,13 @@ export default {
         schedulingmyYearMonths1,
         schedulingmyYearMonths2,
         schedulingmyYearDays1,
-        schedulingmyYearDays2
+        schedulingmyYearDays2,
+        VueHtml2pdf
   },
   data() {
     return {
       //components: [Hourly1, Hourly2],
+      loadingPDF: false,
       viewReview: false,
       output: [],
       generateTable: false,
@@ -907,60 +972,46 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FLined%20pages1.png?alt=media&token=fa48db3a-393d-46cd-9e86-9b3a57991eeb',
               subcategoriesOptions: [
                 {
-                  name: 'Standard',
-                  key: 'Standard',
+                  name: 'Lined',
+                  key: 'Lined',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FLined%20pages1.png?alt=media&token=eace18ff-3e59-4b2e-8e92-d242460c0112',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FLined%20pages1%402x.png?alt=media&token=99e6a822-cb99-4aaf-9c29-7c37ef99cf3f',
                 },
                 {
-                  name: 'hourly',
-                  key: 'hourly',
+                  name: 'Two Columns',
+                  key: 'TwoColumns',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FLined%20pages2.png?alt=media&token=2139d76c-9cb9-4796-97da-369fa778a828',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FLined%20pages2%402x.png?alt=media&token=50c0983c-9329-438f-a5ad-8623d9e5322a'
                 },
                 {
-                  name: 'kids - meals',
-                  key: 'kidsMeals',
+                  name: 'Dotted',
+                  key: 'Dotted',
+                  id: 3,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FDot%20paper.png?alt=media&token=bd43b7e9-aa27-4d90-9764-e8d4e9e9295b',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FDot%20paper%402x.png?alt=media&token=e5133d18-8845-44ce-9cfc-4d982bd3bf0b'
+                },
+                {
+                  name: 'Grid',
+                  key: 'Grid',
                   id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FGrid%20paper.png?alt=media&token=5ca4e9a3-3d10-4ae8-8f8f-aeec200ec045',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FGrid%20paper%402x.png?alt=media&token=3f7b25e4-78d9-47e8-84a9-ac7c044c011f'
                 },
                 {
-                  name: 'projects',
-                  key: 'projects',
+                  name: 'Blank',
+                  key: 'Blank',
                   id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FBlank%20paper.png?alt=media&token=deccd829-53fa-4061-8c4b-d64581102843',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FBlank%20paper%402x.png?alt=media&token=776ca063-7296-4fa2-b8f3-23d1d863d9eb'
                 },
                 {
-                  name: 'checklist',
-                  key: 'checklist',
+                  name: 'Blank Days',
+                  key: 'BlankDays',
                   id: 6,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
-                },
-                {
-                  name: 'sectional',
-                  key: 'sectional',
-                  id: 7,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
-                },
-                {
-                  name: 'habits',
-                  key: 'habits',
-                  id: 8,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
-                },
-                {
-                  name: 'goals - errands',
-                  key: 'goalsErrands',
-                  id: 1.3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FBlank%20Days.png?alt=media&token=652f2362-75f9-4bf7-acea-f006a3f70165',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FBlank%20Days%402x.png?alt=media&token=ca4aaa76-be05-43e2-b519-d4d0655f9a8c'
                 }
               ]
             },
@@ -970,52 +1021,53 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FList%20Page.png?alt=media&token=716a49e9-9cb8-4073-b5e2-18c65a8c1d29',
               subcategoriesOptions: [
                 {
-                  name: 'Standard',
+                  name: 'Bucket List',
+                  key: 'BucketList',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FBucket.png?alt=media&token=09d0d51b-e913-4621-acd2-6e214df93e46',
+                      urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FBucket%402x.png?alt=media&token=1fc81da4-9f58-4702-9475-4039f12e8b25',
                 },
                 {
-                  name: 'hourly',
+                  name: 'Reading',
+                    key: 'Reading',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FReading1.png?alt=media&token=34ded4d3-4eb8-4705-9e96-66c02d50e9e9',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FReading1%402x.png?alt=media&token=9b825985-fd4b-491b-8b0f-d3027342284a'
                 },
                 {
-                  name: 'kids - meals',
+                  name: 'Ideas',
+                  key: 'Ideas',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FIdeas.png?alt=media&token=50ebda90-4204-47c5-8671-704b6461c454',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FIdeas%402x.png?alt=media&token=009f0ba8-907b-4667-a1b2-e33b7c2b9e50'
                 },
                 {
-                  name: 'projects',
+                  name: 'My Lists',
+                  key: 'MyLists',
                   id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FList%20Page.png?alt=media&token=22924166-34b1-4b22-b977-e661acdd94e0',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FList%20Page%402x.png?alt=media&token=5217afd1-6719-4de4-a026-f8b7cdb6d701'
                 },
                 {
-                  name: 'checklist',
+                  name: 'Password Tacker',
+                  key: 'PasswordTacker',
                   id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FPassword%20Tracker-01.png?alt=media&token=ad60440c-2124-4a3d-898d-3989569bf203',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FPassword%20Tracker-01%402x.png?alt=media&token=2eee8be6-8d6f-4ce7-b610-aabde6ebbfde'
                 },
                 {
-                  name: 'sectional',
+                  name: 'Social Media Tracking',
+                  key: 'SocialMediaTracking',
                   id: 6,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FSocial%20Media2.png?alt=media&token=e04c61cf-e914-44a9-a63a-f7bbcb0b4326',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FSocial%20Media2%402x.png?alt=media&token=1cbe09ab-28d1-4768-9f0e-37889e9102c1'
                 },
                 {
-                  name: 'habits',
+                  name: 'Social Media Planning',
+                  key: 'SocialMediaPlaning',
                   id: 7,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
-                },
-                {
-                  name: 'goals - errands',
-                  id: 8,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FSocial%20Media1.png?alt=media&token=5e9e4991-9efc-411d-9e92-484a609b9917',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FSocial%20Media1%402x.png?alt=media&token=186c020e-c5a5-41f8-9f22-be78cdd84468'
                 }
               ]
             },
@@ -1025,53 +1077,27 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FBudgeting.png?alt=media&token=d80674a4-6f51-43a3-b2b1-170ffcbb8ba1',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: 'Budgeting',
+                  key: 'Budgeting',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FBudgeting.png?alt=media&token=9bf6e349-9990-4fe9-bf67-7c1ec3ce386f',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FBudgeting%402x.png?alt=media&token=981f9655-a61f-4313-a911-a39d1d7c8165',
                 },
                 {
-                  name: 'hourly',
+                  name: 'Expense Tracker',
+                  key: 'ExpenseTracker',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FExpenses.png?alt=media&token=957e4568-e2c6-47bd-9c61-9ee596281f1d',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FExpenses%402x.png?alt=media&token=6aeea236-514d-4ead-bdc8-b8920a00f688'
                 },
                 {
-                  name: 'kids - meals',
+                  name: 'Gifting',
+                  key: 'Gifting',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
-                },
-                {
-                  name: 'projects',
-                  id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
-                },
-                {
-                  name: 'checklist',
-                  id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
-                },
-                {
-                  name: 'sectional',
-                  id: 6,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
-                },
-                {
-                  name: 'habits',
-                  id: 7,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
-                },
-                {
-                  name: 'goals - errands',
-                  id: 8,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FGifting.png?alt=media&token=5475e8dd-4af7-4625-82be-4e726a37b61a',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FGifting%402x.png?alt=media&token=d6f38082-dbc4-424a-a98d-744da7b07ec5'
                 }
+
               ]
             },
             {
@@ -1080,52 +1106,18 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FCleaning.png?alt=media&token=f7d8f61f-5a5c-4716-b5f4-d48551fb7744',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: 'Cleaning',
+                  key: 'Cleaning',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fat-home%2FCleaning.png?alt=media&token=cc986876-c3e7-4193-9b68-91c724ae9855',
+                      urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fat-home%2FCleaning%402x.png?alt=media&token=435f821b-4b96-4a48-a1e0-ea6eccaea394',
                 },
                 {
-                  name: 'hourly',
-                  id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
-                },
-                {
-                  name: 'kids - meals',
-                  id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
-                },
-                {
-                  name: 'projects',
-                  id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
-                },
-                {
-                  name: 'checklist',
-                  id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
-                },
-                {
-                  name: 'sectional',
-                  id: 6,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
-                },
-                {
-                  name: 'habits',
-                  id: 7,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
-                },
-                {
-                  name: 'goals - errands',
-                  id: 8,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
+                  name: 'Home Maintenance',
+                  key: 'HomeMaintenance',
+                      id: 2,
+                    urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fat-home%2FHome%20Maintenance.png?alt=media&token=7cbb6e6e-85a3-4c01-a987-f5cf12b67c12',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fat-home%2FHome%20Maintenance%402x.png?alt=media&token=41f16a16-918a-47ff-ab94-52537b7445f6'
                 }
               ]
             },
@@ -1135,52 +1127,25 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FBaby1.png?alt=media&token=b54f9ff7-927d-4761-8d61-5a8f51affedd',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: 'Baby Tracker',
+                  key: 'BabyTracker1',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby1.png?alt=media&token=375d93af-e9c7-41f3-9a38-45b32e12bf5d',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby1%402x.png?alt=media&token=489a4f97-b9de-4554-acd9-ab417fd26b1b',
                 },
                 {
-                  name: 'hourly',
+                  name: 'Baby Tracker 2',
+                  key: 'BabyTracker2',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby2.png?alt=media&token=d7a3e684-8368-4daf-aacf-f957a5beab60',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby2%402x.png?alt=media&token=c48b3cfe-095d-40c8-b48c-5d4218867f3f'
                 },
                 {
-                  name: 'kids - meals',
+                  name: 'Baby Monthly',
+                  key: 'BabyMonthly',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
-                },
-                {
-                  name: 'projects',
-                  id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
-                },
-                {
-                  name: 'checklist',
-                  id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
-                },
-                {
-                  name: 'sectional',
-                  id: 6,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
-                },
-                {
-                  name: 'habits',
-                  id: 7,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
-                },
-                {
-                  name: 'goals - errands',
-                  id: 8,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby3.png?alt=media&token=dcdca4f6-f0a3-4b41-9b90-91f7a9dcfa7b',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby3%402x.png?alt=media&token=30ff0b86-8c84-4969-89ce-dbd36eba86fc'
                 }
               ]
             },
@@ -1190,52 +1155,60 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FWeekly%20Wellness%20Tracker.png?alt=media&token=a8f4f752-8fac-496b-b7a2-cc3170646d84',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: 'Weekly Wellness',
+                  key: 'WeeklyWellness',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FWeekly%20Wellness%20Tracker.png?alt=media&token=f6cdb103-a420-46d8-9c15-177eccdbbc3f',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FWeekly%20Wellness%20Tracker%402x.png?alt=media&token=d88f8210-d187-4d56-91e3-a20f33cb3b2c',
                 },
                 {
-                  name: 'hourly',
+                  name: 'Mood',
+                    key: 'Mood',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FMood%20Tracker.png?alt=media&token=d35aafb9-6a19-4a24-9f2b-8cb16377d972',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FMood%20Tracker%402x.png?alt=media&token=69685866-52c2-4cd7-a83f-bfd7559e72e9'
                 },
                 {
-                  name: 'kids - meals',
+                  name: 'Fitness',
+                  key: 'Fitness',
+                  id: 3,
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FFitness.png?alt=media&token=1ca61372-f041-4b8e-bfad-e3a9f91729f8',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FFitness%402x.png?alt=media&token=000c7811-fe64-4c98-9edd-4e2eea188141'
+                },
+                {
+                  name: 'On The Menu',
+                  key: 'OnTheMenu',
                   id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FWeekly%20Meals_Groceries.png?alt=media&token=6e8b350d-d749-4936-aa85-f471403716a1',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FWeekly%20Meals_Groceries%402x.png?alt=media&token=7a2ad6be-edee-4c54-8bc8-8613f3c58f45'
                 },
                 {
-                  name: 'projects',
+                  name: 'Measurements',
+                  key: 'Measurements',
                   id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FWeight_Measurements-01-01.png?alt=media&token=996aab01-a63e-490b-9aaa-afebfac98377',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FWeight_Measurements-01-01%402x.png?alt=media&token=556b7897-8d22-417e-80b9-232dd02d1428'
                 },
                 {
-                  name: 'checklist',
+                  name: 'Monthly Gratitude',
+                  key: 'MonthlyGratitude',
                   id: 6,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FGratitude1.png?alt=media&token=e5d73c17-6a2e-4a8f-b113-f75079bc00bc',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FGratitude1%402x.png?alt=media&token=c34aeac4-fd03-4c03-8c7d-6877f717ad51'
                 },
                 {
-                  name: 'sectional',
+                  name: 'Daily Gratitude',
+                  key: 'DailyGratitude',
                   id: 7,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FGratitude2.png?alt=media&token=14b265a9-0782-4af7-88c5-23c5711fa594',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FGratitude2%402x.png?alt=media&token=8512da6f-c2b6-4b8f-ba93-885695e605e3'
                 },
                 {
-                  name: 'habits',
+                  name: 'Reflection',
+                  key: 'Reflection',
                   id: 8,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
-                },
-                {
-                  name: 'goals - errands',
-                  id: 9,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FReflection.png?alt=media&token=ff2bfb1a-84db-4002-9b60-4fd1875e015f',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FReflection%402x.png?alt=media&token=929e349a-5f4b-4fd0-9269-43e8ba0eeb60'
                 }
               ]
             },
@@ -1245,52 +1218,39 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FGoals%20Yearly.png?alt=media&token=d3ce8216-b68c-4c5c-b5e3-b9fe282eb641',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: '30 Day Challenge',
+                  key: '30DayChallenge',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2F30%20Day%20Challenge.png?alt=media&token=c726da55-550f-4ca8-9b7b-995746d694f2',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2F30%20Day%20Challenge%402x.png?alt=media&token=f4ab23aa-bb9f-4a9a-84d9-473fb693aca0',
                 },
                 {
-                  name: 'hourly',
+                  name: 'My Goals',
+                  key: 'MyGoals',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FGoals.png?alt=media&token=f7e17d84-e021-4495-947d-9fe8b9031cdf',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FGoals%402x.png?alt=media&token=526fcec3-7a74-42bc-90e6-97d9b18f6744'
                 },
                 {
-                  name: 'kids - meals',
+                  name: 'Monthly Goals',
+                  key: 'MonthlyGoals',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FGoals%20Yearly.png?alt=media&token=21c3cbda-575c-4d52-8899-7b02e15a679e',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FGoals%20Yearly%402x.png?alt=media&token=54ff7d98-9bfe-44f2-832c-1a14059d8eba'
                 },
                 {
-                  name: 'projects',
+                  name: 'Habit Tracker',
+                  key: 'HabitTracker',
                   id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FHabit%20Tracker2.png?alt=media&token=0b935a97-7156-433d-91c6-4b0c4dede10b',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FHabit%20Tracker2%402x.png?alt=media&token=33aa4457-7b59-4d13-9fb2-f1c1aa221c63'
                 },
                 {
-                  name: 'checklist',
+                  name: 'Monthly Habits',
+                  key: 'MonthlyHabits',
                   id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
-                },
-                {
-                  name: 'sectional',
-                  id: 6,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
-                },
-                {
-                  name: 'habits',
-                  id: 7,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
-                },
-                {
-                  name: 'goals - errands',
-                  id: 8,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
+                      urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FHabit%20Tracker1.png?alt=media&token=bae58915-0619-4ee1-a6d8-e05ab05a07de',
+                    urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FHabit%20Tracker1%402x.png?alt=media&token=70a78273-e083-4420-9862-1c873624d43f'
                 }
               ]
             },
@@ -1300,52 +1260,25 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FSchool.png?alt=media&token=864f3f61-0132-48cd-a88f-f3e88ac35c6a',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: 'Meeting Notes',
+                  key: 'MeetingNotes',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fschool-work%2FMeeting%20Notes%20Template.png?alt=media&token=df37f23b-5bb6-4a1d-ae80-23fc2d99b12b',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fschool-work%2FMeeting%20Notes%20Template%402x.png?alt=media&token=a3e44d3c-971f-481d-97ed-c24626b4243e',
                 },
                 {
-                  name: 'hourly',
+                  name: 'Assignments',
+                  key: 'Assignments',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fschool-work%2FAssignment%20Tracker.png?alt=media&token=3d2bfc99-98f9-42b3-a3f6-b9feda04da00',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fschool-work%2FAssignment%20Tracker%402x.png?alt=media&token=bcaf3607-fbb4-4e8e-9b46-0b75a976a183'
                 },
                 {
-                  name: 'kids - meals',
+                  name: 'School',
+                  key: 'School',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
-                },
-                {
-                  name: 'projects',
-                  id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
-                },
-                {
-                  name: 'checklist',
-                  id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
-                },
-                {
-                  name: 'sectional',
-                  id: 6,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
-                },
-                {
-                  name: 'habits',
-                  id: 7,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
-                },
-                {
-                  name: 'goals - errands',
-                  id: 8,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fschool-work%2FSchool.png?alt=media&token=3160d1c5-6587-42fc-b14e-39632a971ed1',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fschool-work%2FSchool%402x.png?alt=media&token=7212c095-0ce9-4ecc-98f4-36660ce25202'
                 }
               ]
             },
@@ -1355,52 +1288,25 @@ export default {
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FProject%20Template.png?alt=media&token=558e1470-7771-4fe5-9e28-056e488d3540',
               subcategoriesOptions: [
                 {
-                  name: 'Standar',
+                  name: 'Projects',
+                  key: 'Projects',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fproductivity%2FProject%20Template.png?alt=media&token=219d87eb-972e-4234-9b6c-9cb13cb39bae',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fproductivity%2FProject%20Template%402x.png?alt=media&token=4130cc86-2987-4c03-ac40-e82954a1f248',
                 },
                 {
-                  name: 'hourly',
+                  name: 'Task Triage',
+                  key: 'TaskTriage',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fproductivity%2FTask%20Triage.png?alt=media&token=6ab0a423-2566-4362-ae0a-3b522d6d7dd7',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fproductivity%2FTask%20Triage%402x.png?alt=media&token=266dd137-0842-45cc-9228-679351000bc6'
                 },
                 {
-                  name: 'kids - meals',
+                  name: 'To Do',
+                  key: 'ToDo',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
-                },
-                {
-                  name: 'projects',
-                  id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
-                },
-                {
-                  name: 'checklist',
-                  id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
-                },
-                {
-                  name: 'sectional',
-                  id: 6,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
-                },
-                {
-                  name: 'habits',
-                  id: 7,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-1,50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
-                },
-                {
-                  name: 'goals - errands',
-                  id: 8,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fproductivity%2FTo%20do.png?alt=media&token=23dc0ca3-9018-4fb8-9dce-3567a50a955a',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fproductivity%2FTo%20do%402x.png?alt=media&token=10609314-deda-4294-8253-7698c7ddf50c'
                 }
               ]
             },
@@ -1491,7 +1397,8 @@ export default {
       leftStack: [],
       rightStack: [],
       currentPage: null,
-      pagesBookStructure: []
+      pagesBookStructure: [],
+      pdfProgress: 1
     };
   },
   watch: {
@@ -1500,6 +1407,126 @@ export default {
     }
   },
   methods: {
+/*    async beforeDownload ({ html2pdf, options, pdfContent }) {
+      console.log('html:', html2pdf, options, pdfContent);
+      await html2pdf().set(options).from(pdfContent).toPdf().get('pdf').then((pdf) => {
+        console.log(pdf);
+      }).save()
+    },*/
+/*
+    download() {
+      let pdf = new jsPDF();
+      let pdfPages = document.getElementsByClassName('pdf');
+      pdfPages = Array.from(pdfPages);
+      console.log('pdfPages', pdfPages);
+      for (let i = 0; i < pdfPages.length; i++) {
+        html2canvas(pdfPages[i]).then(canvas => {
+          let pdfImage = canvas.toDataURL();
+          pdf.addImage(pdfImage, 'PNG', 15, 40, 180, 160);
+          if(i+1 === pdfPages.length){
+            //const pdfSend = pdf.output('blob');
+            pdf.save();
+/!*            console.log('pdfSend',pdfSend);
+            const ordersRef = storageRef.child('orders');
+            const fileName = `order${Date.now()}`;
+            const spaceRef = ordersRef.child(fileName);
+            spaceRef.put(pdfSend)
+                .then(function () {
+                      spaceRef.getDownloadURL()
+                          .then(function (url) {
+                            console.log('url', url);
+                            //const templateParams = {url}
+                          });
+                });*!/
+          }else{
+            pdf.addPage();
+          }
+        })
+      }
+/!*      pdfPages.map((pdfPage)=>{
+        html2canvas(pdfPage).then(canvas => {
+          let pdfImage = canvas.toDataURL();
+          pdf.addImage(pdfImage, 'PNG', 20, 20);
+          pdf.addPage();
+        })
+      });*!/
+/!*      const ordersRef = storageRef.child('orders');
+      const fileName = `order${Date.now()}`;
+      const spaceRef = ordersRef.child(fileName);
+      spaceRef.put(pdf)
+          .then(function () {
+                spaceRef.getDownloadURL()
+                    .then(function (url) {
+                      console.log('url', url);
+                      //const templateParams = {url}
+                    });
+          });*!/
+    },
+*/
+    async exportHTMLToPDF (){
+      this.loadingPDF = true;
+      /*const opt = {
+        margin:       [0,0],
+        filename:     'myfile.pdf',
+        image:        { type: 'png', quality: 2 },
+        //html2canvas: { dpi: 192, scale:4 },
+        html2canvas:  { scale: 4 },
+        //html2canvas:  { dpi: 192, letterRendering: true },
+        //jsPDF:        { unit: 'px', format: [294, 385.3] },
+        jsPDF:        { unit: 'in', format: [5.4375, 7.125] },
+      };*/
+      const opt = {
+        filename:     'myfile.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 4 },
+        jsPDF:        { unit: 'in', format: [7.25, 9.5] }
+      };
+      let pages = document.getElementsByClassName('pdf');
+      pages =  Array.from(pages);
+      const doc = new jsPDF(opt.jsPDF);
+      //const pageSize = jsPDF.getPageSize(opt.jsPDF);
+      for(let i = 0; i < pages.length; i++){
+        const page = pages[i];
+        const pageImage = await html2pdf().from(page).set(opt).outputImg();
+        if(i != 0) {
+          doc.addPage();
+        }
+        this.pdfProgress = ((i*100)/pages.length)+1;
+        doc.addImage(pageImage.src, 0, 0, 9, 9.5);
+      }
+      // This can be whatever output you want. I prefer blob.
+      //doc.save();
+      const pdf = doc.output('blob');
+
+      const ordersRef = storageRef.child('orders');
+      const fileName = `order${Date.now()}`;
+      const spaceRef = ordersRef.child(fileName);
+      spaceRef.put(pdf)
+          .then(function () {
+            spaceRef.getDownloadURL()
+                .then(function (url) {
+                  console.log('url', url);
+                  const templateParams = {url}
+                  send('service_w81r30t', 'template_92dxr79', templateParams)
+                      .then(function (response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                      }, function (error) {
+                        console.log('FAILED...', error);
+                      });
+                });
+            console.log('succesful');
+          })
+          .catch(() => {
+          });
+      this.loadingPDF = false;
+      //doc.save();
+      //console.log('pdffffff', pdf);
+      //return pdf;
+    },
+
+    generateReport () {
+      this.$refs.html2Pdf.generatePdf()
+    },
     updatePagesDepth(stack) { // first el = farthest
       for (const [i, page] of stack.entries()) {
         if (stack == this.leftStack) {
@@ -1522,9 +1549,6 @@ export default {
         this.currentPage.classList.add("flip");
         this.updatePagesDepth(this.leftStack);
       }
-    },
-    generateReport() {
-      this.$refs.html2Pdf.generatePdf()
     },
     async print(index) {
       //const el = import('../htmlPages/dailyLayouts/hourly/Hourly.html');
@@ -1664,8 +1688,9 @@ export default {
       this.calcTotalDates();
     },
     calcTotalPages() {
-      if (this.layoutOption === 'daily') this.totalPages = this.days;
-      else if (this.layoutOption === 'weekly') this.totalPages = (Math.ceil(this.days / 7)) * 2;
+      if (this.layoutOption === 'daily') this.totalPages = (this.days) + 2;
+      else if (this.layoutOption === 'weekly') this.totalPages = ((Math.ceil(this.days / 7)) * 4)+2;
+      if(this.totalPages%2 !== 0) this.totalPages = this.totalPages + 1;
       if (this.totalPages >= 120) this.price = ((this.totalPages - 120) * 0.1) + 65;
     },
     setDaysAndMonths() {
@@ -1743,8 +1768,18 @@ export default {
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
     },
     exportPDFDemo() {
-      this.print();
+      this.exportHTMLToPDF();
+      //this.print();
       //this.generateReport();
+/*      const element = document.getElementById('element-to-print');
+      const opt = {
+        margin:       1,
+        filename:     'myfile.pdf',
+/!*        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }*!/
+      };
+      html2pdf().from(element).set(opt).save();*/
     },
     exportPDF() {
       const ordersRef = storageRef.child('orders');
@@ -1765,6 +1800,7 @@ export default {
                   send('service_w81r30t', 'template_92dxr79', templateParams)
                       .then(function (response) {
                         console.log('SUCCESS!', response.status, response.text);
+                        this.loadingPDF = false;
                       }, function (error) {
                         console.log('FAILED...', error);
                       });

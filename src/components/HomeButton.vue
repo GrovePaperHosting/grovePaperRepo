@@ -1,13 +1,8 @@
 <template>
-  <div class="home-button has-background-link is-flex is-justify-content-center">
-    <div class="home-button__title has-background-primary has-text-centered">
-      <h1 class="has-text-white is-size-1 is-size-2-touch lamango-font">{{buttonInformation.name}}</h1>
-    </div>
     <router-link to="/build">
       <img :src="buttonInformation.urlImg">
     </router-link>
 <!--    <img :src=`../../public/assets/images/${buttonInformation.urlImg}`>-->
-  </div>
 </template>
 
 <script>
