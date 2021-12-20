@@ -2,24 +2,16 @@
   <div class="has-background-secondary build-container">
     <div class="container is-flex is-flex-direction-column is-justify-content-center has-text-centered">
       <div class="build-container__options">
-        <h1 class="build-container__title has-text-primary frunchySerif-font">SHOP</h1>
+        <h1 class="build-container__title has-text-primary frunchySerif-font">PRE-DESIGNED PLANNER</h1>
         <!--<h4 class="has-text-text is-size-3 lamango-font">Choose which product you'd like to customize today.</h4>-->
         <div class="columns is-vcentered is-8 mt-6 p-3">
           <div class="column">
-            <router-link class="planner" to="/builder"><img src="../../public/assets/images/customizablePlanner.png" alt="Planner"></router-link>
-            <h2 class="is-size-4 kontuor-font has-text-weight-light">CUSTOMIZABLE PLANNER</h2>
+            <router-link to="/"><img src="../../public/assets/images/goalsBook.png" alt="Notebook"></router-link>
+            <h2 class="is-size-4 kontuor-font has-text-weight-light"> GOALS BOOK</h2>
           </div>
           <div class="column">
-            <router-link to="/"><img src="../../public/assets/images/customizableNotebook.png" alt="Notebook"></router-link>
-            <h2 class="is-size-4 kontuor-font has-text-weight-light"> CUSTOMIZABLE NOTEBOOK</h2>
-          </div>
-          <div class="column">
-            <router-link to="/pre-design"><img src="../../public/assets/images/predesingPlanner.png" alt="Notebook"></router-link>
-            <h2 class="is-size-4 kontuor-font has-text-weight-light"> PRE-DESIGNED PLANNER</h2>
-          </div>
-          <div class="column">
-            <router-link to="/"><img src="../../public/assets/images/GiftCardShop.png" alt="Notebook" class="giftCard"></router-link>
-            <h2 class="is-size-4 kontuor-font has-text-weight-light"> GIFT CARDS</h2>
+            <router-link to="/"><img src="../../public/assets/images/predesingPlanner.png" alt="Notebook"></router-link>
+            <h2 class="is-size-4 kontuor-font has-text-weight-light"> BABY BOOK</h2>
           </div>
         </div>
       </div>
@@ -51,7 +43,7 @@ export default {
     font-size: 4rem;
   }
   &__options{
-    max-width: 1000px;
+    max-width: 800px;
     margin: auto;
     width: 100%;
     padding: 2%;
