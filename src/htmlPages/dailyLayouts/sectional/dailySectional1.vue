@@ -4,7 +4,7 @@
     <!-- Artboard: Artboard_4 -->
     <div id="g-2_-Sectional-L-Artboard_4" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
-      <img id="g-2_-Sectional-L-Artboard_4-img" class="g-aiImg" alt="" src="./2_-Sectional-L-Artboard_4.png"/>
+      <img id="g-2_-Sectional-L-Artboard_4-img" class="g-aiImg" alt="" src="2-Sectional-L-Artboard_4.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.6562%;margin-top:-7.5px;left:5.1558%;width:175px;">
         <p class="g-pstyle0">{{data.day}} &bull;  {{data.month}}  &bull;  {{data.dayNumber}}</p>
       </div>
