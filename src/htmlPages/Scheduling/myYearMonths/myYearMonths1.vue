@@ -1,27 +1,10 @@
 <template>
-  <div id="g-5_-My-Year-12-box" class="ai2html">
-
-    <!-- Artboard: Artboard_5 -->
-    <div id="g-5_-My-Year-12-Artboard_5" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
+  <div id="g-5_-My-Year-12-L-box" class="ai2html">
+    <div id="g-5_-My-Year-12-L-Artboard_4" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
-      <img id="g-5_-My-Year-12-Artboard_5-img" class="g-aiImg" alt="" src="./5_-My-Year-12-Artboard_5.png"/>
-      <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:17.1825%;margin-top:-7.5px;left:18.3723%;width:51px;">
-        <p class="g-pstyle0">JULY</p>
-      </div>
-      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:30.3404%;margin-top:-7.5px;left:16.1954%;width:73px;">
-        <p class="g-pstyle0">AUGUST</p>
-      </div>
-      <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:43.4983%;margin-top:-7.5px;left:14.2494%;width:94px;">
-        <p class="g-pstyle0">SEPTEMBER</p>
-      </div>
-      <div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:56.6562%;margin-top:-7.5px;left:15.3184%;width:83px;">
-        <p class="g-pstyle0">OCTOBER</p>
-      </div>
-      <div id="g-ai0-5" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:69.814%;margin-top:-7.5px;left:14.3678%;width:92px;">
-        <p class="g-pstyle0">NOVEMBER</p>
-      </div>
-      <div id="g-ai0-6" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:82.972%;margin-top:-7.5px;left:14.6355%;width:90px;">
-        <p class="g-pstyle0">DECEMBER</p>
+      <img id="g-5_-My-Year-12-L-Artboard_4-img" class="g-aiImg" alt="" src="5_-My-Year-12-L-Artboard_4.png"/>
+      <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:94.283%;margin-top:-5.9px;left:47.3689%;margin-left:-28.5px;width:57px;">
+        <p class="g-pstyle0">extras</p>
       </div>
     </div>
   </div>
@@ -29,56 +12,62 @@
 
 <script>
 export default {
-  name: "myYearMonth"
+  name: "myYearMonth1",
 }
 </script>
 
-<style scoped>
-#g-5_-My-Year-12-box ,
-#g-5_-My-Year-12-box .g-artboard {
+<style media="screen,print">
+p{
+  font-family: 'Kontour Type - Kopius-Light';
+}
+#g-5_-My-Year-12-L-box ,
+#g-5_-My-Year-12-L-box .g-artboard {
   margin:0 auto;
 }
-#g-5_-My-Year-12-box p {
+#g-5_-My-Year-12-L-box p {
   margin:0;
 }
-#g-5_-My-Year-12-box .g-aiAbs {
+#g-5_-My-Year-12-L-box .g-aiAbs {
   position:absolute;
 }
-#g-5_-My-Year-12-box .g-aiImg {
+#g-5_-My-Year-12-L-box .g-aiImg {
   position:absolute;
   top:0;
   display:block;
   width:100% !important;
 }
-#g-5_-My-Year-12-box .g-aiSymbol {
+#g-5_-My-Year-12-L-box .g-aiSymbol {
   position: absolute;
   box-sizing: border-box;
 }
-#g-5_-My-Year-12-box .g-aiPointText p { white-space: nowrap; }
-#g-5_-My-Year-12-Artboard_5 {
+#g-5_-My-Year-12-L-box .g-aiPointText p { white-space: nowrap; }
+#g-5_-My-Year-12-L-Artboard_4 {
   position:relative;
   overflow:hidden;
 }
-#g-5_-My-Year-12-Artboard_5 p {
+#g-5_-My-Year-12-L-Artboard_4 p {
   font-weight:500;
-  line-height:14px;
+  line-height:11px;
   height:auto;
   filter:alpha(opacity=100);
   -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity:1;
   letter-spacing:0.025em;
-  font-size:12px;
+  font-size:9px;
   text-align:left;
   text-transform:none;
-  color:rgb(0,0,0);
+  color:rgb(130,133,133);
   padding-bottom:0;
   padding-top:0;
   mix-blend-mode:normal;
   font-style:normal;
   position:static;
 }
-#g-5_-My-Year-12-Artboard_5 .g-pstyle0 {
-  height:14px;
+#g-5_-My-Year-12-L-Artboard_4 .g-pstyle0 {
+  height:11px;
+  text-align:center;
   text-transform:uppercase;
 }
+
 </style>
+
