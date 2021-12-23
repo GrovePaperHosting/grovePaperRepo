@@ -14,16 +14,16 @@
         <b-navbar-item class="has-text-primary is-size-3 is-size-4-touch has-text-weight-bold px-4" href="/build">
           BUILD
         </b-navbar-item>
-        <b-navbar-item class="has-text-primary is-size-3 is-size-5-touch has-text-weight-bold px-4" href="#">
+        <b-navbar-item class="has-text-primary is-size-3 is-size-5-touch has-text-weight-bold px-4" href="/details  ">
           DETAILS
         </b-navbar-item>
-        <b-navbar-item class="has-text-primary is-size-3 is-size-5-touch has-text-weight-bold px-4" href="#">
+        <b-navbar-item class="has-text-primary is-size-3 is-size-5-touch has-text-weight-bold px-4" href="/tutorial">
           TUTORIAL
         </b-navbar-item>
-        <b-navbar-item class="has-text-primary is-size-3 is-size-5-touch has-text-weight-bold px-4" href="#">
+        <b-navbar-item class="has-text-primary is-size-3 is-size-5-touch has-text-weight-bold px-4" href="/blog">
           BLOG
         </b-navbar-item>
-        <b-navbar-item class="has-text-primary is-size-3 is-size-5-touch has-text-weight-bold px-4" href="#">
+        <b-navbar-item class="has-text-primary is-size-3 is-size-5-touch has-text-weight-bold px-4" href="/about-us">
           ABOUT US
         </b-navbar-item>
       </template>
@@ -47,12 +47,32 @@
       </keep-alive>
     </transition>
     <footer class="footer">
-      <div class="content has-text-centered">
-        <p>
-          <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-          is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-        </p>
+      <div class="columns">
+        <div class="column has-text-centered">
+          <router-link to="/shipping-and-returns"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">SHIPPING AND RETURNS</h1></router-link>
+        </div>
+        <div class="column has-text-centered">
+          <router-link to="/faq"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">FAQ</h1></router-link>
+        </div>
+        <div class="column has-text-centered">
+          <router-link to="/builder"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">CONTACT US</h1></router-link>
+        </div>
+        <div class="column has-text-centered">
+          <router-link to="/privacy-policy"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">PRIVACY POLICY</h1></router-link>
+        </div>
+        <div class="column has-text-centered">
+          <router-link to="/builder"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">TERMS OF SERVICES</h1></router-link>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column has-text-left">
+          <h1 class="has-text-weight-normal is-size-6 champagne-limousines-font"> © 2021 Grove paper. All Rights Reserved. Website made with love by Ana Steinberg Design </h1>
+        </div>
+        <div class="column is-narrow has-text-centered">
+          <img class="icons-social-media mx-2" src="../public/assets/images/Instagram.png">
+          <img class="icons-social-media mx-2" src="../public/assets/images/Facebook.png">
+          <img class="icons-social-media mx-2" src="../public/assets/images/Pinterest.png">
+        </div>
       </div>
     </footer>
   </div>
@@ -72,6 +92,9 @@ export default {
 #app{
   position: relative;
 }
+.navbar.has-navbar-centered .navbar-start{
+  margin-left: 5% !important;
+}
 .navbar-logo{
   img{
     width: 50px;
@@ -84,10 +107,22 @@ export default {
   background: none !important;
 }
 .footer {
-  height: 140px;
+  height: auto;
   position: absolute;
   bottom: 0;
   width: 100%;
   background-color: #fcf5f5 !important;
+  padding: 1rem !important;
+  h1{
+    color: #E5A49A;
+  }
+  .rights{
+    width: 80%;
+    max-width: 500px;
+  }
+  .icons-social-media{
+    width: 26px;
+    height: 26px;
+  }
 }
 </style>

@@ -30,7 +30,9 @@ $navbar-height: 2.5rem;
 $family-primary: "LaMango-Light";
 $family-secondary: "Kontour Type - Kopius-Light";
 $progress-bar-background-color: #e7aa9f;
-$progress-value-background-color: #a86375;
+$progress-value-background-color: #e7aa9f;
+$navbar-item-hover-background-color:  #fcf5f5;;
+$navbar-item-hover-color: #D87c89;
 $modal-background-background-color: rgba(#F8F0EA, 0.86);
 
 @import "~bulma";
@@ -38,6 +40,12 @@ $modal-background-background-color: rgba(#F8F0EA, 0.86);
 html{
   height: 100%;
   width: 100%;
+}
+.input{
+  font-size: 1.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 40px;
 }
 .w100{
   width: 100%;
@@ -56,6 +64,9 @@ html{
 
 .champagne-limousines-font{
   font-family: 'Champagne & Limousines';
+  &__spacing1{
+    letter-spacing: 1pt;
+  }
 }
 
 .lamango-font{
