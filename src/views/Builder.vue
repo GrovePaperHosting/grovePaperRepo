@@ -23,7 +23,8 @@
         <div class="build-container-carrousel-categories">
           <button @click="selectedCategory = index; selectedSubcategory = null; selectedItem = null"
                   v-for="(category, index) in carrouselCategories" :key="index" class="py-4">
-            <img :src="category.urlImg">
+            <img v-if="selectedCategory === index" :src="category.urlImgBlack">
+            <img v-else :src="category.urlImg">
             <h1 class="is-uppercase is-size-6 kontuor-font has-text-weight-light">{{ category.name }}</h1>
           </button>
         </div>
@@ -604,6 +605,14 @@ import blankPagesbucketList1 from "../htmlPages/lifestyle/bucketList/bucketList1
 import blankPagesbucketList2 from "../htmlPages/lifestyle/bucketList/bucketList2";
 import FillPage from "../htmlPages/FillPage";
 import Hourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
+import lifestylereading1 from "../htmlPages/lifestyle/reading/reading1";
+import lifestylereading2 from "../htmlPages/lifestyle/reading/reading2";
+import lifestyleideas1 from "../htmlPages/lifestyle/ideas/ideas1";
+import lifestyleideas2 from "../htmlPages/lifestyle/ideas/ideas2";
+import lifestylemylist1 from "../htmlPages/lifestyle/myList/myList1";
+import lifestylemylist2 from "../htmlPages/lifestyle/myList/myList2";
+import lifestylepasswordTracker1 from "../htmlPages/lifestyle/passwordTracker/passwordTracker1";
+import lifestylepasswordTracker2 from "../htmlPages/lifestyle/passwordTracker/passwordTracker2";
 
 export default {
   name: "Builder",
@@ -655,6 +664,14 @@ export default {
         blankPagestwoColumns2,
         blankPagesbucketList1,
         blankPagesbucketList2,
+        lifestyleideas1,
+        lifestyleideas2,
+        lifestylereading1,
+        lifestylereading2,
+        lifestylemylist1,
+        lifestylemylist2,
+        lifestylepasswordTracker1,
+        lifestylepasswordTracker2,
         VueHtml2pdf
   },
   data() {
@@ -670,42 +687,51 @@ export default {
         {
           id: '1',
           name: 'Cover',
-          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COVER_BLACK.png?alt=media&token=53768c29-cce4-4428-b85c-8eb6ce650db9',
+          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COVER.png?alt=media&token=e58a0902-810b-4565-8d46-c457b733e4bc',
+          urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COVER_BLACK.png?alt=media&token=53768c29-cce4-4428-b85c-8eb6ce650db9'
         },
         {
           id: '2',
           name: 'Coil',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COIL.png?alt=media&token=3a8cd002-009b-46ef-8897-4820f380a5af',
+          urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COIL_BLACK.png?alt=media&token=94d27f8b-45e7-4b59-9e70-58d4d15a42a7'
         },
         {
           id: '3',
           name: 'Fill page',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/FILL%20PAGE.png?alt=media&token=44834095-fd9b-47a9-bca3-e51b103df646',
+          urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/FILL%20PAGE_BLACK.png?alt=media&token=82177c6d-25a6-4bc6-8895-3eb2a30945db'
         },
         {
           id: '4',
           name: 'Dates',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/DATES.png?alt=media&token=eca47e0b-acf3-4a0f-acff-e75f112f73dd',
+          urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/DATES_BLACK.png?alt=media&token=52808cb6-0773-4bea-8ccc-70a1bd2bad98'
         },
         {
           name: 'Holidays',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/HOLIDAYS.png?alt=media&token=4db04f69-ab3c-48e6-99a5-a8d7282d6376',
+          urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/HOLIDAYS_BLACK.png?alt=media&token=be49dadd-1461-4714-8c70-f9fffc7c5d91'
         },
         {
           name: 'Layout options',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/LAYOUT.png?alt=media&token=145dd9d4-4212-403e-a60f-b6f7a7879bfb',
+          urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/LAYOUT_BLACK.png?alt=media&token=1583ddb5-1d91-4675-ae7c-8eb071d8454c'
         },
         {
           name: 'Add on pages',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/ADD%20ON%20PAGES.png?alt=media&token=1d67083e-a111-4da5-bca1-3db1363f59e6',
+          urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/ADD%20ON%20PAGES_BLACK.png?alt=media&token=190bab72-fd27-44f1-aa76-5fe8efaa3ddb'
         },
         {
           name: 'Extras',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/EXTRAS.png?alt=media&token=78261eee-049d-4a89-8adb-b06f835fe70c',
+          urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/EXTRAS_BLACK.png?alt=media&token=12b39ac9-dd66-44dd-8d3d-832c3be460c8'
         },
         {
           name: 'Review & submit',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/REVIEW%20%26%20SUBMIT.png?alt=media&token=60901b2f-c127-45b7-9190-32ba42484855',
+          urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/ADDITIONAL%20PAGES_BLACK.png?alt=media&token=a8bf4286-15bd-4d19-b273-42c402bc17da'
         }
       ],
       layoutPreselect: null,
