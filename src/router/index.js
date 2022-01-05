@@ -14,6 +14,8 @@ import Tutorial from "../views/Tutorial";
 import ShippingAndReturns from "../views/ShippingAndReturns";
 import Faq from "../views/Faq";
 import PrivacyPolicy from "../views/PrivacyPolicy";
+import PreDesignView from "../views/PreDesignView"
+import PreView from "../views/PreView";
 
 const router = new VueRouter({
   mode: 'history',
@@ -30,6 +32,8 @@ const router = new VueRouter({
     { path: '/shipping-and-returns', component: ShippingAndReturns },
     { path: '/faq', component: Faq },
     { path: '/privacy-policy', component: PrivacyPolicy },
+    { path: '/pre-design-view', component: PreDesignView},
+    { path: '/PreView',name: "PreView" ,component: PreView, props:true},
   ]
 });
 
