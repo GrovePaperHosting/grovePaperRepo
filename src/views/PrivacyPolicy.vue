@@ -5,7 +5,7 @@
         <h1 class="build-container__title has-text-primary frunchySerif-font">PRIVACY POLICY</h1>
         <!--<h4 class="has-text-text is-size-3 lamango-font">Choose which product you'd like to customize today.</h4>-->
         <div class="has-text-left">
-          <h2 class="has-text-grey is-size-5">
+          <h2 class="has-text-grey is-size-6 freight-big-pro-font">
             This Privacy Policy describes how your personal information is collected, used, and shared when you visit or make a purchase from www.grovepaper.ca (the “Site”).<br/><br/>PERSONAL INFORMATION WE COLLECT <br/><br/> When you visit the Site, we automatically collect certain information about your device, including information about your web browser, IP address, time zone, and some of the cookies that are installed on your device. Additionally, as you browse the Site, we collect information about the individual web pages or products that you view, what websites or search terms referred you to the Site, and information about how you interact with the Site. We refer to this automatically-collected information as “Device Information.”<br/><br/>
             We collect Device Information using the following technologies: <br/>
             - “Cookies” are data files that are placed on your device or computer and often include an anonymous unique identifier. For more information about cookies, and how to disable cookies, visit http://www.allaboutcookies.org. <br/> - “Log files” track actions occurring on the Site, and collect data including your IP address, browser type, Internet service provider, referring/exit pages, and date/time stamps.<br/> - “Web beacons,” “tags,” and “pixels” are electronic files used to record information about how you browse the Site. <br/><br/>

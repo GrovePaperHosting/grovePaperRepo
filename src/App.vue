@@ -61,12 +61,12 @@
           <router-link to="/privacy-policy"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">PRIVACY POLICY</h1></router-link>
         </div>
         <div class="column has-text-centered">
-          <router-link to="/builder"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">TERMS OF SERVICES</h1></router-link>
+          <router-link to="/builder"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">TERMS OF SERVICE</h1></router-link>
         </div>
       </div>
       <div class="columns">
         <div class="column has-text-left">
-          <h1 class="has-text-weight-normal is-size-6 champagne-limousines-font"> © 2021 Grove paper. All Rights Reserved. Website made with love by Ana Steinberg Design </h1>
+          <h1 class="has-text-weight-normal is-size-6 champagne-limousines-font"> © 2022 Grove Paper. All Rights Reserved. Website made with love by Ana Steinberg Designs </h1>
         </div>
         <div class="column is-narrow has-text-centered">
           <img class="icons-social-media mx-2" src="../public/assets/images/Instagram.png">

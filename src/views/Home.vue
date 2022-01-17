@@ -55,17 +55,17 @@ export default {
         {
           name: 'Build',
           urlImg: '../assets/images/Build.png',
-          pathName: 'Build'
+          pathName: 'build'
         },
         {
           name: 'Pre-designed',
           urlImg: '../assets/images/Pre-Designed.png',
-          pathName: 'shop'
+          pathName: 'pre-design'
         },
         {
           name: 'Blog',
           urlImg: '../assets/images/Blog.png',
-          pathName: 'shop'
+          pathName: 'Blog'
         }
       ]
     };
@@ -75,7 +75,7 @@ export default {
 
 <style scoped lang="scss">
 .home-content {
-  padding-bottom: 144px;
+  padding-bottom: 115px;
   background-color: #FCF9F7 !important;
 
   &-top{
@@ -84,7 +84,7 @@ export default {
 
     &__logo-content{
     img{
-      width: 300px;
+      width: 350px;
     }
   }
   &__content{
@@ -107,7 +107,7 @@ export default {
    background-attachment: fixed;
  }
 &-bottom{
-   height: 250px;
+   height: 320px;
   &-container{
     position: relative;
     .columns{

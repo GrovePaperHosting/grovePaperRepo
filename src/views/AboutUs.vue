@@ -12,12 +12,12 @@
           </div>
           <div class="column">
             <div class="has-text-left">
-              <h2 class="has-text-grey is-size-5">Welcome! We’re Megan and Danielle, founders of Grove Paper. We’ve been
+              <h2 class="has-text-grey is-size-5 freight-big-pro-font">Welcome! We’re Megan and Danielle, founders of Grove Paper. We’ve been
                 best friends since elementary school and have always shared an appreciation for all things pretty and
                 organized. After talking through our frustrations with finding a perfect planner that encompasses
                 everything we need to organize our crazy lives, we quickly realized that a perfect planner didn’t exist.
                 We knew we were not the only ones to feel this pain, so along came the idea for Grove Paper.</h2>
-              <h2 class="has-text-grey is-size-5">Grove Paper was set out to give people the ability to completely
+              <h2 class="has-text-grey is-size-5 freight-big-pro-font">Grove Paper was set out to give people the ability to completely
                 customize their planners and notebooks and not sacrifice quality or aesthetics to do so. Our products
                 offer quality and a multitude of options to create your own unique notebook. We are passionate about
                 supporting other women entrepreneurs and small businesses. That’s why we try as hard as we can to
@@ -73,9 +73,9 @@ export default {
       }
       .hover{
         position: fixed;
-        top: 180px;
+        top: 200px;
         left: 18%;
-        width: 150px;
+        width: 180px;
       }
     }
 
