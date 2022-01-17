@@ -21,10 +21,10 @@
       </div>
       <div class="build-container-carrousel is-flex">
         <div class="build-container-carrousel-categories">
-          <button @click="selectedCategory = index; selectedSubcategory = null; selectedItem = null"
+          <button @click="selectedCategory = index; selectedSubcategory = null; selectedItem = null; layoutPreselect = null;"
                   v-for="(category, index) in carrouselCategories" :key="index" class="py-4">
-            <img v-if="selectedCategory === index" :src="category.urlImgBlack">
-            <img v-else :src="category.urlImg">
+            <img v-show="selectedCategory === index" :src="category.urlImgBlack" :class="category.key">
+            <img v-show="selectedCategory !== index" :src="category.urlImg" :class="category.key">
             <h1 class="is-uppercase is-size-6 kontuor-font has-text-weight-light">{{ category.name }}</h1>
           </button>
         </div>
@@ -687,49 +687,58 @@ export default {
         {
           id: '1',
           name: 'Cover',
+          key: 'cover',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COVER.png?alt=media&token=e58a0902-810b-4565-8d46-c457b733e4bc',
           urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COVER_BLACK.png?alt=media&token=53768c29-cce4-4428-b85c-8eb6ce650db9'
         },
         {
           id: '2',
           name: 'Coil',
+          key: 'coil',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COIL.png?alt=media&token=3a8cd002-009b-46ef-8897-4820f380a5af',
           urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/COIL_BLACK.png?alt=media&token=94d27f8b-45e7-4b59-9e70-58d4d15a42a7'
         },
         {
           id: '3',
           name: 'Fill page',
+          key: 'fillPage',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/FILL%20PAGE.png?alt=media&token=44834095-fd9b-47a9-bca3-e51b103df646',
           urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/FILL%20PAGE_BLACK.png?alt=media&token=82177c6d-25a6-4bc6-8895-3eb2a30945db'
         },
         {
           id: '4',
           name: 'Dates',
+          key: 'dates',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/DATES.png?alt=media&token=eca47e0b-acf3-4a0f-acff-e75f112f73dd',
           urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/DATES_BLACK.png?alt=media&token=52808cb6-0773-4bea-8ccc-70a1bd2bad98'
         },
         {
           name: 'Holidays',
+          key: 'holidays',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/HOLIDAYS.png?alt=media&token=4db04f69-ab3c-48e6-99a5-a8d7282d6376',
           urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/HOLIDAYS_BLACK.png?alt=media&token=be49dadd-1461-4714-8c70-f9fffc7c5d91'
         },
         {
           name: 'Layout options',
+          key: 'layout',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/LAYOUT.png?alt=media&token=145dd9d4-4212-403e-a60f-b6f7a7879bfb',
           urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/LAYOUT_BLACK.png?alt=media&token=1583ddb5-1d91-4675-ae7c-8eb071d8454c'
         },
         {
           name: 'Add on pages',
+          key: 'addOnPages',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/ADD%20ON%20PAGES.png?alt=media&token=1d67083e-a111-4da5-bca1-3db1363f59e6',
           urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/ADD%20ON%20PAGES_BLACK.png?alt=media&token=190bab72-fd27-44f1-aa76-5fe8efaa3ddb'
         },
         {
           name: 'Extras',
+          key: 'extras',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/EXTRAS.png?alt=media&token=78261eee-049d-4a89-8adb-b06f835fe70c',
           urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/EXTRAS_BLACK.png?alt=media&token=12b39ac9-dd66-44dd-8d3d-832c3be460c8'
         },
         {
           name: 'Review & submit',
+          key: 'review',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/REVIEW%20%26%20SUBMIT.png?alt=media&token=60901b2f-c127-45b7-9190-32ba42484855',
           urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/ADDITIONAL%20PAGES_BLACK.png?alt=media&token=a8bf4286-15bd-4d19-b273-42c402bc17da'
         }
@@ -1546,7 +1555,7 @@ export default {
           doc.addPage();
         }
         this.pdfProgress = ((i*100)/pages.length)+1;
-        doc.addImage(pageImage.src, 0, 0, 9, 9.5);
+        doc.addImage(pageImage.src, 0, 0, 7.25, 9.5);
       }
       // This can be whatever output you want. I prefer blob.
       //doc.save();
@@ -1791,7 +1800,7 @@ export default {
           category: 'addOnPages'
         }])
       }
-      this.totalPages = this.totalPages + Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]);
+      this.totalPages = this.totalPages + (Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1])*2);
       this.calcTotalPages();
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: selectionArray}
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
@@ -2083,11 +2092,44 @@ body {
   transform-origin: right;
 }
 */
-
-.image-option {
-  width: 100%;
-  max-width: 160px;
-  height: 160px;
+.textarea{
+  font-size: 1.5rem;
+}
+.cover{
+  width: 94px !important;
+  height: 120px !important;
+}
+.coil{
+  width: 94px !important;
+  height: 122px !important;
+}
+.fillPages{
+  width: 91px !important;
+  height: 117px !important;
+}
+.dates{
+  width: 130px !important;
+  height: 85px !important;
+}
+.holidays{
+  width: 98px !important;
+  height: 118px !important;
+}
+.layout{
+  width: 117px !important;
+  height: 94px !important;
+}
+.addOnPages {
+  width: 81px !important;
+  height: 123px !important;
+}
+.extras {
+  width: 110px !important;
+  height: 115px !important;
+}
+.review {
+  width: 119px !important;
+  height: 75px !important;
 }
 
 .add-container {

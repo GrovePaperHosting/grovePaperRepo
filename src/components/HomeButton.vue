@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/build">
+    <router-link :to="`/${buttonInformation.pathName}`">
       <img :src="buttonInformation.urlImg">
     </router-link>
 <!--    <img :src=`../../public/assets/images/${buttonInformation.urlImg}`>-->
@@ -11,7 +11,7 @@ export default {
   props:{
     buttonInformation:{
       required: true,
-      type: Object
+      type: Object,
     }
   }
 }

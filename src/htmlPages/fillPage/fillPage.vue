@@ -10,7 +10,7 @@
         <p class="g-pstyle0">{{data.Year}}</p>
         <p class="g-pstyle0"> </p>
         <!--<p class="g-pstyle0 is-size-7-touch">{{data.Email}}</p>-->
-        <p class="g-pstyle0 is-size-7-touch">Email</p>
+        <p class="g-pstyle0 is-size-7-touch">{{data.Email}}</p>
         <p class="g-pstyle0">{{data.Telephone}}</p>
       </div>
     </div>

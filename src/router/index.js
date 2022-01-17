@@ -13,6 +13,7 @@ import Blog from "../views/Blog";
 import Tutorial from "../views/Tutorial";
 import ShippingAndReturns from "../views/ShippingAndReturns";
 import Faq from "../views/Faq";
+import Shop from "../views/Shop";
 import PrivacyPolicy from "../views/PrivacyPolicy";
 import PreDesignView from "../views/PreDesignView"
 import PreView from "../views/PreView";
@@ -23,6 +24,7 @@ const router = new VueRouter({
   routes: [
     { path: '/', component: Home },
     { path: '/build', component: Build },
+    { path: '/shop', component: Shop },
     { path: '/builder', component: Builder },
     { path: '/pre-design', component: PreDesing },
     { path: '/details', component: Details },
