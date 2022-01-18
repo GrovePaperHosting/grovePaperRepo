@@ -5,7 +5,7 @@
         <h1 class="build-container__title has-text-primary frunchySerif-font">DETAILS</h1>
         <!--<h4 class="has-text-text is-size-3 lamango-font">Choose which product you'd like to customize today.</h4>-->
         <div class="has-text-left">
-          <h1 class="has-text-grey is-size-4">Our paper</h1>
+          <h1 class="has-text-black is-size-4">Our paper</h1>
           <h2 class="has-text-grey is-size-6 freight-big-pro-font">We know how important paper is, so we only use the best for you! We use high quality 80# paper that won’t bleed or shadow.</h2>
           <h1 class="has-text-black is-size-4 mt-2">Covers</h1>
           <h2 class="has-text-grey is-size-6 freight-big-pro-font">
