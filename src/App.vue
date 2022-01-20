@@ -56,13 +56,13 @@
           <router-link to="/faq"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">FAQ</h1></router-link>
         </div>
         <div class="column has-text-centered">
-          <router-link to="/builder"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">CONTACT US</h1></router-link>
+          <router-link to="/contact-us"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">CONTACT US</h1></router-link>
         </div>
         <div class="column has-text-centered">
           <router-link to="/privacy-policy"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">PRIVACY POLICY</h1></router-link>
         </div>
         <div class="column has-text-centered">
-          <router-link to="/builder"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">TERMS OF SERVICE</h1></router-link>
+          <router-link to="/terms-of-service"><h1 class="has-text-weight-semibold champagne-limousines-font champagne-limousines-font__spacing1">TERMS OF SERVICE</h1></router-link>
         </div>
       </div>
       <div class="columns">
