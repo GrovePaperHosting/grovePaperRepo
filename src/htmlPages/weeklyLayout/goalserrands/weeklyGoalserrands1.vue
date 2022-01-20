@@ -60,7 +60,7 @@ export default {
   name: "weeklyGoalserrands1",
   props:{
     data:{
-      type: Object,
+      type: Array,
     },
   }
 }

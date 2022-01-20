@@ -42,7 +42,7 @@ export default {
   name: "weeklyChecklist1",
   props:{
     data:{
-      type: Object,
+      type: Array,
     },
   }
 }

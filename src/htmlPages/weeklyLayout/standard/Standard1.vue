@@ -51,7 +51,7 @@ export default {
   name: "Standard1",
   props:{
     data:{
-      type: Object,
+      type: Array,
     },
   }
 }

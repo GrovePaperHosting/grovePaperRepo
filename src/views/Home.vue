@@ -75,7 +75,7 @@ export default {
 
 <style scoped lang="scss">
 .home-content {
-  padding-bottom: 115px;
+  //padding-bottom: 115px;
   background-color: #FCF9F7 !important;
 
   &-top{
@@ -84,7 +84,7 @@ export default {
 
     &__logo-content{
     img{
-      width: 350px;
+      width: 380px;
     }
   }
   &__content{
