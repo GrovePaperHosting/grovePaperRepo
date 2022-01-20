@@ -7,20 +7,12 @@
         <p class="g-pstyle0">extras</p>
       </div>
     </div>
-
   </div>
-
-
 </template>
 
 <script>
 export default {
   name: "Hourly1",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 

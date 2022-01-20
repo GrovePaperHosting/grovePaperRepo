@@ -156,7 +156,7 @@ export default {
   name: "kidsmeals1",
   props:{
     data:{
-      type: Object,
+      type: Array,
     },
   }
 }

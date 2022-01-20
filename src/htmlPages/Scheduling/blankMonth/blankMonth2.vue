@@ -14,12 +14,7 @@
 
 <script>
 export default {
-  name: "blankMonth2",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
+  name: "blankMonth2"
 }
 </script>
 

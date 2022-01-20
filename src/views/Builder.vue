@@ -163,7 +163,7 @@
                              v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">
                       <!--                      <input  type="number" class="input" v-model.number="pagesToAdd">-->
                       <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
-                              @click="selectItemAddPages({category: options[selectedCategory].subcategories[selectedSubcategory].name, subcategory: layoutPreselect})">
+                              @click="selectItemAddPages({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
                         ADD
                       </button>
                       <a class=" has-text-grey is-size-4 is-underlined" @click="deletePages">Remove</a>
@@ -199,8 +199,13 @@
                 </div>
               </div>
               <div v-else class="has-text-left w100">
-                <h2 class="is-size-4 is-size-5-touch kontuor-font has-text-weight-light is-uppercase mt-4">
-                  {{ options[selectedCategory].subcategories[selectedSubcategory].name }}</h2>
+                <div class="is-flex">
+                  <button @click="selectedSubcategory = null" class="button__transparent mt-2 mr-3 p-2">
+                    <img style="width: 40px; height: 30px"
+                         src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7">
+                  </button>
+                  <h2 class="is-size-4 is-size-5-touch kontuor-font has-text-weight-light is-uppercase mt-4">
+                    {{ options[selectedCategory].subcategories[selectedSubcategory].name }}</h2></div>
                 <div class="columns is-multiline is-vcentered mt-6">
                   <div class="column is-one-fifth p-0"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
@@ -222,7 +227,7 @@
             </div>
             <div class="w100" v-else-if="options[selectedCategory].type === 'optionsList'">
               <div class="columns is-multiline is-vcentered w100 is-gapless mt-6">
-                <div class="column is-one-fifth"
+                <div class="column is-one-fifth mt-6"
                      v-for="(option, index) in options[selectedCategory].categoriesOptions"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent w100"
@@ -390,7 +395,11 @@
                 </div>
               </div>
               <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left w100">
-                <div class="columns is-multiline is-vcentered py-6">
+                <button @click="selectedSubcategory = null" class="button__transparent mt-2 mr-3 p-2">
+                  <img style="width: 40px; height: 30px"
+                       src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7">
+                </button>
+                <div class="columns is-multiline is-vcentered py-2">
                   <div class="column is-one-fifth p-0"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
                        :key="index">
@@ -424,6 +433,10 @@
                 </div>
               </div>
               <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left w100">
+                <button @click="selectedSubcategory = null" class="button__transparent mt-2 mr-3 p-2">
+                  <img style="width: 40px; height: 30px"
+                       src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7">
+                </button>
                 <div class="columns is-multiline is-vcentered py-6">
                   <div class="column is-one-fifth p-0"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
@@ -559,120 +572,238 @@ import html2pdf from 'html2pdf.js';
 init("user_rVFW3uNdwPo3aLyWfIMyo");
 
 import fillpage from "../htmlPages/fillPage/fillPage";
-import dailyhourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
-import dailyhourly2 from "../htmlPages/dailyLayouts/hourly/Hourly2";
-import dailyreflection1 from "../htmlPages/dailyLayouts/reflection/dailyReflection1";
-import dailyreflection2 from "../htmlPages/dailyLayouts/reflection/dailyReflection2";
-import dailysectional1 from "../htmlPages/dailyLayouts/sectional/dailySectional1";
-import dailysectional2 from "../htmlPages/dailyLayouts/sectional/dailySectional2";
-import weeklystandard1 from "../htmlPages/weeklyLayout/standard/Standard1";
-import weeklystandard2 from "../htmlPages/weeklyLayout/standard/Standard2";
-import weeklychecklist1 from "../htmlPages/weeklyLayout/checklist/weeklyChecklist1";
-import weeklychecklist2 from "../htmlPages/weeklyLayout/checklist/weeklyChecklist2";
-import weeklygoalserrands1 from "../htmlPages/weeklyLayout/goalserrands/weeklyGoalserrands1";
-import weeklygoalserrands2 from "../htmlPages/weeklyLayout/goalserrands/weeklyGoalerrands2";
-import weeklyhabits1 from "../htmlPages/weeklyLayout/habits/weeklyHabits1";
-import weeklyhabits2 from "../htmlPages/weeklyLayout/habits/weeklyHabits2";
-import weeklyhourly1 from "../htmlPages/weeklyLayout/hourly/weeklyHourly1";
-import weeklyhourly2 from "../htmlPages/weeklyLayout/hourly/weeklyHourly2";
-import weeklyprojects1 from "../htmlPages/weeklyLayout/project/weeklyProjects1";
-import weeklyprojects2 from "../htmlPages/weeklyLayout/project/weeklyProjects2";
-import weeklysectional1 from "../htmlPages/weeklyLayout/sectional/weeklySectional1";
-import weeklysectional2 from "../htmlPages/weeklyLayout/sectional/weeklySectional2";
-import schedulingmonthMemories1 from "../htmlPages/Scheduling/monthMemories/monthMemories2";
-import schedulingmonthMemories2 from "../htmlPages/Scheduling/monthMemories/monthMemories1";
-import schedulingmonthIdeas1 from "../htmlPages/Scheduling/monthIdeas/monthIdeas1";
-import schedulingmonthIdeas2 from "../htmlPages/Scheduling/monthIdeas/monthIdeas2";
-import schedulingblankMonth1 from "../htmlPages/Scheduling/blankMonth/blankMonth1";
-import schedulingblankMonth2 from "../htmlPages/Scheduling/blankMonth/blankMonth2";
-import schedulingmyYearMonths1 from "../htmlPages/Scheduling/myYearMonths/myYearMonths1";
-import schedulingmyYearMonths2 from "../htmlPages/Scheduling/myYearMonths/myYearMonths2";
-import schedulingmyYearDays1 from "../htmlPages/Scheduling/myYearDays/myYearDays1";
-import schedulingmyYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";
-import blankPagesblank1 from "../htmlPages/blankPages/blank/blank1";
-import blankPagesblank2 from "../htmlPages/blankPages/blank/blank2";
-import blankPagesblankDays1 from "../htmlPages/blankPages/blankDays/blankDays1";
-import blankPagesblankDays2 from "../htmlPages/blankPages/blankDays/blankDays2";
-import blankPagesdotted1 from "../htmlPages/blankPages/dotted/dotted1";
-import blankPagesdotted2 from "../htmlPages/blankPages/dotted/dotted2";
-import blankPagesgrid1 from "../htmlPages/blankPages/Grid/grid1";
-import blankPagesgrid2 from "../htmlPages/blankPages/Grid/grid2";
-import blankPageslined1 from "../htmlPages/blankPages/lined/lined1";
-import blankPageslined2 from "../htmlPages/blankPages/lined/lined2";
-import blankPagestwoColumns1 from "../htmlPages/blankPages/twoColumns/twoColumns1";
-import blankPagestwoColumns2 from "../htmlPages/blankPages/twoColumns/twoColumns2";
-import blankPagesbucketList1 from "../htmlPages/lifestyle/bucketList/bucketList1";
-import blankPagesbucketList2 from "../htmlPages/lifestyle/bucketList/bucketList2";
+import dailyHourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
+import dailyHourly2 from "../htmlPages/dailyLayouts/hourly/Hourly2";
+import dailyReflection1 from "../htmlPages/dailyLayouts/reflection/dailyReflection1";
+import dailyReflection2 from "../htmlPages/dailyLayouts/reflection/dailyReflection2";
+import dailySectional1 from "../htmlPages/dailyLayouts/sectional/dailySectional1";
+import dailySectional2 from "../htmlPages/dailyLayouts/sectional/dailySectional2";
+import weeklyStandard1 from "../htmlPages/weeklyLayout/standard/Standard1";
+import weeklyStandard2 from "../htmlPages/weeklyLayout/standard/Standard2";
+import weeklyChecklist1 from "../htmlPages/weeklyLayout/checklist/weeklyChecklist1";
+import weeklyChecklist2 from "../htmlPages/weeklyLayout/checklist/weeklyChecklist2";
+import weeklyGoalsErrands1 from "../htmlPages/weeklyLayout/goalserrands/weeklyGoalserrands1";
+import weeklyGoalsErrands2 from "../htmlPages/weeklyLayout/goalserrands/weeklyGoalerrands2";
+import weeklyHabits1 from "../htmlPages/weeklyLayout/habits/weeklyHabits1";
+import weeklyHabits2 from "../htmlPages/weeklyLayout/habits/weeklyHabits2";
+import weeklyHourly1 from "../htmlPages/weeklyLayout/hourly/weeklyHourly1";
+import weeklyHourly2 from "../htmlPages/weeklyLayout/hourly/weeklyHourly2";
+import weeklyKidsMeals1 from "../htmlPages/weeklyLayout/kidsmeals/kidsmeals1";
+import weeklyKidsMeals2 from "../htmlPages/weeklyLayout/kidsmeals/kidsmeals2";
+import weeklyProjects1 from "../htmlPages/weeklyLayout/project/weeklyProjects1";
+import weeklyProjects2 from "../htmlPages/weeklyLayout/project/weeklyProjects2";
+import weeklySectional1 from "../htmlPages/weeklyLayout/sectional/weeklySectional1";
+import weeklySectional2 from "../htmlPages/weeklyLayout/sectional/weeklySectional2";
+import schedulingMonthMemories1 from "../htmlPages/Scheduling/monthMemories/monthMemories2";
+import schedulingMonthMemories2 from "../htmlPages/Scheduling/monthMemories/monthMemories1";
+import schedulingMonthIdeas1 from "../htmlPages/Scheduling/monthIdeas/monthIdeas1";
+import schedulingMonthIdeas2 from "../htmlPages/Scheduling/monthIdeas/monthIdeas2";
+import schedulingBlankMonth1 from "../htmlPages/Scheduling/blankMonth/blankMonth1";
+import schedulingBlankMonth2 from "../htmlPages/Scheduling/blankMonth/blankMonth2";
+import schedulingMyYearMonths1 from "../htmlPages/Scheduling/myYearMonths/myYearMonths1";
+import schedulingMyYearMonths2 from "../htmlPages/Scheduling/myYearMonths/myYearMonths2";
+import schedulingMyYearDays1 from "../htmlPages/Scheduling/myYearDays/myYearDays1";
+import schedulingMyYearDays2 from "../htmlPages/Scheduling/myYearDays/myYearDays2";
+import blankPagesBlank1 from "../htmlPages/blankPages/blank/blank1";
+import blankPagesBlank2 from "../htmlPages/blankPages/blank/blank2";
+import blankPagesBlankDays1 from "../htmlPages/blankPages/blankDays/blankDays1";
+import blankPagesBlankDays2 from "../htmlPages/blankPages/blankDays/blankDays2";
+import blankPagesDotted1 from "../htmlPages/blankPages/dotted/dotted1";
+import blankPagesDotted2 from "../htmlPages/blankPages/dotted/dotted2";
+import blankPagesGrid1 from "../htmlPages/blankPages/Grid/grid1";
+import blankPagesGrid2 from "../htmlPages/blankPages/Grid/grid2";
+import blankPagesLined1 from "../htmlPages/blankPages/lined/lined1";
+import blankPagesLined2 from "../htmlPages/blankPages/lined/lined2";
+import blankPagesTwoColumns1 from "../htmlPages/blankPages/twoColumns/twoColumns1";
+import blankPagesTwoColumns2 from "../htmlPages/blankPages/twoColumns/twoColumns2";
+import blankPagesBucketList1 from "../htmlPages/lifestyle/bucketList/bucketList1";
+import blankPagesBucketList2 from "../htmlPages/lifestyle/bucketList/bucketList2";
 import FillPage from "../htmlPages/FillPage";
 import Hourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
-import lifestylereading1 from "../htmlPages/lifestyle/reading/reading1";
-import lifestylereading2 from "../htmlPages/lifestyle/reading/reading2";
-import lifestyleideas1 from "../htmlPages/lifestyle/ideas/ideas1";
-import lifestyleideas2 from "../htmlPages/lifestyle/ideas/ideas2";
-import lifestylemylist1 from "../htmlPages/lifestyle/myList/myList1";
-import lifestylemylist2 from "../htmlPages/lifestyle/myList/myList2";
-import lifestylepasswordTracker1 from "../htmlPages/lifestyle/passwordTracker/passwordTracker1";
-import lifestylepasswordTracker2 from "../htmlPages/lifestyle/passwordTracker/passwordTracker2";
+import lifestyleReading1 from "../htmlPages/lifestyle/reading/reading1";
+import lifestyleReading2 from "../htmlPages/lifestyle/reading/reading2";
+import lifestyleIdeas1 from "../htmlPages/lifestyle/ideas/ideas1";
+import lifestyleIdeas2 from "../htmlPages/lifestyle/ideas/ideas2";
+import lifestyleMylist1 from "../htmlPages/lifestyle/myList/myList1";
+import lifestyleMylist2 from "../htmlPages/lifestyle/myList/myList2";
+import lifestylePasswordTracker1 from "../htmlPages/lifestyle/passwordTracker/passwordTracker1";
+import lifestylePasswordTracker2 from "../htmlPages/lifestyle/passwordTracker/passwordTracker2";
+import lifestyleSocialMediaTracking1 from "../htmlPages/lifestyle/socialMediaTracking/socialMediaTracking1";
+import lifestyleSocialMediaTracking2 from "../htmlPages/lifestyle/socialMediaTracking/socialMediaTracking2";
+import lifestyleSocialMediaPlanning1 from "../htmlPages/lifestyle/socialMediaPlanning/socialMediaPlanning1";
+import lifestyleSocialMediaPlanning2 from "../htmlPages/lifestyle/socialMediaPlanning/socialMediaPlanning2";
+import financesBudgeting1 from "../htmlPages/finances/budgeting/budgeting1";
+import financesBudgeting2 from "../htmlPages/finances/budgeting/budgeting2";
+import financesExpenseTracker1 from "../htmlPages/finances/expenseTracker/expenseTracker1";
+import financesExpenseTracker2 from "../htmlPages/finances/expenseTracker/expenseTracker2";
+import atHomeCleaning1 from "../htmlPages/atHome/cleaning/cleaning1";
+import atHomeCleaning2 from "../htmlPages/atHome/cleaning/cleaning2";
+import atHomeHomeMaintenance1 from "../htmlPages/atHome/homeMaintenance/homeMaintenance1";
+import atHomeHomeMaintenance2 from "../htmlPages/atHome/homeMaintenance/homeMaintenance2";
+import babyBabyTracker1 from "../htmlPages/baby/babyTracker/babyTracker1";
+import babyBabyTracker2 from "../htmlPages/baby/babyTracker/babyTracker2";
+import babyBabyTracker21 from "../htmlPages/baby/babyTracker2/babyTracker21";
+import babyBabyTracker22 from "../htmlPages/baby/babyTracker2/babyTracker22";
+import babyBabyMonthly1 from "../htmlPages/baby/babyMonthly/babyMonthly1";
+import babyBabyMonthly2 from "../htmlPages/baby/babyMonthly/babyMonthly2";
+import wellnessDailyGratitude1 from "../htmlPages/wellness/dailyGratitude/dailyGratitude1";
+import wellnessDailyGratitude2 from "../htmlPages/wellness/dailyGratitude/dailyGratitude2";
+import wellnessFitness1 from "../htmlPages/wellness/fitness/fitness1";
+import wellnessFitness2 from "../htmlPages/wellness/fitness/fitness2";
+import wellnessMeasurements1 from "../htmlPages/wellness/measurements/measurements1";
+import wellnessMeasurements2 from "../htmlPages/wellness/measurements/measurements2";
+import wellnessMonthlyGratitude1 from "../htmlPages/wellness/monthlyGratitude/monthlyGratitude1";
+import wellnessMonthlyGratitude2 from "../htmlPages/wellness/monthlyGratitude/monthlyGratitude2";
+import wellnessMood1 from "../htmlPages/wellness/mood/mood1";
+import wellnessMood2 from "../htmlPages/wellness/mood/mood2";
+import wellnessOnTheMenu1 from "../htmlPages/wellness/onTheMenu/onTheMenu1";
+import wellnessOnTheMenu2 from "../htmlPages/wellness/onTheMenu/onTheMenu2";
+import wellnessReflection1 from "../htmlPages/wellness/reflection/reflection1";
+import wellnessReflection2 from "../htmlPages/wellness/reflection/reflection2";
+import wellnessWeeklyWellness1 from  "../htmlPages/wellness/weeklyWellness/weeklyWellness1";
+import wellnessWeeklyWellness2 from  "../htmlPages/wellness/weeklyWellness/weeklyWellness2";
+import meetYourGoals30DayChallenge1 from "../htmlPages/meetYourGoals/30DayChallenge/30DayChallenge1";
+import meetYourGoals30DayChallenge2 from "../htmlPages/meetYourGoals/30DayChallenge/30DayChallenge2";
+import meetYourGoalsHabitTracker1 from "../htmlPages/meetYourGoals/habitTracker/habitTracker1";
+import meetYourGoalsHabitTracker2 from "../htmlPages/meetYourGoals/habitTracker/habitTracker2";
+import meetYourGoalsMonthlyGoals1 from "../htmlPages/meetYourGoals/monthlyGoals/monthlyGoals1";
+import meetYourGoalsMonthlyGoals2 from "../htmlPages/meetYourGoals/monthlyGoals/monthlyGoals2";
+import meetYourGoalsMonthlyHabits1 from "../htmlPages/meetYourGoals/monthlyHabits/monthlyHabits1";
+import meetYourGoalsMonthlyHabits2 from "../htmlPages/meetYourGoals/monthlyHabits/monthlyHabits2";
+import meetYourGoalsMyGoals1 from "../htmlPages/meetYourGoals/myGoals/myGoals1";
+import meetYourGoalsMyGoals2 from "../htmlPages/meetYourGoals/myGoals/myGoals2";
+import schoolWorkAssignments1 from "../htmlPages/schoolWork/assignments/assignments1";
+import schoolWorkAssignments2 from "../htmlPages/schoolWork/assignments/assignments2";
+import schoolWorkMeetingNotes1 from "../htmlPages/schoolWork/meetingNotes/meetingNotes1";
+import schoolWorkMeetingNotes2 from "../htmlPages/schoolWork/meetingNotes/meetingNotes2";
+import schoolWorkSchool1 from "../htmlPages/schoolWork/school/school1";
+import schoolWorkSchool2 from "../htmlPages/schoolWork/school/school2";
+import productivityProjects1 from "../htmlPages/productivity/projects/projects1";
+import productivityProjects2 from "../htmlPages/productivity/projects/projects2";
+import productivityTaskTriage1 from "../htmlPages/productivity/taskTriage/taskTriage1";
+import productivityTaskTriage2 from "../htmlPages/productivity/taskTriage/taskTriage2";
+import productivityToDo1 from "../htmlPages/productivity/toDo/toDo1";
+import productivityToDo2 from "../htmlPages/productivity/toDo/toDo2";
+import endPage from "../htmlPages/endPage/endPage";
 
 export default {
   name: "Builder",
   components: {
     Hourly1,
     FillPage,
-        fillpage,
-        dailyhourly1,
-        dailyhourly2,
-        weeklystandard1,
-        weeklystandard2,
-        dailyreflection1,
-        dailyreflection2,
-        dailysectional1,
-        dailysectional2,
-        weeklychecklist1,
-        weeklychecklist2,
-        weeklygoalserrands1,
-        weeklygoalserrands2,
-        weeklyhabits1,
-        weeklyhabits2,
-        weeklyprojects1,
-        weeklyprojects2,
-        weeklyhourly1,
-        weeklyhourly2,
-        weeklysectional1,
-        weeklysectional2,
-        schedulingmonthMemories1,
-        schedulingmonthMemories2,
-        schedulingmonthIdeas1,
-        schedulingmonthIdeas2,
-        schedulingblankMonth1,
-        schedulingblankMonth2,
-        schedulingmyYearMonths1,
-        schedulingmyYearMonths2,
-        schedulingmyYearDays1,
-        schedulingmyYearDays2,
-        blankPagesblank1,
-        blankPagesblank2,
-        blankPagesblankDays1,
-        blankPagesblankDays2,
-        blankPagesdotted1,
-        blankPagesdotted2,
-        blankPagesgrid1,
-        blankPagesgrid2,
-        blankPageslined1,
-        blankPageslined2,
-        blankPagestwoColumns1,
-        blankPagestwoColumns2,
-        blankPagesbucketList1,
-        blankPagesbucketList2,
-        lifestyleideas1,
-        lifestyleideas2,
-        lifestylereading1,
-        lifestylereading2,
-        lifestylemylist1,
-        lifestylemylist2,
-        lifestylepasswordTracker1,
-        lifestylepasswordTracker2,
-        VueHtml2pdf
+    fillpage,
+    dailyHourly1,
+    dailyHourly2,
+    weeklyStandard1,
+    weeklyStandard2,
+    dailyReflection1,
+    dailyReflection2,
+    dailySectional1,
+    dailySectional2,
+    weeklyChecklist1,
+    weeklyChecklist2,
+    weeklyGoalsErrands1,
+    weeklyGoalsErrands2,
+    weeklyHabits1,
+    weeklyHabits2,
+    weeklyProjects1,
+    weeklyProjects2,
+    weeklyHourly1,
+    weeklyHourly2,
+    weeklyKidsMeals1,
+    weeklyKidsMeals2,
+    weeklySectional1,
+    weeklySectional2,
+    schedulingMonthMemories1,
+    schedulingMonthMemories2,
+    schedulingMonthIdeas1,
+    schedulingMonthIdeas2,
+    schedulingBlankMonth1,
+    schedulingBlankMonth2,
+    schedulingMyYearMonths1,
+    schedulingMyYearMonths2,
+    schedulingMyYearDays1,
+    schedulingMyYearDays2,
+    blankPagesBlank1,
+    blankPagesBlank2,
+    blankPagesBlankDays1,
+    blankPagesBlankDays2,
+    blankPagesDotted1,
+    blankPagesDotted2,
+    blankPagesGrid1,
+    blankPagesGrid2,
+    blankPagesLined1,
+    blankPagesLined2,
+    blankPagesTwoColumns1,
+    blankPagesTwoColumns2,
+    blankPagesBucketList1,
+    blankPagesBucketList2,
+    lifestyleIdeas1,
+    lifestyleIdeas2,
+    lifestyleReading1,
+    lifestyleReading2,
+    lifestyleMylist1,
+    lifestyleMylist2,
+    lifestylePasswordTracker1,
+    lifestylePasswordTracker2,
+    lifestyleSocialMediaTracking1,
+    lifestyleSocialMediaTracking2,
+    lifestyleSocialMediaPlanning1,
+    lifestyleSocialMediaPlanning2,
+    financesBudgeting1,
+    financesBudgeting2,
+    financesExpenseTracker1,
+    financesExpenseTracker2,
+    atHomeCleaning1,
+    atHomeCleaning2,
+    atHomeHomeMaintenance1,
+    atHomeHomeMaintenance2,
+    babyBabyTracker1,
+    babyBabyTracker2,
+    babyBabyTracker21,
+    babyBabyTracker22,
+    babyBabyMonthly1,
+    babyBabyMonthly2,
+    wellnessDailyGratitude1,
+    wellnessDailyGratitude2,
+    wellnessFitness1,
+    wellnessFitness2,
+    wellnessMeasurements1,
+    wellnessMeasurements2,
+    wellnessMonthlyGratitude1,
+    wellnessMonthlyGratitude2,
+    wellnessMood1,
+    wellnessMood2,
+    wellnessOnTheMenu1,
+    wellnessOnTheMenu2,
+    wellnessReflection1,
+    wellnessReflection2,
+    wellnessWeeklyWellness1,
+    wellnessWeeklyWellness2,
+    meetYourGoals30DayChallenge1,
+    meetYourGoals30DayChallenge2,
+    meetYourGoalsHabitTracker1,
+    meetYourGoalsHabitTracker2,
+    meetYourGoalsMonthlyGoals1,
+    meetYourGoalsMonthlyGoals2,
+    meetYourGoalsMonthlyHabits1,
+    meetYourGoalsMonthlyHabits2,
+    meetYourGoalsMyGoals1,
+    meetYourGoalsMyGoals2,
+    schoolWorkAssignments1,
+    schoolWorkAssignments2,
+    schoolWorkMeetingNotes1,
+    schoolWorkMeetingNotes2,
+    schoolWorkSchool1,
+    schoolWorkSchool2,
+    productivityProjects1,
+    productivityProjects2,
+    productivityTaskTriage1,
+    productivityTaskTriage2,
+    productivityToDo1,
+    productivityToDo2,
+    endPage,
+    VueHtml2pdf
   },
   data() {
     return {
@@ -902,23 +1033,27 @@ export default {
           subcategories: [
             {
               name: 'daily',
+              key: 'daily',
               id: 1.1,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2FDailyOption1.png?alt=media&token=28627ec0-b7c1-4b78-8384-89ec58865a69',
               subcategoriesOptions: [
                 {
                   name: 'hourly',
+                  key: 'Hourly',
                   id: 1.1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2FDailyOption1.png?alt=media&token=28627ec0-b7c1-4b78-8384-89ec58865a69',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily1Big.png?alt=media&token=ba6cf9c0-6952-4128-8a89-0de1d6e9b1a6',
                 },
                 {
                   name: 'sectional',
+                  key: 'Sectional',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily2.png?alt=media&token=88ad381a-9c3d-41c4-be09-c40474c3a141',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily2Big.png?alt=media&token=d99e7c4a-ab94-4392-b7cb-31f7d84b0208',
                 },
                 {
                   name: 'reflection',
+                  key: 'Reflection',
                   id: 1.3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily3%20(1).png?alt=media&token=218a6a96-2b85-4387-adf7-564ec748d451',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fdaily%2FDaily3Big.png?alt=media&token=52697e17-9590-4ed6-810b-8b49437f67a9',
@@ -927,53 +1062,62 @@ export default {
             },
             {
               name: 'weekly',
+              key: 'weekly',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2FDouble1.png?alt=media&token=60e742d2-b9ae-4fe3-9491-b263840a3962',
               subcategoriesOptions: [
                 {
                   name: 'standard',
+                  key: 'Standard',
                   id: 1.1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1.png?alt=media&token=eb97e965-708e-4d2e-b580-b64ff009d569',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble1Big.png?alt=media&token=191787e3-1d2c-477b-9af4-23aebc76f395',
                 },
                 {
                   name: 'hourly',
+                  key: 'Hourly',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2.png?alt=media&token=f34f0813-8529-4458-b480-bd605c73b714',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble2Big.png?alt=media&token=4b446fba-4356-4343-938c-2987f44636e3'
                 },
                 {
                   name: 'kids - meals',
+                  key: 'KidsMeals',
                   id: 1.3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3.png?alt=media&token=ff648f7f-46c1-4f8d-bd3a-a47ac44c5f61',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble3Big.png?alt=media&token=e090d046-2adf-4b28-a374-2e3542fab4b8'
                 },
                 {
                   name: 'projects',
+                  key: 'Projects',
                   id: 1.3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4.png?alt=media&token=bd661069-e3a2-4e67-ad6a-88226c30c2c4',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble4Big.png?alt=media&token=196fc8ca-10df-4e3e-b240-502083996a71'
                 },
                 {
                   name: 'checklist',
+                  key: 'Checklist',
                   id: 1.3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5.png?alt=media&token=2263bea0-5e83-4735-90b4-f8e1684736ad',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble5Big.png?alt=media&token=df546f44-9236-4107-850b-3aee67d54097'
                 },
                 {
                   name: 'sectional',
+                  key: 'Sectional',
                   id: 1.3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6.png?alt=media&token=bd48f976-b61a-46ae-a412-fbb6bb694620',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FDouble6Big.png?alt=media&token=e80821bc-bb57-4271-8c60-701e2b8288e2'
                 },
                 {
                   name: 'habits',
+                  key: 'Habits',
                   id: 1.3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1.png?alt=media&token=5c277925-ade6-4b14-95e3-a0946069edc5',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle1Big.png?alt=media&token=1b6f7ab7-b4ec-405c-8c25-ff1d47c1df32'
                 },
                 {
                   name: 'goals - errands',
+                  key: 'GoalsErrands',
                   id: 1.3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/layout%2Fweekly%2FSingle2.png?alt=media&token=b2c05573-c0a6-47e8-8bc5-c2bcaedae6ff',
@@ -989,40 +1133,41 @@ export default {
           subcategories: [
             {
               name: 'scheduling',
+              key: 'scheduling',
               id: 1.1,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FMonth%20at%20a%20Glance3.png?alt=media&token=1952a63d-abe2-46ef-ab50-050c624c17be',
               subcategoriesOptions: [
                 {
                   name: 'MONTH-MEMORIES',
-                  key: 'monthMemories',
+                  key: 'MonthMemories',
                   id: 1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance1.png?alt=media&token=9b1ae680-0a62-4a24-b281-7a6a05492538',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance1Big.png?alt=media&token=71287cd5-92d6-4a39-bb3b-3ba8a3cc3373',
                 },
                 {
                   name: 'MONTH-IDEAS',
-                  key: 'monthIdeas',
+                  key: 'MonthIdeas',
                   id: 2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance2.png?alt=media&token=4b92ecb0-c9d7-4d35-af6d-58411ee96a4a',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance2Big.png?alt=media&token=cf71aa96-d555-4ce4-a0a5-27cdd3e63597',
                 },
                 {
                   name: 'BLANK MONTH',
-                  key: 'blankMonth',
+                  key: 'BlankMonth',
                   id: 3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance3.png?alt=media&token=d2a7c500-bb55-4a7a-b6b9-2d186e26b1ed',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance3Big.png?alt=media&token=de9daf7d-e583-483f-9292-c3bd6713e6a0',
                 },
                 {
                   name: 'MY YEAR / 365',
-                  key: 'myYearDays',
+                  key: 'MyYearDays',
                   id: 3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts1.png?alt=media&token=88158025-c05c-4f08-93b7-b91a89cfbfee',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts1Big.png?alt=media&token=dc5f37c4-ef05-4d8e-b77e-4c5137c08628',
                 },
                 {
                   name: 'MY YEAR / 12',
-                  key: 'myYearMonths',
+                  key: 'MyYearMonths',
                   id: 3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts2.png?alt=media&token=e05e0d38-ee3e-49da-8729-adc2f087c37c',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts2Big.png?alt=media&token=259b0801-f795-4c26-94aa-5f2d7a155a72',
@@ -1080,6 +1225,7 @@ export default {
             },
             {
               name: 'lifestyle',
+              key: 'lifestyle',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FList%20Page.png?alt=media&token=716a49e9-9cb8-4073-b5e2-18c65a8c1d29',
               subcategoriesOptions: [
@@ -1136,6 +1282,7 @@ export default {
             },
             {
               name: 'finances',
+              key: 'finances',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FBudgeting.png?alt=media&token=d80674a4-6f51-43a3-b2b1-170ffcbb8ba1',
               subcategoriesOptions: [
@@ -1165,6 +1312,7 @@ export default {
             },
             {
               name: 'at home',
+              key: 'atHome',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FCleaning.png?alt=media&token=f7d8f61f-5a5c-4716-b5f4-d48551fb7744',
               subcategoriesOptions: [
@@ -1186,6 +1334,7 @@ export default {
             },
             {
               name: 'baby',
+              key: 'baby',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FBaby1.png?alt=media&token=b54f9ff7-927d-4761-8d61-5a8f51affedd',
               subcategoriesOptions: [
@@ -1214,6 +1363,7 @@ export default {
             },
             {
               name: 'wellness',
+              key: 'wellness',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FWeekly%20Wellness%20Tracker.png?alt=media&token=a8f4f752-8fac-496b-b7a2-cc3170646d84',
               subcategoriesOptions: [
@@ -1277,6 +1427,7 @@ export default {
             },
             {
               name: 'meet your goals',
+              key: 'meetYourGoals',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FGoals%20Yearly.png?alt=media&token=d3ce8216-b68c-4c5c-b5e3-b9fe282eb641',
               subcategoriesOptions: [
@@ -1319,6 +1470,7 @@ export default {
             },
             {
               name: 'school - work',
+              key: 'schoolWork',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FSchool.png?alt=media&token=864f3f61-0132-48cd-a88f-f3e88ac35c6a',
               subcategoriesOptions: [
@@ -1347,6 +1499,7 @@ export default {
             },
             {
               name: 'productivity',
+              key: 'productivity',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FProject%20Template.png?alt=media&token=558e1470-7771-4fe5-9e28-056e488d3540',
               subcategoriesOptions: [
@@ -1662,7 +1815,7 @@ export default {
     },
     calcBookStructure() {
       this.pagesBookStructure = [];
-      const type = `${this.finalValue[5].selection.category}${this.finalValue[5].selection.subcategory.name}`
+      const type = `${this.finalValue[5].selection.category}${this.finalValue[5].selection.subcategory.key}`
       this.pagesBookStructure = [[{type: 'fillpage', category: 'fillpage', data: this.finalValue[2].selection}]];
       if (this.layoutOption === 'daily') {
         this.totalDatesArray.map((element) => {
@@ -2096,40 +2249,40 @@ body {
   font-size: 1.5rem;
 }
 .cover{
-  width: 94px !important;
-  height: 120px !important;
+  width: 76px !important;
+  height: 96px !important;
 }
 .coil{
-  width: 94px !important;
-  height: 122px !important;
+  width: 76px !important;
+  height: 98px !important;
 }
 .fillPages{
-  width: 91px !important;
-  height: 117px !important;
-}
-.dates{
-  width: 130px !important;
-  height: 85px !important;
-}
-.holidays{
-  width: 98px !important;
-  height: 118px !important;
-}
-.layout{
-  width: 117px !important;
+  width: 73px !important;
   height: 94px !important;
 }
+.dates{
+  width: 104px !important;
+  height: 68px !important;
+}
+.holidays{
+  width: 78px !important;
+  height: 94px !important;
+}
+.layout{
+  width: 94px !important;
+  height: 76px !important;
+}
 .addOnPages {
-  width: 81px !important;
-  height: 123px !important;
+  width: 64px !important;
+  height: 98px !important;
 }
 .extras {
-  width: 110px !important;
-  height: 115px !important;
+  width: 88px !important;
+  height: 92px !important;
 }
 .review {
-  width: 119px !important;
-  height: 75px !important;
+  width: 96px !important;
+  height: 60px !important;
 }
 
 .add-container {

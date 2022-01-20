@@ -264,7 +264,7 @@ export default {
   name: "weeklyChecklist2",
   props:{
     data:{
-      type: Object,
+      type: Array,
     },
   }
 }

@@ -158,7 +158,7 @@ export default {
   name: "weeklyProjects1",
   props:{
     data:{
-      type: Object,
+      type: Array,
     },
   }
 }

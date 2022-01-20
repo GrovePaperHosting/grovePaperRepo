@@ -6,7 +6,7 @@
         <!--<h4 class="has-text-text is-size-3 lamango-font">Choose which product you'd like to customize today.</h4>-->
         <div class="columns is-vcentered is-8 mt-6 p-3">
           <div class="column">
-            <div style="height: 214px">
+            <div style="height: 214px !important;">
             <router-link class="planner" to="/builder"><img src="../../public/assets/images/customizablePlanner.png" alt="Planner"></router-link>
             </div>
             <h2 class="is-size-4 kontuor-font has-text-weight-light">CUSTOMIZABLE PLANNER</h2>
@@ -78,8 +78,8 @@ export default {
         }
       }
       img{
-        width: 214px;
-        height: 214px;
+        width: 214px !important;
+        height: 214px !important;
         //max-width: 100%;
 
       }

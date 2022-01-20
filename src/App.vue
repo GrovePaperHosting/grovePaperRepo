@@ -46,6 +46,7 @@
         <router-view></router-view>
       </keep-alive>
     </transition>
+    <div id="fd-form-616a1ccfce1180e9a55d5160" class="subForm"></div>
     <footer class="footer">
       <div class="columns">
         <div class="column has-text-centered">
@@ -89,6 +90,9 @@ export default {
 </script>
 
 <style lang="scss">
+.subForm{
+  padding-bottom: 115px !important;
+}
 #app{
   position: relative;
 }

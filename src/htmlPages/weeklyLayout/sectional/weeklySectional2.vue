@@ -27,7 +27,7 @@ export default {
   name: "weeklySectional2",
   props:{
     data:{
-      type: Object,
+      type: Array,
     },
   }
 }
