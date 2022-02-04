@@ -22,7 +22,7 @@
       <div class="build-container-carrousel is-flex">
         <div class="build-container-carrousel-categories">
           <button @click="selectedCategory = index; selectedSubcategory = null; selectedItem = null; layoutPreselect = null;"
-                  v-for="(category, index) in carrouselCategories" :key="index" class="py-4">
+                  v-for="(category, index) in carrouselCategories" :key="index" class="py-4" :disabled="(category.key === 'review' && (typeof (finalValue[0]) !== 'object' && typeof (finalValue[1]) !== 'object' || typeof (finalValue[2]) !== 'object' || typeof (finalValue[3]) !== 'object' || typeof (finalValue[5]) !== 'object')) || (category.key === 'layout' && typeof (finalValue[3]) !== 'object')">
             <img v-show="selectedCategory === index" :src="category.urlImgBlack" :class="category.key">
             <img v-show="selectedCategory !== index" :src="category.urlImg" :class="category.key">
             <h1 class="is-uppercase is-size-6 kontuor-font has-text-weight-light">{{ category.name }}</h1>
