@@ -95,4 +95,10 @@ p{
   text-transform:uppercase;
   color:rgb(129,130,133);
 }
+
+@media only screen and (max-width: 1200px) {
+  p {
+    font-size:10px !important;
+  }
+}
 </style>

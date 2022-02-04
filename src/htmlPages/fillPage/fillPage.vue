@@ -1,16 +1,18 @@
 <template>
   <div id="g-1_-Fill-Page-R-box" class="ai2html">
-    <div id="g-1_-Fill-Page-R-Artboard_2" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
+    <div id="g-1_-Fill-Page-R-Artboard_2" class="g-artboard is-flex is-justify-content-center" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-1_-Fill-Page-R-Artboard_2-img" class="g-aiImg" alt="" src="./1_-Fill-Page-R-Artboard_2.png"/>
-      <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:52.1532%;margin-top:-50.7px;left:52.6889%;margin-left:-47px;width:94px;">
-        <p class="g-pstyle0">.</p>
+      <div id="g-ai0-1" class="g-Layer_1 g-aiAbs" style="top:52.1532%;margin-top:-50.7px;width:50%; height: auto; padding-left: 15px">
+        <p class="g-pstyle0"></p>
+        <p>&nbsp;</p>
+        <p class="g-pstyle0">{{data.Name}}</p>
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p class="g-pstyle0">{{data.Year}}</p>
-        <p class="g-pstyle0"> </p>
-        <!--<p class="g-pstyle0 is-size-7-touch">{{data.Email}}</p>-->
-        <p class="g-pstyle0 is-size-7-touch">{{data.Email}}</p>
+        <p class="g-pstyle0">{{data.Message}} </p>
+        <!--<p class="g-pstyle0">{{data.Email}}</p>-->
+        <p class="g-pstyle0">{{data.Email}}</p>
         <p class="g-pstyle0">{{data.Telephone}}</p>
       </div>
     </div>
@@ -29,6 +31,9 @@ export default {
 </script>
 
 <style media="screen,print">
+.g-aiPointText{
+
+}
 p{
   font-family: 'Kontour Type - Kopius-Light';
 }
@@ -76,9 +81,13 @@ p{
   position:static;
 }
 #g-1_-Fill-Page-R-Artboard_2 .g-pstyle0 {
-  height:14px;
+
   text-align:center;
   text-transform:uppercase;
 }
-
+@media only screen and (max-width: 1200px) {
+  p {
+    font-size:10px !important;
+  }
+}
 </style>
