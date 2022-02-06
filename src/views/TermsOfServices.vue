@@ -151,9 +151,9 @@
           than yourself, or otherwise mislead us or third-parties as to the origin of any comments. You are solely
           responsible
           for any comments you make and their accuracy. We take no responsibility and assume no liability for any comments
-          posted by you or any third-party.<br/><br/> SECTION 10 - PERSONAL INFORMATION <br/><br/>Your submission of personal information
+            posted by you or any third-party.<br/><br/> SECTION 10 - PERSONAL INFORMATION <br/><br/>Your submission of personal information
           through
-          the store is governed by our Privacy Policy. To view our Privacy Policy please click here.<br/><br/> SECTION 11 - ERRORS,
+          the store is governed by our <a class="link" href="/privacy-policy">Privacy Policy </a>. To view our Privacy Policy please click here.<br/><br/> SECTION 11 - ERRORS,
           INACCURACIES AND OMISSIONS <br/><br/>Occasionally there may be information on our site or in the Service that contains
           typographical errors, inaccuracies or omissions that may relate to product descriptions, pricing, promotions,
           offers, product shipping charges, transit times and availability. We reserve the right to correct any errors,
@@ -269,7 +269,7 @@
           continued
           use of or access to our website or the Service following the posting of any changes to these Terms of Service
           constitutes acceptance of those changes. <br/><br/>SECTION 20 - CONTACT INFORMATION <br/><br/>Questions about the Terms of Service
-          should be sent to us at hello@grovepaper.ca.
+            should be sent to us at <a class="link" target="_blank" href="mailto:hello@grovepaper.ca"> hello@grovepaper.ca. </a>
           </h1>
         </div>
       </div>

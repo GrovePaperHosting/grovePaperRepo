@@ -70,9 +70,9 @@
           <h1 class="has-text-weight-normal is-size-6 champagne-limousines-font"> © 2022 Grove Paper. All Rights Reserved. Website made with love by Ana Steinberg Designs </h1>
         </div>
         <div class="column is-narrow has-text-centered">
-          <img class="icons-social-media mx-2" src="../public/assets/images/Instagram.png">
-          <img class="icons-social-media mx-2" src="../public/assets/images/Facebook.png">
-          <img class="icons-social-media mx-2" src="../public/assets/images/Pinterest.png">
+          <a target="_blank" href="https://www.instagram.com/grove.paper/"><img class="icons-social-media mx-2" src="../public/assets/images/Instagram.png"></a>
+          <a target="_blank" href="https://www.facebook.com/grovepaper"><img class="icons-social-media mx-2" src="../public/assets/images/Facebook.png"></a>
+          <a target="_blank" href="https://www.pinterest.ca/grovepaper"><img class="icons-social-media mx-2" src="../public/assets/images/Pinterest.png"></a>
         </div>
       </div>
     </footer>

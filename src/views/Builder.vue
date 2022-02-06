@@ -5,7 +5,7 @@
       <div class="build-container__subtitle">
         <h4 class="has-text-text is-size-4 lamango-font">Let's make a beautiful planer! Scroll down and select through
           each of the options to create the best match for your needs. To learn how to build your own planner, visit our
-          Tutorial page.</h4>
+          <a class="link" href="/tutorial"> Tutorial page </a>.</h4>
       </div>
       <div :class="`modal ${loadingPDF? 'is-active':'' }`">
         <div class="modal-background"></div>

@@ -24,7 +24,7 @@
                 support
                 local, Canadian, women owned small businesses as much as possible. If you’re a female small business
                 owner, or just have a really cool idea? We’d love to work with you! Feel free to contact us at
-                hello@grovepaper.ca.</h2>
+                <a class="link" target="_blank" href="mailto:hello@grovepaper.ca">hello@grovepaper.ca.</a></h2>
             </div>
           </div>
         </div>
