@@ -9,26 +9,26 @@
             <div style="height: 214px !important;">
             <router-link class="planner" to="/builder"><img src="../../public/assets/images/customizablePlanner.png" alt="Planner"></router-link>
             </div>
-            <h2 class="is-size-4 kontuor-font has-text-weight-light">CUSTOMIZABLE PLANNER</h2>
+            <div style="height: 100px"><h2 class="is-size-4 kontuor-font has-text-weight-light">CUSTOMIZABLE PLANNER</h2></div>
           </div>
           <div class="column">
             <div style="height: 214px">
               <router-link to="/"><img src="../../public/assets/images/customizableNotebook.png" alt="Notebook"></router-link>
             </div>
-            <h2 class="is-size-4 kontuor-font has-text-weight-light"> CUSTOMIZABLE NOTEBOOK</h2>
+            <div style="height: 100px"><h2 class="is-size-4 kontuor-font has-text-weight-light"> CUSTOMIZABLE NOTEBOOK</h2></div>
           </div>
           <div class="column">
             <div style="height: 214px">
               <router-link to="/pre-design"><img src="../../public/assets/images/predesingPlanner.png" alt="Notebook"></router-link>
             </div>
-            <h2 class="is-size-4 kontuor-font has-text-weight-light"> PRE-DESIGNED PLANNER</h2>
+            <div style="height: 100px"><h2 class="is-size-4 kontuor-font has-text-weight-light"> PRE-DESIGNED PLANNER</h2></div>
           </div>
-          <div class="column" style="position: relative; height: 300px">
-            <div style="height: 214px; width: 322px">
+          <div class="column">
+            <div style="height: 214px; padding: 20px 0">
               <router-link to="/"><img src="../../public/assets/images/GiftCardShop.png" alt="Notebook"
                                        class="giftCard"></router-link>
             </div>
-            <h2 class="is-size-4 kontuor-font has-text-weight-light"> GIFT CARDS</h2>
+            <div style="height: 100px"><h2 class="is-size-4 kontuor-font has-text-weight-light"> GIFT CARDS</h2></div>
           </div>
         </div>
       </div>
@@ -44,12 +44,8 @@ export default {
 
 <style scoped lang="scss">
 .giftCard{
-  min-width: 150px;
-  //position: absolute;
-  top: 15px;
-  left: 10px;
-  height: 100% !important;
-  width: 100% !important;
+  width: 254px !important;
+  height: 180px !important;
 }
 .columns{
   max-width: 100%;
@@ -62,24 +58,23 @@ export default {
   display: flex;
   vertical-align: center;
   &__title{
-    font-size: 4rem;
+    font-size: 6rem;
   }
   &__options{
-    max-width: 1200px;
+    //max-width: 1200px;
     margin: auto;
     width: 100%;
-    padding: 2%;
+    padding: 2% 0;
     .column{
       .planner {
         img {
           width: 230px;
           max-width: 100%;
-          height: 180px;
         }
       }
       img{
-        width: 214px !important;
-        height: 214px !important;
+        width: 214px;
+        height: 214px ;
         //max-width: 100%;
 
       }

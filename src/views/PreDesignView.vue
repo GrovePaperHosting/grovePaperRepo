@@ -1,7 +1,7 @@
 <template>
   <div class="has-background-secondary build-container">
     <div class="container">
-      <div class="columns">
+      <div class="columns is-vcentered">
         <div class="column">
 
         </div>

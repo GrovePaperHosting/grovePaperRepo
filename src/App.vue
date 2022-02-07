@@ -72,7 +72,7 @@
         <div class="column is-narrow has-text-centered">
           <a target="_blank" href="https://www.instagram.com/grove.paper/"><img class="icons-social-media mx-2" src="../public/assets/images/Instagram.png"></a>
           <a target="_blank" href="https://www.facebook.com/grovepaper"><img class="icons-social-media mx-2" src="../public/assets/images/Facebook.png"></a>
-          <a target="_blank" href="https://www.pinterest.ca/grovepaper"><img class="icons-social-media mx-2" src="../public/assets/images/Pinterest.png"></a>
+          <a target="_blank" href="https://www.pinterest.ca/grovepaper  "><img class="icons-social-media mx-2" src="../public/assets/images/Pinterest.png"></a>
         </div>
       </div>
     </footer>
