@@ -5,7 +5,7 @@
         <div class="build-container__options">
           <h1 class="build-container__title has-text-primary frunchySerif-font">CONTACT US</h1>
           <h2 class="has-text-grey is-size-5 freight-big-pro-font">We’d love to hear from you! Send us an email to
-            <span class="is-underlined">hello@grovepaper.ca</span> or fill out the form below.</h2>
+            <a class="link" target="_blank" href="mailto:hello@grovepaper.ca"> hello@grovepaper.ca </a> or fill out the form below.</h2>
         </div>
       </div>
       <div class="p-6" style="background: #FCF5F5">

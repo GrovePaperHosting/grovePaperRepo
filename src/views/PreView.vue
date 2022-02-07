@@ -59,11 +59,13 @@
       </div>
     </div>
     <div class="container mt-6 is-flex is-justify-content-center">
-      <div class="columns">
+      <div class="columns is-vcentered">
         <div class="column is-flex is-flex-direction-column is-narrow">
-          <img class="secondaryImage" :src="this.$route.params.preDesignInfo.imagesSrc[1]">
-          <img class="secondaryImage" :src="this.$route.params.preDesignInfo.imagesSrc[2]">
-          <img class="secondaryImage" :src="this.$route.params.preDesignInfo.imagesSrc[3]">
+          <div v-for="(element, index) in this.$route.params.preDesignInfo.imagesSrc" :key="index">
+            <img v-if="index !== indexImage" class="secondaryImage" :src="element" @click="selectImage(index)">
+          </div>
+<!--          <img class="secondaryImage" :src="this.$route.params.preDesignInfo.imagesSrc[2]" @click="selectImage('2')">
+          <img class="secondaryImage" :src="this.$route.params.preDesignInfo.imagesSrc[3]" @click="selectImage('3')">-->
         </div>
         <div class="column is-narrow">
           <img class="mainImage" :src="this.$route.params.preDesignInfo.imagesSrc[indexImage]">
@@ -71,7 +73,7 @@
         <div class="column">
           <h1><span class="build-container__title has-text-primary frunchySerif-font">{{ this.$route.params.preDesignInfo.name }}</span>
             <span class="build-container__title has-text-grey frunchySerif-font"> {{ this.$route.params.preDesignInfo.price }}</span></h1>
-          <h1 class="build-container__content has-text-text has-text-weight-light">{{ this.$route.params.preDesignInfo.description }}</h1>
+          <h1 class="build-container__content has-text-text has-text-weight-light is-size-4">{{ this.$route.params.preDesignInfo.description }}</h1>
           <div class="columns">
             <div class="column">
               <h1 class="is-size-5 lamango-font">COVER</h1>
@@ -220,6 +222,9 @@ export default {
     }
   },
   methods:{
+    selectImage(index){
+      this.indexImage = index;
+    },
     selectItem(selection) {
       if(this.selectedCategory ===0) {
         this.selectedCover = selection.subcategory.name;
@@ -298,16 +303,16 @@ export default {
     color: #707070;
   }
   .columns{
-    max-width: 800px;
+    max-width: 1000px;
   }
   .mainImage {
-    height: 304px;
-    width: 304px;
+    height: 350px;
+    width: 350px;
     max-width: 100%;
   }
   .secondaryImage{
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
   }
 }
 </style>

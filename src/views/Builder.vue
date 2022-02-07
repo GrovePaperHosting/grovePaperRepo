@@ -5,7 +5,7 @@
       <div class="build-container__subtitle">
         <h4 class="has-text-text is-size-4 lamango-font">Let's make a beautiful planer! Scroll down and select through
           each of the options to create the best match for your needs. To learn how to build your own planner, visit our
-          Tutorial page.</h4>
+          <a class="link" href="/tutorial"> Tutorial page </a>.</h4>
       </div>
       <div :class="`modal ${loadingPDF? 'is-active':'' }`">
         <div class="modal-background"></div>
@@ -22,7 +22,7 @@
       <div class="build-container-carrousel is-flex">
         <div class="build-container-carrousel-categories">
           <button @click="selectedCategory = index; selectedSubcategory = null; selectedItem = null; layoutPreselect = null;"
-                  v-for="(category, index) in carrouselCategories" :key="index" class="py-4" :disabled="(category.key === 'review' && (typeof (finalValue[0]) !== 'object' && typeof (finalValue[1]) !== 'object' || typeof (finalValue[2]) !== 'object' || typeof (finalValue[3]) !== 'object' || typeof (finalValue[5]) !== 'object')) || (category.key === 'layout' && typeof (finalValue[3]) !== 'object')">
+                  v-for="(category, index) in carrouselCategories" :key="index" class="py-4" :disabled="(category.key === 'review' && (typeof (finalValue[0]) !== 'object' && typeof (finalValue[1]) !== 'object' || typeof (finalValue[2]) !== 'object' || typeof (finalValue[3]) !== 'object' || typeof (finalValue[5]) !== 'object')) || (category.key === 'layout' && !validDate)">
             <img v-show="selectedCategory === index" :src="category.urlImgBlack" :class="category.key">
             <img v-show="selectedCategory !== index" :src="category.urlImg" :class="category.key">
             <h1 class="is-uppercase is-size-6 kontuor-font has-text-weight-light">{{ category.name }}</h1>
@@ -1614,7 +1614,8 @@ export default {
       rightStack: [],
       currentPage: null,
       pagesBookStructure: [],
-      pdfProgress: 1
+      pdfProgress: 1,
+      validDate: false,
     };
   },
   watch: {
@@ -1910,6 +1911,7 @@ export default {
       if (this.totalPages >= 120) this.price = ((this.totalPages - 120) * 0.1) + 65;
     },
     setDaysAndMonths() {
+      if(this.dateValue.endDate.month && this.dateValue.endDate.year && this.dateValue.startDate.month && this.dateValue.startDate.year) this.validDate = true;
       const startDate = new Date(`${this.dateValue.startDate.year}-${this.dateValue.startDate.month}-01`).getTime();
       const endDate = new Date(`${this.dateValue.endDate.year}-${this.dateValue.endDate.month}-01`).getTime();
       this.days = (endDate - startDate) / (1000 * 60 * 60 * 24);
@@ -1965,6 +1967,7 @@ export default {
       //this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: value}
     },
     dateChange(value) {
+      this.validDate = false;
       this.finalValue[this.selectedCategory] = {};
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.formChange(value);
@@ -2372,12 +2375,12 @@ button {
       &-container {
         background-color: #FCF9F7 !important;
         padding: 10px 5vw;
-        min-height: 400px;
+        min-height: 420px;
         width: 100%;
 
         .columns {
           width: 100%;
-          margin-top: 20px;
+          /*margin-top: 20px;*/
           @media #{$mobile} {
             margin-top: 10px;
           }

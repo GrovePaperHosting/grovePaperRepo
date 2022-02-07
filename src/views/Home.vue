@@ -2,9 +2,9 @@
   <div class="home-content">
     <div class="container">
       <section class="home-content-top is-flex is-flex-direction-column is-justify-content-center">
-        <div class="home-content-top__logo-content is-flex is-justify-content-center">
+        <div class="home-content-top__logo-content is-flex is-justify-content-center my-6">
           <img
-              src="../../public/assets/images/grovePaperLogo-Pink.png"
+              src="../../public/assets/images/GrovePaperLogo.png"
               alt="Grove Paper Logo"
           >
         </div>
@@ -107,7 +107,7 @@ export default {
    background-attachment: fixed;
  }
 &-bottom{
-   height: 320px;
+   height: 340px;
   &-container{
     position: relative;
     .columns{
