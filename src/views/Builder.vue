@@ -284,7 +284,7 @@
                     <div class="column">
                       <b-field>
                         <b-select placeholder="Select a year" v-model="dateValue.startDate['year']"
-                                  @click.native="dateChange(dateValue)" expanded>
+                                  @click.native="dateChange(dateValue)" @input="dateChange(dateValue)"  expanded>
                           <option v-for="(yearOption, index) in datesValueOptions.years" :key="index"
                                   :value="yearOption">
                             {{ yearOption }}
@@ -295,7 +295,7 @@
                     <div class="column">
                       <b-field>
                         <b-select placeholder="Select a month" v-model="dateValue.startDate['month']"
-                                  @click.native="dateChange(dateValue)" expanded>
+                                  @click.native="dateChange(dateValue)" @input="dateChange(dateValue)" expanded>
                           <option v-for="(monthOption, index) in datesValueOptions.month" :key="index"
                                   :value="monthOption.value">
                             {{ monthOption.key }}
@@ -312,7 +312,7 @@
                       <b-field>
                         <b-select :disabled="(!dateValue.startDate.year || !dateValue.startDate.month)"
                                   placeholder="Select a year" v-model="dateValue.endDate['year']"
-                                  @click.native="dateChange(dateValue)" expanded>
+                                  @click.native="dateChange(dateValue)" @input="dateChange(dateValue)" expanded>
                           <option v-for="(yearOption, index) in endYearDate" :key="index"
                                   :value="yearOption">
                             {{ yearOption }}
@@ -325,7 +325,7 @@
                         <b-select
                             :disabled="(!dateValue.startDate.year || !dateValue.startDate.month || !dateValue.endDate.year)"
                             placeholder="Select a month" v-model="dateValue.endDate['month']"
-                            @click.native="dateChange(dateValue)" expanded>
+                            @click.native="dateChange(dateValue)" @input="dateChange(dateValue)" expanded>
                           <option v-for="(monthOption, index) in endMonthDate" :key="index"
                                   :value="monthOption.value">
                             {{ monthOption.key }}
@@ -420,7 +420,7 @@
             </div>
             <div class="w100" v-if="options[selectedCategory].type === 'addOptions'">
               <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered py-6">
-                <div class="column is-one-fifth p-0" v-for="(option, index) in options[selectedCategory].subcategories"
+                <div class="column is-one-fifth-desktop is-one-third-tablet p-0" v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent"
                           @click="selectedSubcategory = index; layoutOption = options[selectedCategory].subcategories[index].name; layoutPreselect = null">
@@ -1967,6 +1967,7 @@ export default {
       //this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: value}
     },
     dateChange(value) {
+      console.log('date', value);
       this.validDate = false;
       this.finalValue[this.selectedCategory] = {};
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
@@ -2389,7 +2390,7 @@ button {
         &-card {
           width: 100%;
           max-width: 250px;
-          height: 200px;
+          height: 240px;
           position: relative;
           //margin-top: 15px;
 
