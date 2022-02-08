@@ -27,7 +27,7 @@ export default {
       babyBookInfo:{
         name: 'BABY BOOK',
         price: '$77',
-        imagesSrc: ['https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/preMade-Goals%2FGoals%20Yearly.png?alt=media&token=0ec339d5-1031-4e5d-852b-21d9df2d3a8d','https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby1.png?alt=media&token=375d93af-e9c7-41f3-9a38-45b32e12bf5d', 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FBlank%20Days.png?alt=media&token=652f2362-75f9-4bf7-acea-f006a3f70165','https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FBlank%20paper.png?alt=media&token=deccd829-53fa-4061-8c4b-d64581102843'],
+        imagesSrc: ['https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby3.png?alt=media&token=dcdca4f6-f0a3-4b41-9b90-91f7a9dcfa7b','https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby1.png?alt=media&token=375d93af-e9c7-41f3-9a38-45b32e12bf5d', 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FBlank%20Days.png?alt=media&token=652f2362-75f9-4bf7-acea-f006a3f70165','https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FBlank%20paper.png?alt=media&token=deccd829-53fa-4061-8c4b-d64581102843'],
         description: "Keep track of all of your little ones’ milestones with this pre-designed planner thought out just for you! Select a cover and coil and enjoy all of your baby’s most important info in one place."
       },
       goalsBookInfo:{
