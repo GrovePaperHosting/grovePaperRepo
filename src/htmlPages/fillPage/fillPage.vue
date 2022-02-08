@@ -7,13 +7,13 @@
         <p class="g-pstyle0"></p>
         <p>&nbsp;</p>
         <p class="g-pstyle0">{{data.Name}}</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
+
         <p class="g-pstyle0">{{data.Year}}</p>
-        <p class="g-pstyle0">{{data.Message}} </p>
-        <!--<p class="g-pstyle0">{{data.Email}}</p>-->
         <p class="g-pstyle0">{{data.Email}}</p>
         <p class="g-pstyle0">{{data.Telephone}}</p>
+        <p>&nbsp;</p>
+        <p class="g-pstyle0">{{data.Message}} </p>
+        <!--<p class="g-pstyle0">{{data.Email}}</p>-->
       </div>
     </div>
   </div>
