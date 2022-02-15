@@ -31,7 +31,7 @@
       <template #end>
         <b-navbar-item tag="div">
           <div class="buttons">
-            <a class="button shopping-cart-button">
+            <a class="button shopping-cart-button" @click="showCar=true">
               <img
                   src="../public/assets/images/Shopping Cart.png"
                   alt="Shopping Cart icon"
@@ -41,12 +41,28 @@
         </b-navbar-item>
       </template>
     </b-navbar>
+    <div class="side-menu" v-show="showCar" :class="showCar? 'active':'non-active'">
+      <div class="is-flex is-justify-content-space-between">
+        <h1 class="freight-big-pro-font has-text-primary is-size-2">My Cart</h1>
+        <button v-show="showCar" class="button__transparent" style="height: 36px; width: 36px; margin-top: -10px; margin-right: -10px" @click="showCar=false"><img src="../public/assets/images/CloseBtn.svg"></button>
+      </div>
+      <hr/>
+      <div style="position: absolute; bottom: 0px; width: 300px">
+        <hr/>
+        <div class="is-flex is-justify-content-space-between">
+          <h1 class="freight-big-pro-font has-text-grey is-size-4">SUBTOTAL</h1> <h1 class="freight-big-pro-font has-text-grey is-size-4">$xxx</h1>
+        </div>
+        <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100" style="background-color: #F2D2CD; height: 40px; border-radius: 0">
+          CHECKOUT
+        </button>
+        <div class="has-text-centered"><a class=" has-text-grey is-size-4 is-underlined">Review Order</a></div>
+      </div>
+    </div>
     <transition>
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
     </transition>
-    <div id="fd-form-616a1ccfce1180e9a55d5160" class="subForm"></div>
     <footer class="footer">
       <div class="columns">
         <div class="column has-text-centered">
@@ -85,11 +101,44 @@ export default {
   name: 'App',
   components: {
 
+  },
+  data(){
+    return{
+      showCar: false,
+    }
   }
 }
 </script>
 
 <style lang="scss">
+.side-menu{
+  height: 100vh;
+  width: 0;
+  //min-width: 320px;
+  top: 0px;
+  right: 0px;
+  z-index: 99 !important;
+  background-color: white;
+  transition: width 0.5s;
+  hr{
+    margin: 0;
+    height: 4px;
+    background-color: #FCF5F5;
+  }
+}
+.side-menu.active{
+  height: 100vh;
+  width: 350px;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 99 !important;
+  background-color: white;
+  padding: 20px;
+  transition: width 0.5s;
+  border-right: 5px solid #FCF5F5 ;
+  border-left: 5px solid #FCF5F5 ;
+}
 .subForm{
   padding-bottom: 115px !important;
 }

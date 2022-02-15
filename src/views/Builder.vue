@@ -212,14 +212,14 @@
                        :key="index">
                     <button class="build-container-carrousel-options-container-card button__transparent"
                             @click="selectItem({category: options[selectedCategory].subcategories[selectedSubcategory].name, subcategory: option}, index)">
-                      <div>
+                      <div style="position: relative">
                         <img class="image-option" :src="option.urlImg">
+                        <img v-if="selectedItem === index"
+                             class="build-container-carrousel-options-container-card__selected"
+                             src="../assets/images/SELECTION.png">
                       </div>
                       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
                         {{ option.name }}</h1>
-                      <img v-if="selectedItem === index"
-                           class="build-container-carrousel-options-container-card__selected"
-                           src="../assets/images/SELECTION.png">
                     </button>
                   </div>
                 </div>
@@ -232,14 +232,14 @@
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent w100"
                           @click="selectItem(option, index)">
-                    <div class="w100">
+                    <div class="w100" style="position: relative">
                       <img class="image-option" :src="option.urlImg">
+                      <img v-if="selectedItem === index"
+                           class="build-container-carrousel-options-container-card__selected"
+                           src="../assets/images/SELECTION.png">
                     </div>
                     <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
                       {{ option.name }}</h1>
-                    <img v-if="selectedItem === index"
-                         class="build-container-carrousel-options-container-card__selected"
-                         src="../assets/images/SELECTION.png">
                   </button>
                 </div>
               </div>
@@ -2396,8 +2396,8 @@ button {
 
           &__selected {
             position: absolute;
-            top: -10px;
-            right: 10px;
+            top: -18px;
+            right: -18px;
             width: 50px;
             height: 50px;
           }

@@ -7,11 +7,11 @@
         <div class="columns is-vcentered is-8 mt-6 p-3">
           <div class="column">
             <router-link class="planner" to="/builder"><img src="../../public/assets/images/Planner.png" alt="Planner"></router-link>
-            <h2 class="is-size-4 kontuor-font has-text-weight-light">PLANNER</h2>
+            <h2 class="is-size-4 freight-big-pro-font has-text-weight-light">PLANNER</h2>
           </div>
           <div class="column">
             <router-link to="/build"><img src="../../public/assets/images/Notebook.png" alt="Notebook"></router-link>
-            <h2 class="is-size-4 kontuor-font has-text-weight-light"> NOTEBOOK</h2>
+            <h2 class="is-size-4 freight-big-pro-font has-text-weight-light"> NOTEBOOK</h2>
           </div>
         </div>
       </div>

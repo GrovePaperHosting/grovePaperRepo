@@ -11,7 +11,7 @@
       <div class="p-6" style="background: #FCF5F5">
         <div class="columns">
           <div class="column">
-            <img style="max-width: 300px" src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/Contact%20Us.png?alt=media&token=2b253aaf-47f1-4cf7-aa2d-9afd4c27de3b">
+            <img style="max-width: 300px; position: fixed; bottom: 180px;" src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/Contact%20Us.png?alt=media&token=2b253aaf-47f1-4cf7-aa2d-9afd4c27de3b">
           </div>
           <div class="column">
             <h1 class="is-size-6 freight-big-pro-font has-text-grey-dark has-text-weight-light">Name</h1>
@@ -27,7 +27,7 @@
             <h1 class="is-size-6 freight-big-pro-font has-text-grey-dark has-text-weight-light">Message</h1>
             <textarea class="textarea" type="textarea" row="3" v-model="formValue['message']"></textarea>
             <div class="mt-3 w100 is-flex is-justify-content-center">
-              <button class="button has-background-primary has-text-white is-size-4 is-small" style="height: 36px">Send
+              <button class="button has-background-primary has-text-white is-size-4 is-small" style="height: 36px" @click="sentEmail()">Send
                 Message
               </button>
             </div>
@@ -39,17 +39,37 @@
 </template>
 
 <script>
+import {init, send} from 'emailjs-com';
+
+/*init(process.env.VUE_APP_EMAIL_ID);*/
+init("user_rVFW3uNdwPo3aLyWfIMyo");
+
+
 export default {
   name: "ContactUs",
   data() {
     return {
       formValue:[]
     }
+  },
+  methods:{
+    sentEmail(){
+      const templateParams = {from_name: this.formValue['name'], reply_to: this.formValue['email'], message:this.formValue['message']}
+      send('service_w81r30t', 'template_aenwm4r', templateParams)
+          .then(function (response) {
+            console.log('SUCCESS!', response.status, response.text);
+          }, function (error) {
+            console.log('FAILED...', error);
+          });
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
+.textarea{
+  font-size: 1.5rem;
+}
 .giftCard{
   min-width: 150px;
 }
