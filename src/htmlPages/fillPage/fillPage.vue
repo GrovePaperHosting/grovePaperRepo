@@ -3,7 +3,7 @@
     <div id="g-1_-Fill-Page-R-Artboard_2" class="g-artboard is-flex is-justify-content-center" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-1_-Fill-Page-R-Artboard_2-img" class="g-aiImg" alt="" src="./1_-Fill-Page-R-Artboard_2.png"/>
-      <div id="g-ai0-1" class="g-Layer_1 g-aiAbs" style="top:52.1532%;margin-top:-50.7px;width:50%; height: auto; padding-left: 15px">
+      <div id="g-ai0-1" class="g-Layer_1 g-aiAbs" style="top:52.1532%;margin-top:-50.7px;width:80%; height: auto; padding-left: 15px">
         <p class="g-pstyle0"></p>
         <p>&nbsp;</p>
         <p class="g-pstyle0">{{data.Name}}</p>
