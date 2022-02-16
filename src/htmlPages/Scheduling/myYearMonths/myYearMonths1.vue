@@ -2,7 +2,7 @@
   <div id="g-5_-My-Year-12-L-box" class="ai2html">
     <div id="g-5_-My-Year-12-L-Artboard_4" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
-      <img id="g-5_-My-Year-12-L-Artboard_4-img" class="g-aiImg" alt="" src="5_-My-Year-12-L-Artboard_4.png"/>
+      <img id="g-5_-My-Year-12-L-Artboard_4-img" class="g-aiImg" alt="" src="./5_-My-Year-12-L-Artboard_4.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:94.283%;margin-top:-5.9px;left:47.3689%;margin-left:-28.5px;width:57px;">
         <p class="g-pstyle0">extras</p>
       </div>

@@ -249,27 +249,27 @@
                 <div class="column is-6">
                   <div class="w100">
                     <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">name </h1>
-                    <input class="input" v-model="formValue['Name']" @keyup="formChange(formValue)">
+                    <input class="input" maxlength="38" v-model="formValue['Name']" @keyup="formChange(formValue)">
                   </div>
                   <div class="w100">
                     <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">year </h1>
-                    <input class="input" v-model="formValue['Year']" @keyup="formChange(formValue)">
+                    <input class="input" maxlength="11" v-model="formValue['Year']" @keyup="formChange(formValue)">
                   </div>
                   <div class="w100">
                     <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">email </h1>
                     <b-field>
-                      <input class="input" type="email" v-model="formValue['Email']" @keyup="formChange(formValue)">
+                      <input class="input" maxlength="39" type="email" v-model="formValue['Email']" @keyup="formChange(formValue)">
                     </b-field>
                   </div>
                 </div>
                 <div class="column is-6">
                   <div class="w100">
                     <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">telephone </h1>
-                    <input class="input" v-model="formValue['Telephone']" @keyup="formChange(formValue)">
+                    <input class="input" maxlength="12" v-model="formValue['Telephone']" @keyup="formChange(formValue)">
                   </div>
                   <div class="w100">
                     <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">message </h1>
-                    <textarea class="textarea" type="textarea" row="3" v-model="formValue['Message']"
+                    <textarea class="textarea" maxlength="152" type="textarea" row="3" v-model="formValue['Message']"
                               @keyup="formChange(formValue)"></textarea>
                   </div>
                 </div>
@@ -284,7 +284,7 @@
                     <div class="column">
                       <b-field>
                         <b-select placeholder="Select a year" v-model="dateValue.startDate['year']"
-                                  @click.native="dateChange(dateValue)" @input="dateChange(dateValue)"  expanded>
+                                  @input="dateChange(dateValue)"  expanded>
                           <option v-for="(yearOption, index) in datesValueOptions.years" :key="index"
                                   :value="yearOption">
                             {{ yearOption }}
@@ -295,7 +295,7 @@
                     <div class="column">
                       <b-field>
                         <b-select placeholder="Select a month" v-model="dateValue.startDate['month']"
-                                  @click.native="dateChange(dateValue)" @input="dateChange(dateValue)" expanded>
+                                  @input="dateChange(dateValue)" expanded>
                           <option v-for="(monthOption, index) in datesValueOptions.month" :key="index"
                                   :value="monthOption.value">
                             {{ monthOption.key }}
@@ -312,7 +312,7 @@
                       <b-field>
                         <b-select :disabled="(!dateValue.startDate.year || !dateValue.startDate.month)"
                                   placeholder="Select a year" v-model="dateValue.endDate['year']"
-                                  @click.native="dateChange(dateValue)" @input="dateChange(dateValue)" expanded>
+                                  @input="dateChange(dateValue)" expanded>
                           <option v-for="(yearOption, index) in endYearDate" :key="index"
                                   :value="yearOption">
                             {{ yearOption }}
@@ -325,7 +325,7 @@
                         <b-select
                             :disabled="(!dateValue.startDate.year || !dateValue.startDate.month || !dateValue.endDate.year)"
                             placeholder="Select a month" v-model="dateValue.endDate['month']"
-                            @click.native="dateChange(dateValue)" @input="dateChange(dateValue)" expanded>
+                            @input="dateChange(dateValue)" expanded>
                           <option v-for="(monthOption, index) in endMonthDate" :key="index"
                                   :value="monthOption.value">
                             {{ monthOption.key }}
@@ -594,8 +594,8 @@ import weeklyProjects1 from "../htmlPages/weeklyLayout/project/weeklyProjects1";
 import weeklyProjects2 from "../htmlPages/weeklyLayout/project/weeklyProjects2";
 import weeklySectional1 from "../htmlPages/weeklyLayout/sectional/weeklySectional1";
 import weeklySectional2 from "../htmlPages/weeklyLayout/sectional/weeklySectional2";
-import schedulingMonthMemories1 from "../htmlPages/Scheduling/monthMemories/monthMemories2";
-import schedulingMonthMemories2 from "../htmlPages/Scheduling/monthMemories/monthMemories1";
+import schedulingMonthMemories1 from "../htmlPages/Scheduling/monthMemories/monthMemories1";
+import schedulingMonthMemories2 from "../htmlPages/Scheduling/monthMemories/monthMemories2";
 import schedulingMonthIdeas1 from "../htmlPages/Scheduling/monthIdeas/monthIdeas1";
 import schedulingMonthIdeas2 from "../htmlPages/Scheduling/monthIdeas/monthIdeas2";
 import schedulingBlankMonth1 from "../htmlPages/Scheduling/blankMonth/blankMonth1";
@@ -1161,14 +1161,14 @@ export default {
                 {
                   name: 'MY YEAR / 365',
                   key: 'MyYearDays',
-                  id: 3,
+                  id: 4,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts1.png?alt=media&token=88158025-c05c-4f08-93b7-b91a89cfbfee',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts1Big.png?alt=media&token=dc5f37c4-ef05-4d8e-b77e-4c5137c08628',
                 },
                 {
                   name: 'MY YEAR / 12',
                   key: 'MyYearMonths',
-                  id: 3,
+                  id: 5,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts2.png?alt=media&token=e05e0d38-ee3e-49da-8729-adc2f087c37c',
                   urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts2Big.png?alt=media&token=259b0801-f795-4c26-94aa-5f2d7a155a72',
                 }
