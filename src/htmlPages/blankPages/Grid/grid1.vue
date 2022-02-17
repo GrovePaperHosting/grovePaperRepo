@@ -18,11 +18,6 @@
 <script>
 export default {
   name: "grid1",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 

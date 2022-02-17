@@ -1176,6 +1176,7 @@ export default {
             },
             {
               name: 'blank pages',
+              key: 'blankPages',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FLined%20pages1.png?alt=media&token=fa48db3a-393d-46cd-9e86-9b3a57991eeb',
               subcategoriesOptions: [
@@ -1616,6 +1617,7 @@ export default {
       pagesBookStructure: [],
       pdfProgress: 1,
       validDate: false,
+      blankDaysCounter: 0,
     };
   },
   watch: {
@@ -1942,18 +1944,27 @@ export default {
         pages: this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]
       });
       for (let x = 0; x < this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]; x++) {
+
         if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
+          if(`${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays'){
+            this.blankDaysCounter = this.blankDaysCounter+1;
+            console.log('hala')
+          }
           this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
-            data: 'addOnPages',
+            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays'? this.blankDaysCounter: 'addOnPages',
             type:`${selection.category}${selection.subcategory.key}1`,
             category: 'addOnPages'
           };
         }
         this.pagesBookStructure.push([{
-          data: 'addOnPages',
+          data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays'? this.blankDaysCounter + 1: 'addOnPages',
           type:`${selection.category}${selection.subcategory.key}2`,
           category: 'addOnPages'
         }])
+        if(`${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays'){
+          this.blankDaysCounter = this.blankDaysCounter+1;
+          console.log('hala')
+        }
       }
       this.totalPages = this.totalPages + (Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1])*2);
       this.calcTotalPages();

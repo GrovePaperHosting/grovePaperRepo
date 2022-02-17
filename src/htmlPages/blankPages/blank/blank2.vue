@@ -17,11 +17,6 @@
 <script>
 export default {
   name: "blank2",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 
