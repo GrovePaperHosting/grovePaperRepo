@@ -6,10 +6,10 @@
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-6_-Blank-Days-L-Artboard_1-img" class="g-aiImg" alt="" src="./6_-Blank-Days-L-Artboard_1.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.6562%;margin-top:-7.5px;left:5.1764%;width:52px;">
-        <p class="g-pstyle0">DAY 1</p>
+        <p class="g-pstyle0">DAY {{ data + data -1 }}</p>
       </div>
       <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:50.8082%;margin-top:-7.5px;left:5.1764%;width:53px;">
-        <p class="g-pstyle0">DAY 2</p>
+        <p class="g-pstyle0">DAY {{ (data + data) }}</p>
       </div>
       <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:94.283%;margin-top:-5.9px;left:47.3689%;margin-left:-28.5px;width:57px;">
         <p class="g-pstyle1">extras</p>
@@ -23,7 +23,12 @@
 
 <script>
 export default {
-  name: "blankDays1"
+  name: "blankDays1",
+  props:{
+    data:{
+      type: Number,
+    },
+  }
 }
 </script>
 
