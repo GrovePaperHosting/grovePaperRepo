@@ -13,11 +13,6 @@
 <script>
 export default {
   name: "budgeting1",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 

@@ -15,11 +15,6 @@
 <script>
 export default {
   name: "homeMaintenance1",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 

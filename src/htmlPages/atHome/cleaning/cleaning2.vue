@@ -10,11 +10,6 @@
 <script>
 export default {
   name: "cleaning2",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 

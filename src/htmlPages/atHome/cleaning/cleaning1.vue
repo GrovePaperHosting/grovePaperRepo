@@ -14,11 +14,6 @@
 <script>
 export default {
   name: "claning1",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 

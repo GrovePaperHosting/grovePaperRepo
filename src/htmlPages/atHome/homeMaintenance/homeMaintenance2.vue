@@ -13,11 +13,6 @@
 <script>
 export default {
   name: "homeMaintenance2",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 
