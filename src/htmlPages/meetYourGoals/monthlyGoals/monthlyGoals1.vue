@@ -13,11 +13,6 @@
 <script>
 export default {
   name: "monthlyGoals1",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 

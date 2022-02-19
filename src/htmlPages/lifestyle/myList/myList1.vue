@@ -17,11 +17,7 @@
 <script>
 export default {
   name: "myList1",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
+
 }
 </script>
 

@@ -108,7 +108,7 @@ export default {
    background-attachment: fixed;
  }
 &-bottom{
-   height: 340px;
+   height: 360px;
   &-container{
     position: relative;
     .columns{

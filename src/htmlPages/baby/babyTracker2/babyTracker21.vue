@@ -13,11 +13,6 @@
 <script>
 export default {
   name: "babyTracker21",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 

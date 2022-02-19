@@ -2,7 +2,7 @@
   <div id="g-2_-Mood-R-box" class="ai2html">
     <div id="g-2_-Mood-R-Artboard_2" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
-      <img id="g-2_-Mood-R-Artboard_2-img" class="g-aiImg" alt="" src="2_-Mood-R-Artboard_2.png"/>
+      <img id="g-2_-Mood-R-Artboard_2-img" class="g-aiImg" alt="" src="./2_-Mood-R-Artboard_2.png"/>
     </div>
   </div>
 </template>

@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "Hourly1",
+  name: "meetingNotes2",
 }
 </script>
 

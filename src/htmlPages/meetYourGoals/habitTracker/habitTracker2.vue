@@ -10,11 +10,6 @@
 <script>
 export default {
   name: "habitTracker2",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 

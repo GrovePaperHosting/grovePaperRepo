@@ -1,4 +1,4 @@
-<template>
+01<template>
   <div id="g-7_-Social-Media-Planning-L-box" class="ai2html">
     <div id="g-7_-Social-Media-Planning-L-Artboard_1" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
@@ -13,11 +13,6 @@
 <script>
 export default {
   name: "socialMediaPlanning1",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 

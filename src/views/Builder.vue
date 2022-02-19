@@ -622,16 +622,22 @@ import FillPage from "../htmlPages/FillPage";
 import Hourly1 from "../htmlPages/dailyLayouts/hourly/Hourly1";
 import lifestyleReading1 from "../htmlPages/lifestyle/reading/reading1";
 import lifestyleReading2 from "../htmlPages/lifestyle/reading/reading2";
+import lifestyleBucketList1 from "../htmlPages/lifestyle/bucketList/bucketList1";
+import lifestyleBucketList2 from "../htmlPages/lifestyle/bucketList/bucketList2";
+import lifestyleMyLists1 from "../htmlPages/lifestyle/myList/myList1";
+import lifestyleMyLists2 from "../htmlPages/lifestyle/myList/myList2";
 import lifestyleIdeas1 from "../htmlPages/lifestyle/ideas/ideas1";
 import lifestyleIdeas2 from "../htmlPages/lifestyle/ideas/ideas2";
-import lifestyleMylist1 from "../htmlPages/lifestyle/myList/myList1";
-import lifestyleMylist2 from "../htmlPages/lifestyle/myList/myList2";
+import lifestylePasswordTacker1 from "../htmlPages/lifestyle/passwordTracker/passwordTracker1";
+import lifestylePasswordTacker2 from "../htmlPages/lifestyle/passwordTracker/passwordTracker2";
 import lifestylePasswordTracker1 from "../htmlPages/lifestyle/passwordTracker/passwordTracker1";
 import lifestylePasswordTracker2 from "../htmlPages/lifestyle/passwordTracker/passwordTracker2";
 import lifestyleSocialMediaTracking1 from "../htmlPages/lifestyle/socialMediaTracking/socialMediaTracking1";
 import lifestyleSocialMediaTracking2 from "../htmlPages/lifestyle/socialMediaTracking/socialMediaTracking2";
 import lifestyleSocialMediaPlanning1 from "../htmlPages/lifestyle/socialMediaPlanning/socialMediaPlanning1";
 import lifestyleSocialMediaPlanning2 from "../htmlPages/lifestyle/socialMediaPlanning/socialMediaPlanning2";
+import financesGifting1 from "../htmlPages/finances/gifting/gifting1";
+import financesGifting2 from "../htmlPages/finances/gifting/gifting2";
 import financesBudgeting1 from "../htmlPages/finances/budgeting/budgeting1";
 import financesBudgeting2 from "../htmlPages/finances/budgeting/budgeting2";
 import financesExpenseTracker1 from "../htmlPages/finances/expenseTracker/expenseTracker1";
@@ -640,8 +646,8 @@ import atHomeCleaning1 from "../htmlPages/atHome/cleaning/cleaning1";
 import atHomeCleaning2 from "../htmlPages/atHome/cleaning/cleaning2";
 import atHomeHomeMaintenance1 from "../htmlPages/atHome/homeMaintenance/homeMaintenance1";
 import atHomeHomeMaintenance2 from "../htmlPages/atHome/homeMaintenance/homeMaintenance2";
-import babyBabyTracker1 from "../htmlPages/baby/babyTracker/babyTracker1";
-import babyBabyTracker2 from "../htmlPages/baby/babyTracker/babyTracker2";
+import babyBabyTracker11 from "../htmlPages/baby/babyTracker/babyTracker1";
+import babyBabyTracker12 from "../htmlPages/baby/babyTracker/babyTracker2";
 import babyBabyTracker21 from "../htmlPages/baby/babyTracker2/babyTracker21";
 import babyBabyTracker22 from "../htmlPages/baby/babyTracker2/babyTracker22";
 import babyBabyMonthly1 from "../htmlPages/baby/babyMonthly/babyMonthly1";
@@ -660,8 +666,8 @@ import wellnessOnTheMenu1 from "../htmlPages/wellness/onTheMenu/onTheMenu1";
 import wellnessOnTheMenu2 from "../htmlPages/wellness/onTheMenu/onTheMenu2";
 import wellnessReflection1 from "../htmlPages/wellness/reflection/reflection1";
 import wellnessReflection2 from "../htmlPages/wellness/reflection/reflection2";
-import wellnessWeeklyWellness1 from  "../htmlPages/wellness/weeklyWellness/weeklyWellness1";
-import wellnessWeeklyWellness2 from  "../htmlPages/wellness/weeklyWellness/weeklyWellness2";
+import wellnessWeeklyWellness1 from "../htmlPages/wellness/weeklyWellness/weeklyWellness1";
+import wellnessWeeklyWellness2 from "../htmlPages/wellness/weeklyWellness/weeklyWellness2";
 import meetYourGoals30DayChallenge1 from "../htmlPages/meetYourGoals/30DayChallenge/30DayChallenge1";
 import meetYourGoals30DayChallenge2 from "../htmlPages/meetYourGoals/30DayChallenge/30DayChallenge2";
 import meetYourGoalsHabitTracker1 from "../htmlPages/meetYourGoals/habitTracker/habitTracker1";
@@ -742,8 +748,12 @@ export default {
     lifestyleIdeas2,
     lifestyleReading1,
     lifestyleReading2,
-    lifestyleMylist1,
-    lifestyleMylist2,
+    lifestyleBucketList1,
+    lifestyleBucketList2,
+    lifestyleMyLists1,
+    lifestyleMyLists2,
+    lifestylePasswordTacker1,
+    lifestylePasswordTacker2,
     lifestylePasswordTracker1,
     lifestylePasswordTracker2,
     lifestyleSocialMediaTracking1,
@@ -754,12 +764,14 @@ export default {
     financesBudgeting2,
     financesExpenseTracker1,
     financesExpenseTracker2,
+    financesGifting1,
+    financesGifting2,
     atHomeCleaning1,
     atHomeCleaning2,
     atHomeHomeMaintenance1,
     atHomeHomeMaintenance2,
-    babyBabyTracker1,
-    babyBabyTracker2,
+    babyBabyTracker11,
+    babyBabyTracker12,
     babyBabyTracker21,
     babyBabyTracker22,
     babyBabyMonthly1,
@@ -1274,7 +1286,7 @@ export default {
                 },
                 {
                   name: 'Social Media Planning',
-                  key: 'SocialMediaPlaning',
+                  key: 'SocialMediaPlanning',
                   id: 7,
                       urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FSocial%20Media1.png?alt=media&token=5e9e4991-9efc-411d-9e92-484a609b9917',
                     urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FSocial%20Media1%402x.png?alt=media&token=186c020e-c5a5-41f8-9f22-be78cdd84468'

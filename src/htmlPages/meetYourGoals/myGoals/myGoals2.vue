@@ -10,11 +10,6 @@
 <script>
 export default {
   name: "myGoals2",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 

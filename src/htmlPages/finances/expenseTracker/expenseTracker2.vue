@@ -10,11 +10,6 @@
 <script>
 export default {
   name: "expenseTracker2",
-  props:{
-    data:{
-      type: Object,
-    },
-  }
 }
 </script>
 
