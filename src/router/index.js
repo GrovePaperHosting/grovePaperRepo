@@ -19,6 +19,7 @@ import PreDesignView from "../views/PreDesignView"
 import PreView from "../views/PreView";
 import ContactUs from "../views/ContactUs";
 import TermsOfService from "../views/TermsOfServices";
+import MyCart from "../views/MyCart";
 
 const router = new VueRouter({
   mode: 'history',
@@ -39,6 +40,7 @@ const router = new VueRouter({
     { path: '/faq', component: Faq },
     { path: '/privacy-policy', component: PrivacyPolicy },
     { path: '/pre-design-view', component: PreDesignView},
+    { path: '/my-cart', component: MyCart},
     { path: '/PreView',name: "PreView" ,component: PreView, props:true},
   ]
 });

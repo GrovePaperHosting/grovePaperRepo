@@ -47,15 +47,18 @@
         <button v-show="showCar" class="button__transparent" style="height: 36px; width: 36px; margin-top: -10px; margin-right: -10px" @click="showCar=false"><img src="../public/assets/images/CloseBtn.svg"></button>
       </div>
       <hr/>
+      <div>
+        <cart-element v-for="(element, index) in this.$store.getters.getCartItems" :key="index" :index="index" :cart-element-info="element"></cart-element>
+      </div>
       <div style="position: absolute; bottom: 0px; width: 300px">
         <hr/>
         <div class="is-flex is-justify-content-space-between">
           <h1 class="freight-big-pro-font has-text-grey is-size-4">SUBTOTAL</h1> <h1 class="freight-big-pro-font has-text-grey is-size-4">$xxx</h1>
         </div>
-        <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100" style="background-color: #F2D2CD; height: 40px; border-radius: 0">
+        <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100" @click="initialize" style="background-color: #F2D2CD; height: 40px; border-radius: 0">
           CHECKOUT
         </button>
-        <div class="has-text-centered"><a class=" has-text-grey is-size-4 is-underlined">Review Order</a></div>
+        <div class="has-text-centered"><a class=" has-text-grey is-size-4 is-underlined" href="/my-cart">Review Order</a></div>
       </div>
     </div>
     <transition>
@@ -96,15 +99,57 @@
 </template>
 
 <script>
-
+import CartElement from "./components/CartElement";
+import axios from 'axios';
 export default {
   name: 'App',
   components: {
-
+    CartElement,
   },
   data(){
     return{
       showCar: false,
+      items:
+      [
+        {
+          price_data: {
+            currency: 'cad',
+            product_data: {
+              name: 'T-shirt',
+            },
+            unit_amount: 2000,
+          },
+          quantity: 1,
+        },
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: 'T-shirt',
+            },
+            unit_amount: 2000,
+          },
+          quantity: 2,
+        },
+      ],
+    }
+  },
+  methods:{
+    async initialize() {
+       const  response = await axios.post('http://localhost:4242/create-checkout-session',
+          {params: {items: this.items}},
+          {
+            headers: {"Content-Type": "application/json"}
+          });
+        console.log('response', response);
+        window.location.href = response.data.url
+/*      const response = await fetch("http://localhost:4242/create-checkout-session", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(this.items),
+      });
+      const { clientSecret } = await response.json();
+      console.log('clientSecret', clientSecret);*/
     }
   }
 }
