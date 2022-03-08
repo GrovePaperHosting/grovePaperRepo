@@ -20,6 +20,7 @@ import PreView from "../views/PreView";
 import ContactUs from "../views/ContactUs";
 import TermsOfService from "../views/TermsOfServices";
 import MyCart from "../views/MyCart";
+import successfulPayment from "../views/successfulPayment";
 
 const router = new VueRouter({
   mode: 'history',
@@ -42,6 +43,8 @@ const router = new VueRouter({
     { path: '/pre-design-view', component: PreDesignView},
     { path: '/my-cart', component: MyCart},
     { path: '/PreView',name: "PreView" ,component: PreView, props:true},
+    { path: '/successful-payment', component: successfulPayment},
+
   ]
 });
 

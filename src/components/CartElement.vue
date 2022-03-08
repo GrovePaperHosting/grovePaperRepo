@@ -30,16 +30,22 @@ export default {
   methods:{
     setElementsCart(){
       let cartElements = this.$store.getters.getCartItems;
-      console.log('cartElements', cartElements[this.index]);
+      const deleteValue = cartElements[this.index].amount * cartElements[this.index].price;
+      let totalValue = this.$store.getters.getTotalPrice - deleteValue;
       cartElements[this.index].amount = this.amount;
       this.$store.commit('SET_CART_ITEMS', cartElements);
+      this.$store.commit('SET_TOTAL_PRICES', totalValue + (this.amount * cartElements[this.index].price));
     },
     removeElementCart(id){
       let cartElements = this.$store.getters.getCartItems;
+      const deleteValue = cartElements[this.index].amount * cartElements[this.index].price;
+      let totalValue = this.$store.getters.getTotalPrice - deleteValue;
       cartElements = cartElements.filter((element)=>{
         return element.id !== id;
       })
       this.$store.commit('SET_CART_ITEMS', cartElements);
+      this.$store.commit('SET_TOTAL_PRICES', totalValue);
+
     }
   }
 }

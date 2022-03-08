@@ -3,17 +3,21 @@
     <div id="g-2_-Cleaning-L-Artboard_1" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-2_-Cleaning-L-Artboard_1-img" class="g-aiImg" alt="" src="./2_-Cleaning-L-Artboard_1.png"/>
-      <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:94.283%;margin-top:-5.9px;left:47.3689%;margin-left:-28.5px;width:57px;">
-        <p class="g-pstyle0">extras</p>
+      <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:94.283%;margin-top:-5.9px">
+        <p class="g-pstyle0">{{ extras }}</p>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
 export default {
   name: "claning1",
+  props:{
+    extras:{
+      type: String
+    }
+  }
 }
 </script>
 
@@ -66,8 +70,9 @@ p{
 }
 #g-2_-Cleaning-L-Artboard_1 .g-pstyle0 {
   height:11px;
+  /*font-size: 8px;*/
   text-align:center;
-  text-transform:uppercase;
+  text-transform:uppercase;/*font-size: 8px;*/
 }
 
 </style>
