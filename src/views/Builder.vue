@@ -124,6 +124,10 @@
                               @click="selectItemAddPages({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
                         ADD
                       </button>
+                      <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
+                              @click="selectItemAddPagesBefore({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                        ADD BEFORE
+                      </button>
                       <a class=" has-text-grey is-size-4 is-underlined" @click="deletePages">Remove</a>
                     </div>
                     <div v-else class="add-container">
@@ -2030,6 +2034,55 @@ export default {
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.layoutPreselect = null;
     },
+
+    async selectItemAddPagesBefore(selection) {
+      let selectionArray = [];
+      const layoutPreselect = this.layoutPreselect;
+      if (this.finalValue[this.selectedCategory]) {
+        if (Object.prototype.hasOwnProperty.call(this.finalValue[this.selectedCategory], 'selection')) {
+          selectionArray = this.finalValue[this.selectedCategory].selection;
+        }
+      }
+      selectionArray = selectionArray.filter((element) => {
+        if (element.subcategory === layoutPreselect) this.totalPages = this.totalPages - element.pages;
+        return element.subcategory !== layoutPreselect;
+      });
+      selectionArray.push({
+        ...selection,
+        pages: this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]
+      });
+      for (let x = 0; x < this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]; x++) {
+          if (`${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays') {
+            this.blankDaysCounter = this.blankDaysCounter + 1;
+          }
+          this.pagesBookStructure[0][0]= {
+            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? this.blankDaysCounter : 'addOnPages',
+            type: `${selection.category}${selection.subcategory.key}2`,
+            category: 'addOnPages'
+          };
+
+        this.pagesBookStructure.unshift([{
+          data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? this.blankDaysCounter + 1 : 'addOnPages',
+          type: `${selection.category}${selection.subcategory.key}1`,
+          category: 'addOnPages'
+        }])
+        this.pagesBookStructure[0].unshift({type: 'fillpage', category: 'fillpage', data: this.finalValue[2].selection});
+        if (`${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays') {
+          this.blankDaysCounter = this.blankDaysCounter + 1;
+        }
+      }
+      this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
+        type: 'endPage',
+        category: 'fillpage',
+        data: this.finalValue[2].selection
+      }
+      this.totalPages = this.totalPages + (Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]) * 2);
+      this.calcTotalPages();
+      this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: selectionArray}
+      this.$store.commit('SET_FINAL_VALUE', this.finalValue);
+      this.layoutPreselect = null;
+    },
+
     formChange(value) {
       this.$set(this.finalValue, this.selectedCategory, {id: this.selectedCategory + 1, selection: value});
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
