@@ -543,7 +543,7 @@ const store = new Vuex.Store({
             }
         ],
         finalValue: [],
-        pagesBookStructure:[],
+        extraSelection:'',
         totalPrice: 0,
         //cartItems: []
         cartItems:
@@ -568,8 +568,8 @@ const store = new Vuex.Store({
         SET_FINAL_VALUE(state, payload) {
             state.finalValue = payload;
         },
-        SET_PAGE_BOOK_STRUCTURE(state, payload) {
-            state.pagesBookStructure = payload;
+        SET_EXTRA_SELECTION(state, payload) {
+            state.extraSelection = payload;
         },
         SET_TOTAL_PRICES(state, payload) {
             state.totalPrice = payload;

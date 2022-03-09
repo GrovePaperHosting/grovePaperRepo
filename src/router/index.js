@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 import Home from '../views/Home.vue';
 import Build from "../views/Build";
 import Builder from "../views/Builder";
+import BuilderNotebook from "../views/BuilderNotebook";
 import PreDesing from "../views/PreDesing";
 import Details from "../views/Details";
 import AboutUs from "../views/AboutUs";
@@ -30,6 +31,7 @@ const router = new VueRouter({
     { path: '/build', component: Build },
     { path: '/shop', component: Shop },
     { path: '/builder', component: Builder },
+    { path: '/builder-notebook', component: BuilderNotebook },
     { path: '/pre-design', component: PreDesing },
     { path: '/details', component: Details },
     { path: '/about-us', component: AboutUs },
