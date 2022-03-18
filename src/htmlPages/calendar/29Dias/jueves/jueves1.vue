@@ -4,7 +4,7 @@
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-28---Thursday-L-Artboard_1-img" class="g-aiImg" alt="" src="./28---Thursday-L-Artboard_1.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.1099%;margin-top:-11.8px;left:5.2494%;width:149px;">
-        <p class="g-pstyle0">January 2022</p>
+        <p class="g-pstyle0">{{ data.month }} {{data.year}}</p>
       </div>
       <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:29.3708%;margin-top:-5.9px;left:6.1246%;width:64px;">
         <p class="g-pstyle1">holiday</p>

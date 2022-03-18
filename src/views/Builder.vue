@@ -2002,7 +2002,8 @@ export default {
               }]
           )
         }
-      } else {
+      }
+      else {
         const totalDaysGroup = Math.ceil((this.totalDatesArray.length) / 7);
         for (let y = 0; y < totalDaysGroup; y++) {
           let daysGroup = this.totalDatesArray.slice((y * 7), (y * 7 + 7));
@@ -2012,12 +2013,28 @@ export default {
             daysGroup.push(
                 {
                   day: this.weekday[currentDate.getDay()],
-                  month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
+                  month:this.totalMonths[this.totalMonths.length - 1].month=== 12? this.datesValueOptions.month[0].key: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
+                  //month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
                   dayNumber: 1
                 }
             )
             i++;
           }
+          daysGroup.map(element =>{
+            if (element.dayNumber === 1 && daysGroup[0].dayNumber ===1){
+              const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
+              this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
+                data: {...daysGroup, monthBefore: daysGroup[0].monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key, monthAfter: daysGroup[0].monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key },
+                type: `calendar${ new Date(daysGroup[0].year, daysGroup[0].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
+                category: 'calendar'
+              };
+              this.pagesBookStructure.push([{
+                data: {...daysGroup, monthBefore: daysGroup[0].monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key, monthAfter: daysGroup[0].monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key},
+                type: `calendar${ new Date(daysGroup[0].year, daysGroup[0].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
+                category: 'calendar'
+              }])
+            }
+          });
           if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
             this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
               data: daysGroup,
@@ -2030,6 +2047,21 @@ export default {
             type: `${type}2`,
             category: this.finalValue[5].selection.category
           }]);
+          daysGroup.map(element =>{
+            if (element.dayNumber === 1 && daysGroup[0].dayNumber !==1){
+              const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
+              this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
+                data: {...daysGroup, monthBefore: daysGroup[0].monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key, monthAfter: daysGroup[0].monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key },
+                type: `calendar${ new Date(daysGroup[0].year, daysGroup[0].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
+                category: 'calendar'
+              };
+              this.pagesBookStructure.push([{
+                data: {...daysGroup, monthBefore: daysGroup[0].monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key, monthAfter: daysGroup[0].monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key},
+                type: `calendar${ new Date(daysGroup[0].year, daysGroup[0].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
+                category: 'calendar'
+              }])
+            }
+          });
         }
       }
       this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {

@@ -1,7 +1,5 @@
 <template>
   <div id="g-1_-Hourly-L-box" class="ai2html">
-
-    <!-- Artboard: Artboard_1 -->
     <div id="g-1_-Hourly-L-Artboard_1" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-1_-Hourly-L-Artboard_1-img" class="g-aiImg" alt="" src="./1_-Hourly-L-Artboard_1.png"/>
@@ -14,8 +12,8 @@
       <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.5579%;margin-top:-5.9px;left:13.9067%;width:64px;">
         <p class="g-pstyle1">holiday</p>
       </div>
-      <div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:94.283%;margin-top:-5.9px; width: 100%">
-        <p class="g-pstyle0" style="margin: auto">{{ extra }}</p>
+      <div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:93.9906%;margin-top:-5.9px;padding-left:26.9px; padding-right: 31.9px; width: 100%; height: 24px">
+        <p class="g-pstyle2" style="margin: auto; font-size: 7px; white-space: normal;">{{ extra }}</p>
       </div>
     </div>
   </div>

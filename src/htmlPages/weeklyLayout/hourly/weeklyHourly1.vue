@@ -38,7 +38,27 @@ export default {
     data:{
       type: Object,
     },
-  }
+    index: {
+      type: Number
+    }
+  },
+  data(){
+    return{
+      extra: ''
+    }
+  },
+  computed: {
+    selection () {
+      return this.$store.state.extraSelection
+    }
+  },
+  watch: {
+    selection (newCount) {
+      if (newCount === 'Motivational quotes') this.extra = this.$store.state.motivational[this.index];
+      else if (newCount === 'self-care challenges') this.extra = this.$store.state.challenges[this.index];
+      else if (newCount === 'personal check ins') this.extra = '';
+    }
+  },
 }
 </script>
 

@@ -487,6 +487,52 @@ export default {
       type: Object,
     }
   },
+  data() {
+    return {
+      monthBeforeData: [],
+      monthAfterData: [],
+    }
+  },
+  methods: {
+    calcMonthBeforeData() {
+      const monthBeforeNumber = this.data.monthNumber === 1? 12: this.data.monthNumber-1;
+      const monthBeforeYear = this.data.monthNumber === 1? this.data.year-1: this.data.year;
+      const totalDaysMonth = new Date(monthBeforeYear, monthBeforeNumber, 0).getDate();
+      const monthStart = new Date(`${monthBeforeYear}-${monthBeforeNumber}-1`).getDay();
+      console.log('monthStart',monthBeforeNumber, monthStart);
+
+      let monthDates=[];
+      this.$set(monthDates, monthStart+1, 1);
+      for (let i = 2; i <= totalDaysMonth; i++) {
+        monthDates.push(i);
+      }
+      for (let i = 0; i <= 5; i++) {
+        this.monthBeforeData.push(monthDates.slice(i*7+1,(i*7)+8));
+      }
+      console.log('monthBeforeData', this.monthBeforeData);
+    },
+    calcMonthAfterData() {
+      const monthAfterNumber = this.data.monthNumber === 12? 1: this.data.monthNumber+1;
+      const monthAfterYear = this.data.monthNumber === 12? this.data.year+1: this.data.year;
+      const totalDaysMonth = new Date(monthAfterYear, monthAfterNumber, 0).getDate();
+      const monthStart = new Date(`${monthAfterYear}-${monthAfterNumber}-1`).getDay();
+      console.log('monthStart',monthAfterNumber, monthStart);
+
+      let monthDates=[];
+      this.$set(monthDates, monthStart+1, 1);
+      for (let i = 2; i <= totalDaysMonth; i++) {
+        monthDates.push(i);
+      }
+      for (let i = 0; i <= 4; i++) {
+        this.monthAfterData.push(monthDates.slice(i*7+1,(i*7)+8));
+      }
+      console.log('monthAfterData', this.monthAfterData);
+    }
+  },
+  mounted() {
+    this.calcMonthBeforeData();
+    this.calcMonthAfterData();
+  }
 }
 </script>
 

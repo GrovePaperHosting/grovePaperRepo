@@ -4,7 +4,7 @@
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-31---Monday-L-Artboard_1-img" class="g-aiImg" alt="" src="./31---Monday-L-Artboard_1.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.1099%;margin-top:-11.8px;left:5.2494%;width:149px;">
-        <p class="g-pstyle0">January 2022</p>
+        <p class="g-pstyle0">{{ data.month }} {{data.year}}</p>
       </div>
       <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:17.2363%;margin-top:-5.9px;left:48.3893%;width:64px;">
         <p class="g-pstyle1">holiday</p>
@@ -291,8 +291,8 @@
       <div id="g-ai0-96" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:73.8152%;margin-top:-5.9px;left:27.2569%;width:64px;">
         <p class="g-pstyle1">holiday</p>
       </div>
-      <div id="g-ai0-97" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:94.283%;margin-top:-5.9px; width: 100%">
-        <p class="g-pstyle0" style="margin: auto">{{ extra }}</p>
+      <div id="g-ai0-97" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:93.9906%;margin-top:-5.9px;padding-left:26.9px; padding-right: 31.9px; width: 100%; height: 24px">
+        <p class="g-pstyle2" style="margin: auto; font-size: 7px; white-space: normal;">{{ extra }}</p>
       </div>
     </div>
   </div>

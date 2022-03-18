@@ -18,34 +18,6 @@
            style="top:17.2363%;margin-top:-5.9px;left:49.8958%;width:64px;">
         <p class="g-pstyle1">holiday</p>
       </div>
-      <div id="g-ai0-38" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:17.5441%;margin-top:-5px;left:74.8432%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-39" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:17.5441%;margin-top:-5px;left:77.7003%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-40" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:17.5441%;margin-top:-5px;left:80.5479%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-41" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:17.5441%;margin-top:-5px;left:83.3403%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-42" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:17.5441%;margin-top:-5px;left:86.1947%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-43" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:17.5441%;margin-top:-5px;left:89.0786%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-44" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:17.5441%;margin-top:-5px;left:91.8233%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
       <div id="g-ai0-45" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:19.1368%;margin-top:-5.9px;left:49.8956%;width:64px;">
         <p class="g-pstyle1">holiday</p>
@@ -70,129 +42,10 @@
           <p class="g-pstyle0">{{item}}</p>
         </div>
       </div>
-
-      <!--<div id="g-ai0-54" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:24.1231%;margin-top:-5px;left:74.7983%;margin-left:-12.5px;width:25px;">
-        <p class="g-pstyle0">1</p>
-      </div>-->
-      <!--<div id="g-ai0-49" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:24.1231%;margin-top:-5px;left:77.6794%;margin-left:-13px;width:26px;">
-        <p class="g-pstyle0">2</p>
-      </div>
-      <div id="g-ai0-50" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:24.1231%;margin-top:-5px;left:80.5219%;margin-left:-13px;width:26px;">
-        <p class="g-pstyle0">3</p>
-      </div>
-      <div id="g-ai0-51" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:24.1231%;margin-top:-5px;left:83.277%;margin-left:-13px;width:26px;">
-        <p class="g-pstyle0">4</p>
-      </div>
-      <div id="g-ai0-52" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:24.1231%;margin-top:-5px;left:86.1687%;margin-left:-13px;width:26px;">
-        <p class="g-pstyle0">5</p>
-      </div>
-      <div id="g-ai0-55" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:24.1231%;margin-top:-5px;left:89.0146%;margin-left:-13px;width:26px;">
-        <p class="g-pstyle0">6</p>
-      </div>
-      <div id="g-ai0-53" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:24.1231%;margin-top:-5px;left:91.8176%;margin-left:-13px;width:26px;">
-        <p class="g-pstyle0">7</p>
-      </div>
-      <div id="g-ai0-62" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:25.5851%;margin-top:-5px;left:74.7886%;margin-left:-13px;width:26px;">
-        <p class="g-pstyle0">8</p>
-      </div>
-      <div id="g-ai0-57" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:25.5851%;margin-top:-5px;left:77.6435%;margin-left:-13px;width:26px;">
-        <p class="g-pstyle0">9</p>
-      </div>
-      <div id="g-ai0-58" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:25.5851%;margin-top:-5px;left:80.5288%;margin-left:-15px;width:30px;">
-        <p class="g-pstyle0">10</p>
-      </div>
-      <div id="g-ai0-59" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:25.5851%;margin-top:-5px;left:83.2911%;margin-left:-14px;width:28px;">
-        <p class="g-pstyle0">11</p>
-      </div>
-      <div id="g-ai0-60" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:25.5851%;margin-top:-5px;left:86.1695%;margin-left:-14.5px;width:29px;">
-        <p class="g-pstyle0">12</p>
-      </div>
-      <div id="g-ai0-63" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:25.5851%;margin-top:-5px;left:89.0483%;margin-left:-14.5px;width:29px;">
-        <p class="g-pstyle0">13</p>
-      </div>
-      <div id="g-ai0-61" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:25.5851%;margin-top:-5px;left:91.7555%;margin-left:-14.5px;width:29px;">
-        <p class="g-pstyle0">14</p>
-      </div>
-      <div id="g-ai0-64" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:27.0471%;margin-top:-5px;left:74.8131%;margin-left:-14.5px;width:29px;">
-        <p class="g-pstyle0">15</p>
-      </div>
-      <div id="g-ai0-65" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:27.0471%;margin-top:-5px;left:77.632%;margin-left:-14.5px;width:29px;">
-        <p class="g-pstyle0">16</p>
-      </div>
-      <div id="g-ai0-66" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:27.0471%;margin-top:-5px;left:80.5484%;margin-left:-14.5px;width:29px;">
-        <p class="g-pstyle0">17</p>
-      </div>
-      <div id="g-ai0-67" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:27.0471%;margin-top:-5px;left:83.2811%;margin-left:-14.5px;width:29px;">
-        <p class="g-pstyle0">18</p>
-      </div>
-      <div id="g-ai0-68" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:27.0471%;margin-top:-5px;left:86.1334%;margin-left:-14.5px;width:29px;">
-        <p class="g-pstyle0">19</p>
-      </div>
-      <div id="g-ai0-69" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:27.0471%;margin-top:-5px;left:91.7978%;margin-left:-14.5px;width:29px;">
-        <p class="g-pstyle0">21</p>
-      </div>
-      <div id="g-ai0-70" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:27.0471%;margin-top:-5px;left:89.0833%;margin-left:-15.5px;width:31px;">
-        <p class="g-pstyle0">20</p>
-      </div>
-      <div id="g-ai0-71" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:28.5091%;margin-top:-5px;left:74.8417%;margin-left:-15px;width:30px;">
-        <p class="g-pstyle0">22</p>
-      </div>
-      <div id="g-ai0-72" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:28.5091%;margin-top:-5px;left:77.694%;margin-left:-15px;width:30px;">
-        <p class="g-pstyle0">23</p>
-      </div>
-      <div id="g-ai0-73" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:28.5091%;margin-top:-5px;left:80.5041%;margin-left:-15px;width:30px;">
-        <p class="g-pstyle0">24</p>
-      </div>
-      <div id="g-ai0-74" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:28.5091%;margin-top:-5px;left:83.3339%;margin-left:-15px;width:30px;">
-        <p class="g-pstyle0">25</p>
-      </div>
-      <div id="g-ai0-75" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:28.5091%;margin-top:-5px;left:86.1504%;margin-left:-15px;width:30px;">
-        <p class="g-pstyle0">26</p>
-      </div>
-      <div id="g-ai0-76" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:28.5091%;margin-top:-5px;left:88.9968%;margin-left:-14.5px;width:29px;">
-        <p class="g-pstyle0">27</p>
-      </div>
-      <div id="g-ai0-77" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:28.5091%;margin-top:-5px;left:91.7879%;margin-left:-15px;width:30px;">
-        <p class="g-pstyle0">28</p>
-      </div>-->
-
       <div id="g-ai0-56" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:24.9848%;margin-top:-5.9px;left:49.8958%;width:64px;">
         <p class="g-pstyle1">holiday</p>
       </div>
-
-
-
-
-
       <div id="g-ai0-78" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:29.3708%;margin-top:-5.9px;left:30.7236%;width:64px;">
         <p class="g-pstyle1">holiday</p>
@@ -205,34 +58,6 @@
            style="top:29.3708%;margin-top:-5.9px;left:49.8956%;width:64px;">
         <p class="g-pstyle1">holiday</p>
       </div>
-      <div id="g-ai0-81" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:29.971%;margin-top:-5px;left:74.8414%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-82" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:29.971%;margin-top:-5px;left:77.6983%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-83" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:29.971%;margin-top:-5px;left:80.5456%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-84" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:29.971%;margin-top:-5px;left:83.3382%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-85" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:29.971%;margin-top:-5px;left:86.1927%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-86" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:29.971%;margin-top:-5px;left:91.8212%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-87" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:29.971%;margin-top:-5px;left:89.0763%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
       <div id="g-ai0-88" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:31.2713%;margin-top:-5.9px;left:30.7236%;width:64px;">
         <p class="g-pstyle1">holiday</p>
@@ -244,34 +69,6 @@
       <div id="g-ai0-90" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:31.4175%;margin-top:-5.9px;left:49.8956%;width:64px;">
         <p class="g-pstyle1">holiday</p>
-      </div>
-      <div id="g-ai0-91" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:31.433%;margin-top:-5px;left:74.8412%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-92" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:31.433%;margin-top:-5px;left:77.6983%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-93" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:31.433%;margin-top:-5px;left:80.5458%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-94" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:31.433%;margin-top:-5px;left:83.3382%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-95" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:31.433%;margin-top:-5px;left:86.1927%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-96" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:31.433%;margin-top:-5px;left:89.0765%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
-      </div>
-      <div id="g-ai0-97" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:31.433%;margin-top:-5px;left:91.8212%;margin-left:-12px;width:24px;">
-        <p class="g-pstyle0">.</p>
       </div>
       <div id="g-ai0-98" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:33.3181%;margin-top:-5.9px;left:30.7236%;width:64px;">
@@ -490,7 +287,6 @@
         <p class="g-pstyle1">holiday</p>
       </div>
     </div>
-
   </div>
 </template>
 
