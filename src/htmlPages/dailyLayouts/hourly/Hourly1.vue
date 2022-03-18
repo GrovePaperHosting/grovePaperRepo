@@ -1,16 +1,21 @@
 <template>
   <div id="g-1_-Hourly-L-box" class="ai2html">
+
+    <!-- Artboard: Artboard_1 -->
     <div id="g-1_-Hourly-L-Artboard_1" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-1_-Hourly-L-Artboard_1-img" class="g-aiImg" alt="" src="./1_-Hourly-L-Artboard_1.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;left:5.6634%;width:175px;">
         <p class="g-pstyle0">{{data.day}} &bull;  {{data.month}}  &bull;  {{data.dayNumber}}</p>
       </div>
-      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:8.9029%;margin-top:-5.9px;left:5.6635%;width:64px;">
+      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.9497%;margin-top:-5.9px;left:13.9068%;width:64px;">
         <p class="g-pstyle1">holiday</p>
       </div>
-      <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:93.9906%;margin-top:-5.9px;left:47.4625%;margin-left:-28.5px;width:57px;">
-        <p class="g-pstyle2">extras</p>
+      <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.5579%;margin-top:-5.9px;left:13.9067%;width:64px;">
+        <p class="g-pstyle1">holiday</p>
+      </div>
+      <div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:94.283%;margin-top:-5.9px; width: 100%">
+        <p class="g-pstyle0" style="margin: auto">{{ extra }}</p>
       </div>
     </div>
   </div>
@@ -23,7 +28,27 @@ export default {
     data:{
       type: Object,
     },
-  }
+    index: {
+      type: Number
+    }
+  },
+  data(){
+    return{
+      extra: ''
+    }
+  },
+  computed: {
+    selection () {
+      return this.$store.state.extraSelection
+    }
+  },
+  watch: {
+    selection (newCount) {
+      if (newCount === 'Motivational quotes') this.extra = this.$store.state.motivational[this.index];
+      else if (newCount === 'self-care challenges') this.extra = this.$store.state.challenges[this.index];
+      else if (newCount === 'personal check ins') this.extra = '';
+    }
+  },
 }
 </script>
 
@@ -95,7 +120,6 @@ p{
   text-transform:uppercase;
   color:rgb(129,130,133);
 }
-
 @media only screen and (max-width: 1200px) {
   p {
     font-size:10px !important;

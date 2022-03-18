@@ -654,6 +654,48 @@ import productivityTaskTriage1 from "../htmlPages/productivity/taskTriage/taskTr
 import productivityTaskTriage2 from "../htmlPages/productivity/taskTriage/taskTriage2";
 import productivityToDo1 from "../htmlPages/productivity/toDo/toDo1";
 import productivityToDo2 from "../htmlPages/productivity/toDo/toDo2";
+import calendar28monday1 from "../htmlPages/calendar/28Dias/lunes/lunes1";
+import calendar28monday2 from "../htmlPages/calendar/28Dias/lunes/lunes2";
+import calendar28tuesday1 from "../htmlPages/calendar/28Dias/martes/martes1";
+import calendar28tuesday2 from "../htmlPages/calendar/28Dias/martes/martes2";
+import calendar28wednesday1 from "../htmlPages/calendar/28Dias/miercoles/miercoles1";
+import calendar28wednesday2 from "../htmlPages/calendar/28Dias/miercoles/miercoles2";
+import calendar28thursday1 from "../htmlPages/calendar/28Dias/jueves/jueves1";
+import calendar28thursday2 from "../htmlPages/calendar/28Dias/jueves/jueves2";
+import calendar28friday1 from "../htmlPages/calendar/28Dias/viernes/viernes1";
+import calendar28friday2 from "../htmlPages/calendar/28Dias/viernes/viernes2";
+import calendar28saturday1 from "../htmlPages/calendar/28Dias/sabado/sabado1";
+import calendar28saturday2 from "../htmlPages/calendar/28Dias/sabado/sabado2";
+import calendar28sunday1 from "../htmlPages/calendar/28Dias/domingo/domingo1";
+import calendar28sunday2 from "../htmlPages/calendar/28Dias/domingo/domingo2";
+import calendar30monday1 from "../htmlPages/calendar/30Dias/lunes/lunes1";
+import calendar30monday2 from "../htmlPages/calendar/30Dias/lunes/lunes2";
+import calendar30tuesday1 from "../htmlPages/calendar/30Dias/martes/martes1";
+import calendar30tuesday2 from "../htmlPages/calendar/30Dias/martes/martes2";
+import calendar30wednesday1 from "../htmlPages/calendar/30Dias/miercoles/miercoles1";
+import calendar30wednesday2 from "../htmlPages/calendar/30Dias/miercoles/miercoles2";
+import calendar30thursday1 from "../htmlPages/calendar/30Dias/jueves/jueves1";
+import calendar30thursday2 from "../htmlPages/calendar/30Dias/jueves/jueves2";
+import calendar30friday1 from "../htmlPages/calendar/30Dias/viernes/viernes1";
+import calendar30friday2 from "../htmlPages/calendar/30Dias/viernes/viernes2";
+import calendar30saturday1 from "../htmlPages/calendar/30Dias/sabado/sabado1";
+import calendar30saturday2 from "../htmlPages/calendar/30Dias/sabado/sabado2";
+import calendar30sunday1 from "../htmlPages/calendar/30Dias/domingo/domingo1";
+import calendar30sunday2 from "../htmlPages/calendar/30Dias/domingo/domingo2";
+import calendar31monday1 from "../htmlPages/calendar/31Dias/lunes/lunes1";
+import calendar31monday2 from "../htmlPages/calendar/31Dias/lunes/lunes2";
+import calendar31tuesday1 from "../htmlPages/calendar/31Dias/martes/martes1";
+import calendar31tuesday2 from "../htmlPages/calendar/31Dias/martes/martes2";
+import calendar31wednesday1 from "../htmlPages/calendar/31Dias/miercoles/miercoles1";
+import calendar31wednesday2 from "../htmlPages/calendar/31Dias/miercoles/miercoles2";
+import calendar31thursday1 from "../htmlPages/calendar/31Dias/jueves/jueves1";
+import calendar31thursday2 from "../htmlPages/calendar/31Dias/jueves/jueves2";
+import calendar31friday1 from "../htmlPages/calendar/31Dias/viernes/viernes1";
+import calendar31friday2 from "../htmlPages/calendar/31Dias/viernes/viernes2";
+import calendar31saturday1 from "../htmlPages/calendar/31Dias/sabado/sabado1";
+import calendar31saturday2 from "../htmlPages/calendar/31Dias/sabado/sabado2";
+import calendar31sunday1 from "../htmlPages/calendar/31Dias/domingo/domingo1";
+import calendar31sunday2 from "../htmlPages/calendar/31Dias/domingo/domingo2";
 import endPage from "../htmlPages/endPage/endPage";
 
 export default {
@@ -778,6 +820,48 @@ export default {
     productivityTaskTriage2,
     productivityToDo1,
     productivityToDo2,
+    calendar28monday1,
+    calendar28monday2,
+    calendar28tuesday1,
+    calendar28tuesday2,
+    calendar28wednesday1,
+    calendar28wednesday2,
+    calendar28thursday1,
+    calendar28thursday2,
+    calendar28friday1,
+    calendar28friday2,
+    calendar28saturday1,
+    calendar28saturday2,
+    calendar28sunday1,
+    calendar28sunday2,
+    calendar30monday1,
+    calendar30monday2,
+    calendar30tuesday1,
+    calendar30tuesday2,
+    calendar30wednesday1,
+    calendar30wednesday2,
+    calendar30thursday1,
+    calendar30thursday2,
+    calendar30friday1,
+    calendar30friday2,
+    calendar30saturday1,
+    calendar30saturday2,
+    calendar30sunday1,
+    calendar30sunday2,
+    calendar31monday1,
+    calendar31monday2,
+    calendar31tuesday1,
+    calendar31tuesday2,
+    calendar31wednesday1,
+    calendar31wednesday2,
+    calendar31thursday1,
+    calendar31thursday2,
+    calendar31friday1,
+    calendar31friday2,
+    calendar31saturday1,
+    calendar31saturday2,
+    calendar31sunday1,
+    calendar31sunday2,
     endPage,
     VueHtml2pdf
   },
@@ -1572,7 +1656,7 @@ export default {
           {
             key: 'December',
             value: '12'
-          }
+          },
         ],
         years: ['2022', '2023', '2024', '2025', '2026']
       },
@@ -1788,9 +1872,13 @@ export default {
     updatePagesDepth(stack) { // first el = farthest
       for (const [i, page] of stack.entries()) {
         if (stack == this.leftStack) {
-          page.style.transform = `rotateY(-180deg) translateZ(${-i}px)`;
+          page.style.transform = `rotateY(-180deg)`;
+          page.style.zIndex = i;
+          //page.style.transform = `rotateY(-180deg) translateZ(${-i}px)`;
         } else {
-          page.style.transform = `rotateY(0) translateZ(${i}px)`;
+          //page.style.transform = `rotateY(0))`;
+          page.style.zIndex = i;
+          page.style.transform = `rotateY(0) translateZ(1px)`;
         }
       }
     },
@@ -1835,7 +1923,6 @@ export default {
       }
       const start = index;
       for (let i = start; i < start + 1; i++) {
-        console.log('node', node[i]);
         const output = await this.$html2canvas(node[i], options);
         console.log('output', output);
         this.output.push(output);
@@ -1856,12 +1943,37 @@ export default {
     },
     calcBookStructure() {
       this.pagesBookStructure = [];
-      console.log('this.pagesBookStructure1', this.pagesBookStructure)
-
       const type = `${this.finalValue[5].selection.category}${this.finalValue[5].selection.subcategory.key}`
       this.pagesBookStructure[0] = [{type: 'fillpage', category: 'fillpage', data: this.finalValue[2].selection}];
       if (this.layoutOption === 'daily') {
         this.totalDatesArray.map((element) => {
+          const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
+          if(element.dayNumber === 1 && this.pagesBookStructure[this.pagesBookStructure.length - 1].length ===1) {
+            this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
+              data: {...element, monthBefore: element.monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key, monthAfter: element.monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key },
+              //type: `calendar${ new Date(element.year, element.monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
+              type: `calendar31saturday1`,
+              category: 'calendar'
+            };
+            this.pagesBookStructure.push([{
+              data: {...element, monthBefore: element.monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key, monthAfter: element.monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key},
+              //type: `calendar${ new Date(element.year, element.monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
+              type: `calendar31saturday2`,
+              category: 'calendar'
+            }])
+          }
+          if (element.dayNumber === 2 && this.pagesBookStructure[this.pagesBookStructure.length - 1].length ===1){
+            this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
+              data: {...element, monthBefore: element.monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key, monthAfter: element.monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key },
+              type: `calendar${ new Date(element.year, element.monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
+              category: 'calendar'
+            };
+            this.pagesBookStructure.push([{
+              data: {...element, monthBefore: element.monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key, monthAfter: element.monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key},
+              type: `calendar${ new Date(element.year, element.monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
+              category: 'calendar'
+            }])
+          }
           if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
             this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
               data: {...element},
@@ -1882,7 +1994,7 @@ export default {
               [{
                 data: {
                   day: this.weekday[currentDate.getDay()],
-                  month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
+                  month:this.totalMonths[this.totalMonths.length - 1].month=== 12? this.datesValueOptions.month[0].key: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
                   dayNumber: 1
                 },
                 type: `${type}2`,
@@ -1925,7 +2037,6 @@ export default {
         category: 'fillpage',
         data: this.finalValue[2].selection
       }
-      console.log('pagesBookStructureFinal3', this.pagesBookStructure);
     },
     calcTotalDates() {
       this.totalDatesArray = [];
@@ -1935,7 +2046,9 @@ export default {
           this.totalDatesArray.push({
             day: this.weekday[currentDate.getDay()],
             month: this.datesValueOptions.month[element.month - 1].key,
-            dayNumber: y
+            monthNumber: element.month,
+            dayNumber: y,
+            year: currentDate.getFullYear()
           })
           //console.log('currentDate', this.weekday[currentDate.getDay()], this.datesValueOptions.month[element.month-1].key, y);
         }
@@ -2006,7 +2119,6 @@ export default {
         if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
           if (`${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays') {
             this.blankDaysCounter = this.blankDaysCounter + 1;
-            console.log('hala')
           }
           this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
             data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? this.blankDaysCounter : 'addOnPages',
