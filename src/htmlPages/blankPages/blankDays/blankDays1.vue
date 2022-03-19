@@ -11,8 +11,8 @@
       <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:50.8082%;margin-top:-7.5px;left:5.1764%;width:53px;">
         <p class="g-pstyle0">DAY {{ (data + data) }}</p>
       </div>
-      <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:94.283%;margin-top:-5.9px;left:47.3689%;margin-left:-28.5px;width:57px;">
-        <p class="g-pstyle1">extras</p>
+      <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:94.283%;margin-top:-5.9px; width: 100%">
+        <p class="g-pstyle0" style="margin: auto">{{ extra }}</p>
       </div>
     </div>
 
@@ -28,7 +28,27 @@ export default {
     data:{
       type: Number,
     },
-  }
+    index: {
+      type: Number
+    }
+  },
+  data(){
+    return{
+      extra: ''
+    }
+  },
+  computed: {
+    selection () {
+      return this.$store.state.extraSelection
+    }
+  },
+  watch: {
+    selection (newCount) {
+      if (newCount === 'Motivational quotes') this.extra = this.$store.state.motivational[this.index];
+      else if (newCount === 'self-care challenges') this.extra = this.$store.state.challenges[this.index];
+      else if (newCount === 'personal check ins') this.extra = '';
+    }
+  },
 }
 </script>
 

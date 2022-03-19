@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 import Home from '../views/Home.vue';
 import Build from "../views/Build";
 import Builder from "../views/Builder";
+import BuilderNotebook from "../views/BuilderNotebook";
 import PreDesing from "../views/PreDesing";
 import Details from "../views/Details";
 import AboutUs from "../views/AboutUs";
@@ -19,6 +20,8 @@ import PreDesignView from "../views/PreDesignView"
 import PreView from "../views/PreView";
 import ContactUs from "../views/ContactUs";
 import TermsOfService from "../views/TermsOfServices";
+import MyCart from "../views/MyCart";
+import successfulPayment from "../views/successfulPayment";
 
 const router = new VueRouter({
   mode: 'history',
@@ -28,6 +31,7 @@ const router = new VueRouter({
     { path: '/build', component: Build },
     { path: '/shop', component: Shop },
     { path: '/builder', component: Builder },
+    { path: '/builder-notebook', component: BuilderNotebook },
     { path: '/pre-design', component: PreDesing },
     { path: '/details', component: Details },
     { path: '/about-us', component: AboutUs },
@@ -39,7 +43,10 @@ const router = new VueRouter({
     { path: '/faq', component: Faq },
     { path: '/privacy-policy', component: PrivacyPolicy },
     { path: '/pre-design-view', component: PreDesignView},
+    { path: '/my-cart', component: MyCart},
     { path: '/PreView',name: "PreView" ,component: PreView, props:true},
+    { path: '/successful-payment', component: successfulPayment},
+
   ]
 });
 

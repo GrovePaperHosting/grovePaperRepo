@@ -6,7 +6,10 @@
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;right:4.4681%;width:163px;">
         <p class="g-pstyle0">{{data.day}} &bull;  {{data.month}}  &bull;  {{data.dayNumber}}</p>
       </div>
-      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:8.9029%;margin-top:-5.9px;right:4.4654%;width:64px;">
+      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.9497%;margin-top:-5.9px;left:19.2581%;width:64px;">
+        <p class="g-pstyle1">holiday</p>
+      </div>
+      <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.5579%;margin-top:-5.9px;left:19.2581%;width:64px;">
         <p class="g-pstyle1">holiday</p>
       </div>
     </div>
@@ -81,7 +84,6 @@ p{
   height:11px;
   letter-spacing:0.025em;
   font-size:9px;
-  text-align:right;
   text-transform:uppercase;
   color:rgb(129,130,133);
 }

@@ -2,7 +2,7 @@
   <div id="g-2_-Sectional-R-box" class="ai2html">
     <div id="g-2_-Sectional-R-Artboard_5" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
-      <img id="g-2_-Sectional-R-Artboard_5-img" class="g-aiImg" alt="" src="./2-Sectional-R-Artboard_5.png"/>
+      <img id="g-2_-Sectional-R-Artboard_5-img" class="g-aiImg" alt="" src="./2_-Sectional-R-Artboard_5.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.6562%;margin-top:-7.5px;right:4.9756%;width:163px;">
         <p class="g-pstyle0">{{data.day}} &bull;  {{data.month}}  &bull;  {{data.dayNumber}}</p>
       </div>
@@ -85,6 +85,5 @@ p{
   text-transform:uppercase;
   color:rgb(129,130,133);
 }
-
 </style>
 

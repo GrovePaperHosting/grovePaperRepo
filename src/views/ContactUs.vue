@@ -30,7 +30,7 @@
               <button v-if="!messageSent" class="button has-background-primary has-text-white is-size-4 is-small" style="height: 36px" @click="sentEmail()">Send
                 Message
               </button>
-              <h1 v-else class="has-text-primary has-text-weight-semibold is-size-4 "> Thank you for your message!</h1>
+              <h1 v-else :class="`has-text-primary has-text-weight-semibold is-size-4 ${loading? '':'is-loading'}` "> Thank you for your message!</h1>
             </div>
           </div>
         </div>
@@ -51,23 +51,28 @@ export default {
   data() {
     return {
       formValue:[],
-      messageSent: false
+      messageSent: false,
+      loading: true,
+
     }
   },
   methods:{
     sentEmail(){
+      this.loading = true
       const templateParams = {from_name: this.formValue['name'], reply_to: this.formValue['email'], message:this.formValue['message']}
       const self = this;
       send('service_w81r30t', 'template_aenwm4r', templateParams)
           .then(function (response) {
             console.log('SUCCESS!', response.status, response.text);
             self.messageSent = true;
+            self.loading = false;
           }, function (error) {
             console.log('FAILED...', error);
             self.messageSent = false;
+            self.loading = false;
           });
     }
-  }
+  },
 }
 </script>
 
