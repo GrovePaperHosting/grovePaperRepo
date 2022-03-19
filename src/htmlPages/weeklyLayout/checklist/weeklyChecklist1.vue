@@ -4,37 +4,34 @@
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-5_-Checklist-L-Artboard_9-img" class="g-aiImg" alt="" src="./5_-Checklist-L-Artboard_9.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.5485%;margin-top:-11.8px;left:50.3065%;margin-left:-72.5px;width:145px;">
-        <p class="g-pstyle0">{{data[0].month}} {{data[0].dayNumber}} - {{data[6].month}}</p>
+        <p class="g-pstyle0">{{data[0].month}} {{data[0].dayNumber}} - {{data[6].dayNumber}}</p>
       </div>
       <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:9.5328%;margin-top:-10.2px;left:50.297%;margin-left:-28.5px;width:57px;">
-        <p class="g-pstyle1">2022</p>
+        <p class="g-pstyle1">{{data[0].year}}</p>
       </div>
       <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:21.276%;margin-top:-7.5px;left:5.4416%;width:94px;">
-        <p class="g-pstyle2">{{data[0].month}} Monday</p>
+        <p class="g-pstyle2">{{data[0].dayNumber}} {{data[0].day}}</p>
       </div>
       <div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:21.3298%;margin-top:-5.9px;left:20.1011%;width:64px;">
         <p class="g-pstyle3">holiday</p>
       </div>
       <div id="g-ai0-5" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:45.2526%;margin-top:-7.5px;left:5.4416%;width:95px;">
-        <p class="g-pstyle2">{{data[1].month}} Tuesday</p>
+        <p class="g-pstyle2">{{data[1].dayNumber}} {{data[1].day}}</p>
       </div>
       <div id="g-ai0-6" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:45.4526%;margin-top:-5.9px;left:20.2509%;width:64px;">
         <p class="g-pstyle3">holiday</p>
       </div>
       <div id="g-ai0-7" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:69.3754%;margin-top:-7.5px;left:5.4416%;width:116px;">
-        <p class="g-pstyle2">{{data[2].month}} Wednesday</p>
+        <p class="g-pstyle2">{{data[2].dayNumber}} {{data[2].day}}</p>
       </div>
       <div id="g-ai0-8" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:69.4292%;margin-top:-5.9px;left:24.2535%;width:64px;">
         <p class="g-pstyle3">holiday</p>
       </div>
-      <div id="g-ai0-9" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:94.283%;margin-top:-5.9px;left:47.3689%;margin-left:-28.5px;width:57px;">
-        <p class="g-pstyle4">extras</p>
+      <div id="g-ai0-37" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:93.9906%;margin-top:-5.9px;padding-left:26.9px; padding-right: 31.9px; width: 100%; height: 24px">
+        <p class="g-pstyle2 has-text-centered" style="margin: auto; font-size: 7px; white-space: normal;">{{ extra }}</p>
       </div>
     </div>
-
   </div>
-
-
 </template>
 
 <script>

@@ -7,7 +7,7 @@
         <p class="g-pstyle0">january</p>
       </div>
       <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.1589%;margin-top:-5.1px;left:83.6297%;margin-left:-33.5px;width:67px;">
-        <p class="g-pstyle1">{{data[0].month}}</p>
+        <p class="g-pstyle1">february</p>
       </div>
       <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.225%;margin-top:-5.9px;left:46.5351%;margin-left:-12px;width:24px;">
         <p class="g-pstyle2">.</p>
@@ -232,22 +232,22 @@
         <p class="g-pstyle2">.</p>
       </div>
       <div id="g-ai0-77" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:21.276%;margin-top:-7.5px;left:10.4197%;width:106px;">
-        <p class="g-pstyle4">{{data[3].dayNumber}} Thursday</p>
+        <p class="g-pstyle4">{{data[3].dayNumber}} {{data[3].day}}</p>
       </div>
       <div id="g-ai0-78" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:21.3298%;margin-top:-5.9px;left:27.3471%;width:64px;">
         <p class="g-pstyle5">holiday</p>
       </div>
       <div id="g-ai0-79" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:45.2526%;margin-top:-7.5px;left:10.4197%;width:82px;">
-        <p class="g-pstyle4">{{data[4].dayNumber}} Friday</p>
+        <p class="g-pstyle4">{{data[4].dayNumber}} {{data[4].day}}</p>
       </div>
       <div id="g-ai0-80" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:45.4526%;margin-top:-5.9px;left:22.7827%;width:64px;">
         <p class="g-pstyle5">holiday</p>
       </div>
       <div id="g-ai0-81" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:69.3754%;margin-top:-7.5px;left:10.4197%;width:103px;">
-        <p class="g-pstyle4">{{data[5].dayNumber}} Saturday</p>
+        <p class="g-pstyle4">{{data[5].dayNumber}} {{data[5].day}}</p>
       </div>
       <div id="g-ai0-82" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:69.3754%;margin-top:-7.5px;left:54.0256%;width:90px;">
-        <p class="g-pstyle4">{{data[6].dayNumber}} Sunday</p>
+        <p class="g-pstyle4">{{data[6].dayNumber}} {{data[6].day}}</p>
       </div>
       <div id="g-ai0-83" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:69.4292%;margin-top:-5.9px;left:26.784%;width:64px;">
         <p class="g-pstyle5">holiday</p>
@@ -256,6 +256,7 @@
         <p class="g-pstyle5">holiday</p>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -353,4 +354,5 @@ p{
   text-transform:uppercase;
   color:rgb(129,132,133);
 }
+
 </style>

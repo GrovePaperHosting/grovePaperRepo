@@ -1,14 +1,14 @@
 <template>
+
   <div id="g-8_-Goals-_-Errands-R-box" class="ai2html">
+
+    <!-- Artboard: Artboard_5 -->
     <div id="g-8_-Goals-_-Errands-R-Artboard_5" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
       <img id="g-8_-Goals-_-Errands-R-Artboard_5-img" class="g-aiImg" alt="" src="./8_-Goals-_-Errands-R-Artboard_5.png"/>
     </div>
 
-  </div>
-
-
-</template>
+  </div></template>
 
 <script>
 export default {
@@ -50,8 +50,5 @@ p{
   position:relative;
   overflow:hidden;
 }
-
-
-
 </style>
 

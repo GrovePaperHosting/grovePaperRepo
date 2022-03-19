@@ -2051,13 +2051,13 @@ export default {
             if (element.dayNumber === 1 && daysGroup[0].dayNumber !==1){
               const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
-                data: {...daysGroup, monthBefore: daysGroup[0].monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key, monthAfter: daysGroup[0].monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key },
-                type: `calendar${ new Date(daysGroup[0].year, daysGroup[0].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
+                data: {...daysGroup, monthBefore: daysGroup[0].monthNumber, monthAfter: daysGroup[6].monthNumber },
+                type: `calendar${ new Date(daysGroup[6].year, daysGroup[6].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
                 category: 'calendar'
               };
               this.pagesBookStructure.push([{
-                data: {...daysGroup, monthBefore: daysGroup[0].monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key, monthAfter: daysGroup[0].monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key},
-                type: `calendar${ new Date(daysGroup[0].year, daysGroup[0].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
+                data: {...daysGroup, monthBefore: daysGroup[0].monthNumber, monthAfter: daysGroup[6].monthNumber },
+                type: `calendar${ new Date(daysGroup[6].year, daysGroup[6].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
                 category: 'calendar'
               }])
             }
