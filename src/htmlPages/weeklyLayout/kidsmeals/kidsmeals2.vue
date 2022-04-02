@@ -124,16 +124,16 @@
         <p class="g-pstyle1">.</p>
       </div>-->
       <div id="g-ai0-39" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:23.0304%;margin-top:-7.5px;left:20.9127%;margin-left:-53px;width:106px;">
-        <p class="g-pstyle2">{{(data[3].day).toLowerCase()}} {{data[3].dayNumber}}</p>
+        <p class="g-pstyle2">{{(data[3].day)}} {{data[3].dayNumber}}</p>
       </div>
       <div id="g-ai0-40" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:23.0304%;margin-top:-7.5px;left:41.7675%;margin-left:-41px;width:82px;">
-        <p class="g-pstyle2">{{(data[4].day).toLowerCase()}} {{data[4].dayNumber}}</p>
+        <p class="g-pstyle2">{{(data[4].day)}} {{data[4].dayNumber}}</p>
       </div>
       <div id="g-ai0-41" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:23.0304%;margin-top:-7.5px;left:62.7011%;margin-left:-51.5px;width:103px;">
-        <p class="g-pstyle2">{{(data[5].day).toLowerCase()}} {{data[5].dayNumber}}</p>
+        <p class="g-pstyle2">{{(data[5].day)}} {{data[5].dayNumber}}</p>
       </div>
       <div id="g-ai0-42" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:23.0304%;margin-top:-7.5px;left:83.6826%;margin-left:-45px;width:90px;">
-        <p class="g-pstyle2">{{(data[6].day).toLowerCase()}} {{data[6].dayNumber}}</p>
+        <p class="g-pstyle2">{{(data[6].day)}} {{data[6].dayNumber}}</p>
       </div>
       <div id="g-ai0-43" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:26.4468%;margin-top:-5.9px;left:11.929%;width:64px;">
         <p class="g-pstyle3">holiday</p>
@@ -325,7 +325,7 @@ export default {
   name: "kidsmeals2",
   props:{
     data:{
-      type: Array,
+      required: true
     },
   },
   data() {

@@ -305,40 +305,40 @@
                 <div class="column is-flex is-flex-direction-column">
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection.name === 'canadian holidays'}"
-                      @click="setHolidays({name: 'canadian holidays'})"> canadian holidays
+                      :class="{'button__selected' : holidaysSelection === 'canadian holidays'}"
+                      @click="setHolidays('canadaHolidays')"> canadian holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection.name === 'us holidays'}"
-                      @click="setHolidays({name:'us holidays'})"> us holidays
+                      :class="{'button__selected' : holidaysSelection === 'us holidays'}"
+                      @click="setHolidays('usHolidays')"> us holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection.name === 'christian holidays'}"
-                      @click="setHolidays({name: 'christian holidays'})">christian holidays
+                      :class="{'button__selected' : holidaysSelection === 'christian holidays'}"
+                      @click="setHolidays('christianHolidays')">christian holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection.name === 'hindu holidays'}"
-                      @click="setHolidays({name: 'hindu holidays'})"> hindu holidays
+                      :class="{'button__selected' : holidaysSelection === 'hindu holidays'}"
+                      @click="setHolidays('hinduHolidays')"> hindu holidays
                   </button>
                 </div>
                 <div class="column is-flex is-flex-direction-column">
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection.name === 'jewish holidays'}"
-                      @click="setHolidays({name: 'jewish holidays'})"> jewish holidays
+                      :class="{'button__selected' : holidaysSelection === 'jewish holidays'}"
+                      @click="setHolidays('jewishHolidays')"> jewish holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection.name === 'muslim holidays'}"
-                      @click="setHolidays({name: 'muslim holidays'})"> muslim holidays
+                      :class="{'button__selected' : holidaysSelection === 'muslim holidays'}"
+                      @click="setHolidays('muslimHolidays')"> muslim holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection.name === 'fun holidays'}"
-                      @click="setHolidays({name: 'fun holidays'})"> fun holidays
+                      :class="{'button__selected' : holidaysSelection === 'fun holidays'}"
+                      @click="setHolidays('funHolidays')"> fun holidays
                   </button>
                 </div>
               </div>
@@ -1605,6 +1605,11 @@ export default {
       days: 0,
       weeks: 0,
       totalPages: 0,
+      holidayStructure: {},
+      holidayStructureSelection: {},
+      holidayStructureFinal: {},
+      formerValue: '',
+      formerValueHoliday: 0,
       price: 65,
       layoutOption: 'daily',
       datesValueOptions: {
@@ -1948,29 +1953,53 @@ export default {
       if (this.layoutOption === 'daily') {
         this.totalDatesArray.map((element) => {
           const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
-          if(element.dayNumber === 1 && this.pagesBookStructure[this.pagesBookStructure.length - 1].length ===1) {
+          if (element.dayNumber === 1 && this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
             this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
-              data: {...element, monthBefore: element.monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key, monthAfter: element.monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key },
+              data: {
+                ...element,
+                holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                layoutType: this.layoutOption,
+                monthBefore: element.monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key,
+                monthAfter: element.monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key
+              },
               //type: `calendar${ new Date(element.year, element.monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
-              type: `calendar31saturday1`,
+              type: `calendar${new Date(element.year, element.monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
               category: 'calendar'
             };
             this.pagesBookStructure.push([{
-              data: {...element, monthBefore: element.monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key, monthAfter: element.monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key},
+              data: {
+                ...element,
+                holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                layoutType: this.layoutOption,
+                monthBefore: element.monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key,
+                monthAfter: element.monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key
+              },
               //type: `calendar${ new Date(element.year, element.monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
-              type: `calendar31saturday2`,
+              type: `calendar${new Date(element.year, element.monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
               category: 'calendar'
             }])
           }
-          if (element.dayNumber === 2 && this.pagesBookStructure[this.pagesBookStructure.length - 1].length ===1){
+          if (element.dayNumber === 2 && this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
             this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
-              data: {...element, monthBefore: element.monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key, monthAfter: element.monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key },
-              type: `calendar${ new Date(element.year, element.monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
+              data: {
+                ...element,
+                holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                layoutType: this.layoutOption,
+                monthBefore: element.monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key,
+                monthAfter: element.monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key
+              },
+              type: `calendar${new Date(element.year, element.monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
               category: 'calendar'
             };
             this.pagesBookStructure.push([{
-              data: {...element, monthBefore: element.monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key, monthAfter: element.monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key},
-              type: `calendar${ new Date(element.year, element.monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
+              data: {
+                ...element,
+                holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                layoutType: this.layoutOption,
+                monthBefore: element.monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key,
+                monthAfter: element.monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key
+              },
+              type: `calendar${new Date(element.year, element.monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
               category: 'calendar'
             }])
           }
@@ -1994,7 +2023,7 @@ export default {
               [{
                 data: {
                   day: this.weekday[currentDate.getDay()],
-                  month:this.totalMonths[this.totalMonths.length - 1].month=== 12? this.datesValueOptions.month[0].key: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
+                  month: this.totalMonths[this.totalMonths.length - 1].month === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
                   dayNumber: 1
                 },
                 type: `${type}2`,
@@ -2002,8 +2031,7 @@ export default {
               }]
           )
         }
-      }
-      else {
+      } else {
         const totalDaysGroup = Math.ceil((this.totalDatesArray.length) / 7);
         for (let y = 0; y < totalDaysGroup; y++) {
           let daysGroup = this.totalDatesArray.slice((y * 7), (y * 7 + 7));
@@ -2013,24 +2041,36 @@ export default {
             daysGroup.push(
                 {
                   day: this.weekday[currentDate.getDay()],
-                  month:this.totalMonths[this.totalMonths.length - 1].month=== 12? this.datesValueOptions.month[0].key: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
+                  month: this.totalMonths[this.totalMonths.length - 1].month === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
                   //month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
-                  dayNumber: 1
+                  dayNumber: i
                 }
             )
             i++;
           }
-          daysGroup.map(element =>{
-            if (element.dayNumber === 1 && daysGroup[0].dayNumber ===1){
+          daysGroup.map(element => {
+            if (element.dayNumber === 1 && daysGroup[0].dayNumber === 1) {
               const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
-                data: {...daysGroup, monthBefore: daysGroup[0].monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key, monthAfter: daysGroup[0].monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key },
-                type: `calendar${ new Date(daysGroup[0].year, daysGroup[0].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
+                data: {
+                  ...daysGroup,
+                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                  layoutType: this.layoutOption,
+                  monthBefore: daysGroup[0].monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key,
+                  monthAfter: daysGroup[0].monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key
+                },
+                type: `calendar${new Date(daysGroup[0].year, daysGroup[0].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
                 category: 'calendar'
               };
               this.pagesBookStructure.push([{
-                data: {...daysGroup, monthBefore: daysGroup[0].monthNumber === 1? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key, monthAfter: daysGroup[0].monthNumber === 12? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key},
-                type: `calendar${ new Date(daysGroup[0].year, daysGroup[0].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
+                data: {
+                  ...daysGroup,
+                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                  layoutType: this.layoutOption,
+                  monthBefore: daysGroup[0].monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key,
+                  monthAfter: daysGroup[0].monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key
+                },
+                type: `calendar${new Date(daysGroup[0].year, daysGroup[0].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
                 category: 'calendar'
               }])
             }
@@ -2047,17 +2087,28 @@ export default {
             type: `${type}2`,
             category: this.finalValue[5].selection.category
           }]);
-          daysGroup.map(element =>{
-            if (element.dayNumber === 1 && daysGroup[0].dayNumber !==1){
+          daysGroup.map(element => {
+            if (element.dayNumber === 1 && daysGroup[0].dayNumber !== 1) {
+              console.log('que pasaa', daysGroup[0].monthNumber, new Date(daysGroup[6].year, daysGroup[6].monthNumber, 0).getDate());
               const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
-                data: {...daysGroup, monthBefore: daysGroup[0].monthNumber, monthAfter: daysGroup[6].monthNumber },
-                type: `calendar${ new Date(daysGroup[6].year, daysGroup[6].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
+                data: {
+                  ...daysGroup,
+                  layoutType: this.layoutOption,
+                  monthBefore: daysGroup[0].monthNumber,
+                  monthAfter: daysGroup[6].monthNumber
+                },
+                type: `calendar${new Date(daysGroup[6].year, daysGroup[6].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
                 category: 'calendar'
               };
               this.pagesBookStructure.push([{
-                data: {...daysGroup, monthBefore: daysGroup[0].monthNumber, monthAfter: daysGroup[6].monthNumber },
-                type: `calendar${ new Date(daysGroup[6].year, daysGroup[6].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
+                data: {
+                  ...daysGroup,
+                  layoutType: this.layoutOption,
+                  monthBefore: daysGroup[0].monthNumber,
+                  monthAfter: daysGroup[6].monthNumber
+                },
+                type: `calendar${new Date(daysGroup[6].year, daysGroup[6].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
                 category: 'calendar'
               }])
             }
@@ -2086,6 +2137,7 @@ export default {
         }
       })
       //this.calcBookStructure();
+      this.calcHolidaysStandard();
       this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
       this.rightStack = Array.from(this.pagesBook).reverse();
       this.updatePagesDepth(this.rightStack);
@@ -2196,21 +2248,25 @@ export default {
         pages: this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]
       });
       for (let x = 0; x < this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]; x++) {
-          if (`${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays') {
-            this.blankDaysCounter = this.blankDaysCounter + 1;
-          }
-          this.pagesBookStructure[0][0]= {
-            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? this.blankDaysCounter : 'addOnPages',
-            type: `${selection.category}${selection.subcategory.key}2`,
-            category: 'addOnPages'
-          };
+        if (`${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays') {
+          this.blankDaysCounter = this.blankDaysCounter + 1;
+        }
+        this.pagesBookStructure[0][0] = {
+          data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? this.blankDaysCounter : 'addOnPages',
+          type: `${selection.category}${selection.subcategory.key}2`,
+          category: 'addOnPages'
+        };
 
         this.pagesBookStructure.unshift([{
           data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? this.blankDaysCounter + 1 : 'addOnPages',
           type: `${selection.category}${selection.subcategory.key}1`,
           category: 'addOnPages'
         }])
-        this.pagesBookStructure[0].unshift({type: 'fillpage', category: 'fillpage', data: this.finalValue[2].selection});
+        this.pagesBookStructure[0].unshift({
+          type: 'fillpage',
+          category: 'fillpage',
+          data: this.finalValue[2].selection
+        });
         if (`${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays') {
           this.blankDaysCounter = this.blankDaysCounter + 1;
         }
@@ -2242,8 +2298,83 @@ export default {
     setHolidays(value) {
       this.holidaysSelection = value;
       this.formChange(value);
+      this.calcHolidaysSelection();
     },
-    setExtras(value){
+    calcHolidaysStandard() {
+      this.holidayStructure = {};
+      this.totalDatesArray.map(element => {
+        Reflect.set(this.holidayStructure, `${element.month}${element.year}`, this.$store.state.standardHolidays[element.year][element.month.toLowerCase()] ? this.$store.state.standardHolidays[element.year][element.month.toLowerCase()] : {})
+
+        //this.holidayStructure[`${element.month}${element.year}`] = this.$store.state.standardHolidays[element.year][element.month.toLowerCase()]? this.$store.state.standardHolidays[element.year][element.month.toLowerCase()]:{}
+      });
+      //console.log('holidayStructure', this.holidayStructure);
+    },
+    calcHolidaysSelection() {
+      this.totalDatesArray.map(element => {
+        if (this.formerValue !== element.month.toLowerCase()) {
+          this.formerValue = element.month.toLowerCase();
+          Reflect.set(this.holidayStructureSelection, `${element.month}${element.year}`, this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()] ? this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()] : {})
+
+          console.log('hEstructures', this.holidayStructure, this.holidayStructureSelection);
+          //this.holidayStructure[`${element.month}${element.year}`] = this.$store.state.standardHolidays[element.year][element.month.toLowerCase()]? this.$store.state.standardHolidays[element.year][element.month.toLowerCase()]:{}
+        }
+      });
+      this.calcTotalHoliday();
+    },
+    calcTotalHoliday() {
+      //this.holidayStructureFinal = Object.assign({}, this.holidayStructure);
+      Object.keys(this.holidayStructure).map((month) => {
+        Object.keys(this.holidayStructureSelection).map((monthSelection) => {
+          if (monthSelection === month){
+            this.holidayStructureFinal[month] = {...this.holidayStructureSelection[month], ...this.holidayStructure[month]}
+            Object.keys(this.holidayStructure[month]).map((holiday) =>{
+              Object.keys(this.holidayStructureSelection[month]).map((newHoliday) =>{
+                if(holiday == newHoliday ){
+                 const newArrayHolidays = this.holidayStructureSelection[month][newHoliday].concat(this.holidayStructure[month][holiday])
+                  console.log('newHoliday', newHoliday, newArrayHolidays);
+                  Reflect.set(this.holidayStructureFinal[month], newHoliday, newArrayHolidays);
+                }
+              })
+            })
+            //this.holidayStructureFinal[month] = {...this.holidayStructureSelection[month], ...this.holidayStructure[month]}
+          }
+        })
+      })
+      console.log('this.holidayStructureFinal', this.holidayStructureFinal);
+    },
+    /*calcHolidays(){
+      console.log('holidayStructure', this.holidayStructure);
+      //const newHolidayStructure =  Object.assign({}, this.holidayStructure);
+      this.totalDatesArray.map(element =>{
+        console.log('holiday---',element);
+        //if (!this.holidayStructure[`${element.month}${element.year}`]) {
+          console.log('holiday---++', this.formerValue, element.month.toLowerCase());
+        if (this.formerValue !== element.month.toLowerCase()) {
+          this.formerValue = element.month.toLowerCase();
+          Object.keys(this.holidayStructure[`${element.month}${element.year}`]).map((holiday) => {
+            if (this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()]) {
+              Object.keys(this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()]).map(newHoliday => {
+                  console.log('holiday**+', element.month.toLowerCase(), holiday, newHoliday);
+                  if (holiday != newHoliday) {
+                    console.log('holiiiiiii22', holiday, newHoliday, this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()][newHoliday]);
+                    this.holidayStructure[`${element.month}${element.year}`][newHoliday] = this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()][newHoliday];
+                    //Reflect.set(newHolidayStructure[`${element.month}${element.year}`], newHoliday, this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()][newHoliday] )
+                  } else if (holiday == newHoliday) {
+                    const newArrayHolidays = this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()][holiday].concat(this.$store.state.standardHolidays[element.year][element.month.toLowerCase()][holiday]);
+                    console.log('holiiiiiii', holiday, newHoliday, this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()][newHoliday]);
+                    //this.holidayStructure[`${element.month}${element.year}`][holiday].push(this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()][holiday]);
+                    this.holidayStructure[`${element.month}${element.year}`][holiday] = newArrayHolidays;
+                  }
+
+              })
+            }
+          })
+        }
+        //}
+      });
+      console.log('holidayStructure2', this.holidayStructure);
+    },*/
+    setExtras(value) {
       this.extrasSelection = value;
       this.$store.commit('SET_EXTRA_SELECTION', value)
     },

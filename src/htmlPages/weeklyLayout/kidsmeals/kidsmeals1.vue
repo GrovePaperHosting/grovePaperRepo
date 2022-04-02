@@ -186,15 +186,15 @@
       </div>-->
       <div id="g-ai0-41" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:23.0304%;margin-top:-7.5px;left:37.254%;margin-left:-47px;width:94px;">
-        <p class="g-pstyle5">{{(data[0].day).toLowerCase()}} {{data[0].dayNumber}}</p>
+        <p class="g-pstyle5">{{(data[0].day)}} {{data[0].dayNumber}}</p>
       </div>
       <div id="g-ai0-42" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:23.0304%;margin-top:-7.5px;left:58.2459%;margin-left:-47.5px;width:95px;">
-        <p class="g-pstyle5">{{(data[1].day).toLowerCase()}} {{data[1].dayNumber}}</p>
+        <p class="g-pstyle5">{{(data[1].day)}} {{data[1].dayNumber}}</p>
       </div>
       <div id="g-ai0-43" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:23.0304%;margin-top:-7.5px;left:79.2258%;margin-left:-58px;width:116px;">
-        <p class="g-pstyle5">{{(data[2].day).toLowerCase()}} {{data[2].dayNumber}}</p>
+        <p class="g-pstyle5">{{(data[2].day)}} {{data[2].dayNumber}}</p>
       </div>
       <div id="g-ai0-44" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:26.4468%;margin-top:-5.9px;left:28.2488%;width:64px;">
@@ -387,8 +387,8 @@
 export default {
   name: "kidsmeals1",
   props: {
-    data: {
-      type: Object,
+    data:{
+      required: true
     },
     index: {
       type: Number

@@ -48,7 +48,7 @@ export default {
   name: "weeklyHourly2",
   props:{
     data:{
-      type: Object,
+      required: true
     },
   }
 }
