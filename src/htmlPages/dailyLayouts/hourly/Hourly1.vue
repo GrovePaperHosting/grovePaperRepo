@@ -6,12 +6,14 @@
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;left:5.6634%;width:175px;">
         <p class="g-pstyle0">{{data.day}} &bull;  {{data.month}}  &bull;  {{data.dayNumber}}</p>
       </div>
-      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.9497%;margin-top:-5.9px;left:13.9068%;width:64px;">
-        <p class="g-pstyle1">holiday</p>
+      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]" style="top:10.9497%;margin-top:-5.9px;left:13.9068%;width:192px;">
+        <p class="g-pstyle1" v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
+
+        <!--<p class="g-pstyle1" style="margin: auto; white-space: normal;" v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]">{{this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber][0]}}</p>-->
       </div>
-      <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.5579%;margin-top:-5.9px;left:13.9067%;width:64px;">
-        <p class="g-pstyle1">holiday</p>
-      </div>
+      <!--<div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.5579%;margin-top:-5.9px;left:13.9067%;width:192px;">
+        <p class="g-pstyle1" style="margin: auto; white-space: normal;" v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]">{{this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber][1]}}</p>
+      </div>-->
       <div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:93.9906%;margin-top:-5.9px;padding-left:26.9px; padding-right: 31.9px; width: 100%; height: 24px">
         <p class="g-pstyle2" style="margin: auto; font-size: 7px; white-space: normal;">{{ extra }}</p>
       </div>
@@ -109,6 +111,17 @@ p{
   text-transform:uppercase;
   color:rgb(129,130,133);
 }
+@media only screen and (min-width: 1200px) {
+  #g-1_-Hourly-L-Artboard_1 .g-pstyle1 {
+    font-size:8px;
+  }
+  #g-ai0-2{
+    width: 150px !important;
+  }
+  /*#g-31---Saturday-L-Artboard_1 .g-pstyle0 {;
+    font-size:16px;
+  }*/
+}
 #g-1_-Hourly-L-Artboard_1 .g-pstyle2 {
   line-height:11px;
   height:11px;
@@ -118,9 +131,9 @@ p{
   text-transform:uppercase;
   color:rgb(129,130,133);
 }
-@media only screen and (max-width: 1200px) {
+/*@media only screen and (max-width: 1200px) {
   p {
     font-size:10px !important;
   }
-}
+}*/
 </style>

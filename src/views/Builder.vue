@@ -34,7 +34,7 @@
         <div class="build-container-carrousel-options">
           <div v-show="selectedCategory === 8">
             <div class="w100 is-flex">
-              <div class="add-container">
+              <div class="add-container" style="width: 30% ">
                 <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
                         @click="exportPDFDemo">
                   ADD TO CART
@@ -85,7 +85,7 @@
                                     <component v-if="pagesBookStructure[0].category === 'daily'" :is="`${pagesBookStructure[0].type}1`" :date="{ day: pagesBookStructure[0].day ,month: pagesBookStructure[0].month, dayNumber: pagesBookStructure[0].dayNumber}"></component>
                                   </div>
                                 </div>-->
-                <div class="page" style="max-width: 522px;max-height: 684px" :class="`page${index}`"
+                <div class="page" style="max-width: 522px;max-height: 684px; min-width: 375px" :class="`page${index}`"
                      v-for="(page, index) in pagesBookStructure" :key="index"
                      @click="flipSelectedPage($event)">
                   <div class="side side0">
@@ -2005,13 +2005,19 @@ export default {
           }
           if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 1) {
             this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
-              data: {...element},
+              data: {
+                ...element,
+                holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+              },
               type: `${type}1`,
               category: this.finalValue[5].selection.category
             };
           } else if (this.pagesBookStructure[this.pagesBookStructure.length - 1].length === 2) {
             this.pagesBookStructure.push([{
-              data: {...element},
+              data: {
+                ...element,
+                holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+              },
               type: `${type}2`,
               category: this.finalValue[5].selection.category
             }])
@@ -2024,7 +2030,8 @@ export default {
                 data: {
                   day: this.weekday[currentDate.getDay()],
                   month: this.totalMonths[this.totalMonths.length - 1].month === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
-                  dayNumber: 1
+                  dayNumber: 1,
+                  //holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
                 },
                 type: `${type}2`,
                 category: this.finalValue[5].selection.category
@@ -2054,7 +2061,7 @@ export default {
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
                 data: {
                   ...daysGroup,
-                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[0].month}${daysGroup[0].year}`]: this.holidayStructure[`${daysGroup[0].month}${daysGroup[0].year}`],
                   layoutType: this.layoutOption,
                   monthBefore: daysGroup[0].monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key,
                   monthAfter: daysGroup[0].monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key
@@ -2065,7 +2072,7 @@ export default {
               this.pagesBookStructure.push([{
                 data: {
                   ...daysGroup,
-                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[0].month}${daysGroup[0].year}`]: this.holidayStructure[`${daysGroup[0].month}${daysGroup[0].year}`],
                   layoutType: this.layoutOption,
                   monthBefore: daysGroup[0].monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key,
                   monthAfter: daysGroup[0].monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key
@@ -2340,6 +2347,7 @@ export default {
           }
         })
       })
+      this.$store.commit('SET_HOLIDAY_STRUCTURE_FINAL', this.holidayStructureFinal);
       console.log('this.holidayStructureFinal', this.holidayStructureFinal);
     },
     /*calcHolidays(){
@@ -2492,6 +2500,7 @@ body {
   position: relative;
   transform-style: preserve-3d;
   max-width: 522px;
+  min-width: 350px;
   max-height: 684px;
 }
 

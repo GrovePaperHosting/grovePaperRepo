@@ -197,18 +197,18 @@
         <p class="g-pstyle5">{{(data[2].day)}} {{data[2].dayNumber}}</p>
       </div>
       <div id="g-ai0-44" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:26.4468%;margin-top:-5.9px;left:28.2488%;width:64px;">
-        <p class="g-pstyle6">holiday</p>
+           style="top:26.4468%;margin-top:-5.9px;left:28.2488%;width:64px;" v-if="this.$store.state.holidayStructureFinal[`${data[0].month}${data[0].year}`][data[0].dayNumber]">
+        <p class="g-pstyle6"  v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[0].month}${data[0].year}`][data[0].dayNumber]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
       </div>
       <div id="g-ai0-45" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:26.4468%;margin-top:-5.9px;left:70.1716%;width:64px;">
-        <p class="g-pstyle6">holiday</p>
+           style="top:26.4468%;margin-top:-5.9px;left:70.1716%;width:64px;" v-if="this.$store.state.holidayStructureFinal[`${data[1].month}${data[1].year}`][data[1].dayNumber]">
+        <p class="g-pstyle6"  v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[1].month}${data[1].year}`][data[1].dayNumber]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
       </div>
       <div id="g-ai0-46" class="g-Layer_1 g-aiAbs g-aiPointText"
-           style="top:26.4468%;margin-top:-5.9px;left:49.2301%;width:64px;">
-        <p class="g-pstyle6">holiday</p>
+           style="top:26.4468%;margin-top:-5.9px;left:49.2301%;width:64px;" v-if="this.$store.state.holidayStructureFinal[`${data[2].month}${data[2].year}`][data[2].dayNumber]">
+        <p class="g-pstyle6" v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[2].month}${data[2].year}`][data[2].dayNumber]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
       </div>
-      <div id="g-ai0-47" class="g-Layer_1 g-aiAbs g-aiPointText"
+      <!--<div id="g-ai0-47" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:28.2012%;margin-top:-5.9px;left:28.2488%;width:64px;">
         <p class="g-pstyle7">holiday</p>
       </div>
@@ -375,7 +375,7 @@
       <div id="g-ai0-88" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:51.0082%;margin-top:-5.9px;left:49.23%;width:64px;">
         <p class="g-pstyle7">holiday</p>
-      </div>
+      </div>-->
       <div id="g-ai0-89" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:93.9906%;margin-top:-5.9px;padding-left:26.9px; padding-right: 31.9px; width: 100%; height: 24px">
         <p class="g-pstyle2 has-text-centered" style="margin: auto; font-size: 7px; white-space: normal;">{{ extra }}</p>
       </div>

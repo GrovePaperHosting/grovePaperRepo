@@ -7,8 +7,20 @@
         <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8023%;margin-top:-7.5px;right:5.4643%;width:163px;">
           <p class="g-pstyle0">{{data.day}} &bull;  {{data.month}}  &bull;  {{data.dayNumber}}</p>
         </div>
-        <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:8.9029%;margin-top:-5.9px;right:5.4616%;width:64px;">
-          <p class="g-pstyle1">holiday</p>
+        <!--<div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:8.9029%;margin-top:-5.9px;right:5.4616%;">
+          <p class="g-pstyle1" style="" v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]">{{this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber][0]}} <span v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber][1]">&bull;</span> {{this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber][1]}}</p>
+        </div>-->
+        <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText is-flex is-justify-content-flex-end" v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]" style="top:8.9029%;margin-top:-5.9px;right:5.4616%;max-width:522px; text-align: right;">
+          <div class="is-flex">
+            <p class="g-pstyle1"
+                v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]"
+                :key="index">
+          <span>
+            {{ item }}
+          </span>
+            <span> &bull; </span>
+          </p>
+          </div>
         </div>
       </div>
     </div>
@@ -74,6 +86,7 @@ p{
   font-style:normal;
   position:static;
 }
+
 #g-3_-Reflection-R-Artboard_2 .g-pstyle0 {
   height:14px;
   text-align:right;
@@ -87,6 +100,17 @@ p{
   text-align:right;
   text-transform:uppercase;
   color:rgb(129,130,133);
+}
+@media only screen and (min-width: 1200px) {
+  #g-3_-Reflection-R-Artboard_2 .g-pstyle1 {
+    font-size:8px;
+  }
+  #g-ai0-2{
+    width: 315px !important;
+  }
+  /*#g-31---Saturday-L-Artboard_1 .g-pstyle0 {;
+    font-size:16px;
+  }*/
 }
 </style>
 

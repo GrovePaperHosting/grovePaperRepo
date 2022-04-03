@@ -1647,6 +1647,7 @@ const store = new Vuex.Store({
         finalValue: [],
         extraSelection: '',
         totalPrice: 0,
+        holidayStructureFinal: {},
         //cartItems: []
         cartItems:
             [
@@ -1679,6 +1680,9 @@ const store = new Vuex.Store({
         SET_CART_ITEMS(state, payload) {
             state.cartItems = payload;
         },
+        SET_HOLIDAY_STRUCTURE_FINAL(state, payload) {
+            state.holidayStructureFinal = payload;
+        },
     },
     actions: {},
     getters: {
@@ -1693,6 +1697,9 @@ const store = new Vuex.Store({
         },
         getTotalPrice(state) {
             return state.totalPrice;
+        },
+        getHolidayStructureFinal(state) {
+            return state.holidayStructureFinal;
         }
     }
 })

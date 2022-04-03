@@ -6,8 +6,16 @@
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.6562%;margin-top:-7.5px;left:5.1558%;width:175px;">
         <p class="g-pstyle0">{{data.day}} &bull;  {{data.month}}  &bull;  {{data.dayNumber}}</p>
       </div>
-      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:8.6105%;margin-top:-5.9px;left:5.1558%;width:64px;">
-        <p class="g-pstyle1">holiday</p>
+      <!--<div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:8.6105%;margin-top:-5.9px;left:5.1558%;width:64px;">
+        <p class="g-pstyle1" style="margin: auto;" v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]">{{this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber][0]}} <span v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber][1]">&bull;</span> {{this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber][1]}}</p>
+      </div>-->
+      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText is-flex" v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]" style="top:8.903%;margin-top:-5.9px;left:5.1558%;width:522px;">
+        <p class="g-pstyle1" v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]" :key="index">
+          <span>
+            {{ item }}
+          </span>
+          <span > &bull; </span>
+        </p>
       </div>
       <div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:93.9906%;margin-top:-5.9px;padding-left:26.9px; padding-right: 31.9px; width: 100%; height: 24px">
         <p class="g-pstyle2" style="margin: auto; font-size: 7px; white-space: normal;">{{ extra }}</p>
@@ -105,6 +113,17 @@ p{
   font-size:9px;
   text-transform:uppercase;
   color:rgb(129,130,133);
+}
+@media only screen and (min-width: 1200px) {
+  #g-2_-Sectional-L-Artboard_4 .g-pstyle1 {
+    font-size:8px;
+  }
+  #g-ai0-2{
+    width: 315px !important;
+  }
+  /*#g-31---Saturday-L-Artboard_1 .g-pstyle0 {;
+    font-size:16px;
+  }*/
 }
 #g-2_-Sectional-L-Artboard_4 .g-pstyle2 {
   line-height:11px;

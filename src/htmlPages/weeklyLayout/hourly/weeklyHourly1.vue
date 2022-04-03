@@ -16,22 +16,22 @@
         <p class="g-pstyle1">{{data[2].day}} {{data[2].dayNumber}}</p>
       </div>
       <div id="g-ai0-5" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.7041%;margin-top:-5.9px;left:19.0041%;margin-left:-32px;width:64px;">
-        <p class="g-pstyle2">holiday</p>
-      </div>
-      <div id="g-ai0-6" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.7041%;margin-top:-5.9px;left:47.4446%;margin-left:-32px;width:64px;">
-        <p class="g-pstyle2">holiday</p>
-      </div>
-      <div id="g-ai0-7" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.7041%;margin-top:-5.9px;left:75.885%;margin-left:-32px;width:64px;">
-        <p class="g-pstyle2">holiday</p>
+        <p class="g-pstyle2" style=" white-space: normal;" v-if="this.$store.state.holidayStructureFinal[`${data[0].month}${data[0].year}`][data[0].dayNumber]">{{this.$store.state.holidayStructureFinal[`${data[0].month}${data[0].year}`][data[0].dayNumber][0]}}</p>
       </div>
       <div id="g-ai0-8" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.3123%;margin-top:-5.9px;left:19.0041%;margin-left:-32px;width:64px;">
-        <p class="g-pstyle2">holiday</p>
+        <p class="g-pstyle2" style="white-space: normal;" v-if="this.$store.state.holidayStructureFinal[`${data[0].month}${data[0].year}`][data[0].dayNumber]">{{this.$store.state.holidayStructureFinal[`${data[0].month}${data[0].year}`][data[0].dayNumber][1]}}</p>
+      </div>
+      <div id="g-ai0-6" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.7041%;margin-top:-5.9px;left:47.4446%;margin-left:-32px;width:64px;">
+        <p class="g-pstyle2" style="white-space: normal;" v-if="this.$store.state.holidayStructureFinal[`${data[1].month}${data[1].year}`][data[1].dayNumber]">{{this.$store.state.holidayStructureFinal[`${data[1].month}${data[1].year}`][data[1].dayNumber][0]}}</p>
       </div>
       <div id="g-ai0-9" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.3123%;margin-top:-5.9px;left:47.4446%;margin-left:-32px;width:64px;">
-        <p class="g-pstyle2">holiday</p>
+        <p class="g-pstyle2" style="white-space: normal;" v-if="this.$store.state.holidayStructureFinal[`${data[1].month}${data[1].year}`][data[1].dayNumber]">{{this.$store.state.holidayStructureFinal[`${data[1].month}${data[1].year}`][data[1].dayNumber][1]}}</p>
+      </div>
+      <div id="g-ai0-7" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.7041%;margin-top:-5.9px;left:75.885%;margin-left:-32px;width:64px;">
+        <p class="g-pstyle2" style="white-space: normal;" v-if="this.$store.state.holidayStructureFinal[`${data[2].month}${data[2].year}`][data[2].dayNumber]">{{this.$store.state.holidayStructureFinal[`${data[2].month}${data[2].year}`][data[2].dayNumber][0]}}</p>
       </div>
       <div id="g-ai0-10" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:14.3123%;margin-top:-5.9px;left:75.885%;margin-left:-32px;width:64px;">
-        <p class="g-pstyle2">holiday</p>
+        <p class="g-pstyle2" style="white-space: normal;" v-if="this.$store.state.holidayStructureFinal[`${data[2].month}${data[2].year}`][data[2].dayNumber]">{{this.$store.state.holidayStructureFinal[`${data[2].month}${data[2].year}`][data[2].dayNumber][1]}}</p>
       </div>
       <div id="g-ai0-37" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:93.9906%;margin-top:-5.9px;padding-left:26.9px; padding-right: 31.9px; width: 100%; height: 24px">
         <p class="g-pstyle2 has-text-centered" style="margin: auto; font-size: 7px; white-space: normal;">{{ extra }}</p>
