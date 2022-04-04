@@ -6,11 +6,15 @@
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:6.8024%;margin-top:-7.5px;right:4.4681%;width:163px;">
         <p class="g-pstyle0">{{data.day}} &bull;  {{data.month}}  &bull;  {{data.dayNumber}}</p>
       </div>
-      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.9497%;margin-top:-5.9px;left:19.2581%;width:64px;">
-        <p class="g-pstyle1">holiday</p>
+      <!--<div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:10.9497%;margin-top:-5.9px;left:19.2581%;width:64px;">
+        <p class="g-pstyle1" style="margin: auto; white-space: normal;" v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]">{{this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber][0]}}</p>
       </div>
       <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.5579%;margin-top:-5.9px;left:19.2581%;width:64px;">
-        <p class="g-pstyle1">holiday</p>
+        <p class="g-pstyle1" style="margin: auto; white-space: normal;" v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]">{{this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber][1]}}</p>
+      </div>-->
+      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]" style="top:10.9497%;margin-top:-5.9px;left:19.2581%;width:192px;">
+        <p class="g-pstyle1" v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
+        <!--<p class="g-pstyle1" style="margin: auto; white-space: normal;" v-if="this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber]">{{this.$store.state.holidayStructureFinal[`${data.month}${data.year}`][data.dayNumber][0]}}</p>-->
       </div>
     </div>
   </div>
@@ -86,6 +90,17 @@ p{
   font-size:9px;
   text-transform:uppercase;
   color:rgb(129,130,133);
+}
+@media only screen and (min-width: 1200px) {
+  #g-1_-Hourly-R-Artboard_3 .g-pstyle1 {
+    font-size:8px;
+  }
+  #g-ai0-2{
+    width: 150px !important;
+  }
+  /*#g-31---Saturday-L-Artboard_1 .g-pstyle0 {;
+    font-size:16px;
+  }*/
 }
 
 @media only screen and (max-width: 1200px) {
