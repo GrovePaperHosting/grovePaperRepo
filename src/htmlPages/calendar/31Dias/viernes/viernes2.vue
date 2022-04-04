@@ -16,6 +16,7 @@
           <p class="g-pstyle0">{{item}}</p>
         </div>
       </div>
+
       <div id="g-ai0-46" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:20.6143%;margin-top:-5px;left:83.3341%;margin-left:-30.5px;width:61px;">
         <p class="g-pstyle0">{{ data.monthAfter }}</p>
