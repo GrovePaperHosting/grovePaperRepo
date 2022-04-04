@@ -470,5 +470,14 @@ p{
   text-transform:uppercase;
   color:rgb(129,130,133);
 }
+@media only screen and (min-width: 1200px) {
+  #g-31---Monday-L-Artboard_1 p {
+    font-size: 7.5px;
+  }
+
+  .g-Layer_1.g-aiAbs.g-aiPointText.g-ai0-2 {
+    width: 70px !important;
+  }
+}
 
 </style>
