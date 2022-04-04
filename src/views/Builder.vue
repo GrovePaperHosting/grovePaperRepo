@@ -2126,8 +2126,8 @@ export default {
                   ...daysGroup,
                   holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`]: this.holidayStructure[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`],
                   layoutType: this.layoutOption,
-                  monthBefore: daysGroup[0].monthNumber,
-                  monthAfter: daysGroup[daysGroup.length-1].monthNumber
+                  monthBefore: this.datesValueOptions.month[daysGroup[0].monthNumber].key,
+                  monthAfter: this.datesValueOptions.month[daysGroup[daysGroup.length-1].monthNumber].key
                 },
                 type: `calendar${new Date(daysGroup[daysGroup.length-1].year, daysGroup[daysGroup.length-1].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
                 category: 'calendar'
@@ -2137,8 +2137,8 @@ export default {
                   ...daysGroup,
                   holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`]: this.holidayStructure[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`],
                   layoutType: this.layoutOption,
-                  monthBefore: daysGroup[0].monthNumber,
-                  monthAfter: daysGroup[daysGroup.length-1].monthNumber
+                  monthBefore: this.datesValueOptions.month[daysGroup[0].monthNumber].key,
+                  monthAfter: this.datesValueOptions.month[daysGroup[daysGroup.length-1].monthNumber].key
                 },
                 type: `calendar${new Date(daysGroup[daysGroup.length-1].year, daysGroup[daysGroup.length-1].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
                 category: 'calendar'

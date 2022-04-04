@@ -431,7 +431,7 @@ export default {
 }
 </script>
 
-<style media="screen,print">
+<style media="screen,print" scoped>
 p{
   font-family: 'Kontour Type - Kopius-Light';
 }
