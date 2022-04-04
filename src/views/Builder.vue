@@ -667,6 +667,8 @@ import calendar28friday2 from "../htmlPages/calendar/28Dias/viernes/viernes2";
 import calendar28saturday1 from "../htmlPages/calendar/28Dias/sabado/sabado1";
 import calendar28saturday2 from "../htmlPages/calendar/28Dias/sabado/sabado2";
 import calendar28sunday1 from "../htmlPages/calendar/28Dias/domingo/domingo1";
+import calendar29thursday1 from "../htmlPages/calendar/29Dias/jueves/jueves1";
+import calendar29thursday2 from "../htmlPages/calendar/29Dias/jueves/jueves2";
 import calendar28sunday2 from "../htmlPages/calendar/28Dias/domingo/domingo2";
 import calendar30monday1 from "../htmlPages/calendar/30Dias/lunes/lunes1";
 import calendar30monday2 from "../htmlPages/calendar/30Dias/lunes/lunes2";
@@ -834,6 +836,8 @@ export default {
     calendar28saturday2,
     calendar28sunday1,
     calendar28sunday2,
+    calendar29thursday1,
+    calendar29thursday2,
     calendar30monday1,
     calendar30monday2,
     calendar30tuesday1,
