@@ -2119,15 +2119,15 @@ export default {
             //console.log('primerMap2', element, index);
 
             if (element.dayNumber === 1 && daysGroup[0].dayNumber !== 1 ) {
-              console.log('que pasaa',daysGroup, daysGroup[0].monthNumber, daysGroup[daysGroup.length-1].year, daysGroup[daysGroup.length-1].monthNumber, new Date(daysGroup[daysGroup.length-1].year, daysGroup[daysGroup.length-1].monthNumber, 0).getDate());
+              console.log('que pasaa',daysGroup);
               const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
                 data: {
                   ...daysGroup,
                   holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`]: this.holidayStructure[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`],
                   layoutType: this.layoutOption,
-                  monthBefore: this.datesValueOptions.month[daysGroup[0].monthNumber].key,
-                  monthAfter: this.datesValueOptions.month[daysGroup[daysGroup.length-1].monthNumber].key
+                  monthBefore: daysGroup[6].monthNumber == 1 ? this.datesValueOptions.month[11].key:  this.datesValueOptions.month[daysGroup[6].monthNumber-2].key,
+                  monthAfter: daysGroup[6].monthNumber == 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[6].monthNumber].key
                 },
                 type: `calendar${new Date(daysGroup[daysGroup.length-1].year, daysGroup[daysGroup.length-1].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
                 category: 'calendar'
@@ -2137,8 +2137,8 @@ export default {
                   ...daysGroup,
                   holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`]: this.holidayStructure[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`],
                   layoutType: this.layoutOption,
-                  monthBefore: this.datesValueOptions.month[daysGroup[0].monthNumber].key,
-                  monthAfter: this.datesValueOptions.month[daysGroup[daysGroup.length-1].monthNumber].key
+                  monthBefore: daysGroup[6].monthNumber == 1 ? this.datesValueOptions.month[11].key:  this.datesValueOptions.month[daysGroup[6].monthNumber-2].key,
+                  monthAfter: daysGroup[6].monthNumber == 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[6].monthNumber].key
                 },
                 type: `calendar${new Date(daysGroup[daysGroup.length-1].year, daysGroup[daysGroup.length-1].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
                 category: 'calendar'

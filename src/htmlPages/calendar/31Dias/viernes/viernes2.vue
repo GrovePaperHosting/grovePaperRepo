@@ -711,10 +711,6 @@ p{
     font-size: 7.5px;
   }
 
-  #g-31---Friday-R-Artboard_2 .g-pstyle0 {;
-    font-size: 16px;
-  }
-
   .g-Layer_1.g-aiAbs.g-aiPointText.g-ai0-2 {
     width: 70px !important;
   }
