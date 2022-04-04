@@ -196,18 +196,27 @@
            style="top:23.0304%;margin-top:-7.5px;left:79.2258%;margin-left:-58px;width:116px;">
         <p class="g-pstyle5">{{(data[2].day)}} {{data[2].dayNumber}}</p>
       </div>
-      <div id="g-ai0-44" class="g-Layer_1 g-aiAbs g-aiPointText"
+      <div v-if="this.$store.state.holidayStructureFinal[`${data[0].month}${data[0].year}`]" class="g-Layer_1 g-aiAbs g-aiPointText g-ai0" style="top:26.4468%;margin-top:-5.9px;left:28.2488%;width:93px;">
+        <p class="g-pstyle6" v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[0].month}${data[0].year}`][data[0].dayNumber]" :key="index" style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+      </div>
+      <div v-if="this.$store.state.holidayStructureFinal[`${data[1].month}${data[1].year}`]" class="g-Layer_1 g-aiAbs g-aiPointText g-ai0" style="top:26.4468%;margin-top:-5.9px;left:70.1716%;width:93px;">
+        <p class="g-pstyle6" v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[1].month}${data[1].year}`][data[1].dayNumber]" :key="index" style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+      </div>
+      <div v-if="this.$store.state.holidayStructureFinal[`${data[2].month}${data[2].year}`]" class="g-Layer_1 g-aiAbs g-aiPointText g-ai0" style="top:26.4468%;margin-top:-5.9px;left:49.2301%;width:93px;">
+        <p class="g-pstyle6" v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[2].month}${data[2].year}`][data[2].dayNumber]" :key="index" style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+      </div>
+      <!--<div id="g-ai0-44" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:26.4468%;margin-top:-5.9px;left:28.2488%;width:64px;" v-if="this.$store.state.holidayStructureFinal[`${data[0].month}${data[0].year}`][data[0].dayNumber]">
         <p class="g-pstyle6"  v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[0].month}${data[0].year}`][data[0].dayNumber]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
-      </div>
-      <div id="g-ai0-45" class="g-Layer_1 g-aiAbs g-aiPointText"
+      </div>-->
+      <!--<div id="g-ai0-45" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:26.4468%;margin-top:-5.9px;left:70.1716%;width:64px;" v-if="this.$store.state.holidayStructureFinal[`${data[1].month}${data[1].year}`][data[1].dayNumber]">
         <p class="g-pstyle6"  v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[1].month}${data[1].year}`][data[1].dayNumber]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
       </div>
       <div id="g-ai0-46" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:26.4468%;margin-top:-5.9px;left:49.2301%;width:64px;" v-if="this.$store.state.holidayStructureFinal[`${data[2].month}${data[2].year}`][data[2].dayNumber]">
         <p class="g-pstyle6" v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[2].month}${data[2].year}`][data[2].dayNumber]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
-      </div>
+      </div>-->
       <!--<div id="g-ai0-47" class="g-Layer_1 g-aiAbs g-aiPointText"
            style="top:28.2012%;margin-top:-5.9px;left:28.2488%;width:64px;">
         <p class="g-pstyle7">holiday</p>
@@ -398,7 +407,6 @@ export default {
     return {
       extra: '',
       monthData: [],
-      currentWeek: 1,
     }
   },
   computed: {
@@ -410,6 +418,13 @@ export default {
         return element.dayNumber;
       })
       return arrayDates;
+    },
+    currentWeek(){
+      const currentdate = new Date(`${this.data[6].year}-${this.data[6].monthNumber}-${this.data[6].dayNumber}`);
+      var oneJan = new Date(currentdate.getFullYear(),0,1);
+      var numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
+      var result = Math.ceil(( currentdate.getDay() + 1 + numberOfDays) / 7);
+      return result
     }
   },
   watch: {
@@ -433,7 +448,7 @@ export default {
       }
       for (let i = 0; i <= 5; i++) {
         this.monthData.push(monthDates.slice(i * 7 + 1, (i * 7) + 8));
-        if((monthDates.slice(i * 7 + 1, (i * 7) + 8)).includes(this.data[0].dayNumber)) this.currentWeek=i;
+        //if((monthDates.slice(i * 7 + 1, (i * 7) + 8)).includes(this.data[0].dayNumber)) this.currentWeek=i;
       }
       console.log('monthData', this.monthData);
     },
@@ -500,6 +515,21 @@ p {
   mix-blend-mode: normal;
   font-style: normal;
   position: static;
+}
+@media only screen and (min-width: 1200px) {
+  #g-3_-Kids-_-Meals-L-Artboard_6 p {
+    font-size:8px;
+  }
+  .g-ai0{
+    width: 70px !important;
+  }
+  /*#g-31---Saturday-L-Artboard_1 .g-pstyle0 {;
+    font-size:16px;
+  }*/
+  #g-3_-Kids-_-Meals-L-Artboard_6 .g-pstyle5 {
+
+    font-size: 10px !important;
+  }
 }
 
 #g-3_-Kids-_-Meals-L-Artboard_6 .g-pstyle0 {
