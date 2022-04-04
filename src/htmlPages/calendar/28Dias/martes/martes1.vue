@@ -15,17 +15,17 @@
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:41.6515%;margin-top:-5.9px;left:6.1246%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[13]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:53.786%;margin-top:-5.9px;left:6.1245%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[20]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:65.9205%;margin-top:-5.9px;left:6.1245%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[27]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <!--<div id="g-ai0-34" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:41.6515%;margin-top:-5.9px;left:6.1246%;width:64px;">
         <p class="g-pstyle1">holiday</p>
@@ -75,22 +75,22 @@
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:29.3708%;margin-top:-5.9px;left:27.2569%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[7]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <div id="g-ai0-25" class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:41.6515%;margin-top:-5.9px;left:27.257%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[14]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:53.786%;margin-top:-5.9px;left:27.2569%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[21]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:66.0667%;margin-top:-5.9px;left:27.2569%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[28]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
 
 
@@ -181,42 +181,42 @@
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:17.2363%;margin-top:-5.9px;left:48.3893%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[1]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:29.3708%;margin-top:-5.9px;left:48.3893%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[8]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:41.6515%;margin-top:-5.9px;left:48.3893%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[15]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:53.786%;margin-top:-5.9px;left:48.3893%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[22]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:17.2363%;margin-top:-5.9px;left:69.5217%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[2]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:29.3708%;margin-top:-5.9px;left:69.5217%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[9]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:41.6515%;margin-top:-5.9px;left:69.5217%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[16]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
       <div class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:53.786%;margin-top:-5.9px;left:69.5217%;width:98px;">
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[23]" :key="index"
-           style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+           style="margin: auto; white-space: normal; height:auto">{{ item }}</p>
       </div>
 
       <!--<div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:17.2363%;margin-top:-5.9px;left:48.3893%;width:64px;">

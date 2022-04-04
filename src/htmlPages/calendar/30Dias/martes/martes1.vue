@@ -25,7 +25,6 @@
       </div>
       <div id="g-ai0-37" class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
            style="top:17.2363%;margin-top:-5.9px;left:48.3893%;width:98px;">
-        1
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[1]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
       </div>
       <div id="g-ai0-106" class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"

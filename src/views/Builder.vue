@@ -2039,45 +2039,66 @@ export default {
           )
         }
       } else {
-        const totalDaysGroup = Math.ceil((this.totalDatesArray.length) / 7);
+        while(this.totalDatesArray[0].day !== 'Monday'){
+          let primerDia = (new Date(`${this.totalDatesArray[0].year}-${this.totalDatesArray[0].monthNumber}-${this.totalDatesArray[0].dayNumber}`));
+          let diaMilis = 24 * 60 * 60 * 1000;
+          let diaAnterior = new Date(primerDia.getTime() - diaMilis);
+          console.log('totalDatesArray1111',primerDia,diaAnterior, diaAnterior.getUTCDay(),this.totalDatesArray[0]);
+          this.totalDatesArray.unshift({
+            day: this.weekday[diaAnterior.getUTCDay()],
+            month: this.datesValueOptions.month[diaAnterior.getMonth()].key,
+            monthNumber: diaAnterior.getMonth()+1,
+            dayNumber: diaAnterior.getUTCDate(),
+            year: diaAnterior.getFullYear()
+          })
+        }
+        console.log('totalDatesArray', this.totalDatesArray);
+          const totalDaysGroup = Math.ceil((this.totalDatesArray.length) / 7);
         for (let y = 0; y < totalDaysGroup; y++) {
           let daysGroup = this.totalDatesArray.slice((y * 7), (y * 7 + 7));
           let i = 1;
           while (daysGroup.length < 7) {
-            const currentDate = new Date(`${this.totalMonths[this.totalMonths.length - 1].year}-${this.totalMonths[this.totalMonths.length - 1].month + 1}-${i}`);
+            console.log()
+            const currentDate = new Date(`${this.totalMonths[this.totalMonths.length - 1].year}-${this.totalMonths[this.totalMonths.length - 1].month}-${i}`);
+            const nextDate = new Date(currentDate.getTime() + (24 * 60 * 60 * 1000));
+            console.log('currentDate', currentDate, nextDate);
             daysGroup.push(
                 {
-                  day: this.weekday[currentDate.getDay()],
-                  month: this.totalMonths[this.totalMonths.length - 1].month === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
+                  day: this.weekday[nextDate.getUTCDay()],
+                  month: this.datesValueOptions.month[nextDate.getUTCMonth()].key,
+                  //month: this.totalMonths[this.totalMonths.length - 1].month === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
                   //month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
+                  monthNumber: nextDate.getUTCMonth()+1,
+                  year: nextDate.getUTCFullYear(),
                   dayNumber: i
                 }
             )
             i++;
           }
-          daysGroup.map(element => {
+          daysGroup.map((element) => {
+            //console.log('primerMap', element, index);
             if (element.dayNumber === 1 && daysGroup[0].dayNumber === 1) {
               const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
                 data: {
                   ...daysGroup,
-                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[0].month}${daysGroup[0].year}`]: this.holidayStructure[`${daysGroup[0].month}${daysGroup[0].year}`],
+                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[6].month}${daysGroup[6].year}`]: this.holidayStructure[`${daysGroup[6].month}${daysGroup[6].year}`],
                   layoutType: this.layoutOption,
-                  monthBefore: daysGroup[0].monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key,
-                  monthAfter: daysGroup[0].monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key
+                  monthBefore: daysGroup[6].monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[6].monthNumber - 2].key,
+                  monthAfter: daysGroup[6].monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[6].monthNumber].key
                 },
-                type: `calendar${new Date(daysGroup[0].year, daysGroup[0].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
+                type: `calendar${new Date(daysGroup[6].year, daysGroup[6].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
                 category: 'calendar'
               };
               this.pagesBookStructure.push([{
                 data: {
                   ...daysGroup,
-                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[0].month}${daysGroup[0].year}`]: this.holidayStructure[`${daysGroup[0].month}${daysGroup[0].year}`],
+                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[6].month}${daysGroup[6].year}`]: this.holidayStructure[`${daysGroup[6].month}${daysGroup[6].year}`],
                   layoutType: this.layoutOption,
-                  monthBefore: daysGroup[0].monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[0].monthNumber - 2].key,
-                  monthAfter: daysGroup[0].monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[0].monthNumber].key
+                  monthBefore: daysGroup[6].monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[6].monthNumber - 2].key,
+                  monthAfter: daysGroup[6].monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[6].monthNumber].key
                 },
-                type: `calendar${new Date(daysGroup[0].year, daysGroup[0].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
+                type: `calendar${new Date(daysGroup[6].year, daysGroup[6].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
                 category: 'calendar'
               }])
             }
@@ -2094,28 +2115,32 @@ export default {
             type: `${type}2`,
             category: this.finalValue[5].selection.category
           }]);
-          daysGroup.map(element => {
-            if (element.dayNumber === 1 && daysGroup[0].dayNumber !== 1) {
-              console.log('que pasaa', daysGroup[0].monthNumber, new Date(daysGroup[6].year, daysGroup[6].monthNumber, 0).getDate());
+          daysGroup.map((element) => {
+            //console.log('primerMap2', element, index);
+
+            if (element.dayNumber === 1 && daysGroup[0].dayNumber !== 1 ) {
+              console.log('que pasaa',daysGroup, daysGroup[0].monthNumber, daysGroup[daysGroup.length-1].year, daysGroup[daysGroup.length-1].monthNumber, new Date(daysGroup[daysGroup.length-1].year, daysGroup[daysGroup.length-1].monthNumber, 0).getDate());
               const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
                 data: {
                   ...daysGroup,
+                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`]: this.holidayStructure[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`],
                   layoutType: this.layoutOption,
                   monthBefore: daysGroup[0].monthNumber,
-                  monthAfter: daysGroup[6].monthNumber
+                  monthAfter: daysGroup[daysGroup.length-1].monthNumber
                 },
-                type: `calendar${new Date(daysGroup[6].year, daysGroup[6].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
+                type: `calendar${new Date(daysGroup[daysGroup.length-1].year, daysGroup[daysGroup.length-1].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
                 category: 'calendar'
               };
               this.pagesBookStructure.push([{
                 data: {
                   ...daysGroup,
+                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`]: this.holidayStructure[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`],
                   layoutType: this.layoutOption,
                   monthBefore: daysGroup[0].monthNumber,
-                  monthAfter: daysGroup[6].monthNumber
+                  monthAfter: daysGroup[daysGroup.length-1].monthNumber
                 },
-                type: `calendar${new Date(daysGroup[6].year, daysGroup[6].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
+                type: `calendar${new Date(daysGroup[daysGroup.length-1].year, daysGroup[daysGroup.length-1].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
                 category: 'calendar'
               }])
             }
@@ -2127,6 +2152,7 @@ export default {
         category: 'fillpage',
         data: this.finalValue[2].selection
       }
+      console.log('this.pagesBookStructure', this.pagesBookStructure);
     },
     calcTotalDates() {
       this.totalDatesArray = [];
@@ -2134,7 +2160,7 @@ export default {
         for (let y = 1; y <= element.totalDays; y++) {
           const currentDate = new Date(`${element.year}-${element.month}-${y}`);
           this.totalDatesArray.push({
-            day: this.weekday[currentDate.getDay()],
+            day: this.weekday[currentDate.getUTCDay()],
             month: this.datesValueOptions.month[element.month - 1].key,
             monthNumber: element.month,
             dayNumber: y,
@@ -2148,6 +2174,7 @@ export default {
       this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
       this.rightStack = Array.from(this.pagesBook).reverse();
       this.updatePagesDepth(this.rightStack);
+      console.log('totalDatesArray1', this.totalDatesArray);
     },
     calcMonthsArray() {
       const numberOfYears = this.dateValue.endDate.year - this.dateValue.startDate.year;
