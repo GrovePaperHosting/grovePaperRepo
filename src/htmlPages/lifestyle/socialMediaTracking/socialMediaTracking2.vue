@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style media="screen,print">
+<style media="screen,print" scoped>
 #g-6_-Social-Media-Tracking-R-box ,
 #g-6_-Social-Media-Tracking-R-box .g-artboard {
  margin:0 auto;
