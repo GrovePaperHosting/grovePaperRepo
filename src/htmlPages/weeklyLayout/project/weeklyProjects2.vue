@@ -1,14 +1,18 @@
 <template>
-  <div id="g-4_-Projects-R-box" class="ai2html">
-
-    <!-- Artboard: Artboard_8 -->
-    <div id="g-4_-Projects-R-Artboard_8" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
+  <div id="g-3_-Kids-_-Meals-R-box" class="ai2html">
+    <div id="g-3_-Kids-_-Meals-R-Artboard_2" class="g-artboard" style="max-width: 522px;max-height: 684px" data-aspect-ratio="0.763" data-min-width="0">
       <div style="padding: 0 0 131.0345% 0;"></div>
-      <img id="g-4_-Projects-R-Artboard_8-img" class="g-aiImg" alt="" src="./4_-Projects-R-Artboard_8.png"/>
+      <img id="g-3_-Kids-_-Meals-R-Artboard_2-img" class="g-aiImg" alt="" src="./4_-Projects-R-Artboard_8.png"/>
       <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:5.2817%;margin-top:-5.1px;left:21.1456%;margin-left:-33.5px;width:67px;">
         <p class="g-pstyle0">{{monthAfter.key}}</p>
       </div>
-      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:9.2016%;margin-top:-5.9px;left:11.3294%;margin-left:-13px;width:26px;">
+      <div v-for="(item1, index1) in monthAfterData " :key="index1">
+        <div v-for="(item, index) in item1 " :key="index" id="g-ai0-4" class="g-Layer_1 g-aiAbs aiPointText"
+             :style="`top:${1.9*index1+9.4016}%;margin-top:-5.9px;left:${3.1*index+15.3294}%;margin-left:-13.5px;width:27px;`">
+          <p class="g-pstyle12" style="font-size: 8.5px" >{{item}}</p>
+        </div>
+      </div>
+      <!--<div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:9.2016%;margin-top:-5.9px;left:11.3294%;margin-left:-13px;width:26px;">
         <p class="g-pstyle1">1</p>
       </div>
       <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:9.2016%;margin-top:-5.9px;left:14.6161%;margin-left:-13.5px;width:27px;">
@@ -118,32 +122,45 @@
       </div>
       <div id="g-ai0-38" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:17.8273%;margin-top:-5.9px;left:14.574%;margin-left:-12px;width:24px;">
         <p class="g-pstyle1">.</p>
-      </div>
-      <div id="g-ai0-39" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:23.0305%;margin-top:-7.5px;left:20.9127%;margin-left:-53px;width:106px;">
+      </div>-->
+      <div id="g-ai0-39" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:23.0304%;margin-top:-7.5px;left:20.9127%;margin-left:-53px;width:106px;">
         <p class="g-pstyle2">{{(data[3].day)}} {{data[3].dayNumber}}</p>
       </div>
-      <div id="g-ai0-40" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:23.0305%;margin-top:-7.5px;left:41.7675%;margin-left:-41px;width:82px;">
+      <div id="g-ai0-40" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:23.0304%;margin-top:-7.5px;left:41.7675%;margin-left:-41px;width:82px;">
         <p class="g-pstyle2">{{(data[4].day)}} {{data[4].dayNumber}}</p>
       </div>
-      <div id="g-ai0-41" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:23.0305%;margin-top:-7.5px;left:62.7011%;margin-left:-51.5px;width:103px;">
+      <div id="g-ai0-41" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:23.0304%;margin-top:-7.5px;left:62.7011%;margin-left:-51.5px;width:103px;">
         <p class="g-pstyle2">{{(data[5].day)}} {{data[5].dayNumber}}</p>
       </div>
-      <div id="g-ai0-42" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:23.0305%;margin-top:-7.5px;left:83.6826%;margin-left:-45px;width:90px;">
+      <div id="g-ai0-42" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:23.0304%;margin-top:-7.5px;left:83.6826%;margin-left:-45px;width:90px;">
         <p class="g-pstyle2">{{(data[6].day)}} {{data[6].dayNumber}}</p>
       </div>
-      <div id="g-ai0-43" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:26.4468%;margin-top:-5.9px;left:11.929%;width:64px;">
-        <p class="g-pstyle3">holiday</p>
+      <!--<div id="g-ai0-43" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:26.4468%;margin-top:-5.9px;left:11.929%;width:64px;" v-if="this.$store.state.holidayStructureFinal[`${data[3].month}${data[3].year}`][data[3].dayNumber]">
+        <p class="g-pstyle3"  v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[3].month}${data[3].year}`][data[3].dayNumber]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
       </div>
-      <div id="g-ai0-44" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:26.4468%;margin-top:-5.9px;left:32.9098%;width:64px;">
-        <p class="g-pstyle3">holiday</p>
+      <div id="g-ai0-44" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:26.4468%;margin-top:-5.9px;left:32.9098%;width:64px;" v-if="this.$store.state.holidayStructureFinal[`${data[4].month}${data[4].year}`][data[4].dayNumber]">
+        <p class="g-pstyle3"  v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[4].month}${data[4].year}`][data[4].dayNumber]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
       </div>
-      <div id="g-ai0-45" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:26.4468%;margin-top:-5.9px;left:53.7796%;width:64px;">
-        <p class="g-pstyle3">holiday</p>
+      <div id="g-ai0-45" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:26.4468%;margin-top:-5.9px;left:53.7796%;width:64px;" v-if="this.$store.state.holidayStructureFinal[`${data[5].month}${data[5].year}`][data[5].dayNumber]">
+        <p class="g-pstyle3"  v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[5].month}${data[5].year}`][data[5].dayNumber]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
       </div>
-      <div id="g-ai0-46" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:26.4468%;margin-top:-5.9px;left:74.711%;width:64px;">
-        <p class="g-pstyle3">holiday</p>
+      <div id="g-ai0-46" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:26.4468%;margin-top:-5.9px;left:74.711%;width:64px;" v-if="this.$store.state.holidayStructureFinal[`${data[6].month}${data[6].year}`][data[6].dayNumber]">
+        <p class="g-pstyle3"  v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[6].month}${data[6].year}`][data[6].dayNumber]" :key="index" style="margin: auto; white-space: normal;">{{ item }}</p>
+      </div>-->
+
+      <div v-if="this.$store.state.holidayStructureFinal[`${data[0].month}${data[0].year}`]" class="g-Layer_1 g-aiAbs g-aiPointText g-ai0" style="top:26.4468%;margin-top:-5.9px; left:11.929%;width:93px;">
+        <p class="g-pstyle6" v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[3].month}${data[3].year}`][data[3].dayNumber]" :key="index" style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
       </div>
-      <div id="g-ai0-47" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:28.2012%;margin-top:-5.9px;left:11.929%;width:64px;">
+      <div v-if="this.$store.state.holidayStructureFinal[`${data[1].month}${data[1].year}`]" class="g-Layer_1 g-aiAbs g-aiPointText g-ai0" style="top:26.4468%;margin-top:-5.9px;left:32.9098%;width:93px;">
+        <p class="g-pstyle6" v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[4].month}${data[4].year}`][data[4].dayNumber]" :key="index" style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+      </div>
+      <div v-if="this.$store.state.holidayStructureFinal[`${data[2].month}${data[2].year}`]" class="g-Layer_1 g-aiAbs g-aiPointText g-ai0" style="top:26.4468%;margin-top:-5.9px;left:53.7796%;width:93px;">
+        <p class="g-pstyle6" v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[5].month}${data[5].year}`][data[5].dayNumber]" :key="index" style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+      </div>
+      <div v-if="this.$store.state.holidayStructureFinal[`${data[2].month}${data[2].year}`]" class="g-Layer_1 g-aiAbs g-aiPointText g-ai0" style="top:26.4468%;margin-top:-5.9px;left:74.711%;width:93px;">
+        <p class="g-pstyle6" v-for="(item, index) in this.$store.state.holidayStructureFinal[`${data[6].month}${data[6].year}`][data[6].dayNumber]" :key="index" style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
+      </div>
+      <!--<div id="g-ai0-47" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:28.2012%;margin-top:-5.9px;left:11.929%;width:64px;">
         <p class="g-pstyle4">holiday</p>
       </div>
       <div id="g-ai0-48" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:28.2012%;margin-top:-5.9px;left:32.9098%;width:64px;">
@@ -310,7 +327,7 @@
       </div>
       <div id="g-ai0-102" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:50.862%;margin-top:-5.9px;left:74.711%;width:64px;">
         <p class="g-pstyle4">holiday</p>
-      </div>
+      </div>-->
     </div>
 
   </div>
@@ -318,10 +335,10 @@
 
 <script>
 export default {
-  name: "weeklyProjects2",
+  name: "kidsmeals2",
   props:{
     data:{
-      type: Array,
+      required: true
     },
   },
   data() {
@@ -414,36 +431,36 @@ export default {
 }
 </script>
 
-<style media="screen,print">
+<style media="screen,print" scoped>
 p{
   font-family: 'Kontour Type - Kopius-Light';
 }
-#g-4_-Projects-R-box ,
-#g-4_-Projects-R-box .g-artboard {
+#g-3_-Kids-_-Meals-R-box ,
+#g-3_-Kids-_-Meals-R-box .g-artboard {
   margin:0 auto;
 }
-#g-4_-Projects-R-box p {
+#g-3_-Kids-_-Meals-R-box p {
   margin:0;
 }
-#g-4_-Projects-R-box .g-aiAbs {
+#g-3_-Kids-_-Meals-R-box .g-aiAbs {
   position:absolute;
 }
-#g-4_-Projects-R-box .g-aiImg {
+#g-3_-Kids-_-Meals-R-box .g-aiImg {
   position:absolute;
   top:0;
   display:block;
   width:100% !important;
 }
-#g-4_-Projects-R-box .g-aiSymbol {
+#g-3_-Kids-_-Meals-R-box .g-aiSymbol {
   position: absolute;
   box-sizing: border-box;
 }
-#g-4_-Projects-R-box .g-aiPointText p { white-space: nowrap; }
-#g-4_-Projects-R-Artboard_8 {
+#g-3_-Kids-_-Meals-R-box .g-aiPointText p { white-space: nowrap; }
+#g-3_-Kids-_-Meals-R-Artboard_2 {
   position:relative;
   overflow:hidden;
 }
-#g-4_-Projects-R-Artboard_8 p {
+#g-3_-Kids-_-Meals-R-Artboard_2 p {
   font-weight:500;
   line-height:11px;
   height:auto;
@@ -461,33 +478,53 @@ p{
   font-style:normal;
   position:static;
 }
-#g-4_-Projects-R-Artboard_8 .g-pstyle0 {
+@media only screen and (min-width: 1200px) {
+  #g-3_-Kids-_-Meals-R-Artboard_2 p {
+    font-size:8px;
+  }
+  .g-ai0{
+    width: 70px !important;
+  }
+  /*#g-31---Saturday-L-Artboard_1 .g-pstyle0 {;
+    font-size:16px;
+  }*/
+  #g-3_-Kids-_-Meals-R-Artboard_2 .g-pstyle2 {
+
+    font-size: 10px !important;
+  }
+}
+#g-3_-Kids-_-Meals-R-Artboard_2 .g-pstyle6 {
+  height: 11px;
+  text-transform: uppercase;
+  color: rgb(129, 132, 133);
+}
+#g-3_-Kids-_-Meals-R-Artboard_2 .g-pstyle0 {
   line-height:10px;
   height:10px;
   text-align:center;
   text-transform:uppercase;
   color:rgb(175,177,180);
 }
-#g-4_-Projects-R-Artboard_8 .g-pstyle1 {
+#g-3_-Kids-_-Meals-R-Artboard_2 .g-pstyle1 {
   height:11px;
   text-align:center;
   text-transform:uppercase;
   color:rgb(175,177,180);
 }
-#g-4_-Projects-R-Artboard_8 .g-pstyle2 {
+#g-3_-Kids-_-Meals-R-Artboard_2 .g-pstyle2 {
   line-height:14px;
   height:14px;
-  font-size:12px;
+  font-size:11px;
   text-align:center;
   text-transform:uppercase;
   color:rgb(0,0,0);
 }
-#g-4_-Projects-R-Artboard_8 .g-pstyle3 {
+#g-3_-Kids-_-Meals-R-Artboard_2 .g-pstyle3 {
   height:11px;
   text-transform:uppercase;
   color:rgb(129,132,133);
 }
-#g-4_-Projects-R-Artboard_8 .g-pstyle4 {
+#g-3_-Kids-_-Meals-R-Artboard_2 .g-pstyle4 {
   height:11px;
   text-transform:uppercase;
 }
