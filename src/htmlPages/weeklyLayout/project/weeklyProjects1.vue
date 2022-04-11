@@ -15,7 +15,7 @@
       <div v-for="(item1, index1) in monthData " :key="index1">
         <div v-for="(item, index) in item1 " :key="index" id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText"
              :style="`top:${1.9*index1+9.2016}%;margin-top:-5.9px;left:${3.4*index+68.5336}%;margin-left:-12px;width:24px;`">
-          <p class="g-pstyle2" style="font-size: 8.5px" :class="`${arrayDates.includes(item)? 'has-text-weight-bold': ''}`">{{item}}</p>
+          <p class="g-pstyle2" style="font-size: 8.5px" :class="`${arrayDates.includes(item)? 'has-text-weight-bold': ''}`"><span v-if="item<10">&nbsp;</span>{{item}}</p>
         </div>
       </div>
       <!--<div>

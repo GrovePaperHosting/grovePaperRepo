@@ -9,7 +9,7 @@
       <div v-for="(item1, index1) in monthAfterData " :key="index1">
         <div v-for="(item, index) in item1 " :key="index" id="g-ai0-4" class="g-Layer_1 g-aiAbs aiPointText"
              :style="`top:${1.9*index1+9.4016}%;margin-top:-5.9px;left:${3.1*index+15.3294}%;margin-left:-13.5px;width:27px;`">
-          <p class="g-pstyle12" style="font-size: 8.5px" >{{item}}</p>
+          <p class="g-pstyle12" style="font-size: 8.5px" ><span v-if="item<10">&nbsp;</span>{{item}}</p>
         </div>
       </div>
       <!--<div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:9.2016%;margin-top:-5.9px;left:11.3294%;margin-left:-13px;width:26px;">
