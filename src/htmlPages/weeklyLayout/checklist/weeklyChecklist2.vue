@@ -407,7 +407,7 @@ export default {
     selection(newCount) {
       if (newCount === 'Motivational quotes') this.extra = this.$store.state.motivational[this.index];
       else if (newCount === 'self-care challenges') this.extra = this.$store.state.challenges[this.index];
-      else if (newCount === 'personal check ins') this.extra = '';
+      else if (newCount === 'personal check ins') this.extra = this.$store.state.personalCheckIns[Math.floor((Math.random() * (4-0))+0)];
     }
   },
   methods: {

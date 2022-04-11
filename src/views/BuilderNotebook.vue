@@ -32,16 +32,16 @@
           </button>
         </div>
         <div class="build-container-carrousel-options">
-          <div v-show="selectedCategory === 4">
+          <div v-show="selectedCategory === 5">
             <div class="w100 is-flex">
-              <div class="add-container">
+              <div class="add-container" style="width: 30% ">
                 <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
                         @click="exportPDFDemo">
                   ADD TO CART
                 </button>
               </div>
               <div v-if="pagesBookStructure.length>0" class="book mx-3">
-                <div class="page" style="max-width: 522px;max-height: 684px" :class="`page${index}`"
+                <div class="page" style="max-width: 522px;max-height: 684px; min-width: 375px" :class="`page${index}`"
                      v-for="(page, index) in pagesBookStructure" :key="index"
                      @click="flipSelectedPage($event)">
                   <div class="side side0">
@@ -223,6 +223,27 @@
                 </div>
               </div>
             </div>
+            <div class="w100 holiday-container is-flex is-align-items-center"
+                 v-else-if="options[selectedCategory].type === 'extras'">
+              <div class="is-flex is-flex-direction-column w100" style="padding: 5% 25%">
+                <button
+                    class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-3 py-2"
+                    :class="{'button__selected' : this.extrasSelection === 'Motivational quotes'}"
+                    @click="setExtras('Motivational quotes')"> Motivational quotes
+                </button>
+                <button
+                    class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-6 py-2"
+                    :class="{'button__selected' : this.extrasSelection === 'self-care challenges'}"
+                    @click="setExtras('self-care challenges')"> self-care challenges
+                </button>
+                <button
+                    class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-6 py-2"
+                    :class="{'button__selected' : this.extrasSelection === 'personal check ins'}"
+                    @click="setExtras('personal check ins')"> personal check ins
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -485,6 +506,12 @@ export default {
           key: 'addOnPages',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/ADD%20ON%20PAGES.png?alt=media&token=1d67083e-a111-4da5-bca1-3db1363f59e6',
           urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/ADD%20ON%20PAGES_BLACK.png?alt=media&token=190bab72-fd27-44f1-aa76-5fe8efaa3ddb'
+        },
+        {
+          name: 'Extras',
+          key: 'extras',
+          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/EXTRAS.png?alt=media&token=78261eee-049d-4a89-8adb-b06f835fe70c',
+          urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/EXTRAS_BLACK.png?alt=media&token=12b39ac9-dd66-44dd-8d3d-832c3be460c8'
         },
         {
           name: 'Review & submit',
@@ -1039,8 +1066,13 @@ export default {
           ]
         },
         {
-          name: 'review',
+          name: 'Extras',
           id: 5,
+          type: 'extras',
+        },
+        {
+          name: 'review',
+          id: 6,
           type: 'review',
         },
       ],
@@ -1074,6 +1106,10 @@ export default {
         }
       })
       return finalValue[0];
+    },
+    setExtras(value) {
+      this.extrasSelection = value;
+      this.$store.commit('SET_EXTRA_SELECTION', value)
     },
     async exportHTMLToPDF() {
       this.loadingPDF = true;
@@ -1182,13 +1218,14 @@ export default {
       //console.log('pdffffff', pdf);
       //return pdf;
     },
-
     updatePagesDepth(stack) { // first el = farthest
       for (const [i, page] of stack.entries()) {
         if (stack == this.leftStack) {
-          page.style.transform = `rotateY(-180deg) translateZ(${-i}px)`;
+          page.style.transform = `rotateY(-180deg)`;
+          page.style.zIndex = i;
         } else {
-          page.style.transform = `rotateY(0) translateZ(${i}px)`;
+          page.style.zIndex = i;
+          page.style.transform = `rotateY(0) translateZ(1px)`;
         }
       }
     },
@@ -1377,6 +1414,7 @@ body {
   position: relative;
   transform-style: preserve-3d;
   max-width: 522px;
+  min-width: 350px;
   max-height: 684px;
 }
 

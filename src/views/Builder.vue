@@ -40,51 +40,7 @@
                   ADD TO CART
                 </button>
               </div>
-              <!--<div id="element-to-print">
-                <span>I'm on page 1!</span>
-                <div class="html2pdf__page-break"></div>
-                <span>I'm on page 2!</span>
-                <div class="html2pdf__page-break"></div>
-                <div v-for="(page, index) in pagesBookStructure" :key="index">
-                  <component :is="`${page[0].type}`" :data="page[0].data" class="pdf"></component>
-                  <div class="html2pdf__page-break"></div>
-                </div>
-              </div>-->
-              <!--<vue-html2pdf
-                  :show-layout="false"
-                  :float-layout="true"
-                  :enable-download="true"
-                  :preview-modal="true"
-                  filename="hee hee"
-                  :pdf-quality="0.3"
-                  :manual-pagination="true"
-                  pdf-format="a4"
-                  pdf-orientation="portrait"
-
-                  @progress="onProgress($event)"
-                  @hasStartedGeneration="hasStartedGeneration()"
-                  @hasGenerated="hasGenerated($event)"
-                  ref="html2Pdf"
-              >
-                <section slot="pdf-content">
-                  <section class="pdf-item">
-                     <div v-for="(page, index) in pagesBookStructure" :key="index">
-                       <component :is="`${page[0].type}`" :data="page[0].data" class="pdf"></component>
-                       <div class="html2pdf__page-break"></div>
-                     </div>
-                  </section>
-                  <div class="html2pdf__page-break"/>
-                </section>
-              </vue-html2pdf>-->
               <div v-if="pagesBookStructure.length>0" class="book mx-3">
-                <!--                <div class="page page0" @click="flipSelectedPage($event)">
-                                  <div class="side side0">
-                                    cover
-                                  </div>
-                                  <div class="side side1">
-                                    <component v-if="pagesBookStructure[0].category === 'daily'" :is="`${pagesBookStructure[0].type}1`" :date="{ day: pagesBookStructure[0].day ,month: pagesBookStructure[0].month, dayNumber: pagesBookStructure[0].dayNumber}"></component>
-                                  </div>
-                                </div>-->
                 <div class="page" style="max-width: 522px;max-height: 684px; min-width: 375px" :class="`page${index}`"
                      v-for="(page, index) in pagesBookStructure" :key="index"
                      @click="flipSelectedPage($event)">
@@ -444,68 +400,6 @@
         </div>
       </div>
     </div>
-    <!--    <div v-show="false">
-          <table v-if="finalValue.length !== 0" id="my-table" class="w100 p-6">
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Selection</th>
-            </tr>
-            <tr v-for="(singleValue, index) in finalValue" :key="index">
-              <td>{{ singleValue.id }}</td>
-              <td>{{ carrouselCategories[singleValue.id - 1].name }}</td>
-              <td>
-                <span v-if="singleValue.selection.category">{{ singleValue.selection.category }}</span>
-                <span v-else>N/A</span>
-              </td>
-              <td>
-                <span v-if="singleValue.selection.subcategory">{{ singleValue.selection.subcategory.name }}</span>
-                <div v-else-if="singleValue.id == 3">
-                  <h1><span class="has-text-weight-bold">Name: </span> {{ singleValue.selection.Name }} - </h1>
-                  <h1><span class="has-text-weight-bold">Email: </span> {{ singleValue.selection.Email }} - </h1>
-                  <h1><span class="has-text-weight-bold">Telephone: </span> {{ singleValue.selection.Telephone }} - </h1>
-                  <h1><span class="has-text-weight-bold">Year: </span> {{ singleValue.selection.Year }} - </h1>
-                  <h1><span class="has-text-weight-bold">Message:  </span> {{ singleValue.selection.Message }}</h1>
-                </div>
-                <div v-else-if="singleValue.id == 4">
-                  <h1>Start date: {{ singleValue.selection.startDate.year }} -
-                    {{ singleValue.selection.startDate.month }}/ </h1>
-                  <h1>End date: {{ singleValue.selection.endDate.year }} - {{ singleValue.selection.endDate.month }} </h1>
-                </div>
-                <div v-if="singleValue.id == 7">
-                  <div v-for="(selection, index) in singleValue.selection" :key="index">
-                    <span> {{ selection.category }} : {{ selection.subcategory.name }}, pages: {{
-                        selection.pages
-                      }} /</span>
-                  </div>
-                </div>
-                <span v-else>{{ singleValue.selection.name }}</span>
-              </td>
-            </tr>
-          </table>
-        </div>-->
-    <template>
-      <div>
-        <template>
-          <div>
-            <div>
-              <!--              <div v-for="(page, index) in pagesBookStructure" :key="index">
-                              <component :is="`${page[0].type}`" :data="page[0].data"></component>
-                              <div class="html2pdf__page-break"/>
-                            </div>-->
-              <!--              <div class="pdf">content1</div>
-                            <div class="pdf">content2</div>
-                            <div class="pdf">content3</div>-->
-            </div>
-
-            <!--<button @click="download">Download PDF</button>-->
-          </div>
-        </template>
-      </div>
-    </template>
-    <template>
-    </template>
     <div class="page-counter has-text-centered">
       <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">PAGE COUNT</h1>
       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">

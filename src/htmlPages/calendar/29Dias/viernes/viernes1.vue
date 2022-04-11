@@ -250,7 +250,8 @@
         <p class="g-pstyle1">holiday</p>
       </div>
       <div id="g-ai0-82" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:94.283%;margin-top:-5.9px; width: 100%">
-        <p class="g-pstyle0" style="margin: auto">{{ extra }}</p>
+        <img v-if="this.$store.state.extraSelection ==='personal check ins'" :src="extra" style="bottom: 0px; left: 0px">
+        <p v-else class="g-pstyle0" style="margin: auto">{{ extra }}</p>
       </div>
     </div>
   </div>
@@ -281,7 +282,7 @@ export default {
     selection (newCount) {
       if (newCount === 'Motivational quotes') this.extra = this.$store.state.motivational[this.index];
       else if (newCount === 'self-care challenges') this.extra = this.$store.state.challenges[this.index];
-      else if (newCount === 'personal check ins') this.extra = '';
+      else if (newCount === 'personal check ins') this.extra = this.$store.state.personalCheckIns[Math.floor((Math.random() * (4-0))+0)];
     }
   },
 }

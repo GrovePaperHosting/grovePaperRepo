@@ -81,7 +81,8 @@
         <p class="g-pstyle1" v-for="(item, index) in data.holidays[28]" :key="index" style="margin: auto; white-space: normal; height: auto">{{ item }}</p>
       </div>
       <div id="g-ai0-82" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:93.9906%;margin-top:-5.9px;padding-left:26.9px; padding-right: 31.9px; width: 100%; height: 24px">
-        <p class="g-pstyle2" style="margin: auto; font-size: 7px; white-space: normal;">{{ extra }}</p>
+        <img v-if="this.$store.state.extraSelection ==='personal check ins'" :src="extra" style="bottom: 0px; left: 0px">
+        <p v-else class="g-pstyle2" style="margin: auto; font-size: 7px; white-space: normal;">{{ extra }}</p>
       </div>
     </div>
   </div>
@@ -112,7 +113,7 @@ export default {
     selection (newCount) {
       if (newCount === 'Motivational quotes') this.extra = this.$store.state.motivational[this.index];
       else if (newCount === 'self-care challenges') this.extra = this.$store.state.challenges[this.index];
-      else if (newCount === 'personal check ins') this.extra = '';
+      else if (newCount === 'personal check ins') this.extra = this.$store.state.personalCheckIns[Math.floor((Math.random() * (4-0))+0)];
     }
   },
 }
