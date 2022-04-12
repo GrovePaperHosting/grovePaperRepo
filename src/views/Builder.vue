@@ -73,17 +73,31 @@
                     <h1 class="is-uppercase is-size-1 is-size-3-touch lamango-font lamango-font__spacing3 has-text-weight-light mt-2 ">
                       {{ layoutPreselect.name }}</h1>
                     <div v-if="selectedCategory === 6" class="add-container">
-                      <input type="number" class="input"
-                             v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">
+                      <!--<input type="number" class="input"
+                             v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">-->
                       <!--                      <input  type="number" class="input" v-model.number="pagesToAdd">-->
-                      <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
-                              @click="selectItemAddPages({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
-                        ADD
+                      <button
+                          class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
+                          @click="selectItemAddPagesWeekly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                        Add Weekly
                       </button>
-                      <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
-                              @click="selectItemAddPagesBefore({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
-                        ADD BEFORE
+                      <button
+                          class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
+                          @click="selectItemAddPagesMonthly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                        Add Monthly
                       </button>
+                      <button
+                          class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
+                          @click="selectItemAddPages({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                        Add at the End of the Planner
+                      </button>
+                      <button
+                          class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
+                          @click="selectItemAddPagesBefore({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                        Add at the Beginning of the Planner
+                      </button>
+                      <input type="number" class="input mt-3"
+                             v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">
                       <a class=" has-text-grey is-size-4 is-underlined" @click="deletePages">Remove</a>
                     </div>
                     <div v-else class="add-container">
@@ -1855,7 +1869,7 @@ export default {
             this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
               data: {
                 ...element,
-                holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
                 layoutType: this.layoutOption,
                 monthBefore: element.monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key,
                 monthAfter: element.monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key
@@ -1867,7 +1881,7 @@ export default {
             this.pagesBookStructure.push([{
               data: {
                 ...element,
-                holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
                 layoutType: this.layoutOption,
                 monthBefore: element.monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key,
                 monthAfter: element.monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key
@@ -1881,7 +1895,7 @@ export default {
             this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
               data: {
                 ...element,
-                holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
                 layoutType: this.layoutOption,
                 monthBefore: element.monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key,
                 monthAfter: element.monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key
@@ -1892,7 +1906,7 @@ export default {
             this.pagesBookStructure.push([{
               data: {
                 ...element,
-                holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
                 layoutType: this.layoutOption,
                 monthBefore: element.monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key,
                 monthAfter: element.monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key
@@ -1905,7 +1919,7 @@ export default {
             this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
               data: {
                 ...element,
-                holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
               },
               type: `${type}1`,
               category: this.finalValue[5].selection.category
@@ -1914,7 +1928,7 @@ export default {
             this.pagesBookStructure.push([{
               data: {
                 ...element,
-                holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${element.month}${element.year}`]: this.holidayStructure[`${element.month}${element.year}`],
+                holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
               },
               type: `${type}2`,
               category: this.finalValue[5].selection.category
@@ -1937,21 +1951,21 @@ export default {
           )
         }
       } else {
-        while(this.totalDatesArray[0].day !== 'Monday'){
+        while (this.totalDatesArray[0].day !== 'Monday') {
           let primerDia = (new Date(`${this.totalDatesArray[0].year}-${this.totalDatesArray[0].monthNumber}-${this.totalDatesArray[0].dayNumber}`));
           let diaMilis = 24 * 60 * 60 * 1000;
           let diaAnterior = new Date(primerDia.getTime() - diaMilis);
-          console.log('totalDatesArray1111',primerDia,diaAnterior, diaAnterior.getUTCDay(),this.totalDatesArray[0]);
+          console.log('totalDatesArray1111', primerDia, diaAnterior, diaAnterior.getUTCDay(), this.totalDatesArray[0]);
           this.totalDatesArray.unshift({
             day: this.weekday[diaAnterior.getUTCDay()],
             month: this.datesValueOptions.month[diaAnterior.getMonth()].key,
-            monthNumber: diaAnterior.getMonth()+1,
+            monthNumber: diaAnterior.getMonth() + 1,
             dayNumber: diaAnterior.getUTCDate(),
             year: diaAnterior.getFullYear()
           })
         }
         console.log('totalDatesArray', this.totalDatesArray);
-          const totalDaysGroup = Math.ceil((this.totalDatesArray.length) / 7);
+        const totalDaysGroup = Math.ceil((this.totalDatesArray.length) / 7);
         for (let y = 0; y < totalDaysGroup; y++) {
           let daysGroup = this.totalDatesArray.slice((y * 7), (y * 7 + 7));
           let i = 1;
@@ -1966,7 +1980,7 @@ export default {
                   month: this.datesValueOptions.month[nextDate.getUTCMonth()].key,
                   //month: this.totalMonths[this.totalMonths.length - 1].month === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
                   //month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
-                  monthNumber: nextDate.getUTCMonth()+1,
+                  monthNumber: nextDate.getUTCMonth() + 1,
                   year: nextDate.getUTCFullYear(),
                   dayNumber: i
                 }
@@ -1980,7 +1994,7 @@ export default {
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
                 data: {
                   ...daysGroup,
-                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[6].month}${daysGroup[6].year}`]: this.holidayStructure[`${daysGroup[6].month}${daysGroup[6].year}`],
+                  holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${daysGroup[6].month}${daysGroup[6].year}`] : this.holidayStructure[`${daysGroup[6].month}${daysGroup[6].year}`],
                   layoutType: this.layoutOption,
                   monthBefore: daysGroup[6].monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[6].monthNumber - 2].key,
                   monthAfter: daysGroup[6].monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[6].monthNumber].key
@@ -1991,7 +2005,7 @@ export default {
               this.pagesBookStructure.push([{
                 data: {
                   ...daysGroup,
-                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[6].month}${daysGroup[6].year}`]: this.holidayStructure[`${daysGroup[6].month}${daysGroup[6].year}`],
+                  holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${daysGroup[6].month}${daysGroup[6].year}`] : this.holidayStructure[`${daysGroup[6].month}${daysGroup[6].year}`],
                   layoutType: this.layoutOption,
                   monthBefore: daysGroup[6].monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[6].monthNumber - 2].key,
                   monthAfter: daysGroup[6].monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[6].monthNumber].key
@@ -2016,29 +2030,29 @@ export default {
           daysGroup.map((element) => {
             //console.log('primerMap2', element, index);
 
-            if (element.dayNumber === 1 && daysGroup[0].dayNumber !== 1 ) {
-              console.log('que pasaa',daysGroup);
+            if (element.dayNumber === 1 && daysGroup[0].dayNumber !== 1) {
+              console.log('que pasaa', daysGroup);
               const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
                 data: {
                   ...daysGroup,
-                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`]: this.holidayStructure[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`],
+                  holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${daysGroup[daysGroup.length - 1].month}${daysGroup[daysGroup.length - 1].year}`] : this.holidayStructure[`${daysGroup[daysGroup.length - 1].month}${daysGroup[daysGroup.length - 1].year}`],
                   layoutType: this.layoutOption,
-                  monthBefore: daysGroup[6].monthNumber == 1 ? this.datesValueOptions.month[11].key:  this.datesValueOptions.month[daysGroup[6].monthNumber-2].key,
+                  monthBefore: daysGroup[6].monthNumber == 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[6].monthNumber - 2].key,
                   monthAfter: daysGroup[6].monthNumber == 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[6].monthNumber].key
                 },
-                type: `calendar${new Date(daysGroup[daysGroup.length-1].year, daysGroup[daysGroup.length-1].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
+                type: `calendar${new Date(daysGroup[daysGroup.length - 1].year, daysGroup[daysGroup.length - 1].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}1`,
                 category: 'calendar'
               };
               this.pagesBookStructure.push([{
                 data: {
                   ...daysGroup,
-                  holidays: this.holidayStructureFinal != {}? this.holidayStructureFinal[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`]: this.holidayStructure[`${daysGroup[daysGroup.length-1].month}${daysGroup[daysGroup.length-1].year}`],
+                  holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${daysGroup[daysGroup.length - 1].month}${daysGroup[daysGroup.length - 1].year}`] : this.holidayStructure[`${daysGroup[daysGroup.length - 1].month}${daysGroup[daysGroup.length - 1].year}`],
                   layoutType: this.layoutOption,
-                  monthBefore: daysGroup[6].monthNumber == 1 ? this.datesValueOptions.month[11].key:  this.datesValueOptions.month[daysGroup[6].monthNumber-2].key,
+                  monthBefore: daysGroup[6].monthNumber == 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[6].monthNumber - 2].key,
                   monthAfter: daysGroup[6].monthNumber == 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[6].monthNumber].key
                 },
-                type: `calendar${new Date(daysGroup[daysGroup.length-1].year, daysGroup[daysGroup.length-1].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
+                type: `calendar${new Date(daysGroup[daysGroup.length - 1].year, daysGroup[daysGroup.length - 1].monthNumber, 0).getDate()}${(this.weekday[firstMonthDate.getDay()]).toLowerCase()}2`,
                 category: 'calendar'
               }])
             }
@@ -2108,6 +2122,27 @@ export default {
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       if (this.selectedCategory == 5) this.calcBookStructure();
       this.layoutPreselect = null;
+    },
+    selectItemAddPagesMonthly(selection){
+      this.pagesBookStructure.map((element, index) =>{
+        element.map((element1, index1) =>{
+          if(element1.category === 'calendar'){
+
+
+            this.pagesBookStructure[index+1][1] = {
+              data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
+              type: `${selection.category}${selection.subcategory.key}1`,
+              category: 'addOnPages'
+            };
+            this.pagesBookStructure.splice(index+1, 0, [{
+              data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ?  2 : 'addOnPages',
+              type: `${selection.category}${selection.subcategory.key}2`,
+              category: 'addOnPages'
+            }]);
+          }
+        })
+      });
+      console.log('this.pagesBookStructure', this.pagesBookStructure);
     },
     async selectItemAddPages(selection) {
       //this.leftStack = [];
@@ -2257,12 +2292,12 @@ export default {
       //this.holidayStructureFinal = Object.assign({}, this.holidayStructure);
       Object.keys(this.holidayStructure).map((month) => {
         Object.keys(this.holidayStructureSelection).map((monthSelection) => {
-          if (monthSelection === month){
+          if (monthSelection === month) {
             this.holidayStructureFinal[month] = {...this.holidayStructureSelection[month], ...this.holidayStructure[month]}
-            Object.keys(this.holidayStructure[month]).map((holiday) =>{
-              Object.keys(this.holidayStructureSelection[month]).map((newHoliday) =>{
-                if(holiday == newHoliday ){
-                 const newArrayHolidays = this.holidayStructureSelection[month][newHoliday].concat(this.holidayStructure[month][holiday])
+            Object.keys(this.holidayStructure[month]).map((holiday) => {
+              Object.keys(this.holidayStructureSelection[month]).map((newHoliday) => {
+                if (holiday == newHoliday) {
+                  const newArrayHolidays = this.holidayStructureSelection[month][newHoliday].concat(this.holidayStructure[month][holiday])
                   console.log('newHoliday', newHoliday, newArrayHolidays);
                   Reflect.set(this.holidayStructureFinal[month], newHoliday, newArrayHolidays);
                 }
@@ -2633,8 +2668,14 @@ body {
 }
 
 .add-container {
-  width: 40%;
+  width: 70%;
   margin: 0 auto;
+
+  .addOnPagesButton {
+    background-color: #F3D7D3;
+    height: fit-content;
+    white-space: break-spaces;
+  }
 
   .add-button {
     border-radius: 25px;
