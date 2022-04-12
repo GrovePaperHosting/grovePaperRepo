@@ -2064,6 +2064,7 @@ export default {
         category: 'fillpage',
         data: this.finalValue[2].selection
       }
+      this.$store.commit('SET_PAGES_BOOK_STRUCTURE', this.pagesBookStructure);
       console.log('this.pagesBookStructure', this.pagesBookStructure);
     },
     calcTotalDates() {
@@ -2124,25 +2125,33 @@ export default {
       this.layoutPreselect = null;
     },
     selectItemAddPagesMonthly(selection){
-      this.pagesBookStructure.map((element, index) =>{
-        element.map((element1, index1) =>{
-          if(element1.category === 'calendar'){
+      let structureArray = [...this.pagesBookStructure];
+/*      for (let i = 0; i < 5; i = i+3) { //starts loop
+        console.log("The Number Is: " + i); //What ever you want
+      }*/
+      let counter = 0;
+      structureArray.map((element, index) =>{
+        if(element[1].category === 'calendar'){
 
-
-            this.pagesBookStructure[index+1][1] = {
-              data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
-              type: `${selection.category}${selection.subcategory.key}1`,
-              category: 'addOnPages'
-            };
-            this.pagesBookStructure.splice(index+1, 0, [{
-              data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ?  2 : 'addOnPages',
-              type: `${selection.category}${selection.subcategory.key}2`,
-              category: 'addOnPages'
-            }]);
-          }
-        })
+          let newElements = [...this.$store.getters.getPagesBookStructure[index + counter],...this.$store.getters.getPagesBookStructure[index + counter+1]];
+          console.log('index0', element[1], [...this.$store.getters.getPagesBookStructure[index + counter],...this.$store.getters.getPagesBookStructure[index + counter+1]]);
+          newElements.splice(1, 0, {
+            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
+            type: `${selection.category}${selection.subcategory.key}1`,
+            category: 'addOnPages'
+          }, {
+            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ?  2 : 'addOnPages',
+            type: `${selection.category}${selection.subcategory.key}2`,
+            category: 'addOnPages'
+          });
+          newElements =[[newElements[0], newElements[1]], [newElements[2], newElements[3]], [newElements[4], newElements[5]]]
+          this.pagesBookStructure.splice(index + counter, 2, ...newElements);
+          this.totalPages = this.totalPages + 2;
+          counter = counter +1;
+          this.layoutPreselect = null;
+        }
       });
-      console.log('this.pagesBookStructure', this.pagesBookStructure);
+      console.log('this.pagesBookStructureAdd', this.$store.getters.getPagesBookStructure);
     },
     async selectItemAddPages(selection) {
       //this.leftStack = [];
@@ -2194,6 +2203,7 @@ export default {
       this.totalPages = this.totalPages + (Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]) * 2);
       this.calcTotalPages();
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: selectionArray}
+      this.$store.commit('SET_PAGES_BOOK_STRUCTURE', this.pagesBookStructure);
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.layoutPreselect = null;
     },
@@ -2246,6 +2256,7 @@ export default {
       this.totalPages = this.totalPages + (Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]) * 2);
       this.calcTotalPages();
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: selectionArray}
+      this.$store.commit('SET_PAGES_BOOK_STRUCTURE', this.pagesBookStructure);
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.layoutPreselect = null;
     },
