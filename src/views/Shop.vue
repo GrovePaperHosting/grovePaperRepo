@@ -13,7 +13,7 @@
           </div>
           <div class="column">
             <div style="height: 214px">
-              <router-link to="/"><img src="../../public/assets/images/customizableNotebook.png" alt="Notebook"></router-link>
+              <router-link to="/builder-notebook"><img src="../../public/assets/images/customizableNotebook.png" alt="Notebook"></router-link>
             </div>
             <div style="height: 100px"><h2 class="is-size-4 kontuor-font has-text-weight-light"> CUSTOMIZABLE NOTEBOOK</h2></div>
           </div>

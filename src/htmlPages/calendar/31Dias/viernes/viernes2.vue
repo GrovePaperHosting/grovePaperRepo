@@ -13,7 +13,7 @@
       <div v-for="(item1, index1) in monthBeforeData " :key="index1">
         <div v-for="(item, index) in item1 " :key="index" id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText"
              :style="`top:${1.41*index1+10.2342}%;margin-top:-5px;left:${2.8*index+74.8314}%;margin-left:-12px;width:24px;`">
-          <p class="g-pstyle0">{{item}}</p>
+          <p class="g-pstyle0"><span v-if="item<10">&nbsp;</span>{{item}}</p>
         </div>
       </div>
 
@@ -24,7 +24,7 @@
       <div v-for="(item1, index1) in monthAfterData " :key="index1">
         <div v-for="(item, index) in item1 " :key="index" id="g-ai0-54" class="g-Layer_1 g-aiAbs g-aiPointText"
              :style="`top:${1.41*index1+24.1231}%;margin-top:-5px;left:${2.8*index+74.8314}%;margin-left:-12px;width:24px;`">
-          <p class="g-pstyle0">{{item}}</p>
+          <p class="g-pstyle0"><span v-if="item<10">&nbsp;</span>{{item}}</p>
         </div>
       </div>
       <div id="g-ai0-79" class="g-Layer_1 g-aiAbs g-aiPointText g-ai0-2"
