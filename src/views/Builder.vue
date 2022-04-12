@@ -261,39 +261,39 @@
                 <div class="column is-flex is-flex-direction-column">
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'canadian holidays'}"
-                      @click="setHolidays('canadaHolidays')"> canadian holidays
+                      :class="{'button__selected' : this.holidaysSelection === 'canadianHolidays'}"
+                      @click="setHolidays('canadianHolidays')"> canadian holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'us holidays'}"
+                      :class="{'button__selected' : this.holidaysSelection === 'usHolidays'}"
                       @click="setHolidays('usHolidays')"> us holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'christian holidays'}"
+                      :class="{'button__selected' : this.holidaysSelection === 'christianHolidays'}"
                       @click="setHolidays('christianHolidays')">christian holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'hindu holidays'}"
+                      :class="{'button__selected' : this.holidaysSelection === 'hinduHolidays'}"
                       @click="setHolidays('hinduHolidays')"> hindu holidays
                   </button>
                 </div>
                 <div class="column is-flex is-flex-direction-column">
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'jewish holidays'}"
+                      :class="{'button__selected' : this.holidaysSelection === 'jewishHolidays'}"
                       @click="setHolidays('jewishHolidays')"> jewish holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'muslim holidays'}"
+                      :class="{'button__selected' : this.holidaysSelection === 'muslimHolidays'}"
                       @click="setHolidays('muslimHolidays')"> muslim holidays
                   </button>
                   <button
                       class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light m-3 py-2"
-                      :class="{'button__selected' : holidaysSelection === 'fun holidays'}"
+                      :class="{'button__selected' : this.holidaysSelection === 'funHolidays'}"
                       @click="setHolidays('funHolidays')"> fun holidays
                   </button>
                 </div>

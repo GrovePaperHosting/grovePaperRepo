@@ -27,7 +27,7 @@
             <h1 class="is-size-6 freight-big-pro-font has-text-grey-dark has-text-weight-light">Message</h1>
             <textarea class="textarea" type="textarea" row="3" v-model="formValue['message']"></textarea>
             <div class="mt-3 w100 is-flex is-justify-content-center">
-              <button v-if="!messageSent" class="button has-background-primary has-text-white is-size-4 is-small" style="height: 36px" @click="sentEmail()">Send
+              <button v-if="!messageSent" :class="`button has-background-primary has-text-white is-size-4 is-small ${loading? 'is-loading':''}`" style="height: 36px" @click="sentEmail()">Send
                 Message
               </button>
               <h1 v-else :class="`has-text-primary has-text-weight-semibold is-size-4 ${loading? '':'is-loading'}` "> Thank you for your message!</h1>
@@ -52,13 +52,13 @@ export default {
     return {
       formValue:[],
       messageSent: false,
-      loading: true,
+      loading: false,
 
     }
   },
   methods:{
     sentEmail(){
-      this.loading = true
+      this.loading = true;
       const templateParams = {from_name: this.formValue['name'], reply_to: this.formValue['email'], message:this.formValue['message']}
       const self = this;
       send('service_w81r30t', 'template_aenwm4r', templateParams)
