@@ -78,27 +78,33 @@
                       <!--                      <input  type="number" class="input" v-model.number="pagesToAdd">-->
                       <button
                           class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
-                          @click="selectItemAddPagesWeekly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                          :class="{'button__selected' : this.addOnsPosition === 'addWeekly'}"
+                          @click="selectItemAddPagesWeekly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect}, 'addWeekly')">
                         Add Weekly
                       </button>
                       <button
                           class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
-                          @click="selectItemAddPagesMonthly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                          :class="{'button__selected' : this.addOnsPosition === 'addMonthly'}"
+                          @click="selectItemAddPagesMonthly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect}, 'addMonthly')">
                         Add Monthly
                       </button>
                       <button
                           class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
-                          @click="selectItemAddPages({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                          :class="{'button__selected' : this.addOnsPosition === 'addEnd'}"
+                          @click="showInput( 'addEnd')">
                         Add at the End of the Planner
                       </button>
                       <button
                           class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
-                          @click="selectItemAddPagesBefore({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                          :class="{'button__selected' : this.addOnsPosition === 'addBeginning'}"
+                          @click="showInput('addBeginning')">
                         Add at the Beginning of the Planner
                       </button>
-                      <input type="number" class="input mt-3"
+                      <input v-if="this.addOnsPosition === 'addEnd'||this.addOnsPosition === 'addBeginning'" type="number" class="input mt-3"
                              v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">
-                      <a class=" has-text-grey is-size-4 is-underlined" @click="deletePages">Remove</a>
+                      <div class="is-flex is-justify-content-center">
+                        <a v-if="this.addOnsPosition === 'addEnd'||this.addOnsPosition === 'addBeginning'" class=" has-text-grey is-size-4 is-underlined mx-3" @click="addPages({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">Add</a>
+                        <a class=" has-text-grey is-size-4 is-underlined mx-3" @click="deletePages">Remove</a></div>
                     </div>
                     <div v-else class="add-container">
                       <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
@@ -1596,6 +1602,7 @@ export default {
       pdfProgress: 1,
       validDate: false,
       blankDaysCounter: 0,
+      addOnsPosition: '',
     };
   },
   watch: {
@@ -2114,7 +2121,8 @@ export default {
       if (this.selectedCategory == 5) this.calcBookStructure();
       this.layoutPreselect = null;
     },
-    selectItemAddPagesWeekly(selection) {
+    selectItemAddPagesWeekly(selection, addOnsPosition) {
+      this.addOnsPosition = addOnsPosition;
       let structureArray = [...this.pagesBookStructure];
       let counter = 1;
       structureArray.map((element, index) => {
@@ -2168,10 +2176,12 @@ export default {
           this.totalPages = this.totalPages + 2;
           counter = counter + 1;
           this.layoutPreselect = null;
+          this.addOnsPosition = '';
         }
       })
     },
-    selectItemAddPagesMonthly(selection) {
+    selectItemAddPagesMonthly(selection, addOnsPosition) {
+      this.addOnsPosition = addOnsPosition;
       let structureArray = [...this.pagesBookStructure];
       let counter = 0;
       structureArray.map((element, index) => {
@@ -2192,10 +2202,18 @@ export default {
           this.totalPages = this.totalPages + 2;
           counter = counter + 1;
           this.layoutPreselect = null;
+          this.addOnsPosition = '';
         }
       });
     },
-    async selectItemAddPages(selection) {
+    showInput(addOnsPosition){
+      this.addOnsPosition = addOnsPosition;
+    },
+    addPages(selection){
+      if(this.addOnsPosition === 'addEnd') this.selectItemAddPages(selection);
+      else if(this.addOnsPosition === 'addBeginning') this.selectItemAddPagesBefore(selection)
+    },
+    async selectItemAddPages(selection){
       //this.leftStack = [];
       /*      this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
             this.rightStack = Array.from(this.pagesBook).reverse();
@@ -2248,6 +2266,7 @@ export default {
       this.$store.commit('SET_PAGES_BOOK_STRUCTURE', this.pagesBookStructure);
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.layoutPreselect = null;
+      this.addOnsPosition = '';
     },
 
     async selectItemAddPagesBefore(selection) {
@@ -2301,6 +2320,7 @@ export default {
       this.$store.commit('SET_PAGES_BOOK_STRUCTURE', this.pagesBookStructure);
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.layoutPreselect = null;
+      this.addOnsPosition = '';
     },
 
     formChange(value) {
@@ -2720,7 +2740,7 @@ body {
   margin: 0 auto;
 
   .addOnPagesButton {
-    background-color: #F3D7D3;
+    background-color: #FAF0EC;
     height: fit-content;
     white-space: break-spaces;
   }
@@ -2729,6 +2749,9 @@ body {
     border-radius: 25px;
     background-color: #F3D7D3;
     height: 30px
+  }
+  .button__selected {
+    background-color: #F3D7D3 !important;
   }
 }
 
