@@ -96,7 +96,6 @@ export default {
         const monthBeforeYear = this.data.monthNumber == 1? this.data.year-1: this.data.year;
         const totalDaysMonth = new Date(monthBeforeYear, monthBeforeNumber, 0).getDate();
         const monthStart = new Date(`${monthBeforeYear}-${monthBeforeNumber}-1`).getDay();
-        console.log('monthStart',monthBeforeNumber,this.data.monthNumber, monthStart);
         let monthDates=[];
         this.$set(monthDates, monthStart+1, 1);
         for (let i = 2; i <= totalDaysMonth; i++) {

@@ -1661,11 +1661,8 @@ export default {
         },
     */
     getPrice(pages) {
-      console.log('entró a fn');
       const finalValue = this.$store.getters.getListPrices.filter(element => {
-        console.log('element', element, element.pages, pages);
         if (element.pages == pages) {
-          console.log('element==', element, element.price);
           return element.price;
         }
       })
@@ -1955,7 +1952,6 @@ export default {
           let primerDia = (new Date(`${this.totalDatesArray[0].year}-${this.totalDatesArray[0].monthNumber}-${this.totalDatesArray[0].dayNumber}`));
           let diaMilis = 24 * 60 * 60 * 1000;
           let diaAnterior = new Date(primerDia.getTime() - diaMilis);
-          console.log('totalDatesArray1111', primerDia, diaAnterior, diaAnterior.getUTCDay(), this.totalDatesArray[0]);
           this.totalDatesArray.unshift({
             day: this.weekday[diaAnterior.getUTCDay()],
             month: this.datesValueOptions.month[diaAnterior.getMonth()].key,
@@ -1964,16 +1960,13 @@ export default {
             year: diaAnterior.getFullYear()
           })
         }
-        console.log('totalDatesArray', this.totalDatesArray);
         const totalDaysGroup = Math.ceil((this.totalDatesArray.length) / 7);
         for (let y = 0; y < totalDaysGroup; y++) {
           let daysGroup = this.totalDatesArray.slice((y * 7), (y * 7 + 7));
           let i = 1;
           while (daysGroup.length < 7) {
-            console.log()
             const currentDate = new Date(`${this.totalMonths[this.totalMonths.length - 1].year}-${this.totalMonths[this.totalMonths.length - 1].month}-${i}`);
             const nextDate = new Date(currentDate.getTime() + (24 * 60 * 60 * 1000));
-            console.log('currentDate', currentDate, nextDate);
             daysGroup.push(
                 {
                   day: this.weekday[nextDate.getUTCDay()],
@@ -2031,7 +2024,6 @@ export default {
             //console.log('primerMap2', element, index);
 
             if (element.dayNumber === 1 && daysGroup[0].dayNumber !== 1) {
-              console.log('que pasaa', daysGroup);
               const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
                 data: {
@@ -2065,7 +2057,6 @@ export default {
         data: this.finalValue[2].selection
       }
       this.$store.commit('SET_PAGES_BOOK_STRUCTURE', this.pagesBookStructure);
-      console.log('this.pagesBookStructure', this.pagesBookStructure);
     },
     calcTotalDates() {
       this.totalDatesArray = [];
@@ -2087,7 +2078,6 @@ export default {
       this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
       this.rightStack = Array.from(this.pagesBook).reverse();
       this.updatePagesDepth(this.rightStack);
-      console.log('totalDatesArray1', this.totalDatesArray);
     },
     calcMonthsArray() {
       const numberOfYears = this.dateValue.endDate.year - this.dateValue.startDate.year;
@@ -2124,34 +2114,86 @@ export default {
       if (this.selectedCategory == 5) this.calcBookStructure();
       this.layoutPreselect = null;
     },
-    selectItemAddPagesMonthly(selection){
+    selectItemAddPagesWeekly(selection) {
       let structureArray = [...this.pagesBookStructure];
-/*      for (let i = 0; i < 5; i = i+3) { //starts loop
-        console.log("The Number Is: " + i); //What ever you want
-      }*/
-      let counter = 0;
-      structureArray.map((element, index) =>{
-        if(element[1].category === 'calendar'){
-
-          let newElements = [...this.$store.getters.getPagesBookStructure[index + counter],...this.$store.getters.getPagesBookStructure[index + counter+1]];
-          console.log('index0', element[1], [...this.$store.getters.getPagesBookStructure[index + counter],...this.$store.getters.getPagesBookStructure[index + counter+1]]);
+      let counter = 1;
+      structureArray.map((element, index) => {
+        if (element[0].type.substring(0, 5) === 'daily' || element[1].type.substring(0, 5) === 'daily') {
+          if (element[0].data.day === 'Saturday') {
+            let newElements = [...this.$store.getters.getPagesBookStructure[index + counter], ...this.$store.getters.getPagesBookStructure[index + counter + 1]];
+            newElements.splice(1, 0, {
+              data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
+              type: `${selection.category}${selection.subcategory.key}1`,
+              category: 'addOnPages'
+            }, {
+              data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 2 : 'addOnPages',
+              type: `${selection.category}${selection.subcategory.key}2`,
+              category: 'addOnPages'
+            });
+            newElements = [[newElements[0], newElements[1]], [newElements[2], newElements[3]], [newElements[4], newElements[5]]]
+            this.pagesBookStructure.splice(index + counter, 2, ...newElements);
+            this.totalPages = this.totalPages + 2;
+            if(index>2) counter = counter + 1;
+            this.layoutPreselect = null;
+          } else if (element[1].data.day === 'Saturday') {
+            let newElements = [...this.$store.getters.getPagesBookStructure[index + counter+1], ...this.$store.getters.getPagesBookStructure[index + counter + 2]];
+            newElements.splice(1, 0, {
+              data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
+              type: `${selection.category}${selection.subcategory.key}1`,
+              category: 'addOnPages'
+            }, {
+              data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 2 : 'addOnPages',
+              type: `${selection.category}${selection.subcategory.key}2`,
+              category: 'addOnPages'
+            });
+            newElements = [[newElements[0], newElements[1]], [newElements[2], newElements[3]], [newElements[4], newElements[5]]]
+            this.pagesBookStructure.splice(index + counter+1, 2, ...newElements);
+            this.totalPages = this.totalPages + 2;
+            if(index>2) counter = counter + 1;
+            this.layoutPreselect = null;
+          }
+        } else if (element[1].type.substring(0, 6) === 'weekly') {
+          let newElements = [...this.$store.getters.getPagesBookStructure[index + counter], ...this.$store.getters.getPagesBookStructure[index + counter + 1]];
           newElements.splice(1, 0, {
             data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
             type: `${selection.category}${selection.subcategory.key}1`,
             category: 'addOnPages'
           }, {
-            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ?  2 : 'addOnPages',
+            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 2 : 'addOnPages',
             type: `${selection.category}${selection.subcategory.key}2`,
             category: 'addOnPages'
           });
-          newElements =[[newElements[0], newElements[1]], [newElements[2], newElements[3]], [newElements[4], newElements[5]]]
+          newElements = [[newElements[0], newElements[1]], [newElements[2], newElements[3]], [newElements[4], newElements[5]]]
           this.pagesBookStructure.splice(index + counter, 2, ...newElements);
           this.totalPages = this.totalPages + 2;
-          counter = counter +1;
+          counter = counter + 1;
+          this.layoutPreselect = null;
+        }
+      })
+    },
+    selectItemAddPagesMonthly(selection) {
+      let structureArray = [...this.pagesBookStructure];
+      let counter = 0;
+      structureArray.map((element, index) => {
+        if (element[1].category === 'calendar') {
+
+          let newElements = [...this.$store.getters.getPagesBookStructure[index + counter], ...this.$store.getters.getPagesBookStructure[index + counter + 1]];
+          newElements.splice(1, 0, {
+            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
+            type: `${selection.category}${selection.subcategory.key}1`,
+            category: 'addOnPages'
+          }, {
+            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 2 : 'addOnPages',
+            type: `${selection.category}${selection.subcategory.key}2`,
+            category: 'addOnPages'
+          });
+          newElements = [[newElements[0], newElements[1]], [newElements[2], newElements[3]], [newElements[4], newElements[5]]]
+          this.pagesBookStructure.splice(index + counter, 2, ...newElements);
+          this.totalPages = this.totalPages + 2;
+          counter = counter + 1;
           this.layoutPreselect = null;
         }
       });
-      console.log('this.pagesBookStructureAdd', this.$store.getters.getPagesBookStructure);
     },
     async selectItemAddPages(selection) {
       //this.leftStack = [];
@@ -2292,9 +2334,6 @@ export default {
         if (this.formerValue !== element.month.toLowerCase()) {
           this.formerValue = element.month.toLowerCase();
           Reflect.set(this.holidayStructureSelection, `${element.month}${element.year}`, this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()] ? this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()] : {})
-
-          console.log('hEstructures', this.holidayStructure, this.holidayStructureSelection);
-          //this.holidayStructure[`${element.month}${element.year}`] = this.$store.state.standardHolidays[element.year][element.month.toLowerCase()]? this.$store.state.standardHolidays[element.year][element.month.toLowerCase()]:{}
         }
       });
       this.calcTotalHoliday();
@@ -2309,7 +2348,6 @@ export default {
               Object.keys(this.holidayStructureSelection[month]).map((newHoliday) => {
                 if (holiday == newHoliday) {
                   const newArrayHolidays = this.holidayStructureSelection[month][newHoliday].concat(this.holidayStructure[month][holiday])
-                  console.log('newHoliday', newHoliday, newArrayHolidays);
                   Reflect.set(this.holidayStructureFinal[month], newHoliday, newArrayHolidays);
                 }
               })
@@ -2319,7 +2357,6 @@ export default {
         })
       })
       this.$store.commit('SET_HOLIDAY_STRUCTURE_FINAL', this.holidayStructureFinal);
-      console.log('this.holidayStructureFinal', this.holidayStructureFinal);
     },
     /*calcHolidays(){
       console.log('holidayStructure', this.holidayStructure);
