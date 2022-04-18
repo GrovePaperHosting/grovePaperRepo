@@ -78,27 +78,33 @@
                       <!--                      <input  type="number" class="input" v-model.number="pagesToAdd">-->
                       <button
                           class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
-                          @click="selectItemAddPagesWeekly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                          :class="{'button__selected' : this.addOnsPosition === 'addWeekly'}"
+                          @click="selectItemAddPagesWeekly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect}, 'addWeekly')">
                         Add Weekly
                       </button>
                       <button
                           class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
-                          @click="selectItemAddPagesMonthly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                          :class="{'button__selected' : this.addOnsPosition === 'addMonthly'}"
+                          @click="selectItemAddPagesMonthly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect}, 'addMonthly')">
                         Add Monthly
                       </button>
                       <button
                           class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
-                          @click="selectItemAddPages({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                          :class="{'button__selected' : this.addOnsPosition === 'addEnd'}"
+                          @click="showInput( 'addEnd')">
                         Add at the End of the Planner
                       </button>
                       <button
                           class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
-                          @click="selectItemAddPagesBefore({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">
+                          :class="{'button__selected' : this.addOnsPosition === 'addBeginning'}"
+                          @click="showInput('addBeginning')">
                         Add at the Beginning of the Planner
                       </button>
-                      <input type="number" class="input mt-3"
+                      <input v-if="this.addOnsPosition === 'addEnd'||this.addOnsPosition === 'addBeginning'" type="number" class="input mt-3"
                              v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">
-                      <a class=" has-text-grey is-size-4 is-underlined" @click="deletePages">Remove</a>
+                      <div class="is-flex is-justify-content-center">
+                        <a v-if="this.addOnsPosition === 'addEnd'||this.addOnsPosition === 'addBeginning'" class=" has-text-grey is-size-4 is-underlined mx-3" @click="addPages({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">Add</a>
+                        <a class=" has-text-grey is-size-4 is-underlined mx-3" @click="deletePages">Remove</a></div>
                     </div>
                     <div v-else class="add-container">
                       <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
@@ -422,7 +428,14 @@
       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
         {{ price }}</h1>
     </div>
-
+    <modal :message="modalMessage" :show-modal="showModal" @closeModal="showModal = false">
+      <div class="w100 is-flex is-justify-content-center">
+        <button class="button button__transparent come-back-button frunchySerif-font is-size-4 mb-3"
+                @click="showModal = false">
+          RETURN TO BUILDER
+        </button>
+      </div>
+    </modal>
     <!--<div style="max-width: 522px;max-height: 684px" v-for="(page, index) in pagesBookStructure" :key="index">
           <component :is="`${page[0].type}`" :data="page[0].data" class="pdf1"></component>
           <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data" class="pdf1"></component>
@@ -607,10 +620,12 @@ import calendar31saturday2 from "../htmlPages/calendar/31Dias/sabado/sabado2";
 import calendar31sunday1 from "../htmlPages/calendar/31Dias/domingo/domingo1";
 import calendar31sunday2 from "../htmlPages/calendar/31Dias/domingo/domingo2";
 import endPage from "../htmlPages/endPage/endPage";
+import modal from "../components/Modal";
 
 export default {
   name: "Builder",
   components: {
+    modal,
     Hourly1,
     FillPage,
     fillpage,
@@ -787,6 +802,8 @@ export default {
       selectedCategory: 0,
       selectedSubcategory: null,
       extrasSelection: '',
+      modalMessage: '',
+      showModal: false,
       carrouselCategories: [
         {
           id: '1',
@@ -1596,6 +1613,7 @@ export default {
       pdfProgress: 1,
       validDate: false,
       blankDaysCounter: 0,
+      addOnsPosition: '',
     };
   },
   watch: {
@@ -1661,11 +1679,8 @@ export default {
         },
     */
     getPrice(pages) {
-      console.log('entró a fn');
       const finalValue = this.$store.getters.getListPrices.filter(element => {
-        console.log('element', element, element.pages, pages);
         if (element.pages == pages) {
-          console.log('element==', element, element.price);
           return element.price;
         }
       })
@@ -1955,7 +1970,6 @@ export default {
           let primerDia = (new Date(`${this.totalDatesArray[0].year}-${this.totalDatesArray[0].monthNumber}-${this.totalDatesArray[0].dayNumber}`));
           let diaMilis = 24 * 60 * 60 * 1000;
           let diaAnterior = new Date(primerDia.getTime() - diaMilis);
-          console.log('totalDatesArray1111', primerDia, diaAnterior, diaAnterior.getUTCDay(), this.totalDatesArray[0]);
           this.totalDatesArray.unshift({
             day: this.weekday[diaAnterior.getUTCDay()],
             month: this.datesValueOptions.month[diaAnterior.getMonth()].key,
@@ -1964,16 +1978,13 @@ export default {
             year: diaAnterior.getFullYear()
           })
         }
-        console.log('totalDatesArray', this.totalDatesArray);
         const totalDaysGroup = Math.ceil((this.totalDatesArray.length) / 7);
         for (let y = 0; y < totalDaysGroup; y++) {
           let daysGroup = this.totalDatesArray.slice((y * 7), (y * 7 + 7));
           let i = 1;
           while (daysGroup.length < 7) {
-            console.log()
             const currentDate = new Date(`${this.totalMonths[this.totalMonths.length - 1].year}-${this.totalMonths[this.totalMonths.length - 1].month}-${i}`);
             const nextDate = new Date(currentDate.getTime() + (24 * 60 * 60 * 1000));
-            console.log('currentDate', currentDate, nextDate);
             daysGroup.push(
                 {
                   day: this.weekday[nextDate.getUTCDay()],
@@ -2031,7 +2042,6 @@ export default {
             //console.log('primerMap2', element, index);
 
             if (element.dayNumber === 1 && daysGroup[0].dayNumber !== 1) {
-              console.log('que pasaa', daysGroup);
               const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
                 data: {
@@ -2064,7 +2074,7 @@ export default {
         category: 'fillpage',
         data: this.finalValue[2].selection
       }
-      console.log('this.pagesBookStructure', this.pagesBookStructure);
+      this.$store.commit('SET_PAGES_BOOK_STRUCTURE', this.pagesBookStructure);
     },
     calcTotalDates() {
       this.totalDatesArray = [];
@@ -2086,7 +2096,6 @@ export default {
       this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
       this.rightStack = Array.from(this.pagesBook).reverse();
       this.updatePagesDepth(this.rightStack);
-      console.log('totalDatesArray1', this.totalDatesArray);
     },
     calcMonthsArray() {
       const numberOfYears = this.dateValue.endDate.year - this.dateValue.startDate.year;
@@ -2123,28 +2132,99 @@ export default {
       if (this.selectedCategory == 5) this.calcBookStructure();
       this.layoutPreselect = null;
     },
-    selectItemAddPagesMonthly(selection){
-      this.pagesBookStructure.map((element, index) =>{
-        element.map((element1, index1) =>{
-          if(element1.category === 'calendar'){
-
-
-            this.pagesBookStructure[index+1][1] = {
+    selectItemAddPagesWeekly(selection, addOnsPosition) {
+      this.addOnsPosition = addOnsPosition;
+      let structureArray = [...this.pagesBookStructure];
+      let counter = 1;
+      structureArray.map((element, index) => {
+        if (element[0].type.substring(0, 5) === 'daily' || element[1].type.substring(0, 5) === 'daily') {
+          if (element[0].data.day === 'Saturday') {
+            let newElements = [...this.$store.getters.getPagesBookStructure[index + counter], ...this.$store.getters.getPagesBookStructure[index + counter + 1]];
+            newElements.splice(1, 0, {
               data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
               type: `${selection.category}${selection.subcategory.key}1`,
               category: 'addOnPages'
-            };
-            this.pagesBookStructure.splice(index+1, 0, [{
-              data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ?  2 : 'addOnPages',
+            }, {
+              data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 2 : 'addOnPages',
               type: `${selection.category}${selection.subcategory.key}2`,
               category: 'addOnPages'
-            }]);
+            });
+            newElements = [[newElements[0], newElements[1]], [newElements[2], newElements[3]], [newElements[4], newElements[5]]]
+            this.pagesBookStructure.splice(index + counter, 2, ...newElements);
+            this.totalPages = this.totalPages + 2;
+            if(index>2) counter = counter + 1;
+            this.layoutPreselect = null;
+          } else if (element[1].data.day === 'Saturday') {
+            let newElements = [...this.$store.getters.getPagesBookStructure[index + counter+1], ...this.$store.getters.getPagesBookStructure[index + counter + 2]];
+            newElements.splice(1, 0, {
+              data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
+              type: `${selection.category}${selection.subcategory.key}1`,
+              category: 'addOnPages'
+            }, {
+              data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 2 : 'addOnPages',
+              type: `${selection.category}${selection.subcategory.key}2`,
+              category: 'addOnPages'
+            });
+            newElements = [[newElements[0], newElements[1]], [newElements[2], newElements[3]], [newElements[4], newElements[5]]]
+            this.pagesBookStructure.splice(index + counter+1, 2, ...newElements);
+            this.totalPages = this.totalPages + 2;
+            if(index>2) counter = counter + 1;
+            this.layoutPreselect = null;
           }
-        })
-      });
-      console.log('this.pagesBookStructure', this.pagesBookStructure);
+        } else if (element[1].type.substring(0, 6) === 'weekly') {
+          let newElements = [...this.$store.getters.getPagesBookStructure[index + counter], ...this.$store.getters.getPagesBookStructure[index + counter + 1]];
+          newElements.splice(1, 0, {
+            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
+            type: `${selection.category}${selection.subcategory.key}1`,
+            category: 'addOnPages'
+          }, {
+            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 2 : 'addOnPages',
+            type: `${selection.category}${selection.subcategory.key}2`,
+            category: 'addOnPages'
+          });
+          newElements = [[newElements[0], newElements[1]], [newElements[2], newElements[3]], [newElements[4], newElements[5]]]
+          this.pagesBookStructure.splice(index + counter, 2, ...newElements);
+          this.totalPages = this.totalPages + 2;
+          counter = counter + 1;
+          this.layoutPreselect = null;
+          this.addOnsPosition = '';
+        }
+      })
     },
-    async selectItemAddPages(selection) {
+    selectItemAddPagesMonthly(selection, addOnsPosition) {
+      this.addOnsPosition = addOnsPosition;
+      let structureArray = [...this.pagesBookStructure];
+      let counter = 0;
+      structureArray.map((element, index) => {
+        if (element[1].category === 'calendar') {
+
+          let newElements = [...this.$store.getters.getPagesBookStructure[index + counter], ...this.$store.getters.getPagesBookStructure[index + counter + 1]];
+          newElements.splice(1, 0, {
+            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
+            type: `${selection.category}${selection.subcategory.key}1`,
+            category: 'addOnPages'
+          }, {
+            data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 2 : 'addOnPages',
+            type: `${selection.category}${selection.subcategory.key}2`,
+            category: 'addOnPages'
+          });
+          newElements = [[newElements[0], newElements[1]], [newElements[2], newElements[3]], [newElements[4], newElements[5]]]
+          this.pagesBookStructure.splice(index + counter, 2, ...newElements);
+          this.totalPages = this.totalPages + 2;
+          counter = counter + 1;
+          this.layoutPreselect = null;
+          this.addOnsPosition = '';
+        }
+      });
+    },
+    showInput(addOnsPosition){
+      this.addOnsPosition = addOnsPosition;
+    },
+    addPages(selection){
+      if(this.addOnsPosition === 'addEnd') this.selectItemAddPages(selection);
+      else if(this.addOnsPosition === 'addBeginning') this.selectItemAddPagesBefore(selection)
+    },
+    async selectItemAddPages(selection){
       //this.leftStack = [];
       /*      this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
             this.rightStack = Array.from(this.pagesBook).reverse();
@@ -2194,8 +2274,10 @@ export default {
       this.totalPages = this.totalPages + (Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]) * 2);
       this.calcTotalPages();
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: selectionArray}
+      this.$store.commit('SET_PAGES_BOOK_STRUCTURE', this.pagesBookStructure);
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.layoutPreselect = null;
+      this.addOnsPosition = '';
     },
 
     async selectItemAddPagesBefore(selection) {
@@ -2246,8 +2328,10 @@ export default {
       this.totalPages = this.totalPages + (Number(this.arrayPagesToAdd[Number(this.selectedSubcategory)][Number(this.layoutPreselect.id) - 1]) * 2);
       this.calcTotalPages();
       this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: selectionArray}
+      this.$store.commit('SET_PAGES_BOOK_STRUCTURE', this.pagesBookStructure);
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
       this.layoutPreselect = null;
+      this.addOnsPosition = '';
     },
 
     formChange(value) {
@@ -2281,9 +2365,6 @@ export default {
         if (this.formerValue !== element.month.toLowerCase()) {
           this.formerValue = element.month.toLowerCase();
           Reflect.set(this.holidayStructureSelection, `${element.month}${element.year}`, this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()] ? this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()] : {})
-
-          console.log('hEstructures', this.holidayStructure, this.holidayStructureSelection);
-          //this.holidayStructure[`${element.month}${element.year}`] = this.$store.state.standardHolidays[element.year][element.month.toLowerCase()]? this.$store.state.standardHolidays[element.year][element.month.toLowerCase()]:{}
         }
       });
       this.calcTotalHoliday();
@@ -2298,7 +2379,6 @@ export default {
               Object.keys(this.holidayStructureSelection[month]).map((newHoliday) => {
                 if (holiday == newHoliday) {
                   const newArrayHolidays = this.holidayStructureSelection[month][newHoliday].concat(this.holidayStructure[month][holiday])
-                  console.log('newHoliday', newHoliday, newArrayHolidays);
                   Reflect.set(this.holidayStructureFinal[month], newHoliday, newArrayHolidays);
                 }
               })
@@ -2308,7 +2388,6 @@ export default {
         })
       })
       this.$store.commit('SET_HOLIDAY_STRUCTURE_FINAL', this.holidayStructureFinal);
-      console.log('this.holidayStructureFinal', this.holidayStructureFinal);
     },
     /*calcHolidays(){
       console.log('holidayStructure', this.holidayStructure);
@@ -2356,7 +2435,12 @@ export default {
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
     },
     exportPDFDemo() {
-      this.exportHTMLToPDF();
+      if(this.totalPages >= 120 && this.totalPages<= 242){
+        this.exportHTMLToPDF();
+      } else {
+        this.showModal = true;
+        this.modalMessage = 'Your product must have between 120 and 242 pages. Return to the builder to edit your selection.'
+      }
       //this.print();
       //this.generateReport();
       /*      const element = document.getElementById('element-to-print');
@@ -2672,7 +2756,7 @@ body {
   margin: 0 auto;
 
   .addOnPagesButton {
-    background-color: #F3D7D3;
+    background-color: #FAF0EC;
     height: fit-content;
     white-space: break-spaces;
   }
@@ -2681,6 +2765,9 @@ body {
     border-radius: 25px;
     background-color: #F3D7D3;
     height: 30px
+  }
+  .button__selected {
+    background-color: #F3D7D3 !important;
   }
 }
 

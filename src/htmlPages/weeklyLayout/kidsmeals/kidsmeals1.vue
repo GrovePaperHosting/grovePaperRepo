@@ -441,7 +441,6 @@ export default {
       const monthYear = this.data[0].year;
       const totalDaysMonth = new Date(monthYear, monthNumber, 0).getDate();
       const monthStart = new Date(`${monthYear}-${monthNumber}-1`).getDay();
-      console.log('monthStart', monthNumber, monthStart);
       let monthDates = [];
       this.$set(monthDates, monthStart + 1, 1);
       for (let i = 2; i <= totalDaysMonth; i++) {
@@ -451,7 +450,6 @@ export default {
         this.monthData.push(monthDates.slice(i * 7 + 1, (i * 7) + 8));
         //if((monthDates.slice(i * 7 + 1, (i * 7) + 8)).includes(this.data[0].dayNumber)) this.currentWeek=i;
       }
-      console.log('monthData', this.monthData);
     },
   },
   mounted() {

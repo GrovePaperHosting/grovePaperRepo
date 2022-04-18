@@ -535,7 +535,6 @@ export default {
         const monthBeforeYear = this.data.monthNumber == 1? this.data.year-1: this.data.year;
         const totalDaysMonth = new Date(monthBeforeYear, monthBeforeNumber, 0).getDate();
         const monthStart = new Date(`${monthBeforeYear}-${monthBeforeNumber}-1`).getDay();
-        console.log('monthStart',monthBeforeNumber,this.data.monthNumber, monthStart);
         let monthDates=[];
         this.$set(monthDates, monthStart+1, 1);
         for (let i = 2; i <= totalDaysMonth; i++) {
@@ -544,13 +543,11 @@ export default {
         for (let i = 0; i <= 5; i++) {
           this.monthBeforeData.push(monthDates.slice(i*7+1,(i*7)+8));
         }
-        console.log('monthBeforeData', this.monthBeforeData);
       }else{
         const monthBeforeNumber = this.data[6].monthNumber == 1? 12: this.data[6].monthNumber-1;
         const monthBeforeYear = this.data[6].monthNumber == 1? this.data[6].year-1: this.data[6].year;
         const totalDaysMonth = new Date(monthBeforeYear, monthBeforeNumber, 0).getDate();
         const monthStart = new Date(`${monthBeforeYear}-${monthBeforeNumber}-1`).getDay();
-        console.log('monthStart',monthBeforeNumber,this.data[0].monthNumber, monthStart);
         let monthDates=[];
         this.$set(monthDates, monthStart+1, 1);
         for (let i = 2; i <= totalDaysMonth; i++) {
@@ -559,7 +556,6 @@ export default {
         for (let i = 0; i <= 5; i++) {
           this.monthBeforeData.push(monthDates.slice(i*7+1,(i*7)+8));
         }
-        console.log('monthBeforeData', this.monthBeforeData);
       }
     },
     calcMonthAfterData() {
@@ -568,7 +564,6 @@ export default {
         const monthAfterYear = this.data.monthNumber === 12? this.data.year+1: this.data.year;
         const totalDaysMonth = new Date(monthAfterYear, monthAfterNumber, 0).getDate();
         const monthStart = new Date(`${monthAfterYear}-${monthAfterNumber}-1`).getDay();
-        console.log('monthStart',monthAfterNumber, monthStart);
 
         let monthDates=[];
         this.$set(monthDates, monthStart+1, 1);

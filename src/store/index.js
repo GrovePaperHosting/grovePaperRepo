@@ -204,7 +204,7 @@ const store = new Vuex.Store({
                 }
             }
         },
-        canadaHolidays: {
+        canadianHolidays: {
             2021: {
                 february:
                     {
@@ -250,7 +250,7 @@ const store = new Vuex.Store({
                     24: ['Jean Baptiste Day'],
                 },
                 july: {
-                    1: ['Canada Day'],
+                    1: ['C)anada Day'],
                     9: ['Nunavut Day']
                 },
                 august: {
@@ -1652,6 +1652,7 @@ const store = new Vuex.Store({
             }
         ],
         finalValue: [],
+        pagesBookStructure: [],
         extraSelection: '',
         totalPrice: 0,
         holidayStructureFinal: {},
@@ -1678,6 +1679,9 @@ const store = new Vuex.Store({
         SET_FINAL_VALUE(state, payload) {
             state.finalValue = payload;
         },
+        SET_PAGES_BOOK_STRUCTURE(state, payload) {
+            state.pagesBookStructure = payload;
+        },
         SET_EXTRA_SELECTION(state, payload) {
             state.extraSelection = payload;
         },
@@ -1695,6 +1699,9 @@ const store = new Vuex.Store({
     getters: {
         getFinalValue(state) {
             return state.finalValue;
+        },
+        getPagesBookStructure(state) {
+            return state.pagesBookStructure;
         },
         getCartItems(state) {
             return state.cartItems;
