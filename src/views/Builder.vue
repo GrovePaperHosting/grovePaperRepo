@@ -428,7 +428,14 @@
       <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
         {{ price }}</h1>
     </div>
-
+    <modal :message="modalMessage" :show-modal="showModal" @closeModal="showModal = false">
+      <div class="w100 is-flex is-justify-content-center">
+        <button class="button button__transparent come-back-button frunchySerif-font is-size-4 mb-3"
+                @click="showModal = false">
+          RETURN TO BUILDER
+        </button>
+      </div>
+    </modal>
     <!--<div style="max-width: 522px;max-height: 684px" v-for="(page, index) in pagesBookStructure" :key="index">
           <component :is="`${page[0].type}`" :data="page[0].data" class="pdf1"></component>
           <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data" class="pdf1"></component>
@@ -613,10 +620,12 @@ import calendar31saturday2 from "../htmlPages/calendar/31Dias/sabado/sabado2";
 import calendar31sunday1 from "../htmlPages/calendar/31Dias/domingo/domingo1";
 import calendar31sunday2 from "../htmlPages/calendar/31Dias/domingo/domingo2";
 import endPage from "../htmlPages/endPage/endPage";
+import modal from "../components/Modal";
 
 export default {
   name: "Builder",
   components: {
+    modal,
     Hourly1,
     FillPage,
     fillpage,
@@ -793,6 +802,8 @@ export default {
       selectedCategory: 0,
       selectedSubcategory: null,
       extrasSelection: '',
+      modalMessage: '',
+      showModal: false,
       carrouselCategories: [
         {
           id: '1',
@@ -2424,7 +2435,12 @@ export default {
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
     },
     exportPDFDemo() {
-      this.exportHTMLToPDF();
+      if(this.totalPages >= 120 && this.totalPages<= 242){
+        this.exportHTMLToPDF();
+      } else {
+        this.showModal = true;
+        this.modalMessage = 'Your product must have between 120 and 242 pages. Return to the builder to edit your selection.'
+      }
       //this.print();
       //this.generateReport();
       /*      const element = document.getElementById('element-to-print');
