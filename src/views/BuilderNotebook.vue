@@ -265,7 +265,6 @@
 import jsPDF from 'jspdf';
 import storageRef from "../firebase";
 import {init} from 'emailjs-com';
-import VueHtml2pdf from 'vue-html2pdf';
 import html2pdf from 'html2pdf.js';
 
 init("user_rVFW3uNdwPo3aLyWfIMyo");
@@ -470,7 +469,7 @@ export default {
     productivityToDo1,
     productivityToDo2,
     endPage,
-    VueHtml2pdf
+
   },
   data() {
     return {

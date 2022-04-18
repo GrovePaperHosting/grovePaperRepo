@@ -63,7 +63,7 @@
     </div>
     <transition>
       <keep-alive>
-        <router-view></router-view>
+        <router-view @showCart ="showCar = true"></router-view>
       </keep-alive>
     </transition>
     <footer class="footer">
