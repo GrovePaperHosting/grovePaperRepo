@@ -4,11 +4,9 @@ import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import VueRouter from 'vue-router';
 import router from './router';
-import VueHtml2Canvas from 'vue-html2canvas';
 import store from './store'
 
 //import store from './store';
-Vue.use(VueHtml2Canvas);
 Vue.use(VueRouter);
 Vue.use(Buefy)
 

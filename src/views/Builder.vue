@@ -13,7 +13,7 @@
           <div class="content is-flex is-justify-content-center">
             <div style="max-width: 80%; width: 500px">
               <h1 class="has-text-primary has-text-weight-light" style="font-size: 4rem !important;"> Generating...</h1>
-              <progress class="progress" :value="pdfProgress" max="100">{{ pdfProgress }}%</progress>
+              <progress class="progress is-primary" :value="pdfProgress" max="100">{{ pdfProgress }}%</progress>
               <h3 class="has-text-weight-light is-size-4"> Your customized planner will take a few minutes to generate
                 and add to your cart. Please do not refresh this page.</h3>
             </div>
@@ -447,10 +447,8 @@
 
 <script>
 import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
 import storageRef from "../firebase";
-import {init, send} from 'emailjs-com';
-import VueHtml2pdf from 'vue-html2pdf';
+import {init} from 'emailjs-com';
 //import * as html2canvas from 'html2canvas';
 import html2pdf from 'html2pdf.js';
 
@@ -790,7 +788,6 @@ export default {
     calendar31sunday1,
     calendar31sunday2,
     endPage,
-    VueHtml2pdf
   },
   data() {
     return {
@@ -1622,62 +1619,6 @@ export default {
     }
   },
   methods: {
-    /*    async beforeDownload ({ html2pdf, options, pdfContent }) {
-          console.log('html:', html2pdf, options, pdfContent);
-          await html2pdf().set(options).from(pdfContent).toPdf().get('pdf').then((pdf) => {
-            console.log(pdf);
-          }).save()
-        },*/
-    /*
-        download() {
-          let pdf = new jsPDF();
-          let pdfPages = document.getElementsByClassName('pdf');
-          pdfPages = Array.from(pdfPages);
-          console.log('pdfPages', pdfPages);
-          for (let i = 0; i < pdfPages.length; i++) {
-            html2canvas(pdfPages[i]).then(canvas => {
-              let pdfImage = canvas.toDataURL();
-              pdf.addImage(pdfImage, 'PNG', 15, 40, 180, 160);
-              if(i+1 === pdfPages.length){
-                //const pdfSend = pdf.output('blob');
-                pdf.save();
-    /!*            console.log('pdfSend',pdfSend);
-                const ordersRef = storageRef.child('orders');
-                const fileName = `order${Date.now()}`;
-                const spaceRef = ordersRef.child(fileName);
-                spaceRef.put(pdfSend)
-                    .then(function () {
-                          spaceRef.getDownloadURL()
-                              .then(function (url) {
-                                console.log('url', url);
-                                //const templateParams = {url}
-                              });
-                    });*!/
-              }else{
-                pdf.addPage();
-              }
-            })
-          }
-    /!*      pdfPages.map((pdfPage)=>{
-            html2canvas(pdfPage).then(canvas => {
-              let pdfImage = canvas.toDataURL();
-              pdf.addImage(pdfImage, 'PNG', 20, 20);
-              pdf.addPage();
-            })
-          });*!/
-    /!*      const ordersRef = storageRef.child('orders');
-          const fileName = `order${Date.now()}`;
-          const spaceRef = ordersRef.child(fileName);
-          spaceRef.put(pdf)
-              .then(function () {
-                    spaceRef.getDownloadURL()
-                        .then(function (url) {
-                          console.log('url', url);
-                          //const templateParams = {url}
-                        });
-              });*!/
-        },
-    */
     getPrice(pages) {
       const finalValue = this.$store.getters.getListPrices.filter(element => {
         if (element.pages == pages) {
@@ -1705,6 +1646,7 @@ export default {
         jsPDF: {unit: 'in', format: [7.25, 9.5]}
       };
       let pages = document.getElementsByClassName('pdf');
+      console.log('pages', pages);
       pages = Array.from(pages);
       const doc = new jsPDF(opt.jsPDF);
       //const pageSize = jsPDF.getPageSize(opt.jsPDF);
@@ -1715,6 +1657,7 @@ export default {
           doc.addPage();
         }
         this.pdfProgress = ((i * 100) / pages.length) + 1;
+        console.log('i', page, this.pdfProgress, pageImage )
         doc.addImage(pageImage.src, 0, 0, 7.25, 9.5);
       }
 
@@ -1749,6 +1692,7 @@ export default {
                   } finally {
                     self.$store.commit('SET_TOTAL_PRICES', (totalValue + item.price));
                     self.$store.commit('SET_FINAL_VALUE', []);
+                    self.$emit('showCart');
                     self.loadingPDF = false;
                     self.viewReview = false;
                     self.selectedCategory = 0;
@@ -1827,52 +1771,6 @@ export default {
         this.updatePagesDepth(this.leftStack);
       }
     },
-    async print(index) {
-      //const el = import('../htmlPages/dailyLayouts/hourly/Hourly.html');
-      // add option type to get the image version
-      // if not provided the promise will return
-      // the canvas.
-      /*      const options = {
-              type: 'dataURL'
-            }*/
-      //console.log('html', htmlv, options);
-      /*      const el = this.$refs.printMe1;
-            console.log('printMe1', el);
-            // add option type to get the image version
-            // if not provided the promise will return
-            // the canvas.
-      /!*      const options = {
-              type: 'dataURL'
-            }
-            this.output = await this.$html2canvas(el, options);*!/
-            this.$html2canvas(('.printMe1').get(0)).then( function (canvas) {
-              console.log(canvas);
-            });*/
-      this.output = []
-      const node = document.getElementsByClassName("page1");
-      const options = {
-        type: 'dataURL'
-      }
-      const start = index;
-      for (let i = start; i < start + 1; i++) {
-        const output = await this.$html2canvas(node[i], options);
-        console.log('output', output);
-        this.output.push(output);
-      }
-      this.flipbook.flipRight();
-      //this.output = await this.$html2canvas(node[0], options);
-      /*      domtoimage
-                .toPng(node)
-                .then(function (dataUrl) {
-                  const img = new Image();
-                  img.src = dataUrl;
-                  console.log(img)
-                  //document.body.apcategory: 'layout'pendChild(img);
-                })
-                .catch(function (error) {
-                  console.error("oops, something went wrong!", error);
-                });*/
-    },
     calcBookStructure() {
       this.pagesBookStructure = [];
       const type = `${this.finalValue[5].selection.category}${this.finalValue[5].selection.subcategory.key}`
@@ -1884,7 +1782,7 @@ export default {
             this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
               data: {
                 ...element,
-                holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
+                holidays: this.holidaysSelection != '' ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
                 layoutType: this.layoutOption,
                 monthBefore: element.monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key,
                 monthAfter: element.monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key
@@ -1896,7 +1794,7 @@ export default {
             this.pagesBookStructure.push([{
               data: {
                 ...element,
-                holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
+                holidays: this.holidaysSelection != '' ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
                 layoutType: this.layoutOption,
                 monthBefore: element.monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key,
                 monthAfter: element.monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key
@@ -1910,7 +1808,7 @@ export default {
             this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
               data: {
                 ...element,
-                holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
+                holidays: this.holidaysSelection != '' ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
                 layoutType: this.layoutOption,
                 monthBefore: element.monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key,
                 monthAfter: element.monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key
@@ -1921,7 +1819,7 @@ export default {
             this.pagesBookStructure.push([{
               data: {
                 ...element,
-                holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
+                holidays: this.holidaysSelection != '' ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
                 layoutType: this.layoutOption,
                 monthBefore: element.monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[element.monthNumber - 2].key,
                 monthAfter: element.monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[element.monthNumber].key
@@ -1934,7 +1832,7 @@ export default {
             this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
               data: {
                 ...element,
-                holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
+                holidays: this.holidaysSelection != '' ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
               },
               type: `${type}1`,
               category: this.finalValue[5].selection.category
@@ -1943,7 +1841,7 @@ export default {
             this.pagesBookStructure.push([{
               data: {
                 ...element,
-                holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
+                holidays: this.holidaysSelection != '' ? this.holidayStructureFinal[`${element.month}${element.year}`] : this.holidayStructure[`${element.month}${element.year}`],
               },
               type: `${type}2`,
               category: this.finalValue[5].selection.category
@@ -1989,8 +1887,6 @@ export default {
                 {
                   day: this.weekday[nextDate.getUTCDay()],
                   month: this.datesValueOptions.month[nextDate.getUTCMonth()].key,
-                  //month: this.totalMonths[this.totalMonths.length - 1].month === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
-                  //month: this.datesValueOptions.month[this.totalMonths[this.totalMonths.length - 1].month].key,
                   monthNumber: nextDate.getUTCMonth() + 1,
                   year: nextDate.getUTCFullYear(),
                   dayNumber: i
@@ -1999,13 +1895,12 @@ export default {
             i++;
           }
           daysGroup.map((element) => {
-            //console.log('primerMap', element, index);
             if (element.dayNumber === 1 && daysGroup[0].dayNumber === 1) {
               const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
                 data: {
                   ...daysGroup,
-                  holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${daysGroup[6].month}${daysGroup[6].year}`] : this.holidayStructure[`${daysGroup[6].month}${daysGroup[6].year}`],
+                  holidays: this.holidaysSelection != '' ? this.holidayStructureFinal[`${daysGroup[6].month}${daysGroup[6].year}`] : this.holidayStructure[`${daysGroup[6].month}${daysGroup[6].year}`],
                   layoutType: this.layoutOption,
                   monthBefore: daysGroup[6].monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[6].monthNumber - 2].key,
                   monthAfter: daysGroup[6].monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[6].monthNumber].key
@@ -2016,7 +1911,7 @@ export default {
               this.pagesBookStructure.push([{
                 data: {
                   ...daysGroup,
-                  holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${daysGroup[6].month}${daysGroup[6].year}`] : this.holidayStructure[`${daysGroup[6].month}${daysGroup[6].year}`],
+                  holidays: this.holidaysSelection != '' ? this.holidayStructureFinal[`${daysGroup[6].month}${daysGroup[6].year}`] : this.holidayStructure[`${daysGroup[6].month}${daysGroup[6].year}`],
                   layoutType: this.layoutOption,
                   monthBefore: daysGroup[6].monthNumber === 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[6].monthNumber - 2].key,
                   monthAfter: daysGroup[6].monthNumber === 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[6].monthNumber].key
@@ -2039,14 +1934,13 @@ export default {
             category: this.finalValue[5].selection.category
           }]);
           daysGroup.map((element) => {
-            //console.log('primerMap2', element, index);
 
             if (element.dayNumber === 1 && daysGroup[0].dayNumber !== 1) {
               const firstMonthDate = new Date(`${element.year}-${element.monthNumber}-1`);
               this.pagesBookStructure[this.pagesBookStructure.length - 1][1] = {
                 data: {
                   ...daysGroup,
-                  holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${daysGroup[daysGroup.length - 1].month}${daysGroup[daysGroup.length - 1].year}`] : this.holidayStructure[`${daysGroup[daysGroup.length - 1].month}${daysGroup[daysGroup.length - 1].year}`],
+                  holidays: this.holidaysSelection != '' ? this.holidayStructureFinal[`${daysGroup[daysGroup.length - 1].month}${daysGroup[daysGroup.length - 1].year}`] : this.holidayStructure[`${daysGroup[daysGroup.length - 1].month}${daysGroup[daysGroup.length - 1].year}`],
                   layoutType: this.layoutOption,
                   monthBefore: daysGroup[6].monthNumber == 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[6].monthNumber - 2].key,
                   monthAfter: daysGroup[6].monthNumber == 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[6].monthNumber].key
@@ -2057,7 +1951,7 @@ export default {
               this.pagesBookStructure.push([{
                 data: {
                   ...daysGroup,
-                  holidays: this.holidayStructureFinal != {} ? this.holidayStructureFinal[`${daysGroup[daysGroup.length - 1].month}${daysGroup[daysGroup.length - 1].year}`] : this.holidayStructure[`${daysGroup[daysGroup.length - 1].month}${daysGroup[daysGroup.length - 1].year}`],
+                  holidays: this.holidaysSelection != '' ? this.holidayStructureFinal[`${daysGroup[daysGroup.length - 1].month}${daysGroup[daysGroup.length - 1].year}`] : this.holidayStructure[`${daysGroup[daysGroup.length - 1].month}${daysGroup[daysGroup.length - 1].year}`],
                   layoutType: this.layoutOption,
                   monthBefore: daysGroup[6].monthNumber == 1 ? this.datesValueOptions.month[11].key : this.datesValueOptions.month[daysGroup[6].monthNumber - 2].key,
                   monthAfter: daysGroup[6].monthNumber == 12 ? this.datesValueOptions.month[0].key : this.datesValueOptions.month[daysGroup[6].monthNumber].key
@@ -2088,7 +1982,6 @@ export default {
             dayNumber: y,
             year: currentDate.getFullYear()
           })
-          //console.log('currentDate', this.weekday[currentDate.getDay()], this.datesValueOptions.month[element.month-1].key, y);
         }
       })
       //this.calcBookStructure();
@@ -2337,7 +2230,6 @@ export default {
     formChange(value) {
       this.$set(this.finalValue, this.selectedCategory, {id: this.selectedCategory + 1, selection: value});
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
-      //this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection: value}
     },
     dateChange(value) {
       this.validDate = false;
@@ -2355,10 +2247,7 @@ export default {
       this.holidayStructure = {};
       this.totalDatesArray.map(element => {
         Reflect.set(this.holidayStructure, `${element.month}${element.year}`, this.$store.state.standardHolidays[element.year][element.month.toLowerCase()] ? this.$store.state.standardHolidays[element.year][element.month.toLowerCase()] : {})
-
-        //this.holidayStructure[`${element.month}${element.year}`] = this.$store.state.standardHolidays[element.year][element.month.toLowerCase()]? this.$store.state.standardHolidays[element.year][element.month.toLowerCase()]:{}
       });
-      //console.log('holidayStructure', this.holidayStructure);
     },
     calcHolidaysSelection() {
       this.totalDatesArray.map(element => {
@@ -2383,44 +2272,11 @@ export default {
                 }
               })
             })
-            //this.holidayStructureFinal[month] = {...this.holidayStructureSelection[month], ...this.holidayStructure[month]}
           }
         })
       })
       this.$store.commit('SET_HOLIDAY_STRUCTURE_FINAL', this.holidayStructureFinal);
     },
-    /*calcHolidays(){
-      console.log('holidayStructure', this.holidayStructure);
-      //const newHolidayStructure =  Object.assign({}, this.holidayStructure);
-      this.totalDatesArray.map(element =>{
-        console.log('holiday---',element);
-        //if (!this.holidayStructure[`${element.month}${element.year}`]) {
-          console.log('holiday---++', this.formerValue, element.month.toLowerCase());
-        if (this.formerValue !== element.month.toLowerCase()) {
-          this.formerValue = element.month.toLowerCase();
-          Object.keys(this.holidayStructure[`${element.month}${element.year}`]).map((holiday) => {
-            if (this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()]) {
-              Object.keys(this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()]).map(newHoliday => {
-                  console.log('holiday**+', element.month.toLowerCase(), holiday, newHoliday);
-                  if (holiday != newHoliday) {
-                    console.log('holiiiiiii22', holiday, newHoliday, this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()][newHoliday]);
-                    this.holidayStructure[`${element.month}${element.year}`][newHoliday] = this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()][newHoliday];
-                    //Reflect.set(newHolidayStructure[`${element.month}${element.year}`], newHoliday, this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()][newHoliday] )
-                  } else if (holiday == newHoliday) {
-                    const newArrayHolidays = this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()][holiday].concat(this.$store.state.standardHolidays[element.year][element.month.toLowerCase()][holiday]);
-                    console.log('holiiiiiii', holiday, newHoliday, this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()][newHoliday]);
-                    //this.holidayStructure[`${element.month}${element.year}`][holiday].push(this.$store.state[this.holidaysSelection][element.year][element.month.toLowerCase()][holiday]);
-                    this.holidayStructure[`${element.month}${element.year}`][holiday] = newArrayHolidays;
-                  }
-
-              })
-            }
-          })
-        }
-        //}
-      });
-      console.log('holidayStructure2', this.holidayStructure);
-    },*/
     setExtras(value) {
       this.extrasSelection = value;
       this.$store.commit('SET_EXTRA_SELECTION', value)
@@ -2441,47 +2297,6 @@ export default {
         this.showModal = true;
         this.modalMessage = 'Your product must have between 120 and 242 pages. Return to the builder to edit your selection.'
       }
-      //this.print();
-      //this.generateReport();
-      /*      const element = document.getElementById('element-to-print');
-            const opt = {
-              margin:       1,
-              filename:     'myfile.pdf',
-      /!*        image:        { type: 'jpeg', quality: 0.98 },
-              html2canvas:  { scale: 2 },
-              jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }*!/
-            };
-            html2pdf().from(element).set(opt).save();*/
-    },
-    exportPDF() {
-      const ordersRef = storageRef.child('orders');
-      const doc = new jsPDF();
-
-      autoTable(doc, {html: '#my-table'})
-      const pdf = doc.output('blob');
-      /*      const data = new FormData();
-            data.append("data" , pdf);*/
-      const fileName = `order${Date.now()}`;
-      const spaceRef = ordersRef.child(fileName);
-      spaceRef.put(pdf)
-          .then(function () {
-            spaceRef.getDownloadURL()
-                .then(function (url) {
-                  console.log('url', url);
-                  const templateParams = {url}
-                  send('service_w81r30t', 'template_92dxr79', templateParams)
-                      .then(function (response) {
-                        console.log('SUCCESS!', response.status, response.text);
-                        this.loadingPDF = false;
-                      }, function (error) {
-                        console.log('FAILED...', error);
-                      });
-                });
-            console.log('succesful');
-
-          })
-          .catch(() => {
-          });
     },
   },
   computed: {
