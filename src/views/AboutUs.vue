@@ -3,7 +3,6 @@
     <div class="container is-flex is-flex-direction-column is-justify-content-center has-text-centered">
       <div class="build-container__options">
         <h1 class="build-container__title has-text-primary frunchySerif-font">ABOUT US</h1>
-        <!--<h4 class="has-text-text is-size-3 lamango-font">Choose which product you'd like to customize today.</h4>-->
         <div class="columns build-container__options__images">
           <div class="column">
             <img class="first-img" src="../../public/assets/images/briana-tozour-hkkQbPa49UA-unsplash.png">
