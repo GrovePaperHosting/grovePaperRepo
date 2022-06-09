@@ -1195,12 +1195,12 @@ const store = new Vuex.Store({
             "“One isn’t born courageous, one becomes it.” Marjane Satrapi",
             "“Everything is within your power, and your power is within you.” Janice Trachtman",
         ],
-        personalCheckIns:[
-            'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/extras%2FChallenges%2FI%20Commit%20To.png?alt=media&token=13990f06-2989-4964-bd7d-9349f133c65e',
-            'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/extras%2FChallenges%2FI%20Will%20Focus%20On.png?alt=media&token=d22b30d8-348f-475e-beda-598b7454d548',
-            'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/extras%2FChallenges%2FI%20am%20Feeling.png?alt=media&token=2b00275d-2571-44b7-9f86-3f9c8906a16b',
-            'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/extras%2FChallenges%2FProductivity%20Score.png?alt=media&token=1937dfb1-2aec-49a2-9ddf-040763dcd7c1'
-        ],
+        personalCheckIns: {
+            commitTo: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/extras%2FChallenges%2FI%20Commit%20To.png?alt=media&token=13990f06-2989-4964-bd7d-9349f133c65e',
+            focusOn: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/extras%2FChallenges%2FI%20Will%20Focus%20On.png?alt=media&token=d22b30d8-348f-475e-beda-598b7454d548',
+            feeling: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/extras%2FChallenges%2FI%20am%20Feeling.png?alt=media&token=2b00275d-2571-44b7-9f86-3f9c8906a16b',
+            productivity:'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/extras%2FChallenges%2FProductivity%20Score.png?alt=media&token=1937dfb1-2aec-49a2-9ddf-040763dcd7c1'
+        },
         challenges: [
             "Reach out to a friend to say hello",
             "Go for a walk with no destination in mind",
@@ -1313,7 +1313,6 @@ const store = new Vuex.Store({
             "Eat 5-8 servings of vegetables today",
             "Eat breakfast at the table",
         ],
-
         listPrices: [
             {
                 pages: 30,

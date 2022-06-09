@@ -6,6 +6,21 @@
         <h4 class="has-text-text is-size-4 lamango-font">Let's make a beautiful planer! Scroll down and select through
           each of the options to create the best match for your needs. To learn how to build your own planner, visit our
           <a class="link" href="/tutorial"> Tutorial page </a>.</h4>
+        <div class="page-counter is-flex is-justify-content-space-around my-3 mx-6">
+          <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">PAGE
+            COUNT:
+            <span
+                class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
+              {{ totalPages }} /242
+            </span>
+          </h1>
+          <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">Price:
+            <span
+                class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
+              ${{ price }}
+            </span>
+          </h1>
+        </div>
       </div>
       <div :class="`modal ${loadingPDF? 'is-active':'' }`">
         <div class="modal-background"></div>
@@ -33,14 +48,22 @@
         </div>
         <div class="build-container-carrousel-options">
           <div v-show="selectedCategory === 8">
-            <div class="w100 is-flex">
-              <div class="add-container" style="width: 30% ">
-                <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
+            <div class="w100">
+              <div class="add-container my-3 is-flex is-justify-content-space-around">
+                <div class="is-flex is-justify-content-space-between">
+                  <button class="button add-button frunchySerif-font" @click="antes">PREVIOUS</button>
+                  <span
+                      class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light has-text-primary has-text-weight-bold mx-3  ">
+                    <input type="number" class="mx-3"> /242
+                  </span>
+                  <button class="button add-button frunchySerif-font" @click="despues">NEXT</button>
+                </div>
+                <button class="button add-button frunchySerif-font is-size-4"
                         @click="exportPDFDemo">
                   ADD TO CART
                 </button>
               </div>
-              <div v-if="pagesBookStructure.length>0" class="book mx-3">
+              <div v-if="pagesBookStructure.length>0" class="book mx-1">
                 <div class="page" style="max-width: 522px;max-height: 684px; min-width: 375px" :class="`page${index}`"
                      v-for="(page, index) in pagesBookStructure" :key="index"
                      @click="flipSelectedPage($event)">
@@ -59,70 +82,72 @@
               </div>
             </div>
           </div>
-          <div v-if="layoutPreselect !== null && selectedCategory !== 8">
-            <div>
-              <div class="columns">
-                <div class="column is-4 p-0 m-0">
-                  <div class="is-flex is-justify-content-flex-start ml-3" style="height: 10%">
-                    <button @click="layoutPreselect = null" class="button__transparent">
-                      <img style="width: 40px; height: 30px"
-                           src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7">
+          <div v-if="layoutPreselect !== null && selectedCategory !== 8"
+               class="card is-flex build-container-carrousel-options-container p-2">
+            <div class="columns m-0">
+              <div class="column is-3 p-2 m-0">
+                <div class="is-flex is-justify-content-flex-start ml-3 mt-2" style="height: 10%">
+                  <button @click="layoutPreselect = null" class="button__transparent">
+                    <img style="width: 40px; height: 30px"
+                         src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7">
+                  </button>
+                </div>
+                <div class="is-flex is-justify-content-center is-flex-direction-column" style="height: 90%">
+                  <h1 class="is-uppercase is-size-2 is-size-4-touch lamango-font lamango-font__spacing3 has-text-weight-light" style="line-height: 95%;">
+                    {{ layoutPreselect.name }}</h1>
+                  <div v-if="selectedCategory === 6" class="add-container">
+                    <!--<input type="number" class="input"
+                           v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">-->
+                    <!--                      <input  type="number" class="input" v-model.number="pagesToAdd">-->
+                    <button
+                        class="button addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
+                        :class="{'button__selected' : this.addOnsPosition === 'addWeekly'}"
+                        @click="selectItemAddPagesWeekly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect}, 'addWeekly')">
+                      Add Weekly
+                    </button>
+                    <button
+                        class="button addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
+                        :class="{'button__selected' : this.addOnsPosition === 'addMonthly'}"
+                        @click="selectItemAddPagesMonthly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect}, 'addMonthly')">
+                      Add Monthly
+                    </button>
+                    <button
+                        class="button addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
+                        :class="{'button__selected' : this.addOnsPosition === 'addEnd'}"
+                        @click="showInput( 'addEnd')">
+                      Add at the End of the Planner
+                    </button>
+                    <button
+                        class="button addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
+                        :class="{'button__selected' : this.addOnsPosition === 'addBeginning'}"
+                        @click="showInput('addBeginning')">
+                      Add at the Beginning of the Planner
+                    </button>
+                    <input v-if="this.addOnsPosition === 'addEnd'||this.addOnsPosition === 'addBeginning'" type="number"
+                           class="input mt-3"
+                           v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">
+                    <div class="is-flex is-justify-content-center">
+                      <a v-if="this.addOnsPosition === 'addEnd'||this.addOnsPosition === 'addBeginning'"
+                         class=" has-text-grey is-size-4 is-underlined mx-3"
+                         @click="addPages({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">Add</a>
+                      <a class=" has-text-grey is-size-4 is-underlined mx-3" @click="deletePages">Remove</a></div>
+                  </div>
+                  <div v-else class="add-container">
+                    <button class="button add-button frunchySerif-font is-size-4 mt-3 w100"
+                            @click="selectItem({category: options[selectedCategory].subcategories[selectedSubcategory].name, subcategory: layoutPreselect}, layoutPreselect.id-1)">
+                      ADD
                     </button>
                   </div>
-                  <div class="mt-3 is-flex is-justify-content-center is-flex-direction-column" style="height: 90%">
-                    <h1 class="is-uppercase is-size-1 is-size-3-touch lamango-font lamango-font__spacing3 has-text-weight-light mt-2 ">
-                      {{ layoutPreselect.name }}</h1>
-                    <div v-if="selectedCategory === 6" class="add-container">
-                      <!--<input type="number" class="input"
-                             v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">-->
-                      <!--                      <input  type="number" class="input" v-model.number="pagesToAdd">-->
-                      <button
-                          class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
-                          :class="{'button__selected' : this.addOnsPosition === 'addWeekly'}"
-                          @click="selectItemAddPagesWeekly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect}, 'addWeekly')">
-                        Add Weekly
-                      </button>
-                      <button
-                          class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
-                          :class="{'button__selected' : this.addOnsPosition === 'addMonthly'}"
-                          @click="selectItemAddPagesMonthly({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect}, 'addMonthly')">
-                        Add Monthly
-                      </button>
-                      <button
-                          class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
-                          :class="{'button__selected' : this.addOnsPosition === 'addEnd'}"
-                          @click="showInput( 'addEnd')">
-                        Add at the End of the Planner
-                      </button>
-                      <button
-                          class="button button__transparent addOnPagesButton frunchySerif-font is-size-5 mt-3 p-1 w100 is-uppercase"
-                          :class="{'button__selected' : this.addOnsPosition === 'addBeginning'}"
-                          @click="showInput('addBeginning')">
-                        Add at the Beginning of the Planner
-                      </button>
-                      <input v-if="this.addOnsPosition === 'addEnd'||this.addOnsPosition === 'addBeginning'" type="number" class="input mt-3"
-                             v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">
-                      <div class="is-flex is-justify-content-center">
-                        <a v-if="this.addOnsPosition === 'addEnd'||this.addOnsPosition === 'addBeginning'" class=" has-text-grey is-size-4 is-underlined mx-3" @click="addPages({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">Add</a>
-                        <a class=" has-text-grey is-size-4 is-underlined mx-3" @click="deletePages">Remove</a></div>
-                    </div>
-                    <div v-else class="add-container">
-                      <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
-                              @click="selectItem({category: options[selectedCategory].subcategories[selectedSubcategory].name, subcategory: layoutPreselect}, layoutPreselect.id-1)">
-                        ADD
-                      </button>
-                    </div>
-                  </div>
                 </div>
-                <div class="column is-8 p-0 m-0">
-                  <img style="max-height: 650px" :src="layoutPreselect.urlImgFull">
-                </div>
+              </div>
+              <div class="column is-9 p-0 m-0 is-flex is-align-items-center is-justify-content-center">
+                <img style="max-height: 650px; height: 100%" :src="layoutPreselect.urlImgFull">
               </div>
             </div>
           </div>
           <div v-else-if="selectedCategory !== 8" class="card is-flex build-container-carrousel-options-container">
             <div class="w100" v-if="options[selectedCategory].type === 'optionsListNested'">
-              <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered mt-6">
+              <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered" style="height: 100%">
                 <div class="column is-one-fifth mt-6 p-0"
                      v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
@@ -136,7 +161,7 @@
                   </button>
                 </div>
               </div>
-              <div v-else class="has-text-left w100">
+              <div v-else class="has-text-left w100" style="height: 100%">
                 <div class="is-flex">
                   <button @click="selectedSubcategory = null" class="button__transparent mt-2 mr-3 p-2">
                     <img style="width: 40px; height: 30px"
@@ -144,7 +169,7 @@
                   </button>
                   <h2 class="is-size-4 is-size-5-touch kontuor-font has-text-weight-light is-uppercase mt-4">
                     {{ options[selectedCategory].subcategories[selectedSubcategory].name }}</h2></div>
-                <div class="columns is-multiline is-vcentered mt-6">
+                <div class="columns is-multiline is-vcentered" style="height: 100%">
                   <div class="column is-one-fifth p-0"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
                        :key="index">
@@ -164,8 +189,8 @@
               </div>
             </div>
             <div class="w100" v-else-if="options[selectedCategory].type === 'optionsList'">
-              <div class="columns is-multiline is-vcentered w100 is-gapless mt-6">
-                <div class="column is-one-fifth mt-6"
+              <div class="columns is-multiline is-vcentered w100 is-gapless" style="height: 100%">
+                <div class="column is-one-fifth"
                      v-for="(option, index) in options[selectedCategory].categoriesOptions"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent w100"
@@ -182,7 +207,8 @@
                 </div>
               </div>
             </div>
-            <div class="w100 my-6" v-else-if="options[selectedCategory].type === 'formFillPage'">
+            <div class="w100 m-6 is-flex is-align-items-center"
+                 v-else-if="options[selectedCategory].type === 'formFillPage'">
               <div class="columns">
                 <div class="column is-6">
                   <div class="w100">
@@ -208,13 +234,15 @@
                   </div>
                   <div class="w100">
                     <h1 class="is-uppercase is-size-4 lamango-font has-text-weight-light">message </h1>
-                    <textarea class="textarea" maxlength="152" type="textarea" row="3" v-model="formValue['Message']"
-                              @keyup="formChange(formValue)"></textarea>
+                    <b-field>
+                      <textarea class="textarea" maxlength="152" type="textarea" row="3" v-model="formValue['Message']"
+                                @keyup="formChange(formValue)"></textarea>
+                    </b-field>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="w100 is-flex is-justify-content-center my-6"
+            <div class="w100 is-flex is-justify-content-center is-align-items-center m-6"
                  v-else-if="options[selectedCategory].type === 'formDates'">
               <div class="formDates">
                 <div class="mt-6">
@@ -276,7 +304,8 @@
                 </div>
               </div>
             </div>
-            <div class="w100 my-6 holiday-container" v-else-if="options[selectedCategory].type === 'holidays'">
+            <div class="w100 m-6 holiday-container is-flex is-align-items-center"
+                 v-else-if="options[selectedCategory].type === 'holidays'">
               <div class="columns my-6 is-vcentered">
                 <div class="column is-flex is-flex-direction-column">
                   <button
@@ -320,7 +349,8 @@
               </div>
             </div>
             <div class="w100" v-if="options[selectedCategory].type === 'layoutOptions'">
-              <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered py-6">
+              <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered py-6"
+                   style="height: 100%">
                 <div class="column is-one-fifth p-0" v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
                   <button class="build-container-carrousel-options-container-card button__transparent"
@@ -333,12 +363,13 @@
                   </button>
                 </div>
               </div>
-              <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left w100">
+              <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left w100"
+                   style="height: 100%">
                 <button @click="selectedSubcategory = null" class="button__transparent mt-2 mr-3 p-2">
                   <img style="width: 40px; height: 30px"
                        src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7">
                 </button>
-                <div class="columns is-multiline is-vcentered py-2">
+                <div class="columns is-multiline is-vcentered py-2" style="height: 100%">
                   <div class="column is-one-fifth p-0"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
                        :key="index">
@@ -358,7 +389,8 @@
               </div>
             </div>
             <div class="w100" v-if="options[selectedCategory].type === 'addOptions'">
-              <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered py-6">
+              <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered py-6"
+                   style="height: 100%">
                 <div class="column is-one-fifth-desktop is-one-third-tablet p-0"
                      v-for="(option, index) in options[selectedCategory].subcategories"
                      :key="index">
@@ -372,12 +404,13 @@
                   </button>
                 </div>
               </div>
-              <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left w100">
+              <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left w100"
+                   style="height: 100%">
                 <button @click="selectedSubcategory = null" class="button__transparent mt-2 mr-3 p-2">
                   <img style="width: 40px; height: 30px"
                        src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7">
                 </button>
-                <div class="columns is-multiline is-vcentered py-6">
+                <div class="columns is-multiline is-vcentered py-6" style="height: 100%">
                   <div class="column is-one-fifth p-0"
                        v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
                        :key="index">
@@ -398,7 +431,37 @@
             </div>
             <div class="w100 holiday-container is-flex is-align-items-center"
                  v-else-if="options[selectedCategory].type === 'extras'">
-              <div class="is-flex is-flex-direction-column w100" style="padding: 5% 25%">
+              <div v-if="checkInOn" class="w100">
+                <div class="is-flex is-justify-content-flex-start ml-3 mt-2 w100" style="height: 10%">
+                  <button @click="checkInOn = false" class="button__transparent">
+                    <img style="width: 40px; height: 30px"
+                         src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7">
+                  </button>
+                </div>
+                <div class="is-flex is-flex-direction-column w100" style="padding: 5% 25%">
+                  <button
+                      class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-3 py-2"
+                      :class="{'button__selected' : this.extrasSelection === 'commitTo'}"
+                      @click="setExtras('commitTo')"> Commit to
+                  </button>
+                  <button
+                      class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-5 py-2"
+                      :class="{'button__selected' : this.extrasSelection === 'focusOn'}"
+                      @click="setExtras('focusOn')"> Focus on
+                  </button>
+                  <button
+                      class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-5 py-2"
+                      :class="{'button__selected' : this.extrasSelection === 'feeling'}"
+                      @click="setExtras('feeling')"> feeling
+                  </button>
+                  <button
+                      class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-5 py-2"
+                      :class="{'button__selected' : this.extrasSelection === 'productivity'}"
+                      @click="setExtras('productivity')"> productivity
+                  </button>
+                </div>
+              </div>
+              <div v-else class="is-flex is-flex-direction-column w100" style="padding: 5% 25%">
                 <button
                     class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-3 py-2"
                     :class="{'button__selected' : this.extrasSelection === 'Motivational quotes'}"
@@ -412,21 +475,13 @@
                 <button
                     class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-6 py-2"
                     :class="{'button__selected' : this.extrasSelection === 'personal check ins'}"
-                    @click="setExtras('personal check ins')"> personal check ins
+                    @click="checkInOn = true"> personal check ins
                 </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="page-counter has-text-centered">
-      <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">PAGE COUNT</h1>
-      <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
-        {{ totalPages }} /242</h1>
-      <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">Price</h1>
-      <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
-        {{ price }}</h1>
     </div>
     <modal :message="modalMessage" :show-modal="showModal" @closeModal="showModal = false">
       <div class="w100 is-flex is-justify-content-center">
@@ -799,6 +854,7 @@ export default {
       selectedCategory: 0,
       selectedSubcategory: null,
       extrasSelection: '',
+      checkInOn: '',
       modalMessage: '',
       showModal: false,
       carrouselCategories: [
@@ -873,7 +929,7 @@ export default {
         {
           name: 'cover',
           id: 1,
-          type: 'optionsListNested',
+          type: 'layoutOptions',
           subcategories: [
             {
               name: 'featured artist',
@@ -884,11 +940,12 @@ export default {
                   name: 'GP X CHALKED BY MABZ',
                   id: 1.1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Mabz-9.png?alt=media&token=df46b3d3-a497-4654-8549-16ff2546bbd4',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Mabz-1.jpg?alt=media&token=d1380b83-10d3-43c2-b1ff-d119aaa02d7f',
                 }
               ]
             },
             {
-              name: 'gp desigs',
+              name: 'gp designs',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Faces-1.png?alt=media&token=7cfc35cf-a254-4a39-97e3-ee5ae976adc8',
               subcategoriesOptions: [
@@ -896,21 +953,25 @@ export default {
                   name: 'SISTERHOOD',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Faces-1.png?alt=media&token=7cfc35cf-a254-4a39-97e3-ee5ae976adc8',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Faces-1.png?alt=media&token=7cfc35cf-a254-4a39-97e3-ee5ae976adc8',
                 },
                 {
                   name: 'LOVE KNOT',
                   id: 1.2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Small-Stripe-4.png?alt=media&token=fce30f84-b73d-47fa-9996-313dc0be6b28'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Small-Stripe-4.png?alt=media&token=fce30f84-b73d-47fa-9996-313dc0be6b28',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Small-Stripe-4.png?alt=media&token=fce30f84-b73d-47fa-9996-313dc0be6b28'
                 },
                 {
                   name: 'PAINT NIGHT',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Gems-8.png?alt=media&token=23e7aff4-e947-4c9c-8a06-bd6f9b25e167',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Gems-8.png?alt=media&token=23e7aff4-e947-4c9c-8a06-bd6f9b25e167',
                 },
                 {
                   name: 'BOLD TYPE',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Big-Stripe-2.png?alt=media&token=5acde2ea-35ad-4864-9ef9-aa0dd94f9459',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Big-Stripe-2.png?alt=media&token=5acde2ea-35ad-4864-9ef9-aa0dd94f9459',
                 }
               ]
             },
@@ -923,26 +984,31 @@ export default {
                   name: 'JADE',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Green-Linen-5.png?alt=media&token=2a36638c-b0c6-4b9c-a208-74b6700cac91',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Green-Linen-5.png?alt=media&token=2a36638c-b0c6-4b9c-a208-74b6700cac91',
                 },
                 {
                   name: 'NAVY',
                   id: 1.2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Navy-8.png?alt=media&token=51f0b397-1c11-4240-9c0b-b5f03dd4618a'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Navy-8.png?alt=media&token=51f0b397-1c11-4240-9c0b-b5f03dd4618a',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Navy-8.png?alt=media&token=51f0b397-1c11-4240-9c0b-b5f03dd4618a'
                 },
                 {
                   name: 'BALLET SLIPPER',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Pink-1.png?alt=media&token=57a77c4d-22be-494b-a167-ca545b028df5',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Pink-1.png?alt=media&token=57a77c4d-22be-494b-a167-ca545b028df5',
                 },
                 {
                   name: 'RUBY',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Red-Linen5.png?alt=media&token=bb827a6c-2e89-4dce-a2cb-96fc19490f19',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Red-Linen5.png?alt=media&token=bb827a6c-2e89-4dce-a2cb-96fc19490f19',
                 },
                 {
                   name: 'OATMEAL',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Taupe-6.png?alt=media&token=189db223-a731-4d8d-98db-6d9cc93b3204',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Taupe-6.png?alt=media&token=189db223-a731-4d8d-98db-6d9cc93b3204',
                 }
               ]
 
@@ -1309,7 +1375,7 @@ export default {
                   key: 'Cleaning',
                   id: 1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fat-home%2FCleaning.png?alt=media&token=cc986876-c3e7-4193-9b68-91c724ae9855',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fat-home%2FCleaning%402x.png?alt=media&token=435f821b-4b96-4a48-a1e0-ea6eccaea394',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fat-home%2FCleaning.png?alt=media&token=8983682f-b37a-49f8-8d69-83b6d67549f5',
                 },
                 {
                   name: 'Home Maintenance',
@@ -1345,7 +1411,7 @@ export default {
                   key: 'BabyMonthly',
                   id: 3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby3.png?alt=media&token=dcdca4f6-f0a3-4b41-9b90-91f7a9dcfa7b',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby3%402x.png?alt=media&token=30ff0b86-8c84-4969-89ce-dbd36eba86fc'
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby%20Monthly.png?alt=media&token=2bbe40c9-512b-40ff-b178-d32c3e38ff40'
                 }
               ]
             },
@@ -1657,7 +1723,7 @@ export default {
           doc.addPage();
         }
         this.pdfProgress = ((i * 100) / pages.length) + 1;
-        console.log('i', page, this.pdfProgress, pageImage )
+        console.log('i', page, this.pdfProgress, pageImage)
         doc.addImage(pageImage.src, 0, 0, 7.25, 9.5);
       }
 
@@ -1757,6 +1823,18 @@ export default {
           page.style.transform = `rotateY(0) translateZ(1px)`;
         }
       }
+    },
+    antes() {
+      this.currentPage = this.leftStack.pop();
+      this.rightStack.push(this.currentPage);
+      this.currentPage.classList.remove("flip");
+      this.updatePagesDepth(this.rightStack);
+    },
+    despues() {
+      this.currentPage = this.rightStack.pop();
+      this.leftStack.push(this.currentPage);
+      this.currentPage.classList.add("flip");
+      this.updatePagesDepth(this.leftStack);
     },
     flipSelectedPage(event) {
       if (event.path[1].classList.contains("flip") || event.path[2].classList.contains("flip") || event.path[3].classList.contains("flip")) { //clicked on left stack page
@@ -2045,10 +2123,10 @@ export default {
             newElements = [[newElements[0], newElements[1]], [newElements[2], newElements[3]], [newElements[4], newElements[5]]]
             this.pagesBookStructure.splice(index + counter, 2, ...newElements);
             this.totalPages = this.totalPages + 2;
-            if(index>2) counter = counter + 1;
+            if (index > 2) counter = counter + 1;
             this.layoutPreselect = null;
           } else if (element[1].data.day === 'Saturday') {
-            let newElements = [...this.$store.getters.getPagesBookStructure[index + counter+1], ...this.$store.getters.getPagesBookStructure[index + counter + 2]];
+            let newElements = [...this.$store.getters.getPagesBookStructure[index + counter + 1], ...this.$store.getters.getPagesBookStructure[index + counter + 2]];
             newElements.splice(1, 0, {
               data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
               type: `${selection.category}${selection.subcategory.key}1`,
@@ -2059,9 +2137,9 @@ export default {
               category: 'addOnPages'
             });
             newElements = [[newElements[0], newElements[1]], [newElements[2], newElements[3]], [newElements[4], newElements[5]]]
-            this.pagesBookStructure.splice(index + counter+1, 2, ...newElements);
+            this.pagesBookStructure.splice(index + counter + 1, 2, ...newElements);
             this.totalPages = this.totalPages + 2;
-            if(index>2) counter = counter + 1;
+            if (index > 2) counter = counter + 1;
             this.layoutPreselect = null;
           }
         } else if (element[1].type.substring(0, 6) === 'weekly') {
@@ -2110,14 +2188,14 @@ export default {
         }
       });
     },
-    showInput(addOnsPosition){
+    showInput(addOnsPosition) {
       this.addOnsPosition = addOnsPosition;
     },
-    addPages(selection){
-      if(this.addOnsPosition === 'addEnd') this.selectItemAddPages(selection);
-      else if(this.addOnsPosition === 'addBeginning') this.selectItemAddPagesBefore(selection)
+    addPages(selection) {
+      if (this.addOnsPosition === 'addEnd') this.selectItemAddPages(selection);
+      else if (this.addOnsPosition === 'addBeginning') this.selectItemAddPagesBefore(selection)
     },
-    async selectItemAddPages(selection){
+    async selectItemAddPages(selection) {
       //this.leftStack = [];
       /*      this.pagesBook = Array.from(document.querySelectorAll(".book .page"));
             this.rightStack = Array.from(this.pagesBook).reverse();
@@ -2279,6 +2357,7 @@ export default {
     },
     setExtras(value) {
       this.extrasSelection = value;
+      //this.checkInOn = '';
       this.$store.commit('SET_EXTRA_SELECTION', value)
     },
     deletePages() {
@@ -2291,7 +2370,7 @@ export default {
       this.$store.commit('SET_FINAL_VALUE', this.finalValue);
     },
     exportPDFDemo() {
-      if(this.totalPages >= 120 && this.totalPages<= 242){
+      if (this.totalPages >= 120 && this.totalPages <= 242) {
         this.exportHTMLToPDF();
       } else {
         this.showModal = true;
@@ -2401,8 +2480,7 @@ body {
 }
 
 .book {
-  width: 80vw;
-  height: 70vw;
+
   max-width: 1044px;
   max-height: 684px;
   perspective: 800px;
@@ -2574,6 +2652,8 @@ body {
     background-color: #FAF0EC;
     height: fit-content;
     white-space: break-spaces;
+    line-height: 95%;
+
   }
 
   .add-button {
@@ -2581,6 +2661,7 @@ body {
     background-color: #F3D7D3;
     height: 30px
   }
+
   .button__selected {
     background-color: #F3D7D3 !important;
   }
@@ -2591,7 +2672,7 @@ button {
 }
 
 .formDates {
-  max-width: 600px;
+  max-width: 800px;
   width: 100%;
 }
 
@@ -2608,18 +2689,18 @@ button {
 }
 
 .page-counter {
-  position: absolute;
-  bottom: 170px;
-  right: 20px;
+  //position: absolute;
+  //bottom: 170px;
+  //right: 20px;
   background-color: #FDF8F7;
   border: #E5A49A 2px solid;
-  padding: 20px 40px;
+  //padding: 20px 40px;
 }
 
 .build-container {
   min-height: 90vh;
   height: fit-content;
-  background-color: #FCF9F7 !important;
+  background-color: #FFFFFF !important;
   padding-bottom: 144px;
 
   &__title {
@@ -2635,7 +2716,7 @@ button {
     height: 80vh;
 
     &-categories {
-      width: 140px;
+      width: 150px;
       height: 100%;
       overflow-y: auto;
 
@@ -2651,8 +2732,8 @@ button {
     }
 
     &-options {
-      padding: 15px 15px 15px 50px;
-      width: calc(100vw - 140px);
+      padding: 5px 15px 5px 30px;
+      width: calc(100vw - 40px);
       height: 100%;
       overflow-y: auto;
       @media #{$mobile} {
@@ -2660,10 +2741,12 @@ button {
       }
 
       &-container {
-        background-color: #FCF9F7 !important;
-        padding: 10px 5vw;
-        min-height: 420px;
+        background-color: #FFFFFF !important;
+        padding: 10px 20px;
+        min-height: 460px;
+        height: 100%;
         width: 100%;
+        overflow-y: auto;
 
         .columns {
           width: 100%;

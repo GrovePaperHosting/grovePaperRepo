@@ -139,7 +139,7 @@ export default {
 .build-container {
   min-height: calc(100vh - 2.8rem);
   height: fit-content;
-  background-color: #FCF9F7 !important;
+  background-color: #FFFFFF !important;
   padding-bottom: 144px;
   display: flex;
   vertical-align: center;

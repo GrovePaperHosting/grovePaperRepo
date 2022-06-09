@@ -12,7 +12,7 @@
         <p class="g-pstyle0">{{data.Email}}</p>
         <p class="g-pstyle0">{{data.Telephone}}</p>
         <p>&nbsp;</p>
-        <p class="g-pstyle0">{{data.Message}} </p>
+        <p v-if="data.Message" class="g-pstyle0" v-html="data.Message.replace('\n', '</br>')" ></p>
         <!--<p class="g-pstyle0">{{data.Email}}</p>-->
       </div>
     </div>

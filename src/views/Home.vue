@@ -1,32 +1,92 @@
 <template>
   <div class="home-content">
-    <div class="container">
-      <section class="home-content-top is-flex is-flex-direction-column is-justify-content-center">
-        <div class="home-content-top__logo-content is-flex is-justify-content-center my-6">
-          <img
-              src="../../public/assets/images/GrovePaperLogo.png"
-              alt="Grove Paper Logo"
-          >
-        </div>
-        <div class="home-content-top__content pb-6">
-          <div class="columns is-vcentered p-4">
-            <div class="column is-narrow is-flex justify-content-center"><img src="../../public/assets/images/main-image.png" alt="Main image"></div>
-            <div class="column p-5">
-              <h1 class="lamango-font is-size-3 is-size-4-touch"> Create a custom planner or notebook that fits your
-                life! Choose from a variety of covers, coils, and layouts to make your perfect book. We’re a Canadian,
+    <div class="pb-6" style="position: relative">
+      <div style="position: absolute; bottom: 0px; height: 300px; width: 100%; background-color: #FCF5F5"></div>
+      <div class="container is-flex is-justify-content-center my-6">
+        <img class="mx-4 mt-6" width="260"
+             src="../../public/assets/images/home-image1.png"
+             alt="Grove Paper Logo"
+        >
+        <img class="mx-4 mt-6" width="260"
+             src="../../public/assets/images/home-image2.png"
+             alt="Grove Paper Logo"
+        >
+        <img class="mx-4 mt-6" width="260"
+             src="../../public/assets/images/home-image3.png"
+             alt="Grove Paper Logo"
+        >
+      </div>
+    </div>
+    <div>
+      <div class="container">
+        <section class="home-content-top is-flex is-flex-direction-column is-justify-content-center">
+          <div class="home-content-top__content pb-6 px-6">
+            <div class="px-6">
+              <h1 class="champagne-limousines-font is-size-4 my-6 is-uppercase has-text-centered"> Create a custom
+                planner or notebook that fits your
+                life! Choose from a variety of covers, coils, and layouts to make your perfect book. <br> <br> We’re a
+                Canadian,
                 female owned business with the goal of supporting and inspiring others.</h1>
+              <div class="is-flex is-justify-content-center"><img
+                  src="../../public/assets/images/shopNow.png"
+                  alt="Grove Paper Logo"
+              ></div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="has-background-link">
+        <div class="container has-text-centered py-6">
+          <h1 class="is-size-1 lamango-font"> three simple steps</h1>
+          <div class="is-flex is-justify-content-center">
+            <div class="p-5">
+              <h1 class="is-size-1 lamango-font">01</h1>
+              <h1 class="is-size-4 champagne-limousines-font">SELECT IF YOU’D LIKE TO BUILD A PLANNER OR A
+                NOTEBOOK</h1>
+            </div>
+
+            <div class="vl"></div>
+            <div class="p-5">
+              <h1 class="is-size-1 lamango-font">02</h1>
+              <h1 class="is-size-4 champagne-limousines-font">CHOOSE A COVER, A COIL, AND INPUT YOUR CUSTOM DETAILS</h1>
+            </div>
+
+            <div class="vl"></div>
+            <div class="p-5">
+              <h1 class="is-size-1 lamango-font">03</h1>
+              <h1 class="is-size-4 champagne-limousines-font">BROWSE AND ADD YOUR FAVOURITE TYPES OF PAGES</h1>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
     <section class="home-content-middle"></section>
-    <section class="home-content-bottom has-background-link">
+    <section class="home-content-bottom has-background-white">
       <div class="container">
         <div class="home-content-bottom-container">
           <div class="columns is-gapless">
-            <div class="column" v-for="(buttonInformation, index) in buttonsInformation" :key="index">
+            <!--<div class="column" v-for="(buttonInformation, index) in buttonsInformation" :key="index">
               <home-button :buttonInformation="buttonInformation"></home-button>
+            </div>-->
+            <div class="column">
+              <router-link to="/shop">
+                <img src="../assets/images/Shop.png" width="100%">
+              </router-link>
+            </div>
+            <div class="column">
+              <router-link to="/build">
+                <img src="../assets/images/Build.png" width="100%">
+              </router-link>
+            </div>
+            <div class="column">
+              <router-link to="/pre-design">
+                <img src="../assets/images/Pre-Designed.png" width="100%">
+              </router-link>
+            </div>
+            <div class="column">
+              <router-link to="/Blog">
+                <img src="../assets/images/Blog.png" width="100%">
+              </router-link>
             </div>
           </div>
         </div>
@@ -38,13 +98,9 @@
 </template>
 
 <script>
-import HomeButton from "../components/HomeButton";
 
 export default {
   name: "Home.vue",
-  components:{
-    HomeButton
-  },
   data() {
     return {
       buttonsInformation: [
@@ -77,50 +133,62 @@ export default {
 <style scoped lang="scss">
 .home-content {
   //padding-bottom: 115px;
-  background-color: #FCF9F7 !important;
-
-  &-top{
-     height: fit-content;
-    background-color: #FCF9F7 !important;
-
-    &__logo-content{
-    img{
-      width: 380px;
-    }
+  background-color: #FFFFFF !important;
+  .vl {
+    border-left: 2px solid #E6A89F;
+    //height: 500px;
   }
-  &__content{
-     width: 100vw;
-     max-width: 800px;
-     margin: auto;
-    img{
-      width: 300px;
-      height: 100%;
+  &-top {
+    height: fit-content;
+    background-color: #FFFFFF !important;
+
+    &__logo-content {
+      img {
+        height: 420px;
+        width: 280px;
+      }
+    }
+
+    &__content {
+      width: 100vw;
+      max-width: 800px;
       margin: auto;
-    }
-  }
-}
-&-middle {
-   height: 500px;
-   width: 100%;
-   background-image: url(../../public/assets/images/Fixed.png);
-   background-size: cover;
-   background-repeat: no-repeat;
-   background-attachment: fixed;
- }
-&-bottom{
-   height: 360px;
-  &-container{
-    position: relative;
-    .columns{
-      position: relative;
-      top: -25px;
-      img{
-        height: 250px !important;
+
+      img {
+        width: 180px;
+        height: 60px;
+        margin: auto;
       }
     }
   }
-   //margin-bottom: 200px;
- }
+
+  &-middle {
+    height: 500px;
+    width: 100%;
+    background-image: url(../../public/assets/images/Fixed.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  &-bottom {
+    //height: 360px;
+
+    &-container {
+      position: relative;
+      background-color: white;
+      .columns {
+        position: relative;
+        top: -25px;
+
+        img {
+          height: 250px !important;
+        }
+      }
+    }
+
+    //margin-bottom: 200px;
+  }
 }
 
 </style>
