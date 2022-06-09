@@ -103,7 +103,7 @@ export default {
   name: "Home.vue",
   data() {
     return {
-      buttonsInformation: [
+      /*buttonsInformation: [
         {
           name: 'Shop',
           urlImg: '../assets/images/Shop.png',
@@ -124,7 +124,7 @@ export default {
           urlImg: '../assets/images/Blog.png',
           pathName: 'Blog'
         }
-      ]
+      ]*/
     };
   },
 }
