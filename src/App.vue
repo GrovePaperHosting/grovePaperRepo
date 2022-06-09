@@ -225,7 +225,7 @@ export default {
   hr{
     margin: 0;
     height: 4px;
-    background-color: #FCF5F5;
+    background-color: #ffffff;
   }
 }
 .side-menu.active{
@@ -238,8 +238,8 @@ export default {
   background-color: white;
   padding: 20px;
   transition: width 0.5s;
-  border-right: 5px solid #FCF5F5 ;
-  border-left: 5px solid #FCF5F5 ;
+  border-right: 5px solid #ffffff ;
+  border-left: 5px solid #v ;
 }
 .subForm{
   padding-bottom: 115px !important;
@@ -266,7 +266,7 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: #fcf5f5 !important;
+  background-color: #FCF5F5 !important;
   padding: 1rem !important;
   h1{
     color: #E5A49A;

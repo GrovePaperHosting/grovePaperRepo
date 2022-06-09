@@ -37,7 +37,7 @@ export default {
 }
 .button-container {
   border: 1.5px solid #F4D7D2;
-  background-color: #FCF5F5;
+  background-color: #ffffff;
   border-radius: 20px;
   cursor: pointer;
   font-size: 20pt;
@@ -67,13 +67,13 @@ export default {
   overflow: hidden;
   box-sizing: border-box;
   transition: height 1.5s;
-  background-color: #F9F8F8;
+  background-color: #FFF;
   border-radius: 20px;
 }
 
 .content.active {
-  border: 3px solid white;
-  background-color: #F9F8F8;
+  border: 3px solid #FCF5F5;
+  background-color: #FFFFFF;
   border-radius: 20px;
   height: fit-content;
 }

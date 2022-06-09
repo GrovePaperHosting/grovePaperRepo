@@ -1,5 +1,14 @@
 <template>
   <div class="has-background-secondary build-container">
+    <div :class="`modal ${openModalImage? 'is-active':''}`">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <p class="image has-background-white is-flex is-justify-content-center" >
+          <img style="height:90vh; max-width: 820px" :src="this.$route.params.preDesignInfo.imagesSrc[indexImage]">
+        </p>
+      </div>
+      <button class="modal-close is-large has-background-grey-lighter mt-6" aria-label="close" @click="openModalImage = false"></button>
+    </div>
     <div class="modalCostume has-background-secondary" v-if="openModal === true">
       <button class="modal-close-btn is-large" aria-label="close" @click="openModal=false">x</button>
       <div class="w100" v-if="options[selectedCategory].type === 'optionsListNested'">
@@ -68,7 +77,10 @@
           <img class="secondaryImage" :src="this.$route.params.preDesignInfo.imagesSrc[3]" @click="selectImage('3')">-->
         </div>
         <div class="column is-narrow">
-          <img class="mainImage" :src="this.$route.params.preDesignInfo.imagesSrc[indexImage]">
+          <div style="position: relative">
+            <button @click="openModalImage = true" class="button__transparent"
+                    style="position: absolute; top: 10px; right: 10px"><i class="fa-solid fa-expand"></i></button>
+            <img class="mainImage" :src="this.$route.params.preDesignInfo.imagesSrc[indexImage]"></div>
         </div>
         <div class="column">
           <h1><span class="build-container__title has-text-primary frunchySerif-font">{{ this.$route.params.preDesignInfo.name }}</span>
@@ -116,6 +128,7 @@ export default {
       selectedCoil: '',
       selectedItem: null,
       openModal: false,
+      openModalImage: false,
       options: [
         {
           name: 'cover',
@@ -255,7 +268,7 @@ export default {
 .build-container {
   min-height: calc(100vh - 2.8rem);
   height: fit-content;
-  background-color: #FCF9F7 !important;
+  background-color: #FFFFFF !important;
   padding-bottom: 144px;
   display: flex;
   vertical-align: center;
@@ -268,7 +281,7 @@ export default {
     left: 30%;
     width: 600px;
     max-width: 100%;
-    background-color: #FCF9F7;
+    background-color: #FFFFFF;
     height: 300px;
     .modal-close-btn{
       position: absolute;
@@ -306,7 +319,7 @@ export default {
     max-width: 1000px;
   }
   .mainImage {
-    height: 350px;
+    //height: 350px;
     width: 350px;
     max-width: 100%;
   }

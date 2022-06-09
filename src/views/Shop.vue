@@ -9,26 +9,26 @@
             <div style="height: 214px !important;">
             <router-link class="planner" to="/builder"><img src="../../public/assets/images/customizablePlanner.png" alt="Planner"></router-link>
             </div>
-            <div style="height: 100px"><h2 class="is-size-4 kontuor-font has-text-weight-light">CUSTOMIZABLE PLANNER</h2></div>
+            <div style="height: 100px"><h2 class="is-size-4 champagne-limousines-font has-text-weight-light">CUSTOMIZABLE PLANNER</h2></div>
           </div>
           <div class="column">
             <div style="height: 214px">
               <router-link to="/builder-notebook"><img src="../../public/assets/images/customizableNotebook.png" alt="Notebook"></router-link>
             </div>
-            <div style="height: 100px"><h2 class="is-size-4 kontuor-font has-text-weight-light"> CUSTOMIZABLE NOTEBOOK</h2></div>
+            <div style="height: 100px"><h2 class="is-size-4 champagne-limousines-font has-text-weight-light"> CUSTOMIZABLE NOTEBOOK</h2></div>
           </div>
           <div class="column">
             <div style="height: 214px">
               <router-link to="/pre-design"><img src="../../public/assets/images/predesingPlanner.png" alt="Notebook"></router-link>
             </div>
-            <div style="height: 100px"><h2 class="is-size-4 kontuor-font has-text-weight-light"> PRE-DESIGNED PLANNER</h2></div>
+            <div style="height: 100px"><h2 class="is-size-4 champagne-limousines-font has-text-weight-light"> PRE-DESIGNED PLANNER</h2></div>
           </div>
           <div class="column">
             <div style="height: 214px; padding: 20px 0">
               <router-link to="/"><img src="../../public/assets/images/GiftCardShop.png" alt="Notebook"
                                        class="giftCard"></router-link>
             </div>
-            <div style="height: 100px"><h2 class="is-size-4 kontuor-font has-text-weight-light"> GIFT CARDS</h2></div>
+            <div style="height: 100px"><h2 class="is-size-4 champagne-limousines-font has-text-weight-light"> GIFT CARDS</h2></div>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@ export default {
 .build-container{
   min-height: calc(100vh - 2.8rem);
   height: fit-content;
-  background-color: #FCF9F7 !important;
+  background-color: #FFFFFF !important;
   padding-bottom: 144px;
   display: flex;
   vertical-align: center;

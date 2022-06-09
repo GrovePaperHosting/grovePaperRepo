@@ -50,7 +50,7 @@ export default {
   min-height: calc(100vh - 2.8rem);
   height: fit-content;
   overflow-y: auto;
-  background-color: #FCF9F7 !important;
+  background-color: #FFFFFF !important;
   padding-bottom: 144px;
   display: flex;
   vertical-align: center;
@@ -74,7 +74,7 @@ export default {
       .hover{
         position: fixed;
         top: 200px;
-        left: 18%;
+        left: 14%;
         width: 180px;
       }
     }

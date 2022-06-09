@@ -6,6 +6,21 @@
         <h4 class="has-text-text is-size-4 lamango-font">Let's make a beautiful notebook! Scroll down and select through
           each of the options to create the best match for your needs. To learn how to build your own notebook, visit our
           <a class="link" href="/tutorial"> Tutorial page </a>.</h4>
+        <div class="page-counter is-flex is-justify-content-space-around my-3 mx-6">
+          <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">PAGE
+            COUNT:
+            <span
+                class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
+              {{ totalPages }} /242
+            </span>
+          </h1>
+          <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">Price:
+            <span
+                class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
+              ${{ price }}
+            </span>
+          </h1>
+        </div>
       </div>
       <div :class="`modal ${loadingPDF? 'is-active':'' }`">
         <div class="modal-background"></div>
@@ -32,7 +47,7 @@
           </button>
         </div>
         <div class="build-container-carrousel-options">
-          <div v-show="selectedCategory === 5">
+          <div v-show="selectedCategory === 4">
             <div class="w100 is-flex">
               <div class="add-container" style="width: 30% ">
                 <button class="button button__transparent add-button frunchySerif-font is-size-4 mt-3 w100"
@@ -70,7 +85,7 @@
                     </button>
                   </div>
                   <div class="mt-3 is-flex is-justify-content-center is-flex-direction-column" style="height: 90%">
-                    <h1 class="is-uppercase is-size-1 is-size-3-touch lamango-font lamango-font__spacing3 has-text-weight-light mt-2 ">
+                    <h1 class="is-uppercase is-size-1 is-size-3-touch lamango-font lamango-font__spacing3 has-text-weight-light">
                       {{ layoutPreselect.name }}</h1>
                     <div class="add-container">
                       <input type="number" class="input"
@@ -85,12 +100,50 @@
                   </div>
                 </div>
                 <div class="column is-8 p-0 m-0">
-                  <img style="max-height: 650px" :src="layoutPreselect.urlImgFull">
+                  <img style="max-height: 650px; height: 100%" :src="layoutPreselect.urlImgFull">
                 </div>
               </div>
             </div>
           </div>
           <div v-else-if="selectedCategory !== 8" class="card is-flex build-container-carrousel-options-container">
+            <div class="w100" v-if="options[selectedCategory].type === 'layoutOptions'">
+              <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered py-6" style="height: 100%">
+                <div class="column is-one-fifth p-0" v-for="(option, index) in options[selectedCategory].subcategories"
+                     :key="index">
+                  <button class="build-container-carrousel-options-container-card button__transparent"
+                          @click="selectedSubcategory = index; layoutOption = options[selectedCategory].subcategories[index].name; layoutPreselect = null; pagesBookStructure = []">
+                    <div>
+                      <img class="image-option" width="w100" :src="option.urlImg">
+                    </div>
+                    <h1 class="is-uppercase is-size-5 champagne-limousines-font mt-2">
+                      {{ option.name }}</h1>
+                  </button>
+                </div>
+              </div>
+              <div v-else-if="selectedSubcategory !== null && layoutPreselect === null" class="has-text-left w100" style="height: 100%">
+                <button @click="selectedSubcategory = null" class="button__transparent mt-2 mr-3 p-2">
+                  <img style="width: 40px; height: 30px"
+                       src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7">
+                </button>
+                <div class="columns is-multiline is-vcentered py-2" style="height: 100%">
+                  <div class="column is-one-fifth p-0"
+                       v-for="(option, index) in options[selectedCategory].subcategories[selectedSubcategory].subcategoriesOptions"
+                       :key="index">
+                    <button class="build-container-carrousel-options-container-card button__transparent"
+                            @click="layoutPreselect = option">
+                      <div>
+                        <img class="image-option" :src="option.urlImg">
+                      </div>
+                      <h1 class="is-uppercase is-size-6 champagne-limousines-font mt-2">
+                        {{ option.name }}</h1>
+                      <img v-if="selectedItem === index"
+                           class="build-container-carrousel-options-container-card__selected"
+                           src="../assets/images/SELECTION.png">
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="w100" v-if="options[selectedCategory].type === 'optionsListNested'">
               <div v-if="selectedSubcategory === null" class="columns is-multiline is-vcentered mt-6">
                 <div class="column is-one-fifth mt-6 p-0"
@@ -223,41 +276,12 @@
                 </div>
               </div>
             </div>
-            <div class="w100 holiday-container is-flex is-align-items-center"
-                 v-else-if="options[selectedCategory].type === 'extras'">
-              <div class="is-flex is-flex-direction-column w100" style="padding: 5% 25%">
-                <button
-                    class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-3 py-2"
-                    :class="{'button__selected' : this.extrasSelection === 'Motivational quotes'}"
-                    @click="setExtras('Motivational quotes')"> Motivational quotes
-                </button>
-                <button
-                    class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-6 py-2"
-                    :class="{'button__selected' : this.extrasSelection === 'self-care challenges'}"
-                    @click="setExtras('self-care challenges')"> self-care challenges
-                </button>
-                <button
-                    class="is-uppercase is-size-5 lamango-font lamango-font__spacing has-text-weight-light mt-6 py-2"
-                    :class="{'button__selected' : this.extrasSelection === 'personal check ins'}"
-                    @click="setExtras('personal check ins')"> personal check ins
-                </button>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
     </div>
     <template>
     </template>
-    <div class="page-counter has-text-centered">
-      <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">PAGE COUNT</h1>
-      <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
-        {{ totalPages }} /242</h1>
-      <h1 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">Price</h1>
-      <h1 class="is-uppercase is-size-5 lamango-font lamango-font__spacing3 has-text-weight-light mt-2 has-text-primary has-text-weight-bold">
-        {{ price }}</h1>
-    </div>
   </div>
 </template>
 
@@ -507,12 +531,6 @@ export default {
           urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/ADD%20ON%20PAGES_BLACK.png?alt=media&token=190bab72-fd27-44f1-aa76-5fe8efaa3ddb'
         },
         {
-          name: 'Extras',
-          key: 'extras',
-          urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/EXTRAS.png?alt=media&token=78261eee-049d-4a89-8adb-b06f835fe70c',
-          urlImgBlack: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/EXTRAS_BLACK.png?alt=media&token=12b39ac9-dd66-44dd-8d3d-832c3be460c8'
-        },
-        {
           name: 'Review & submit',
           key: 'review',
           urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/REVIEW%20%26%20SUBMIT.png?alt=media&token=60901b2f-c127-45b7-9190-32ba42484855',
@@ -531,7 +549,7 @@ export default {
         {
           name: 'cover',
           id: 1,
-          type: 'optionsListNested',
+          type: 'layoutOptions',
           subcategories: [
             {
               name: 'featured artist',
@@ -542,11 +560,12 @@ export default {
                   name: 'GP X CHALKED BY MABZ',
                   id: 1.1,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Mabz-9.png?alt=media&token=df46b3d3-a497-4654-8549-16ff2546bbd4',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Mabz-9.png?alt=media&token=df46b3d3-a497-4654-8549-16ff2546bbd4',
                 }
               ]
             },
             {
-              name: 'gp desigs',
+              name: 'gp designs',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Faces-1.png?alt=media&token=7cfc35cf-a254-4a39-97e3-ee5ae976adc8',
               subcategoriesOptions: [
@@ -554,21 +573,25 @@ export default {
                   name: 'SISTERHOOD',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Faces-1.png?alt=media&token=7cfc35cf-a254-4a39-97e3-ee5ae976adc8',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Faces-1.png?alt=media&token=7cfc35cf-a254-4a39-97e3-ee5ae976adc8',
                 },
                 {
                   name: 'LOVE KNOT',
                   id: 1.2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Small-Stripe-4.png?alt=media&token=fce30f84-b73d-47fa-9996-313dc0be6b28'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Small-Stripe-4.png?alt=media&token=fce30f84-b73d-47fa-9996-313dc0be6b28',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Small-Stripe-4.png?alt=media&token=fce30f84-b73d-47fa-9996-313dc0be6b28'
                 },
                 {
                   name: 'PAINT NIGHT',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Gems-8.png?alt=media&token=23e7aff4-e947-4c9c-8a06-bd6f9b25e167',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Gems-8.png?alt=media&token=23e7aff4-e947-4c9c-8a06-bd6f9b25e167',
                 },
                 {
                   name: 'BOLD TYPE',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Big-Stripe-2.png?alt=media&token=5acde2ea-35ad-4864-9ef9-aa0dd94f9459',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Big-Stripe-2.png?alt=media&token=5acde2ea-35ad-4864-9ef9-aa0dd94f9459',
                 }
               ]
             },
@@ -581,26 +604,31 @@ export default {
                   name: 'JADE',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Green-Linen-5.png?alt=media&token=2a36638c-b0c6-4b9c-a208-74b6700cac91',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Green-Linen-5.png?alt=media&token=2a36638c-b0c6-4b9c-a208-74b6700cac91',
                 },
                 {
                   name: 'NAVY',
                   id: 1.2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Navy-8.png?alt=media&token=51f0b397-1c11-4240-9c0b-b5f03dd4618a'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Navy-8.png?alt=media&token=51f0b397-1c11-4240-9c0b-b5f03dd4618a',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Navy-8.png?alt=media&token=51f0b397-1c11-4240-9c0b-b5f03dd4618a'
                 },
                 {
                   name: 'BALLET SLIPPER',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Pink-1.png?alt=media&token=57a77c4d-22be-494b-a167-ca545b028df5',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Pink-1.png?alt=media&token=57a77c4d-22be-494b-a167-ca545b028df5',
                 },
                 {
                   name: 'RUBY',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Red-Linen5.png?alt=media&token=bb827a6c-2e89-4dce-a2cb-96fc19490f19',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Red-Linen5.png?alt=media&token=bb827a6c-2e89-4dce-a2cb-96fc19490f19',
                 },
                 {
                   name: 'OATMEAL',
                   id: 1.2,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Taupe-6.png?alt=media&token=189db223-a731-4d8d-98db-6d9cc93b3204',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Taupe-6.png?alt=media&token=189db223-a731-4d8d-98db-6d9cc93b3204',
                 }
               ]
 
@@ -893,7 +921,7 @@ export default {
                   key: 'BabyMonthly',
                   id: 3,
                   urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby3.png?alt=media&token=dcdca4f6-f0a3-4b41-9b90-91f7a9dcfa7b',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby3%402x.png?alt=media&token=30ff0b86-8c84-4969-89ce-dbd36eba86fc'
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby%20Monthly.png?alt=media&token=2bbe40c9-512b-40ff-b178-d32c3e38ff40'
                 }
               ]
             },
@@ -1065,13 +1093,8 @@ export default {
           ]
         },
         {
-          name: 'Extras',
-          id: 5,
-          type: 'extras',
-        },
-        {
           name: 'review',
-          id: 6,
+          id: 5,
           type: 'review',
         },
       ],
@@ -1653,18 +1676,14 @@ button {
 }
 
 .page-counter {
-  position: absolute;
-  bottom: 170px;
-  right: 20px;
   background-color: #FDF8F7;
   border: #E5A49A 2px solid;
-  padding: 20px 40px;
 }
 
 .build-container {
   min-height: 90vh;
   height: fit-content;
-  background-color: #FCF9F7 !important;
+  background-color: #FFFFFF !important;
   padding-bottom: 144px;
 
   &__title {
@@ -1705,7 +1724,7 @@ button {
       }
 
       &-container {
-        background-color: #FCF9F7 !important;
+        background-color: #FFFFFF !important;
         padding: 10px 5vw;
         min-height: 420px;
         width: 100%;

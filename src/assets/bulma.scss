@@ -22,7 +22,7 @@
 
 $primary: #E5A49A;
 //$secondary: #F8EEE8;
-$secondary: #FCF9F7;
+$secondary: #FFF;
 $warning: #F2D2CD;
 $text: #000000;
 $navbar-background-color: #fcf5f5;
@@ -57,7 +57,7 @@ html{
 }
 .button__transparent {
   border: none;
-  background: none;
+  background: none !important;
   cursor: pointer;
 }
 .kontuor-font{
@@ -75,6 +75,8 @@ html{
 
 .champagne-limousines-font{
   font-family: 'Champagne & Limousines';
+  line-height: 95%;
+
   &__spacing1{
     letter-spacing: 1pt;
   }
