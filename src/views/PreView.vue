@@ -4,7 +4,7 @@
       <div class="modal-background"></div>
       <div class="modal-content">
         <p class="image has-background-white is-flex is-justify-content-center" >
-          <img style="height:90vh; max-width: 820px" :src="this.$route.params.preDesignInfo.imagesSrc[indexImage]">
+          <img :src="this.$route.params.preDesignInfo.imagesSrc[indexImage]">
         </p>
       </div>
       <button class="modal-close is-large has-background-grey-lighter mt-6" aria-label="close" @click="openModalImage = false"></button>
@@ -79,7 +79,7 @@
         <div class="column is-narrow">
           <div style="position: relative">
             <button @click="openModalImage = true" class="button__transparent"
-                    style="position: absolute; top: 10px; right: 10px"><i class="fa-solid fa-expand"></i></button>
+                    style="position: absolute; top: -10px; right: 10px"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button>
             <img class="mainImage" :src="this.$route.params.preDesignInfo.imagesSrc[indexImage]"></div>
         </div>
         <div class="column">
