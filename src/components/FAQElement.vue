@@ -37,7 +37,7 @@ export default {
 }
 .button-container {
   border: 1.5px solid #F4D7D2;
-  background-color: #ffffff;
+  background-color: #FCF5F5;
   border-radius: 20px;
   cursor: pointer;
   font-size: 20pt;

@@ -7,11 +7,11 @@
         <div class="columns is-vcentered is-8 mt-6 p-3">
           <div class="column">
             <router-link :to="{ name: 'PreView', params: { preDesignInfo: goalsBookInfo }}"><img src="../../public/assets/images/goalsBook.png" alt="Notebook"></router-link>
-            <h2 class="is-size-4 champagne-limousines-font has-text-weight-light"> GOALS BOOK</h2>
+            <h2 class="is-size-4 freight-big-pro-font has-text-weight-light"> GOALS BOOK</h2>
           </div>
           <div class="column">
             <router-link :to="{ name: 'PreView', params: {preDesignInfo: babyBookInfo}}"><img src="../../public/assets/images/predesingPlanner.png" alt="Notebook"></router-link>
-            <h2 class="is-size-4 champagne-limousines-font has-text-weight-light"> BABY BOOK</h2>
+            <h2 class="is-size-4 freight-big-pro-font has-text-weight-light"> BABY BOOK</h2>
           </div>
         </div>
       </div>
