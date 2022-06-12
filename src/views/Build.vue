@@ -50,7 +50,7 @@ export default {
     .column{
       .planner {
         img {
-          width: 230px;
+          width: 200px;
           max-width: 100%;
           height: 180px;
         }

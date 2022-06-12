@@ -63,17 +63,17 @@
                   ADD TO CART
                 </button>
               </div>
-              <div v-if="pagesBookStructure.length>0" class="book mx-1">
+              <div v-if="pagesBookStructure.length>0" class="book m-1">
                 <div class="page" style="max-width: 522px;max-height: 684px; min-width: 375px" :class="`page${index}`"
                      v-for="(page, index) in pagesBookStructure" :key="index"
                      @click="flipSelectedPage($event)">
                   <div class="side side0">
-                    <div>
+                    <div style="border: 0.5px solid lightgray;" class="py-1">
                       <component :is="`${page[0].type}`" :data="page[0].data" class="pdf"></component>
                     </div>
                   </div>
                   <div class="side side1">
-                    <div>
+                    <div style="border: 0.5px solid lightgray;" class="py-1">
                       <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data" :index="index"
                                  class="pdf"></component>
                     </div>

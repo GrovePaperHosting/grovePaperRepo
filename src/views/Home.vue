@@ -27,10 +27,14 @@
                 life! Choose from a variety of covers, coils, and layouts to make your perfect book. <br> <br> We’re a
                 Canadian,
                 female owned business with the goal of supporting and inspiring others.</h1>
-              <div class="is-flex is-justify-content-center"><img
-                  src="../../public/assets/images/shopNow.png"
-                  alt="Grove Paper Logo"
-              ></div>
+              <div class="is-flex is-justify-content-center">
+                <router-link to="/shop">
+                  <img
+                      src="../../public/assets/images/shopNow.png"
+                      alt="Grove Paper Logo"
+                  >
+                </router-link>
+              </div>
             </div>
           </div>
         </section>
@@ -183,6 +187,7 @@ export default {
 
         img {
           height: 250px !important;
+          max-width: 250px;
         }
       }
     }
