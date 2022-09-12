@@ -1338,28 +1338,28 @@ export default {
               name: 'finances',
               key: 'finances',
               id: 1.2,
-              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2FsocialMediaPlanning%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-21.png?alt=media&token=8d8d9a4f-68ed-472f-9ac2-2af6ebee8061',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2Fbudgeting%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-12.png?alt=media&token=0e6d4f81-2576-4469-b528-79fa8ac136f3',
               subcategoriesOptions: [
                 {
                   name: 'Budgeting',
                   key: 'Budgeting',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FBudgeting.png?alt=media&token=9bf6e349-9990-4fe9-bf67-7c1ec3ce386f',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FBudgeting%402x.png?alt=media&token=981f9655-a61f-4313-a911-a39d1d7c8165',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2Fbudgeting%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-12.png?alt=media&token=0e6d4f81-2576-4469-b528-79fa8ac136f3',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2Fbudgeting%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-12.png?alt=media&token=0e6d4f81-2576-4469-b528-79fa8ac136f3',
                 },
                 {
                   name: 'Expense Tracker',
                   key: 'ExpenseTracker',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FExpenses.png?alt=media&token=957e4568-e2c6-47bd-9c61-9ee596281f1d',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FExpenses%402x.png?alt=media&token=6aeea236-514d-4ead-bdc8-b8920a00f688'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2FexpenseTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-13.png?alt=media&token=9b823f49-068d-4048-ad48-685bb6af3fef',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2FexpenseTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-13.png?alt=media&token=9b823f49-068d-4048-ad48-685bb6af3fef'
                 },
                 {
                   name: 'Gifting',
                   key: 'Gifting',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FGifting.png?alt=media&token=5475e8dd-4af7-4625-82be-4e726a37b61a',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FGifting%402x.png?alt=media&token=d6f38082-dbc4-424a-a98d-744da7b07ec5'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2Fgifting%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-14.png?alt=media&token=3809c968-ab90-483a-92ca-717bee8cc51b',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2Fgifting%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-14.png?alt=media&token=3809c968-ab90-483a-92ca-717bee8cc51b'
                 }
 
               ]
