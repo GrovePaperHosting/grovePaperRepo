@@ -1231,21 +1231,21 @@ export default {
               name: 'blank pages',
               key: 'blankPages',
               id: 1.2,
-              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FLined%20pages1.png?alt=media&token=fa48db3a-393d-46cd-9e86-9b3a57991eeb',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2Flined%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-10.png?alt=media&token=e31539f9-907b-47ad-8904-97ae35d3840f',
               subcategoriesOptions: [
                 {
                   name: 'Lined',
                   key: 'Lined',
                   id: 1,
-                  urlImg: '',
-                  urlImgFull: '',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2Flined%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-10.png?alt=media&token=e31539f9-907b-47ad-8904-97ae35d3840f',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2Flined%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-10.png?alt=media&token=e31539f9-907b-47ad-8904-97ae35d3840f',
                 },
                 {
                   name: 'Two Columns',
                   key: 'TwoColumns',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FLined%20pages2.png?alt=media&token=2139d76c-9cb9-4796-97da-369fa778a828',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FLined%20pages2%402x.png?alt=media&token=50c0983c-9329-438f-a5ad-8623d9e5322a'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2FtwoColumns%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-11.png?alt=media&token=1519a77f-c274-4715-a263-692b5490edc5',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2FtwoColumns%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-11.png?alt=media&token=1519a77f-c274-4715-a263-692b5490edc5'
                 },
                 {
                   name: 'Dotted',
