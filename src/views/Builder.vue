@@ -1237,8 +1237,8 @@ export default {
                   name: 'Lined',
                   key: 'Lined',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FLined%20pages1.png?alt=media&token=eace18ff-3e59-4b2e-8e92-d242460c0112',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FLined%20pages1%402x.png?alt=media&token=99e6a822-cb99-4aaf-9c29-7c37ef99cf3f',
+                  urlImg: '',
+                  urlImgFull: '',
                 },
                 {
                   name: 'Two Columns',
