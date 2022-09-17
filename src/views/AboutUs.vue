@@ -7,7 +7,7 @@
           <div class="column">
             <img class="first-img" src="../../public/assets/images/briana-tozour-hkkQbPa49UA-unsplash.png">
             <img class="second-img" src="../../public/assets/images/about-us-img1.png">
-            <img class="hover" src="../../public/assets/images/AboutUs.png">
+            <!--<img class="hover" src="../../public/assets/images/AboutUs.png">-->
           </div>
           <div class="column">
             <div class="has-text-left">

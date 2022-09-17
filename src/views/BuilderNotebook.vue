@@ -691,49 +691,49 @@ export default {
         },
         {
           name: 'Add on pages',
-          id: 4,
+          id: 7,
           type: 'addOptions',
           subcategories: [
             {
               name: 'scheduling',
               key: 'scheduling',
               id: 1.1,
-              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FMonth%20at%20a%20Glance3.png?alt=media&token=1952a63d-abe2-46ef-ab50-050c624c17be',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fscheduling%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-32.png?alt=media&token=09b9f4cf-c706-4251-99a6-d005209c32a8',
               subcategoriesOptions: [
                 {
                   name: 'MONTH-MEMORIES',
                   key: 'MonthMemories',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance1.png?alt=media&token=9b1ae680-0a62-4a24-b281-7a6a05492538',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance1Big.png?alt=media&token=71287cd5-92d6-4a39-bb3b-3ba8a3cc3373',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fscheduling%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-32.png?alt=media&token=09b9f4cf-c706-4251-99a6-d005209c32a8',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fscheduling%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-32.png?alt=media&token=09b9f4cf-c706-4251-99a6-d005209c32a8',
                 },
                 {
                   name: 'MONTH-IDEAS',
                   key: 'MonthIdeas',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance2.png?alt=media&token=4b92ecb0-c9d7-4d35-af6d-58411ee96a4a',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance2Big.png?alt=media&token=cf71aa96-d555-4ce4-a0a5-27cdd3e63597',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fscheduling%2FmonthIdeas%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-31.png?alt=media&token=54b90ac8-b716-4c43-9d05-96f38a97eef4',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fscheduling%2FmonthIdeas%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-31.png?alt=media&token=54b90ac8-b716-4c43-9d05-96f38a97eef4',
                 },
                 {
                   name: 'BLANK MONTH',
                   key: 'BlankMonth',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance3.png?alt=media&token=d2a7c500-bb55-4a7a-b6b9-2d186e26b1ed',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FMonth%20at%20a%20Glance3Big.png?alt=media&token=de9daf7d-e583-483f-9292-c3bd6713e6a0',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fscheduling%2FblankMonth%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-30.png?alt=media&token=9ae66aab-dd8e-4bb4-af4f-0fcd1dd6de53',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fscheduling%2FblankMonth%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-30.png?alt=media&token=9ae66aab-dd8e-4bb4-af4f-0fcd1dd6de53',
                 },
                 {
                   name: 'MY YEAR / 365',
                   key: 'MyYearDays',
                   id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts1.png?alt=media&token=88158025-c05c-4f08-93b7-b91a89cfbfee',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts1Big.png?alt=media&token=dc5f37c4-ef05-4d8e-b77e-4c5137c08628',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fscheduling%2Fyear365%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-33.png?alt=media&token=2bfa3179-79cc-4eb4-af9d-549509735257',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fscheduling%2Fyear365%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-33.png?alt=media&token=2bfa3179-79cc-4eb4-af9d-549509735257',
                 },
                 {
                   name: 'MY YEAR / 12',
                   key: 'MyYearMonths',
                   id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts2.png?alt=media&token=e05e0d38-ee3e-49da-8729-adc2f087c37c',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fscheduling%2FYearly%20Layouts2Big.png?alt=media&token=259b0801-f795-4c26-94aa-5f2d7a155a72',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fscheduling%2Fyear12%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-34.png?alt=media&token=cc690dc7-029d-4765-90cc-3cf24e8ac6c9',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fscheduling%2Fyear12%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-34.png?alt=media&token=cc690dc7-029d-4765-90cc-3cf24e8ac6c9',
                 }
               ]
             },
@@ -741,49 +741,49 @@ export default {
               name: 'blank pages',
               key: 'blankPages',
               id: 1.2,
-              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FLined%20pages1.png?alt=media&token=fa48db3a-393d-46cd-9e86-9b3a57991eeb',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2Flined%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-10.png?alt=media&token=e31539f9-907b-47ad-8904-97ae35d3840f',
               subcategoriesOptions: [
                 {
                   name: 'Lined',
                   key: 'Lined',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FLined%20pages1.png?alt=media&token=eace18ff-3e59-4b2e-8e92-d242460c0112',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FLined%20pages1%402x.png?alt=media&token=99e6a822-cb99-4aaf-9c29-7c37ef99cf3f',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2Flined%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-10.png?alt=media&token=e31539f9-907b-47ad-8904-97ae35d3840f',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2Flined%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-10.png?alt=media&token=e31539f9-907b-47ad-8904-97ae35d3840f',
                 },
                 {
                   name: 'Two Columns',
                   key: 'TwoColumns',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FLined%20pages2.png?alt=media&token=2139d76c-9cb9-4796-97da-369fa778a828',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FLined%20pages2%402x.png?alt=media&token=50c0983c-9329-438f-a5ad-8623d9e5322a'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2FtwoColumns%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-11.png?alt=media&token=1519a77f-c274-4715-a263-692b5490edc5',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2FtwoColumns%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-11.png?alt=media&token=1519a77f-c274-4715-a263-692b5490edc5'
                 },
                 {
                   name: 'Dotted',
                   key: 'Dotted',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FDot%20paper.png?alt=media&token=bd43b7e9-aa27-4d90-9764-e8d4e9e9295b',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FDot%20paper%402x.png?alt=media&token=e5133d18-8845-44ce-9cfc-4d982bd3bf0b'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2Fdotted%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-08.png?alt=media&token=5c074e62-a225-40b5-a6e1-8713e6db7af6',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2Fdotted%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-08.png?alt=media&token=5c074e62-a225-40b5-a6e1-8713e6db7af6'
                 },
                 {
                   name: 'Grid',
                   key: 'Grid',
                   id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FGrid%20paper.png?alt=media&token=5ca4e9a3-3d10-4ae8-8f8f-aeec200ec045',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FGrid%20paper%402x.png?alt=media&token=3f7b25e4-78d9-47e8-84a9-ac7c044c011f'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2Fgrid%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-09.png?alt=media&token=2d3f1d57-a1e8-4ddb-a396-4cbc8a9e68d2',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2Fgrid%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-09.png?alt=media&token=2d3f1d57-a1e8-4ddb-a396-4cbc8a9e68d2'
                 },
                 {
                   name: 'Blank',
                   key: 'Blank',
                   id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FBlank%20paper.png?alt=media&token=deccd829-53fa-4061-8c4b-d64581102843',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FBlank%20paper%402x.png?alt=media&token=776ca063-7296-4fa2-b8f3-23d1d863d9eb'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2Fblank%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-06.png?alt=media&token=c916ee0e-16a1-48a5-836c-b796e9182e89',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2Fblank%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-06.png?alt=media&token=c916ee0e-16a1-48a5-836c-b796e9182e89'
                 },
                 {
                   name: 'Blank Days',
                   key: 'BlankDays',
                   id: 6,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FBlank%20Days.png?alt=media&token=652f2362-75f9-4bf7-acea-f006a3f70165',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fblank-pages%2FBlank%20Days%402x.png?alt=media&token=ca4aaa76-be05-43e2-b519-d4d0655f9a8c'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2FblankDays%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-07.png?alt=media&token=6e1e33b0-3262-4ae1-b19e-9b0fbe0cff74',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fblank%2FblankDays%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-07.png?alt=media&token=6e1e33b0-3262-4ae1-b19e-9b0fbe0cff74'
                 }
               ]
             },
@@ -791,56 +791,56 @@ export default {
               name: 'lifestyle',
               key: 'lifestyle',
               id: 1.2,
-              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FList%20Page.png?alt=media&token=716a49e9-9cb8-4073-b5e2-18c65a8c1d29',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2Fbucket%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-15.png?alt=media&token=76cf21f7-1a92-4ff9-901e-1196299000b0',
               subcategoriesOptions: [
                 {
                   name: 'Bucket List',
                   key: 'BucketList',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FBucket.png?alt=media&token=09d0d51b-e913-4621-acd2-6e214df93e46',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FBucket%402x.png?alt=media&token=1fc81da4-9f58-4702-9475-4039f12e8b25',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2Fbucket%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-15.png?alt=media&token=76cf21f7-1a92-4ff9-901e-1196299000b0',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2Fbucket%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-15.png?alt=media&token=76cf21f7-1a92-4ff9-901e-1196299000b0',
                 },
                 {
                   name: 'Reading',
                   key: 'Reading',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FReading1.png?alt=media&token=34ded4d3-4eb8-4705-9e96-66c02d50e9e9',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FReading1%402x.png?alt=media&token=9b825985-fd4b-491b-8b0f-d3027342284a'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2Freading%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-19.png?alt=media&token=8df54291-b1b6-43e5-a8d5-495e90b197d6',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2Freading%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-19.png?alt=media&token=8df54291-b1b6-43e5-a8d5-495e90b197d6'
                 },
                 {
                   name: 'Ideas',
                   key: 'Ideas',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FIdeas.png?alt=media&token=50ebda90-4204-47c5-8671-704b6461c454',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FIdeas%402x.png?alt=media&token=009f0ba8-907b-4667-a1b2-e33b7c2b9e50'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2Fideas%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-16.png?alt=media&token=b822e595-1875-4758-b091-da73a38ed394',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2Fideas%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-16.png?alt=media&token=b822e595-1875-4758-b091-da73a38ed394'
                 },
                 {
                   name: 'My Lists',
                   key: 'MyLists',
                   id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FList%20Page.png?alt=media&token=22924166-34b1-4b22-b977-e661acdd94e0',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FList%20Page%402x.png?alt=media&token=5217afd1-6719-4de4-a026-f8b7cdb6d701'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2FmyList%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-17.png?alt=media&token=40110620-a297-4961-8f15-cc193de87876',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2FmyList%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-17.png?alt=media&token=40110620-a297-4961-8f15-cc193de87876'
                 },
                 {
-                  name: 'Password Tacker',
+                  name: 'Password Tracker',
                   key: 'PasswordTacker',
                   id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FPassword%20Tracker-01.png?alt=media&token=ad60440c-2124-4a3d-898d-3989569bf203',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FPassword%20Tracker-01%402x.png?alt=media&token=2eee8be6-8d6f-4ce7-b610-aabde6ebbfde'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2FpasswordTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-18.png?alt=media&token=9246f904-3ee3-4554-a0cb-9986ecab0a26',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2FpasswordTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-18.png?alt=media&token=9246f904-3ee3-4554-a0cb-9986ecab0a26'
                 },
                 {
                   name: 'Social Media Tracking',
                   key: 'SocialMediaTracking',
                   id: 6,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FSocial%20Media2.png?alt=media&token=e04c61cf-e914-44a9-a63a-f7bbcb0b4326',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FSocial%20Media2%402x.png?alt=media&token=1cbe09ab-28d1-4768-9f0e-37889e9102c1'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2FsocialMediaTracking%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-20.png?alt=media&token=cc9805d0-2fb3-4941-9647-526d0971cf40',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2FsocialMediaTracking%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-20.png?alt=media&token=cc9805d0-2fb3-4941-9647-526d0971cf40'
                 },
                 {
                   name: 'Social Media Planning',
                   key: 'SocialMediaPlanning',
                   id: 7,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FSocial%20Media1.png?alt=media&token=5e9e4991-9efc-411d-9e92-484a609b9917',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Flife-style%2FSocial%20Media1%402x.png?alt=media&token=186c020e-c5a5-41f8-9f22-be78cdd84468'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2FsocialMediaPlanning%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-21.png?alt=media&token=8d8d9a4f-68ed-472f-9ac2-2af6ebee8061',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FlifeStyle%2FsocialMediaPlanning%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-21.png?alt=media&token=8d8d9a4f-68ed-472f-9ac2-2af6ebee8061'
                 }
               ]
             },
@@ -848,28 +848,28 @@ export default {
               name: 'finances',
               key: 'finances',
               id: 1.2,
-              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FBudgeting.png?alt=media&token=d80674a4-6f51-43a3-b2b1-170ffcbb8ba1',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2Fbudgeting%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-12.png?alt=media&token=0e6d4f81-2576-4469-b528-79fa8ac136f3',
               subcategoriesOptions: [
                 {
                   name: 'Budgeting',
                   key: 'Budgeting',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FBudgeting.png?alt=media&token=9bf6e349-9990-4fe9-bf67-7c1ec3ce386f',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FBudgeting%402x.png?alt=media&token=981f9655-a61f-4313-a911-a39d1d7c8165',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2Fbudgeting%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-12.png?alt=media&token=0e6d4f81-2576-4469-b528-79fa8ac136f3',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2Fbudgeting%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-12.png?alt=media&token=0e6d4f81-2576-4469-b528-79fa8ac136f3',
                 },
                 {
                   name: 'Expense Tracker',
                   key: 'ExpenseTracker',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FExpenses.png?alt=media&token=957e4568-e2c6-47bd-9c61-9ee596281f1d',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FExpenses%402x.png?alt=media&token=6aeea236-514d-4ead-bdc8-b8920a00f688'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2FexpenseTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-13.png?alt=media&token=9b823f49-068d-4048-ad48-685bb6af3fef',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2FexpenseTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-13.png?alt=media&token=9b823f49-068d-4048-ad48-685bb6af3fef'
                 },
                 {
                   name: 'Gifting',
                   key: 'Gifting',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FGifting.png?alt=media&token=5475e8dd-4af7-4625-82be-4e726a37b61a',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Ffinances%2FGifting%402x.png?alt=media&token=d6f38082-dbc4-424a-a98d-744da7b07ec5'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2Fgifting%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-14.png?alt=media&token=3809c968-ab90-483a-92ca-717bee8cc51b',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Ffinances%2Fgifting%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-14.png?alt=media&token=3809c968-ab90-483a-92ca-717bee8cc51b'
                 }
 
               ]
@@ -878,14 +878,14 @@ export default {
               name: 'at home',
               key: 'atHome',
               id: 1.2,
-              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FCleaning.png?alt=media&token=f7d8f61f-5a5c-4716-b5f4-d48551fb7744',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FatHome%2Fcleaning%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-01.png?alt=media&token=a8ed89d8-3bf3-4bf2-a2ac-929c4d8ce259',
               subcategoriesOptions: [
                 {
                   name: 'Cleaning',
                   key: 'Cleaning',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fat-home%2FCleaning.png?alt=media&token=cc986876-c3e7-4193-9b68-91c724ae9855',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fat-home%2FCleaning%402x.png?alt=media&token=435f821b-4b96-4a48-a1e0-ea6eccaea394',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FatHome%2Fcleaning%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-01.png?alt=media&token=a8ed89d8-3bf3-4bf2-a2ac-929c4d8ce259',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FatHome%2Fcleaning%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-01.png?alt=media&token=a8ed89d8-3bf3-4bf2-a2ac-929c4d8ce259',
                 },
                 {
                   name: 'Home Maintenance',
@@ -900,28 +900,28 @@ export default {
               name: 'baby',
               key: 'baby',
               id: 1.2,
-              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FBaby1.png?alt=media&token=b54f9ff7-927d-4761-8d61-5a8f51affedd',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FbabyTrackers%2FbabyTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-03.png?alt=media&token=246ed66f-f68e-420f-ae7f-fe3c6e8feb34',
               subcategoriesOptions: [
                 {
                   name: 'Baby Tracker',
                   key: 'BabyTracker1',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby1.png?alt=media&token=375d93af-e9c7-41f3-9a38-45b32e12bf5d',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby1%402x.png?alt=media&token=489a4f97-b9de-4554-acd9-ab417fd26b1b',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FbabyTrackers%2FbabyTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-03.png?alt=media&token=246ed66f-f68e-420f-ae7f-fe3c6e8feb34',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FbabyTrackers%2FbabyTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-03.png?alt=media&token=246ed66f-f68e-420f-ae7f-fe3c6e8feb34',
                 },
                 {
                   name: 'Baby Tracker 2',
                   key: 'BabyTracker2',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby2.png?alt=media&token=d7a3e684-8368-4daf-aacf-f957a5beab60',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby2%402x.png?alt=media&token=c48b3cfe-095d-40c8-b48c-5d4218867f3f'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FbabyTrackers%2FbabyTracker2%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-04.png?alt=media&token=56f4a676-f52a-4e9f-85fe-86777ef13311',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FbabyTrackers%2FbabyTracker2%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-04.png?alt=media&token=56f4a676-f52a-4e9f-85fe-86777ef13311'
                 },
                 {
                   name: 'Baby Monthly',
                   key: 'BabyMonthly',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby3.png?alt=media&token=dcdca4f6-f0a3-4b41-9b90-91f7a9dcfa7b',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fbaby%2FBaby%20Monthly.png?alt=media&token=2bbe40c9-512b-40ff-b178-d32c3e38ff40'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FbabyTrackers%2FbabyMonthly%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-05.png?alt=media&token=151d2d9f-e614-47b9-a488-15e7755488e7',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FbabyTrackers%2FbabyMonthly%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-05.png?alt=media&token=151d2d9f-e614-47b9-a488-15e7755488e7'
                 }
               ]
             },
@@ -929,106 +929,107 @@ export default {
               name: 'wellness',
               key: 'wellness',
               id: 1.2,
-              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FWeekly%20Wellness%20Tracker.png?alt=media&token=a8f4f752-8fac-496b-b7a2-cc3170646d84',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2FwellnessTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-44.png?alt=media&token=a658f0b3-6482-434f-a08c-63e10a6d2cf5',
               subcategoriesOptions: [
                 {
                   name: 'Weekly Wellness',
                   key: 'WeeklyWellness',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FWeekly%20Wellness%20Tracker.png?alt=media&token=f6cdb103-a420-46d8-9c15-177eccdbbc3f',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FWeekly%20Wellness%20Tracker%402x.png?alt=media&token=d88f8210-d187-4d56-91e3-a20f33cb3b2c',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2FwellnessTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-44.png?alt=media&token=a658f0b3-6482-434f-a08c-63e10a6d2cf5',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2FwellnessTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-44.png?alt=media&token=a658f0b3-6482-434f-a08c-63e10a6d2cf5',
                 },
                 {
                   name: 'Mood',
                   key: 'Mood',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FMood%20Tracker.png?alt=media&token=d35aafb9-6a19-4a24-9f2b-8cb16377d972',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FMood%20Tracker%402x.png?alt=media&token=69685866-52c2-4cd7-a83f-bfd7559e72e9'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2Fmood%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-41.png?alt=media&token=194e5b86-967a-48fd-859a-51a8d2093981',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2Fmood%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-41.png?alt=media&token=194e5b86-967a-48fd-859a-51a8d2093981'
                 },
                 {
                   name: 'Fitness',
                   key: 'Fitness',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FFitness.png?alt=media&token=1ca61372-f041-4b8e-bfad-e3a9f91729f8',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FFitness%402x.png?alt=media&token=000c7811-fe64-4c98-9edd-4e2eea188141'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2Ffitness%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-38.png?alt=media&token=d6f40c40-159a-470f-9960-24f809e484b7',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2Ffitness%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-38.png?alt=media&token=d6f40c40-159a-470f-9960-24f809e484b7'
                 },
                 {
                   name: 'On The Menu',
                   key: 'OnTheMenu',
                   id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FWeekly%20Meals_Groceries.png?alt=media&token=6e8b350d-d749-4936-aa85-f471403716a1',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FWeekly%20Meals_Groceries%402x.png?alt=media&token=7a2ad6be-edee-4c54-8bc8-8613f3c58f45'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2FonTheMenu%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-42.png?alt=media&token=43942177-cc67-4f10-ba83-5f34c9eddfa8',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2FonTheMenu%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-42.png?alt=media&token=43942177-cc67-4f10-ba83-5f34c9eddfa8'
                 },
                 {
                   name: 'Measurements',
                   key: 'Measurements',
                   id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FWeight_Measurements-01-01.png?alt=media&token=996aab01-a63e-490b-9aaa-afebfac98377',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FWeight_Measurements-01-01%402x.png?alt=media&token=556b7897-8d22-417e-80b9-232dd02d1428'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2FweightMeasurements%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-45.png?alt=media&token=ae2735c1-8707-46dd-9dde-4d0476a56627',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2FweightMeasurements%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-45.png?alt=media&token=ae2735c1-8707-46dd-9dde-4d0476a56627'
                 },
                 {
                   name: 'Monthly Gratitude',
                   key: 'MonthlyGratitude',
                   id: 6,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FGratitude1.png?alt=media&token=e5d73c17-6a2e-4a8f-b113-f75079bc00bc',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FGratitude1%402x.png?alt=media&token=c34aeac4-fd03-4c03-8c7d-6877f717ad51'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2FmonthlyGratitud%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-39.png?alt=media&token=bbc7a47d-2cdf-4a83-a682-aaf485b6299c',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2FmonthlyGratitud%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-39.png?alt=media&token=bbc7a47d-2cdf-4a83-a682-aaf485b6299c'
                 },
                 {
                   name: 'Daily Gratitude',
                   key: 'DailyGratitude',
                   id: 7,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FGratitude2.png?alt=media&token=14b265a9-0782-4af7-88c5-23c5711fa594',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FGratitude2%402x.png?alt=media&token=8512da6f-c2b6-4b8f-ba93-885695e605e3'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2FdailyGratitud%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-40.png?alt=media&token=125b44de-d8ee-4ee7-8e3c-f3685c7eb967',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fwellness%2FdailyGratitud%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-40.png?alt=media&token=125b44de-d8ee-4ee7-8e3c-f3685c7eb967'
                 },
-                {
-                  name: 'Reflection',
-                  key: 'Reflection',
-                  id: 8,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FReflection.png?alt=media&token=ff2bfb1a-84db-4002-9b60-4fd1875e015f',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fwellness%2FReflection%402x.png?alt=media&token=929e349a-5f4b-4fd0-9269-43e8ba0eeb60'
-                }
+
               ]
             },
             {
               name: 'meet your goals',
               key: 'meetYourGoals',
               id: 1.2,
-              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FGoals%20Yearly.png?alt=media&token=d3ce8216-b68c-4c5c-b5e3-b9fe282eb641',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2F30DayChallenge%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-22.png?alt=media&token=98c4e6d6-341d-4954-883f-2831d7b11d1c',
               subcategoriesOptions: [
                 {
                   name: '30 Day Challenge',
                   key: '30DayChallenge',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2F30%20Day%20Challenge.png?alt=media&token=c726da55-550f-4ca8-9b7b-995746d694f2',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2F30%20Day%20Challenge%402x.png?alt=media&token=f4ab23aa-bb9f-4a9a-84d9-473fb693aca0',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2F30DayChallenge%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-22.png?alt=media&token=98c4e6d6-341d-4954-883f-2831d7b11d1c',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2F30DayChallenge%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-22.png?alt=media&token=98c4e6d6-341d-4954-883f-2831d7b11d1c',
                 },
                 {
                   name: 'My Goals',
                   key: 'MyGoals',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FGoals.png?alt=media&token=f7e17d84-e021-4495-947d-9fe8b9031cdf',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FGoals%402x.png?alt=media&token=526fcec3-7a74-42bc-90e6-97d9b18f6744'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2FMyGoals%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-23.png?alt=media&token=7fc0c8d7-7381-417b-8e4d-a9aee16fdba8',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2FMyGoals%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-23.png?alt=media&token=7fc0c8d7-7381-417b-8e4d-a9aee16fdba8'
                 },
                 {
                   name: 'Monthly Goals',
                   key: 'MonthlyGoals',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FGoals%20Yearly.png?alt=media&token=21c3cbda-575c-4d52-8899-7b02e15a679e',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FGoals%20Yearly%402x.png?alt=media&token=54ff7d98-9bfe-44f2-832c-1a14059d8eba'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2FMonthlyGoals%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-26.png?alt=media&token=e65340f7-96eb-4cb2-bb5a-72e95daafad7',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2FMonthlyGoals%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-26.png?alt=media&token=e65340f7-96eb-4cb2-bb5a-72e95daafad7'
                 },
                 {
                   name: 'Habit Tracker',
                   key: 'HabitTracker',
                   id: 4,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FHabit%20Tracker2.png?alt=media&token=0b935a97-7156-433d-91c6-4b0c4dede10b',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FHabit%20Tracker2%402x.png?alt=media&token=33aa4457-7b59-4d13-9fb2-f1c1aa221c63'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2FHabitTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-26.png?alt=media&token=8b7c7c77-cc0f-47c3-adb4-7ab21951b30f',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2FHabitTracker%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-26.png?alt=media&token=8b7c7c77-cc0f-47c3-adb4-7ab21951b30f'
                 },
                 {
                   name: 'Monthly Habits',
                   key: 'MonthlyHabits',
                   id: 5,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FHabit%20Tracker1.png?alt=media&token=bae58915-0619-4ee1-a6d8-e05ab05a07de',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fmeet-your-goals%2FHabit%20Tracker1%402x.png?alt=media&token=70a78273-e083-4420-9862-1c873624d43f'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2FMonthlyHabits%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-25.png?alt=media&token=f590dc4a-4352-491e-832a-a767594d8492',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2FMonthlyHabits%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-25.png?alt=media&token=f590dc4a-4352-491e-832a-a767594d8492'
+                },
+                {
+                  name: 'Reflection',
+                  key: 'Reflection',
+                  id: 8,
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2Freflection%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-43.png?alt=media&token=7fd4495e-432b-4fa5-8abd-2e120ab157d9',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FmeetYourGoals%2Freflection%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-43.png?alt=media&token=7fd4495e-432b-4fa5-8abd-2e120ab157d9'
                 }
               ]
             },
@@ -1036,28 +1037,28 @@ export default {
               name: 'school - work',
               key: 'schoolWork',
               id: 1.2,
-              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FSchool.png?alt=media&token=864f3f61-0132-48cd-a88f-f3e88ac35c6a',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FschoolAndWork%2FMeetingNotes%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-36.png?alt=media&token=244d83df-a090-4ada-a3bf-ddc7bd710a47',
               subcategoriesOptions: [
                 {
                   name: 'Meeting Notes',
                   key: 'MeetingNotes',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fschool-work%2FMeeting%20Notes%20Template.png?alt=media&token=df37f23b-5bb6-4a1d-ae80-23fc2d99b12b',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fschool-work%2FMeeting%20Notes%20Template%402x.png?alt=media&token=a3e44d3c-971f-481d-97ed-c24626b4243e',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FschoolAndWork%2FMeetingNotes%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-36.png?alt=media&token=244d83df-a090-4ada-a3bf-ddc7bd710a47',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FschoolAndWork%2FMeetingNotes%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-36.png?alt=media&token=244d83df-a090-4ada-a3bf-ddc7bd710a47',
                 },
                 {
                   name: 'Assignments',
                   key: 'Assignments',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fschool-work%2FAssignment%20Tracker.png?alt=media&token=3d2bfc99-98f9-42b3-a3f6-b9feda04da00',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fschool-work%2FAssignment%20Tracker%402x.png?alt=media&token=bcaf3607-fbb4-4e8e-9b46-0b75a976a183'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FschoolAndWork%2FAssignments%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-35.png?alt=media&token=96bf2069-5782-40e2-a734-d908a33025e8',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FschoolAndWork%2FAssignments%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-35.png?alt=media&token=96bf2069-5782-40e2-a734-d908a33025e8'
                 },
                 {
                   name: 'School',
                   key: 'School',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fschool-work%2FSchool.png?alt=media&token=3160d1c5-6587-42fc-b14e-39632a971ed1',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fschool-work%2FSchool%402x.png?alt=media&token=7212c095-0ce9-4ecc-98f4-36660ce25202'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FschoolAndWork%2FSchool%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-37.png?alt=media&token=7c1b0767-0f0a-4164-b68e-0feda0cde5c6',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2FschoolAndWork%2FSchool%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-37.png?alt=media&token=7c1b0767-0f0a-4164-b68e-0feda0cde5c6'
                 }
               ]
             },
@@ -1065,33 +1066,34 @@ export default {
               name: 'productivity',
               key: 'productivity',
               id: 1.2,
-              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2FProject%20Template.png?alt=media&token=558e1470-7771-4fe5-9e28-056e488d3540',
+              urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fproductivity%2FProjects%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-27.png?alt=media&token=ef9a3665-697c-4264-8cbf-f507258a301a',
               subcategoriesOptions: [
                 {
                   name: 'Projects',
                   key: 'Projects',
                   id: 1,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fproductivity%2FProject%20Template.png?alt=media&token=219d87eb-972e-4234-9b6c-9cb13cb39bae',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fproductivity%2FProject%20Template%402x.png?alt=media&token=4130cc86-2987-4c03-ac40-e82954a1f248',
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fproductivity%2FProjects%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-27.png?alt=media&token=ef9a3665-697c-4264-8cbf-f507258a301a',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fproductivity%2FProjects%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-27.png?alt=media&token=ef9a3665-697c-4264-8cbf-f507258a301a',
                 },
                 {
                   name: 'Task Triage',
                   key: 'TaskTriage',
                   id: 2,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fproductivity%2FTask%20Triage.png?alt=media&token=6ab0a423-2566-4362-ae0a-3b522d6d7dd7',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fproductivity%2FTask%20Triage%402x.png?alt=media&token=266dd137-0842-45cc-9228-679351000bc6'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fproductivity%2FTaskTriage%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-28.png?alt=media&token=c0784fcf-a736-4696-bed1-a9c4012dd87d',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fproductivity%2FTaskTriage%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-28.png?alt=media&token=c0784fcf-a736-4696-bed1-a9c4012dd87d'
                 },
                 {
                   name: 'To Do',
                   key: 'ToDo',
                   id: 3,
-                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fproductivity%2FTo%20do.png?alt=media&token=23dc0ca3-9018-4fb8-9dce-3567a50a955a',
-                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/add-pages%2Fproductivity%2FTo%20do%402x.png?alt=media&token=10609314-deda-4294-8253-7698c7ddf50c'
+                  urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fproductivity%2FToDo%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-29.png?alt=media&token=1653fe41-1b11-43b1-9090-952839db47a0',
+                  urlImgFull: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/addOns%2Fproductivity%2FToDo%2FWorking%20File%20Add%20Ons%20Previews%20Test%20Building%20Up-29.png?alt=media&token=1653fe41-1b11-43b1-9090-952839db47a0'
                 }
               ]
             },
           ]
         },
+
         {
           name: 'review',
           id: 5,
