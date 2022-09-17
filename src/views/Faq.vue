@@ -9,7 +9,7 @@
               <h1>creating a planner/notebook</h1>
             </template>
             <div class="has-text-left p-5">
-              <h1 class="has-text-black is-size-4 has-text-weight-light has-text-weight-light m-1">1) Do you offer pre-made notebooks or planners'</h1>
+              <h1 class="has-text-black is-size-4 has-text-weight-light has-text-weight-light m-1">1) Do you offer pre-made notebooks or planners?</h1>
               <h1 class="has-text-grey is-size-5 freight-big-pro-font has-text-weight-light m-0">Yes! We have standards templates that you can use as is or adjust for needs. You just need to pick your cover and coil. To find this templates <a class="link" href="/pre-design"> click here </a>.</h1>
               <h1 class="has-text-black is-size-4 has-text-weight-light has-text-weight-light m-1 mt-3">2) How do I create my own planner or notebook?</h1>
               <h1 class="has-text-grey is-size-5 freight-big-pro-font has-text-weight-light m-0">We will walk you through each step to create your perfect planner or notebook. To find our tutorial <a class="link" href="/tutorial"> click here </a>.</h1>

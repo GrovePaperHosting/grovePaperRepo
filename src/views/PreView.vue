@@ -27,6 +27,10 @@
           </div>
         </div>
         <div v-else class="has-text-left w100">
+          <button @click="selectedSubcategory = null" class="button__transparent">
+            <img style="width: 40px; height: 30px"
+                 src="https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/back-arrow.svg?alt=media&token=618e7c36-7a15-4f2f-b088-36d8323a72e7">
+          </button>
           <h2 class="is-size-4 is-size-5-touch kontuor-font has-text-weight-light is-uppercase mt-4">
             {{ options[selectedCategory].subcategories[selectedSubcategory].name }}</h2>
           <div class="columns is-multiline is-vcentered mt-6">
@@ -148,7 +152,7 @@ export default {
               ]
             },
             {
-              name: 'gp desigs',
+              name: 'gp designs',
               id: 1.2,
               urlImg: 'https://firebasestorage.googleapis.com/v0/b/grove-paper-50b62.appspot.com/o/cover%2FGrove-Paper-Faces-1.png?alt=media&token=7cfc35cf-a254-4a39-97e3-ee5ae976adc8',
               subcategoriesOptions: [

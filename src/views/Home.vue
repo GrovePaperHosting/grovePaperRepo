@@ -1,21 +1,47 @@
 <template>
   <div class="home-content">
     <div class="pb-6" style="position: relative">
-      <div style="position: absolute; bottom: 0px; height: 300px; width: 100%; background-color: #FCF5F5"></div>
-      <div class="container is-flex is-justify-content-center my-6">
-        <img class="mx-4 mt-6" width="260"
+      <!--<div style="position: absolute; top: 150px; height: 200px; width: 100%; background-color: #FCF5F5;"></div>-->
+      <div class="container p-6">
+        <template>
+          <b-carousel :indicator-inside="false" :indicator="false" :pause-hover="false">
+            <b-carousel-item>
+              <div @click="$router.push({ path: '/details'})" class="p-6">
+                <b-image class="image"
+                         :src="'https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/HomeBanner%2F1.png?alt=media&token=729fa616-f696-4600-9b86-3018749d7f48'">
+                  <span>Holiiiii</span>
+                </b-image>
+              </div>
+            </b-carousel-item>
+            <b-carousel-item>
+              <div @click="$router.push({ path: '/builder'})" class="p-6">
+                <b-image class="image"
+                         src="https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/HomeBanner%2F2.png?alt=media&token=44faf3de-425a-48f0-bdd9-3170b0cd0877"></b-image>
+              </div>
+            </b-carousel-item>
+            <b-carousel-item>
+              <div @click="$router.push({ path: '/shop'})" class="p-6">
+                <b-image class="image"
+                         src="https://firebasestorage.googleapis.com/v0/b/grove-paper-9a219.appspot.com/o/HomeBanner%2F3.png?alt=media&token=005925c9-d21a-42fc-afda-d4bdb291b9dd"></b-image>
+              </div>
+            </b-carousel-item>
+          </b-carousel>
+        </template>
+      </div>
+      <!--<div class="is-flex is-justify-content-center my-6">
+        <img @click="$router.push({ path: '/details'})" class="mx-4" width="380" style="height: 270px; position: relative; z-index: 2"
              src="../../public/assets/images/home-image1.png"
              alt="Grove Paper Logo"
         >
-        <img class="mx-4 mt-6" width="260"
+        <img @click="$router.push({ path: '/builder'})" class="mx-4" width="380" style="height: 270px; position: relative; z-index: 2"
              src="../../public/assets/images/home-image2.png"
              alt="Grove Paper Logo"
         >
-        <img class="mx-4 mt-6" width="260"
+        <img @click="$router.push({ path: '/shop'})" class="mx-4" width="380" style="height: 270px; position: relative; z-index: 2"
              src="../../public/assets/images/home-image3.png"
              alt="Grove Paper Logo"
         >
-      </div>
+      </div>-->
     </div>
     <div>
       <div class="container">
