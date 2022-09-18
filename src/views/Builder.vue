@@ -64,21 +64,66 @@
                 </button>
               </div>
               <div v-if="pagesBookStructure.length>0" class="book m-1">
-                <div class="page" style="max-width: 522px;max-height: 684px; min-width: 375px" :class="`page${index}`"
-                     v-for="(page, index) in pagesBookStructure" :key="index"
-                     @click="flipSelectedPage($event)">
-                  <div class="side side0">
-                    <div style="border: 0.5px solid lightgray;" class="py-1">
-                      <component :is="`${page[0].type}`" :data="page[0].data" class="pdf"></component>
+                <b-steps
+                    v-model="activeStep"
+                    :animated="true"
+                    :rounded="true"
+                    :has-navigation="false"
+                    :label-position="'bottom'"
+                >
+                  <b-step-item step="1" label="Editor" :clickable="true" >
+                    <div style="max-width: 500px; margin: 0px auto">
+                      <h2 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
+                        Layout</h2>
+                      <hr class="my-1">
+                      <div class="is-flex is-justify-content-space-between">
+                        <h3 v-if="finalValue.length>5" class="is-size-4">{{finalValue[5].selection.category}} - {{finalValue[5].selection.subcategory.key}}</h3>
+                        <button class="button add-button is-primary frunchySerif-font has-text-black is-rounded"
+                                @click="selectedCategory = 1; selectedSubcategory = null; selectedItem = null; layoutPreselect = null;">
+                          CHANGE
+                        </button>
+                      </div>
+
+                      <h2 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
+                        Add ons</h2>
+                      <hr class="my-1">
+                      <div v-if="finalValue.length>6" class="is-flex is-flex-direction-column">
+                        <b-checkbox type="is-danger" class="my-1" v-for="(item, index) in finalValue[6].selection" :key="index" v-model="checkboxGroup"
+                                    :native-value="index">
+                          {{item.subcategory.name}} x {{item.pages}}
+                        </b-checkbox>
+                        <div class="is-flex is-justify-content-flex-end">
+                          <button class="button add-button is-primary frunchySerif-font has-text-black is-rounded"
+                                  @click="selectedCategory = 1; selectedSubcategory = null; selectedItem = null; layoutPreselect = null;">
+                            REMOVE
+                          </button>
+                        </div>
+                      </div>
+                      <h2 class="is-uppercase is-size-4 lamango-font lamango-font__spacing3 has-text-weight-light mt-2">
+                        Extras</h2>
+                      <hr class="my-1">
+                      <h3 class="is-size-4"> {{$store.state.extraSelection}}</h3>
                     </div>
-                  </div>
-                  <div class="side side1">
-                    <div style="border: 0.5px solid lightgray;" class="py-1">
-                      <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data" :index="index"
-                                 class="pdf"></component>
+                  </b-step-item>
+                  <b-step-item step="2" label="Review" :clickable="true">
+                    <div class="page" style="max-width: 522px;max-height: 684px; min-width: 375px"
+                         :class="`page${index}`"
+                         v-for="(page, index) in pagesBookStructure" :key="index"
+                         @click="flipSelectedPage($event)">
+                      <div class="side side0">
+                        <div style="border: 0.5px solid lightgray;" class="py-1">
+                          <component :is="`${page[0].type}`" :data="page[0].data" class="pdf"></component>
+                        </div>
+                      </div>
+                      <div class="side side1">
+                        <div style="border: 0.5px solid lightgray;" class="py-1">
+                          <component v-if="page.length>1" :is="`${page[1].type}`" :data="page[1].data" :index="index"
+                                     class="pdf"></component>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </b-step-item>
+                </b-steps>
               </div>
             </div>
           </div>
@@ -93,7 +138,8 @@
                   </button>
                 </div>
                 <div class="is-flex is-justify-content-center is-flex-direction-column" style="height: 90%">
-                  <h1 class="is-uppercase is-size-2 is-size-4-touch lamango-font lamango-font__spacing3 has-text-weight-light" style="line-height: 95%;">
+                  <h1 class="is-uppercase is-size-2 is-size-4-touch lamango-font lamango-font__spacing3 has-text-weight-light"
+                      style="line-height: 95%;">
                     {{ layoutPreselect.name }}</h1>
                   <div v-if="selectedCategory === 6" class="add-container">
                     <!--<input type="number" class="input"
@@ -126,11 +172,13 @@
                     <input v-if="this.addOnsPosition === 'addEnd'||this.addOnsPosition === 'addBeginning'" type="number"
                            class="input mt-3"
                            v-model.number="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]">
-                    <div class="is-flex is-justify-content-center" v-if="this.addOnsPosition === 'addEnd'||this.addOnsPosition === 'addBeginning'">
+                    <div class="is-flex is-justify-content-center"
+                         v-if="this.addOnsPosition === 'addEnd'||this.addOnsPosition === 'addBeginning'">
                       <a v-if="this.addOnsPosition === 'addEnd'||this.addOnsPosition === 'addBeginning'"
                          class=" has-text-grey is-size-4 is-underlined mx-3"
                          @click="addPages({category: options[selectedCategory].subcategories[selectedSubcategory].key, subcategory: layoutPreselect})">Add</a>
-                      <a v-if="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]>1"  class=" has-text-grey is-size-4 is-underlined mx-3" @click="deletePages">Remove</a></div>
+                      <a v-if="arrayPagesToAdd[Number(selectedSubcategory)][Number(layoutPreselect.id)-1]>1"
+                         class=" has-text-grey is-size-4 is-underlined mx-3" @click="deletePages">Remove</a></div>
                   </div>
                   <div v-else class="add-container">
                     <button class="button add-button frunchySerif-font is-size-4 mt-3 w100"
@@ -847,6 +895,8 @@ export default {
   data() {
     return {
       //components: [Hourly1, Hourly2],
+      checkboxGroup: [],
+      activeStep: 0,
       loadingPDF: false,
       viewReview: false,
       output: [],
@@ -2162,6 +2212,10 @@ export default {
           this.addOnsPosition = '';
         }
       })
+      //this.finalValue[this.selectedCategory] = {id: this.selectedCategory + 1, selection};
+      //this.$store.commit('SET_FINAL_VALUE', this.finalValue);
+      //this.finalValue[this.selectedCategory].selection.push({category: selection.category, subcategory: selection.subcategory, pages: 'Weekly'});
+      //this.$store.commit('SET_FINAL_VALUE', this.finalValue);
     },
     selectItemAddPagesMonthly(selection, addOnsPosition) {
       this.addOnsPosition = addOnsPosition;
@@ -2169,7 +2223,6 @@ export default {
       let counter = 0;
       structureArray.map((element, index) => {
         if (element[1].category === 'calendar') {
-
           let newElements = [...this.$store.getters.getPagesBookStructure[index + counter], ...this.$store.getters.getPagesBookStructure[index + counter + 1]];
           newElements.splice(1, 0, {
             data: `${selection.category}${selection.subcategory.key}` === 'blankPagesBlankDays' ? 1 : 'addOnPages',
@@ -2339,7 +2392,7 @@ export default {
       });
       this.calcTotalHoliday();
     },
-    verifyAddOns(selectedCategory){
+    verifyAddOns(selectedCategory) {
       if (this.finalValue.length === 7) {
         this.finalValue[6].selection.filter((element) => {
           console.log('element', element, selectedCategory);

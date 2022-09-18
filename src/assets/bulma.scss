@@ -24,6 +24,7 @@ $primary: #E5A49A;
 //$secondary: #F8EEE8;
 $secondary: #FFF;
 $warning: #F2D2CD;
+$custom-colors: ("green": (red));
 $text: #000000;
 $navbar-background-color: #fcf5f5;
 $link: #fcf5f5;
@@ -35,6 +36,9 @@ $progress-value-background-color: #e7aa9f;
 $navbar-item-hover-background-color:  #fcf5f5;
 $navbar-item-hover-color: #D87c89;
 $modal-background-background-color: rgba(#F8F0EA, 0.86);
+$steps-previous-color: #D87c89;
+$steps-active-color: #D87c89;
+$steps-colors: #D87c89;
 
 @import "~bulma";
 
@@ -108,4 +112,19 @@ html{
 ::-webkit-scrollbar-track {
   background: lightgray;
   border-radius: 10px;
+}
+.b-steps .steps .step-items .step-item.is-active .step-marker {
+  background-color: white;
+  border-color: #D87c89;
+  color: #D87c89;
+}
+.b-steps .steps .step-items .step-item::before, .b-steps .steps .step-items .step-item::after {
+  background: -webkit-gradient(linear, right top, left top, color-stop(50%, #dbdbdb), color-stop(50%, #D87c89));
+  background: linear-gradient(to left, #dbdbdb 50%, #D87c89 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+}
+.b-steps .steps .step-items .step-item.is-previous .step-marker {
+  color: white;
+  background-color: #D87c89;
 }
